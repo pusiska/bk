@@ -1,12 +1,12 @@
 {
-  "name": "Мои книги 3.9",
+  "name": "Мои книги 4.0",
   "short_name": "Книги",
   "description": "EPUB-читалка",
-  "start_url": "./index.html?v=39",
+  "start_url": "./index.html?v=40",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#fbfaf6",
-  "theme_color": "#fbfaf6",
+  "background_color": "#FAF8F2",
+  "theme_color": "#FAF8F2",
   "orientation": "portrait",
   "icons": [
     {

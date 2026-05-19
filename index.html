@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=39" />
+  <link rel="manifest" href="./manifest.json?v=40" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 3.9</title>
+  <title>Мои книги 4.0</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=39') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=40') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,22 +19,25 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=39') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=40') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
 
     :root {
-      --bg: #fbfaf6;
-      --surface: #ffffff;
-      --surface-2: #f4efe6;
-      --text: #181512;
-      --muted: #82786c;
-      --line: #ded4c5;
-      --line-soft: #eee6dc;
-      --accent: #111111;
-      --danger: #9d3e32;
+      --bg: #FAF8F2;
+      --surface: #FFFDF8;
+      --surface-2: #F4EFE7;
+      --surface-soft: #F4EFE7;
+      --text: #11110F;
+      --muted: #7A7067;
+      --line: #E3D5C4;
+      --line-soft: #EFE7DA;
+      --accent: #11110F;
+      --accent-soft: #EFE7DA;
+      --danger: #B94A3A;
+      --danger-bg: #FFF3F1;
       --shadow: 0 8px 22px rgba(44, 35, 24, .045);
       --radius-lg: 12px;
       --radius-md: 7px;
@@ -379,7 +382,7 @@
       justify-content: flex-start;
       padding: 8px;
       font-family: var(--font-heading);
-      font-size: 18px;
+      font-size: var(--reader-font-size, 20px);
       line-height: .9;
       letter-spacing: .05em;
       color: var(--accent);
@@ -614,13 +617,13 @@
 
     .reader-content {
       height: 100%;
-      overflow-y: hidden;
-      padding: 18px 18px 54px;
+      overflow: hidden;
+      padding: 18px 18px 28px;
       color: #181512;
       background: #fffdf8;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 18px;
-      line-height: 1.72;
+      font-size: var(--reader-font-size, 20px);
+      line-height: var(--reader-line-height, 1.68);
       overscroll-behavior: contain;
     }
 
@@ -648,7 +651,7 @@
       padding: 60px 0;
     }
 
-    .reader-floating-actions {
+    .reader-floating-actions { display: none !important;
       position: fixed;
       left: 50%;
       bottom: max(12px, env(safe-area-inset-bottom));
@@ -775,6 +778,157 @@
       transform: translateX(-50%) translateY(0);
     }
 
+
+    /* v4.0 design refinement */
+    .app-header {
+      margin-bottom: 18px;
+    }
+
+    .metric-card {
+      box-shadow: 0 4px 14px rgba(44, 35, 24, .035);
+    }
+
+    .metric-card strong {
+      font-size: 22px;
+    }
+
+    .book-card {
+      box-shadow: 0 4px 14px rgba(44, 35, 24, .035);
+    }
+
+    .books-list.list .cover {
+      width: 68px;
+      height: 98px;
+    }
+
+    .book-meta .pill {
+      background: var(--surface-soft);
+      border-color: transparent;
+    }
+
+    .book-actions .danger-btn {
+      background: transparent;
+      border-color: var(--line-soft);
+      color: var(--muted);
+    }
+
+    .bottom-nav {
+      bottom: 10px;
+      min-height: 48px;
+      padding: 4px;
+      border-radius: 10px;
+    }
+
+    .nav-btn {
+      min-height: 36px;
+      border-radius: 7px;
+      font-size: 9px;
+    }
+
+    .reader-nav-btn {
+      min-width: 34px;
+      min-height: 30px;
+      border-radius: 7px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .reader-page-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .reader-tap-zone {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 3;
+      width: 26%;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      opacity: 0;
+    }
+
+    .reader-tap-zone.left {
+      left: 0;
+    }
+
+    .reader-tap-zone.right {
+      right: 0;
+    }
+
+    .reading-settings {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .reading-settings button {
+      min-height: 34px;
+      border-radius: 7px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .reading-settings button.active {
+      background: var(--accent);
+      color: var(--surface);
+      border-color: var(--accent);
+    }
+
+    body.reader-theme-sepia .reader-shell,
+    body.reader-theme-sepia .reader-panel,
+    body.reader-theme-sepia #viewer,
+    body.reader-theme-sepia .reader-content {
+      background: #F5EBDD;
+      color: #1F1812;
+    }
+
+    body.reader-theme-dark.reader-mode,
+    body.reader-theme-dark .reader-shell,
+    body.reader-theme-dark .reader-panel,
+    body.reader-theme-dark #viewer,
+    body.reader-theme-dark .reader-content {
+      background: #1D1B17;
+      color: #EFE9DD;
+    }
+
+    body.reader-theme-dark .reader-top {
+      background: rgba(29, 27, 23, .96);
+      border-bottom-color: #3A352E;
+    }
+
+    body.reader-theme-dark .reader-title,
+    body.reader-theme-dark .reader-sub {
+      color: #EFE9DD;
+    }
+
+    body.reader-theme-dark .reader-back,
+    body.reader-theme-dark .chapter-btn,
+    body.reader-theme-dark .reader-nav-btn {
+      background: #2A2721;
+      color: #EFE9DD;
+      border-color: #4A4338;
+    }
+
+    body.reader-font-sans .reader-content {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body.reader-font-mono .reader-content {
+      font-family: "Courier New", monospace;
+    }
+
     @media (max-width: 420px) {
       body {
         padding: 12px;
@@ -816,10 +970,10 @@
         <div class="brand-mark">К</div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 3.9</p>
+          <p class="brand-subtitle">EPUB-читалка · 4.0</p>
         </div>
       </div>
-      <span class="version-pill">v3.9</span>
+      <span class="version-pill">v4.0</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
     </header>
 
@@ -868,9 +1022,13 @@
               <h2 class="reader-title" id="readerTitle">Книга не выбрана</h2>
               <p class="reader-sub" id="readerAuthor">Выбери книгу в библиотеке</p>
             </div>
-            <div class="reader-chapter-wrap">
-              <button class="chapter-btn" id="chapterBtn" type="button">Главы</button>
-              <div class="chapter-menu" id="chapterMenu"></div>
+            <div class="reader-page-controls">
+              <button class="reader-nav-btn" id="prevBtn" type="button" aria-label="Предыдущая страница">‹</button>
+              <button class="reader-nav-btn" id="nextBtn" type="button" aria-label="Следующая страница">›</button>
+              <div class="reader-chapter-wrap">
+                <button class="chapter-btn" id="chapterBtn" type="button">Главы</button>
+                <div class="chapter-menu" id="chapterMenu"></div>
+              </div>
             </div>
           </div>
 
@@ -881,17 +1039,14 @@
         </div>
 
         <div class="reader-panel">
+          <button class="reader-tap-zone left" id="tapPrevBtn" type="button" aria-label="Предыдущая страница"></button>
+          <button class="reader-tap-zone right" id="tapNextBtn" type="button" aria-label="Следующая страница"></button>
           <div id="viewer">
             <div class="empty" style="margin: 16px;">
               <strong>Книга не открыта</strong>
               Перейди в библиотеку и нажми «Читать».
             </div>
           </div>
-        </div>
-
-        <div class="reader-floating-actions">
-          <button id="prevBtn">← Назад</button>
-          <button id="nextBtn">Вперёд →</button>
         </div>
       </div>
     </section>
@@ -905,17 +1060,17 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">3.9</span>
+          <span id="settingsVersion">4.0</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-19 06:45 UTC</span>
+          <span id="settingsBuild">2026-05-19 07:02 UTC</span>
         </div>
 
         <div class="settings-item">
           <strong>Хранилище</strong>
-          <span id="settingsStorage">IndexedDB · my-books-epub-reader-db-v39</span>
+          <span id="settingsStorage">IndexedDB · my-books-epub-reader-db-v40</span>
         </div>
 
         <div class="settings-item">
@@ -925,12 +1080,23 @@
 
         <div class="settings-item">
           <strong>Service Worker</strong>
-          <span>my-books-epub-reader-v39</span>
+          <span>my-books-epub-reader-v40</span>
+        </div>
+
+        <div class="settings-item">
+          <strong>Настройки чтения</strong>
+          <span>Размер текста, тема и шрифт применяются к экрану чтения.</span>
+          <div class="reading-settings">
+            <button id="fontMinusBtn" type="button">A−</button>
+            <button id="fontPlusBtn" type="button">A+</button>
+            <button id="themeToggleBtn" type="button">Тема</button>
+            <button id="fontFamilyBtn" type="button">Шрифт</button>
+          </div>
         </div>
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=39.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=40.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -948,13 +1114,13 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '3.9';
-    const BUILD_DATE = '2026-05-19 06:45 UTC';
-    const DB_NAME = 'my-books-epub-reader-db-v39';
+    const APP_VERSION = '4.0';
+    const BUILD_DATE = '2026-05-19 07:02 UTC';
+    const DB_NAME = 'my-books-epub-reader-db-v40';
     const DB_VERSION = 1;
     const BOOKS_STORE = 'books';
-    const UI_STORAGE_KEY = 'my-books-epub-ui-v39';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v39';
+    const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v40';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -968,7 +1134,11 @@
     let activeBook = null;
     let activeReaderData = null;
     let activePageIndex = 0;
-    let libraryView = loadUiSettings().libraryView || 'list';
+    const uiSettings = loadUiSettings();
+    let libraryView = uiSettings.libraryView || 'list';
+    let readerFontSize = Number(uiSettings.readerFontSize || 20);
+    let readerTheme = uiSettings.readerTheme || 'light';
+    let readerFont = uiSettings.readerFont || 'serif';
     let touchStartX = 0;
     let touchStartY = 0;
 
@@ -992,9 +1162,15 @@
       viewer: document.getElementById('viewer'),
       prevBtn: document.getElementById('prevBtn'),
       nextBtn: document.getElementById('nextBtn'),
+      tapPrevBtn: document.getElementById('tapPrevBtn'),
+      tapNextBtn: document.getElementById('tapNextBtn'),
       settingsVersion: document.getElementById('settingsVersion'),
       settingsBuild: document.getElementById('settingsBuild'),
       settingsBooks: document.getElementById('settingsBooks'),
+      fontMinusBtn: document.getElementById('fontMinusBtn'),
+      fontPlusBtn: document.getElementById('fontPlusBtn'),
+      themeToggleBtn: document.getElementById('themeToggleBtn'),
+      fontFamilyBtn: document.getElementById('fontFamilyBtn'),
       clearDataBtn: document.getElementById('clearDataBtn'),
       toast: document.getElementById('toast')
     };
@@ -1041,6 +1217,7 @@
 
       bindEvents();
       applyLibraryView();
+      applyReadingSettings();
       renderAll();
       registerServiceWorker();
     }
@@ -1060,6 +1237,8 @@
       els.readerBackBtn.addEventListener('click', () => showScreen('library'));
       els.prevBtn.addEventListener('click', () => goToPage(-1));
       els.nextBtn.addEventListener('click', () => goToPage(1));
+      els.tapPrevBtn.addEventListener('click', () => goToPage(-1));
+      els.tapNextBtn.addEventListener('click', () => goToPage(1));
 
       els.chapterBtn.addEventListener('click', () => {
         els.chapterMenu.classList.toggle('open');
@@ -1088,13 +1267,17 @@
         }
       }, { passive: true });
 
+      els.fontMinusBtn.addEventListener('click', () => changeFontSize(-1));
+      els.fontPlusBtn.addEventListener('click', () => changeFontSize(1));
+      els.themeToggleBtn.addEventListener('click', cycleReaderTheme);
+      els.fontFamilyBtn.addEventListener('click', cycleReaderFont);
       els.clearDataBtn.addEventListener('click', clearLocalData);
     }
 
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=39').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=40').catch(() => {});
         });
       }
     }
@@ -1285,7 +1468,16 @@
       };
     }
 
-    function splitBlockForPages(block, limit = 760) {
+    function getPageCharLimit() {
+      const viewportHeight = window.innerHeight || 720;
+      const compactScreen = viewportHeight < 720;
+      const base = compactScreen ? 430 : 520;
+      const sizePenalty = Math.max(0, readerFontSize - 20) * 42;
+
+      return clamp(base - sizePenalty, 300, 560);
+    }
+
+    function splitBlockForPages(block, limit = getPageCharLimit() - 60) {
       const text = getPlainText(block);
 
       if (text.length <= limit || !/^<p/i.test(block.trim())) {
@@ -1317,7 +1509,7 @@
     async function buildPagesFromReaderData(readerData) {
       const pages = [];
       const chapters = [];
-      const pageCharLimit = 820;
+      const pageCharLimit = getPageCharLimit();
 
       for (let chapterIndex = 0; chapterIndex < readerData.spine.length; chapterIndex += 1) {
         const item = readerData.spine[chapterIndex];
@@ -1715,6 +1907,11 @@
       const content = els.viewer.querySelector('.reader-content');
       if (content) content.scrollTop = 0;
 
+      if (await ensurePageFits()) {
+        await renderActivePage();
+        return;
+      }
+
       const progress = Math.round(((activePageIndex + 1) / activeReaderData.pages.length) * 100);
 
       activeBook = {
@@ -1747,6 +1944,82 @@
 
       activePageIndex = nextIndex;
       await renderActivePage();
+    }
+
+    async function ensurePageFits() {
+      const content = els.viewer.querySelector('.reader-content');
+
+      if (!content || !activeReaderData?.pages?.length) return false;
+
+      if (content.scrollHeight <= content.clientHeight + 4) return false;
+
+      const currentPage = activeReaderData.pages[activePageIndex];
+      const split = splitHtmlPage(currentPage.html);
+
+      if (!split) return false;
+
+      currentPage.html = split.first;
+
+      activeReaderData.pages.splice(activePageIndex + 1, 0, {
+        html: split.second,
+        chapterIndex: currentPage.chapterIndex
+      });
+
+      return true;
+    }
+
+    function splitHtmlPage(html) {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = html;
+
+      const children = Array.from(wrapper.children);
+
+      if (children.length > 1) {
+        const splitAt = Math.max(1, Math.floor(children.length / 2));
+        const first = children.slice(0, splitAt).map(node => node.outerHTML).join('');
+        const second = children.slice(splitAt).map(node => node.outerHTML).join('');
+
+        if (getPlainText(first).length && getPlainText(second).length) {
+          return { first, second };
+        }
+      }
+
+      const text = getPlainText(html);
+
+      if (text.length < 160) return null;
+
+      const parts = splitTextNearMiddle(text);
+
+      if (!parts) return null;
+
+      return {
+        first: `<p>${escapeHtml(parts.first)}</p>`,
+        second: `<p>${escapeHtml(parts.second)}</p>`
+      };
+    }
+
+    function splitTextNearMiddle(text) {
+      const clean = String(text || '').trim();
+
+      if (clean.length < 160) return null;
+
+      const middle = Math.floor(clean.length / 2);
+      let splitIndex = clean.indexOf('. ', middle);
+
+      if (splitIndex < 0 || splitIndex > middle + 220) {
+        splitIndex = clean.lastIndexOf('. ', middle);
+      }
+
+      if (splitIndex < 80) {
+        splitIndex = middle;
+      } else {
+        splitIndex += 1;
+      }
+
+      return {
+        first: clean.slice(0, splitIndex).trim(),
+        second: clean.slice(splitIndex).trim()
+      };
     }
 
     function updateReaderHeader(book) {
@@ -1816,7 +2089,69 @@
     }
 
     function saveUiSettings() {
-      localStorage.setItem(UI_STORAGE_KEY, JSON.stringify({ libraryView }));
+      localStorage.setItem(UI_STORAGE_KEY, JSON.stringify({ libraryView, readerFontSize, readerTheme, readerFont }));
+    }
+
+    function applyReadingSettings() {
+      document.documentElement.style.setProperty('--reader-font-size', `${readerFontSize}px`);
+      document.documentElement.style.setProperty('--reader-line-height', readerFontSize >= 22 ? '1.6' : '1.68');
+
+      document.body.classList.toggle('reader-theme-sepia', readerTheme === 'sepia');
+      document.body.classList.toggle('reader-theme-dark', readerTheme === 'dark');
+      document.body.classList.toggle('reader-font-sans', readerFont === 'sans');
+      document.body.classList.toggle('reader-font-mono', readerFont === 'mono');
+
+      if (els.themeToggleBtn) {
+        els.themeToggleBtn.textContent = readerTheme === 'light' ? 'Светлая' : readerTheme === 'sepia' ? 'Сепия' : 'Тёмная';
+      }
+
+      if (els.fontFamilyBtn) {
+        els.fontFamilyBtn.textContent = readerFont === 'serif' ? 'Serif' : readerFont === 'sans' ? 'Sans' : 'Mono';
+      }
+    }
+
+    async function changeFontSize(delta) {
+      readerFontSize = clamp(readerFontSize + delta, 17, 24);
+      saveUiSettings();
+      applyReadingSettings();
+
+      if (activeReaderData && activeBook) {
+        await repaginateCurrentBook();
+      }
+    }
+
+    async function cycleReaderTheme() {
+      const themes = ['light', 'sepia', 'dark'];
+      readerTheme = themes[(themes.indexOf(readerTheme) + 1) % themes.length];
+      saveUiSettings();
+      applyReadingSettings();
+    }
+
+    async function cycleReaderFont() {
+      const fonts = ['serif', 'sans', 'mono'];
+      readerFont = fonts[(fonts.indexOf(readerFont) + 1) % fonts.length];
+      saveUiSettings();
+      applyReadingSettings();
+
+      if (activeReaderData && activeBook) {
+        await repaginateCurrentBook();
+      }
+    }
+
+    async function repaginateCurrentBook() {
+      try {
+        const arrayBuffer = await activeBook.epubBlob.arrayBuffer();
+        activeReaderData = await withTimeout(parseEpubArrayBuffer(arrayBuffer, activeBook.title), 12000, 'reader parse timeout');
+        const pageData = await withTimeout(buildPagesFromReaderData(activeReaderData), 15000, 'pages build timeout');
+        activeReaderData.pages = pageData.pages;
+        activeReaderData.chapters = pageData.chapters;
+        activePageIndex = clamp(activePageIndex, 0, activeReaderData.pages.length - 1);
+        renderChapterSelect();
+        await renderActivePage();
+      } catch (error) {
+        console.error(error);
+        showToast('Не удалось пересобрать страницы');
+      }
     }
 
     async function clearLocalData() {
