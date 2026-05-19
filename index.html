@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=38" />
+  <link rel="manifest" href="./manifest.json?v=39" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 3.8</title>
+  <title>Мои книги 3.9</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=38') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=39') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=38') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=39') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -467,8 +467,8 @@
     .reader-top {
       flex: 0 0 auto;
       display: grid;
-      gap: 7px;
-      padding: max(8px, env(safe-area-inset-top)) 10px 8px;
+      gap: 5px;
+      padding: max(7px, env(safe-area-inset-top)) 9px 7px;
       background: rgba(255, 253, 248, .96);
       border-bottom: 1px solid var(--line-soft);
       backdrop-filter: blur(12px);
@@ -526,6 +526,63 @@
       margin-bottom: 0;
     }
 
+
+    .reader-chapter-wrap {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .chapter-btn {
+      min-height: 32px;
+      padding: 7px 9px;
+      border-radius: 7px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .chapter-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      z-index: 30;
+      width: min(310px, calc(100vw - 20px));
+      max-height: 54vh;
+      overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 14px 34px rgba(45, 36, 26, .18);
+      padding: 6px;
+      display: none;
+    }
+
+    .chapter-menu.open {
+      display: grid;
+      gap: 4px;
+    }
+
+    .chapter-option {
+      min-height: 36px;
+      padding: 8px 9px;
+      text-align: left;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.25;
+    }
+
+    .chapter-option.active {
+      background: var(--accent);
+      color: var(--surface);
+    }
+
     .reader-chapter-select {
       min-height: 34px;
       padding: 7px 9px;
@@ -557,8 +614,8 @@
 
     .reader-content {
       height: 100%;
-      overflow-y: auto;
-      padding: 22px 20px 70px;
+      overflow-y: hidden;
+      padding: 18px 18px 54px;
       color: #181512;
       background: #fffdf8;
       font-family: Georgia, "Times New Roman", serif;
@@ -759,10 +816,10 @@
         <div class="brand-mark">К</div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 3.8</p>
+          <p class="brand-subtitle">EPUB-читалка · 3.9</p>
         </div>
       </div>
-      <span class="version-pill">v3.8</span>
+      <span class="version-pill">v3.9</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
     </header>
 
@@ -811,12 +868,11 @@
               <h2 class="reader-title" id="readerTitle">Книга не выбрана</h2>
               <p class="reader-sub" id="readerAuthor">Выбери книгу в библиотеке</p>
             </div>
-            <span class="reader-sub" id="readerVersion">3.8</span>
+            <div class="reader-chapter-wrap">
+              <button class="chapter-btn" id="chapterBtn" type="button">Главы</button>
+              <div class="chapter-menu" id="chapterMenu"></div>
+            </div>
           </div>
-
-          <select id="chapterSelect" class="reader-chapter-select">
-            <option>Главы не загружены</option>
-          </select>
 
           <div class="reader-progress-line">
             <div class="progress-bar"><div class="progress-fill" id="readerProgressFill"></div></div>
@@ -849,17 +905,17 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">3.8</span>
+          <span id="settingsVersion">3.9</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-19 06:28 UTC</span>
+          <span id="settingsBuild">2026-05-19 06:45 UTC</span>
         </div>
 
         <div class="settings-item">
           <strong>Хранилище</strong>
-          <span id="settingsStorage">IndexedDB · my-books-epub-reader-db-v38</span>
+          <span id="settingsStorage">IndexedDB · my-books-epub-reader-db-v39</span>
         </div>
 
         <div class="settings-item">
@@ -869,12 +925,12 @@
 
         <div class="settings-item">
           <strong>Service Worker</strong>
-          <span>my-books-epub-reader-v38</span>
+          <span>my-books-epub-reader-v39</span>
         </div>
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=38.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=39.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -892,13 +948,13 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '3.8';
-    const BUILD_DATE = '2026-05-19 06:28 UTC';
-    const DB_NAME = 'my-books-epub-reader-db-v38';
+    const APP_VERSION = '3.9';
+    const BUILD_DATE = '2026-05-19 06:45 UTC';
+    const DB_NAME = 'my-books-epub-reader-db-v39';
     const DB_VERSION = 1;
     const BOOKS_STORE = 'books';
-    const UI_STORAGE_KEY = 'my-books-epub-ui-v38';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v38';
+    const UI_STORAGE_KEY = 'my-books-epub-ui-v39';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v39';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -931,7 +987,8 @@
       readerAuthor: document.getElementById('readerAuthor'),
       readerProgressFill: document.getElementById('readerProgressFill'),
       readerProgressText: document.getElementById('readerProgressText'),
-      chapterSelect: document.getElementById('chapterSelect'),
+      chapterBtn: document.getElementById('chapterBtn'),
+      chapterMenu: document.getElementById('chapterMenu'),
       viewer: document.getElementById('viewer'),
       prevBtn: document.getElementById('prevBtn'),
       nextBtn: document.getElementById('nextBtn'),
@@ -1004,12 +1061,13 @@
       els.prevBtn.addEventListener('click', () => goToPage(-1));
       els.nextBtn.addEventListener('click', () => goToPage(1));
 
-      els.chapterSelect.addEventListener('change', () => {
-        const pageIndex = Number(els.chapterSelect.value);
+      els.chapterBtn.addEventListener('click', () => {
+        els.chapterMenu.classList.toggle('open');
+      });
 
-        if (Number.isFinite(pageIndex)) {
-          activePageIndex = pageIndex;
-          renderActivePage();
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.reader-chapter-wrap')) {
+          els.chapterMenu.classList.remove('open');
         }
       });
 
@@ -1036,7 +1094,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=38').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=39').catch(() => {});
         });
       }
     }
@@ -1227,10 +1285,39 @@
       };
     }
 
+    function splitBlockForPages(block, limit = 760) {
+      const text = getPlainText(block);
+
+      if (text.length <= limit || !/^<p/i.test(block.trim())) {
+        return [block];
+      }
+
+      const sentences = text.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) || [text];
+      const result = [];
+      let current = '';
+
+      sentences.forEach(sentence => {
+        const next = (current + ' ' + sentence).trim();
+
+        if (current && next.length > limit) {
+          result.push(`<p>${escapeHtml(current)}</p>`);
+          current = sentence.trim();
+        } else {
+          current = next;
+        }
+      });
+
+      if (current.trim()) {
+        result.push(`<p>${escapeHtml(current.trim())}</p>`);
+      }
+
+      return result.length ? result : [block];
+    }
+
     async function buildPagesFromReaderData(readerData) {
       const pages = [];
       const chapters = [];
-      const pageCharLimit = 1800;
+      const pageCharLimit = 820;
 
       for (let chapterIndex = 0; chapterIndex < readerData.spine.length; chapterIndex += 1) {
         const item = readerData.spine[chapterIndex];
@@ -1241,7 +1328,8 @@
 
         const chapterText = await readerData.zip.file(item.href).async('text');
         const blocks = await extractReadableBlocks(readerData.zip, item.href, chapterText);
-        const textLength = blocks.map(getPlainText).join(' ').trim().length;
+        const pageBlocks = blocks.flatMap(block => splitBlockForPages(block));
+        const textLength = pageBlocks.map(getPlainText).join(' ').trim().length;
 
         if (textLength < 20) continue;
 
@@ -1251,7 +1339,7 @@
         let currentBlocks = [];
         let currentChars = 0;
 
-        for (const block of blocks) {
+        for (const block of pageBlocks) {
           const blockChars = getPlainText(block).length || 1;
 
           if (currentBlocks.length && currentChars + blockChars > pageCharLimit) {
@@ -1560,13 +1648,26 @@
 
     function renderChapterSelect() {
       if (!activeReaderData?.chapters?.length) {
-        els.chapterSelect.innerHTML = '<option>Главы не найдены</option>';
+        els.chapterBtn.textContent = 'Главы';
+        els.chapterMenu.innerHTML = '<button class="chapter-option" type="button">Главы не найдены</button>';
         return;
       }
 
-      els.chapterSelect.innerHTML = activeReaderData.chapters.map((chapter, index) => {
-        return `<option value="${chapter.firstPageIndex}">${escapeHtml(chapter.title || 'Глава ' + (index + 1))}</option>`;
+      els.chapterMenu.innerHTML = activeReaderData.chapters.map((chapter, index) => {
+        return `<button class="chapter-option" type="button" data-page="${chapter.firstPageIndex}">${escapeHtml(chapter.title || 'Глава ' + (index + 1))}</button>`;
       }).join('');
+
+      els.chapterMenu.querySelectorAll('[data-page]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const pageIndex = Number(btn.dataset.page);
+
+          if (Number.isFinite(pageIndex)) {
+            activePageIndex = pageIndex;
+            els.chapterMenu.classList.remove('open');
+            await renderActivePage();
+          }
+        });
+      });
 
       syncChapterSelect();
     }
@@ -1574,14 +1675,35 @@
     function syncChapterSelect() {
       if (!activeReaderData?.chapters?.length) return;
 
-      const currentChapter = [...activeReaderData.chapters]
-        .reverse()
-        .find(chapter => activePageIndex >= chapter.firstPageIndex);
+      const currentChapterIndex = activeReaderData.chapters.findLastIndex
+        ? activeReaderData.chapters.findLastIndex(chapter => activePageIndex >= chapter.firstPageIndex)
+        : findLastChapterIndex(activeReaderData.chapters, activePageIndex);
+
+      const currentChapter = activeReaderData.chapters[Math.max(0, currentChapterIndex)];
 
       if (currentChapter) {
-        els.chapterSelect.value = String(currentChapter.firstPageIndex);
+        const shortTitle = currentChapter.title.length > 18
+          ? currentChapter.title.slice(0, 18) + '…'
+          : currentChapter.title;
+
+        els.chapterBtn.textContent = shortTitle || 'Главы';
       }
+
+      els.chapterMenu.querySelectorAll('[data-page]').forEach(btn => {
+        btn.classList.toggle('active', Number(btn.dataset.page) === currentChapter?.firstPageIndex);
+      });
     }
+
+    function findLastChapterIndex(chapters, pageIndex) {
+      let result = 0;
+
+      chapters.forEach((chapter, index) => {
+        if (pageIndex >= chapter.firstPageIndex) result = index;
+      });
+
+      return result;
+    }
+
 
     async function renderActivePage() {
       if (!activeReaderData || !activeBook) return;
