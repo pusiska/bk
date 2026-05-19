@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=2" />
+  <link rel="manifest" href="./manifest.json?v=3" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
   <title>Мои книги</title>
 
@@ -471,6 +471,39 @@
       });
     }
 
+
+    async function openEpubFromArrayBuffer(arrayBuffer) {
+      const book = ePub();
+
+      if (typeof book.open === 'function') {
+        await book.open(arrayBuffer, 'binary');
+        await book.ready;
+        return book;
+      }
+
+      const fallbackBook = ePub(arrayBuffer);
+      await fallbackBook.ready;
+      return fallbackBook;
+    }
+
+    function getReadableError(error) {
+      const message = String(error?.message || error || '').toLowerCase();
+
+      if (message.includes('zip') || message.includes('end of central directory')) {
+        return 'Файл не похож на корректный EPUB';
+      }
+
+      if (message.includes('encrypted') || message.includes('drm')) {
+        return 'EPUB защищён DRM';
+      }
+
+      if (message.includes('network') || message.includes('failed to fetch')) {
+        return 'Не загрузился модуль чтения EPUB';
+      }
+
+      return 'Не удалось открыть EPUB';
+    }
+
     async function handleEpubUpload(event) {
       const file = event.target.files?.[0];
       event.target.value = '';
@@ -485,8 +518,7 @@
 
       try {
         const arrayBuffer = await file.arrayBuffer();
-        const epubForMeta = ePub(arrayBuffer.slice(0));
-        await epubForMeta.ready;
+        const epubForMeta = await openEpubFromArrayBuffer(arrayBuffer.slice(0));
 
         const metadata = await epubForMeta.loaded.metadata;
         const title = cleanText(metadata?.title) || file.name.replace(/\.epub$/i, '');
@@ -518,7 +550,7 @@
         showToast('Книга добавлена');
       } catch (error) {
         console.error(error);
-        showToast('Не удалось открыть EPUB');
+        showToast(getReadableError(error));
       }
     }
 
@@ -655,7 +687,7 @@
 
       try {
         const arrayBuffer = await book.epubBlob.arrayBuffer();
-        activeEpub = ePub(arrayBuffer);
+        activeEpub = await openEpubFromArrayBuffer(arrayBuffer);
         activeRendition = activeEpub.renderTo('viewer', {
           width: '100%',
           height: '100%',
@@ -704,7 +736,7 @@
         await activeRendition.display(book.lastCfi || undefined);
       } catch (error) {
         console.error(error);
-        showToast('Не удалось открыть книгу');
+        showToast(getReadableError(error));
       }
     }
 
