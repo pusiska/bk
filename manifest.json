@@ -1,6 +1,6 @@
 {
-  "name": "Мои книги",
-  "short_name": "Книги",
+  "name": "Мои книги v8",
+  "short_name": "Книги v8",
   "description": "EPUB-читалка",
   "start_url": "./index.html",
   "scope": "./",
