@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=5" />
+  <link rel="manifest" href="./manifest.json?v=6" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
   <title>Мои книги</title>
 
@@ -202,6 +202,43 @@
     .reader-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .reader-panel { overflow: hidden; padding: 0; background: #fffdf8; }
 
+    .reader-content {
+      height: 100%;
+      overflow-y: auto;
+      padding: 22px;
+      color: #181512;
+      background: #fffdf8;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .reader-content h1,
+    .reader-content h2,
+    .reader-content h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: 0;
+      line-height: 1.25;
+      margin: 0 0 16px;
+    }
+
+    .reader-content p {
+      margin: 0 0 14px;
+    }
+
+    .reader-content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 14px auto;
+    }
+
+    .reader-content a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
     #viewer { width: 100%; height: calc(100vh - 245px); min-height: 430px; background: #fffdf8; }
 
     .empty {
@@ -325,13 +362,13 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const EPUB_SOURCES = [
-      './libs/epub.min.js',
-      'https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js',
-      'https://unpkg.com/epubjs@0.3.93/dist/epub.min.js'
+    const JSZIP_SOURCES = [
+      './libs/jszip.min.js',
+      'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js',
+      'https://unpkg.com/jszip@3.10.1/dist/jszip.min.js'
     ];
 
-    const DB_NAME = 'my-books-epub-reader-simple-db-v1';
+    const DB_NAME = 'my-books-epub-reader-simple-db-v2';
     const DB_VERSION = 1;
     const BOOKS_STORE = 'books';
 
@@ -339,9 +376,8 @@
     let books = [];
     let activeBookId = null;
     let activeBook = null;
-    let activeEpub = null;
-    let activeRendition = null;
-    let activeObjectUrl = null;
+    let activeReaderData = null;
+    let activeChapterIndex = 0;
 
     const els = {
       epubInput: document.getElementById('epubInput'),
@@ -366,7 +402,7 @@
 
     document.addEventListener('DOMContentLoaded', async () => {
       try {
-        await loadEpubLibrary();
+        await loadZipLibrary();
         await init();
       } catch (error) {
         console.error(error);
@@ -374,17 +410,17 @@
       }
     });
 
-    async function loadEpubLibrary() {
-      if (typeof ePub !== 'undefined') return;
+    async function loadZipLibrary() {
+      if (typeof JSZip !== 'undefined') return;
 
-      for (const src of EPUB_SOURCES) {
+      for (const src of JSZIP_SOURCES) {
         try {
           await loadScript(src);
-          if (typeof ePub !== 'undefined') return;
+          if (typeof JSZip !== 'undefined') return;
         } catch {}
       }
 
-      throw new Error('epub.js unavailable');
+      throw new Error('JSZip unavailable');
     }
 
     function loadScript(src) {
@@ -402,44 +438,232 @@
     function withTimeout(promise, ms, label = 'timeout') {
       return Promise.race([
         promise,
-        new Promise((_, reject) => {
-          setTimeout(() => reject(new Error(label)), ms);
-        })
+        new Promise((_, reject) => setTimeout(() => reject(new Error(label)), ms))
       ]);
     }
 
-    function createEpubObjectUrl(blob) {
-      return URL.createObjectURL(blob);
+    async function parseEpubArrayBuffer(arrayBuffer, fallbackTitle) {
+      const zip = await JSZip.loadAsync(arrayBuffer);
+      const containerFile = zip.file('META-INF/container.xml');
+
+      if (!containerFile) {
+        throw new Error('container.xml not found');
+      }
+
+      const containerXml = await containerFile.async('text');
+      const containerDoc = new DOMParser().parseFromString(containerXml, 'application/xml');
+      const rootfile = getFirstByLocalName(containerDoc, 'rootfile');
+
+      if (!rootfile) {
+        throw new Error('rootfile not found');
+      }
+
+      const opfPath = rootfile.getAttribute('full-path');
+
+      if (!opfPath || !zip.file(opfPath)) {
+        throw new Error('opf not found');
+      }
+
+      const opfText = await zip.file(opfPath).async('text');
+      const opfDoc = new DOMParser().parseFromString(opfText, 'application/xml');
+      const opfBase = dirname(opfPath);
+
+      const title = getTextByLocalName(opfDoc, 'title') || fallbackTitle;
+      const author = getTextByLocalName(opfDoc, 'creator') || 'Автор не указан';
+
+      const manifest = {};
+      const items = Array.from(opfDoc.getElementsByTagNameNS('*', 'item'));
+
+      items.forEach(item => {
+        const id = item.getAttribute('id');
+        const href = item.getAttribute('href');
+        if (!id || !href) return;
+
+        manifest[id] = {
+          id,
+          href: resolvePath(opfBase, href),
+          mediaType: item.getAttribute('media-type') || '',
+          properties: item.getAttribute('properties') || ''
+        };
+      });
+
+      const spine = Array.from(opfDoc.getElementsByTagNameNS('*', 'itemref'))
+        .map(itemref => manifest[itemref.getAttribute('idref')])
+        .filter(Boolean)
+        .filter(item => /xhtml|html/i.test(item.mediaType) || /\.x?html?$/i.test(item.href));
+
+      if (!spine.length) {
+        throw new Error('spine empty');
+      }
+
+      let coverItem = findCoverItem(opfDoc, manifest);
+      let coverData = '';
+
+      if (coverItem) {
+        try {
+          coverData = await fileToDataUrlFromZip(zip, coverItem.href, coverItem.mediaType);
+        } catch (error) {
+          console.warn('cover read failed:', error);
+        }
+      }
+
+      return {
+        zip,
+        title,
+        author,
+        coverData,
+        opfPath,
+        opfBase,
+        spine
+      };
     }
 
-    async function readEpubMetadataFromBlob(blob, fallbackTitle) {
-      const url = createEpubObjectUrl(blob);
-      let book = null;
+    function findCoverItem(opfDoc, manifest) {
+      const metaItems = Array.from(opfDoc.getElementsByTagNameNS('*', 'meta'));
+      const coverMeta = metaItems.find(meta => (meta.getAttribute('name') || '').toLowerCase() === 'cover');
+      const coverId = coverMeta?.getAttribute('content');
 
-      try {
-        book = ePub(url);
-        await withTimeout(book.ready, 5000, 'metadata timeout');
+      if (coverId && manifest[coverId]) {
+        return manifest[coverId];
+      }
 
-        const metadata = await withTimeout(book.loaded.metadata, 3000, 'metadata loaded timeout');
-        const title = cleanText(metadata?.title) || fallbackTitle;
-        const author = normalizeCreator(metadata?.creator) || 'Автор не указан';
+      const items = Object.values(manifest);
 
-        let coverData = '';
+      return items.find(item => item.properties.includes('cover-image'))
+        || items.find(item => /cover/i.test(item.id) && item.mediaType.startsWith('image/'))
+        || items.find(item => /cover/i.test(item.href) && item.mediaType.startsWith('image/'))
+        || null;
+    }
+
+    async function renderChapter(readerData, chapterIndex) {
+      const item = readerData.spine[chapterIndex];
+
+      if (!item || !readerData.zip.file(item.href)) {
+        throw new Error('chapter file not found');
+      }
+
+      const chapterText = await readerData.zip.file(item.href).async('text');
+      const doc = new DOMParser().parseFromString(chapterText, 'text/html');
+      const body = doc.body || doc.querySelector('body');
+
+      if (!body) {
+        return '<p>Глава пустая или не распознана.</p>';
+      }
+
+      body.querySelectorAll('script, style, link, object, iframe').forEach(node => node.remove());
+
+      body.querySelectorAll('*').forEach(node => {
+        [...node.attributes].forEach(attr => {
+          if (attr.name.toLowerCase().startsWith('on')) {
+            node.removeAttribute(attr.name);
+          }
+        });
+      });
+
+      const images = Array.from(body.querySelectorAll('img'));
+
+      for (const img of images) {
+        const src = img.getAttribute('src') || img.getAttribute('href') || img.getAttribute('xlink:href');
+        if (!src) continue;
+
+        const cleanSrc = src.split('#')[0];
+        const imagePath = resolvePath(dirname(item.href), cleanSrc);
 
         try {
-          coverData = await withTimeout(extractCoverData(book), 4000, 'cover timeout');
+          const dataUrl = await fileToDataUrlFromZip(readerData.zip, imagePath, guessMime(imagePath));
+          img.setAttribute('src', dataUrl);
         } catch (error) {
-          console.warn('Cover skipped:', error);
+          console.warn('image skipped:', imagePath, error);
+          img.remove();
         }
-
-        return { title, author, coverData };
-      } finally {
-        if (book && book.destroy) {
-          try { book.destroy(); } catch {}
-        }
-
-        URL.revokeObjectURL(url);
       }
+
+      return body.innerHTML;
+    }
+
+    async function fileToDataUrlFromZip(zip, filePath, mediaType = '') {
+      const normalizedPath = normalizeZipPath(filePath);
+      const file = zip.file(normalizedPath);
+
+      if (!file) {
+        throw new Error(`file not found: ${normalizedPath}`);
+      }
+
+      const base64 = await file.async('base64');
+      return `data:${mediaType || guessMime(normalizedPath)};base64,${base64}`;
+    }
+
+    function getFirstByLocalName(doc, localName) {
+      return doc.getElementsByTagNameNS('*', localName)[0]
+        || Array.from(doc.getElementsByTagName('*')).find(node => node.localName === localName || node.nodeName.endsWith(':' + localName));
+    }
+
+    function getTextByLocalName(doc, localName) {
+      const node = getFirstByLocalName(doc, localName);
+      return cleanText(node?.textContent || '');
+    }
+
+    function dirname(path) {
+      const parts = String(path || '').split('/');
+      parts.pop();
+      return parts.join('/');
+    }
+
+    function resolvePath(base, href) {
+      const hrefClean = String(href || '').split('#')[0].split('?')[0];
+
+      if (!hrefClean) return normalizeZipPath(base);
+
+      const stack = String(base || '').split('/').filter(Boolean);
+      const parts = hrefClean.split('/').filter(Boolean);
+
+      for (const part of parts) {
+        if (part === '.') continue;
+        if (part === '..') stack.pop();
+        else stack.push(part);
+      }
+
+      return normalizeZipPath(stack.join('/'));
+    }
+
+    function normalizeZipPath(path) {
+      const value = String(path || '').replace(/^\/+/, '');
+
+      try {
+        return decodeURI(value);
+      } catch {
+        return value;
+      }
+    }
+
+    function guessMime(path) {
+      const lower = String(path || '').toLowerCase();
+
+      if (lower.endsWith('.jpg') || lower.endsWith('.jpeg')) return 'image/jpeg';
+      if (lower.endsWith('.png')) return 'image/png';
+      if (lower.endsWith('.gif')) return 'image/gif';
+      if (lower.endsWith('.webp')) return 'image/webp';
+      if (lower.endsWith('.svg')) return 'image/svg+xml';
+
+      return 'application/octet-stream';
+    }
+
+    function getReadableError(error) {
+      const message = String(error?.message || error || '').toLowerCase();
+
+      if (message.includes('container') || message.includes('opf') || message.includes('spine')) {
+        return 'Структура EPUB не распознана';
+      }
+
+      if (message.includes('zip')) {
+        return 'Не удалось разобрать EPUB';
+      }
+
+      if (message.includes('network') || message.includes('failed to fetch') || message.includes('jszip')) {
+        return 'Не загрузился модуль EPUB';
+      }
+
+      return 'Не удалось открыть EPUB';
     }
 
     async function init() {
@@ -466,8 +690,8 @@
 
       els.epubInput.addEventListener('change', handleEpubUpload);
       els.searchInput.addEventListener('input', renderLibrary);
-      els.prevBtn.addEventListener('click', () => activeRendition && activeRendition.prev());
-      els.nextBtn.addEventListener('click', () => activeRendition && activeRendition.next());
+      els.prevBtn.addEventListener('click', () => goToChapter(-1));
+      els.nextBtn.addEventListener('click', () => goToChapter(1));
     }
 
     function openDatabase() {
@@ -627,33 +851,32 @@
       showToast('Читаю EPUB');
 
       const fallbackTitle = file.name.replace(/\.epub$/i, '');
-      const epubBlob = new Blob([await file.arrayBuffer()], { type: 'application/epub+zip' });
+      const arrayBuffer = await file.arrayBuffer();
+      const epubBlob = new Blob([arrayBuffer], { type: 'application/epub+zip' });
 
-      let meta = {
-        title: fallbackTitle,
-        author: 'Автор не указан',
-        coverData: ''
-      };
+      let parsed;
 
       try {
-        meta = await withTimeout(readEpubMetadataFromBlob(epubBlob, fallbackTitle), 8000, 'metadata full timeout');
+        parsed = await withTimeout(parseEpubArrayBuffer(arrayBuffer.slice(0), fallbackTitle), 12000, 'parse timeout');
       } catch (error) {
-        console.warn('Metadata skipped, adding by filename:', error);
-        showToast('Метаданные не прочитались, добавляю по файлу');
+        console.error(error);
+        showToast(getReadableError(error));
+        return;
       }
 
       try {
         const book = {
           id: createId(),
-          title: meta.title,
-          author: meta.author,
+          title: parsed.title || fallbackTitle,
+          author: parsed.author || 'Автор не указан',
           status: 'reading',
           fileName: file.name,
           fileSize: file.size,
           epubBlob,
-          coverData: meta.coverData,
+          coverData: parsed.coverData || '',
           progress: 0,
-          lastCfi: null,
+          currentChapterIndex: 0,
+          totalChapters: parsed.spine.length,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
         };
@@ -670,28 +893,7 @@
       }
     }
 
-    async function extractCoverData(epubBook) {
-      try {
-        const coverUrl = await epubBook.coverUrl();
-        if (!coverUrl) return '';
-        const response = await fetch(coverUrl);
-        const blob = await response.blob();
-        return await blobToDataUrl(blob);
-      } catch (error) {
-        console.warn('Cover extraction failed', error);
-        return '';
-      }
-    }
-
-    function blobToDataUrl(blob) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-    }
-
+    
     function showScreen(name) {
       document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
       document.getElementById(`screen-${name}`).classList.add('active');
@@ -754,7 +956,7 @@
             <div class="progress-bar"><div class="progress-fill" style="width: ${book.progress || 0}%"></div></div>
             <div class="book-meta">
               <span class="pill">${book.progress || 0}%</span>
-              <span class="pill">${formatFileSize(book.fileSize)}</span>
+              <span class="pill">${formatFileSize(book.fileSize)}</span>\n              ${book.totalChapters ? `<span class="pill">${book.totalChapters} глав</span>` : ''}
             </div>
             <div class="book-actions">
               <button class="primary-btn tiny-btn" data-open="${book.id}">${isContinue ? 'Продолжить' : 'Читать'}</button>
@@ -788,86 +990,67 @@
 
       activeBookId = bookId;
       activeBook = book;
+      activeChapterIndex = book.currentChapterIndex || 0;
 
       showScreen('reader');
       updateReaderHeader(book);
-      els.viewer.innerHTML = '';
-
-      if (activeRendition) {
-        try { activeRendition.destroy(); } catch {}
-      }
-
-      if (activeEpub && activeEpub.destroy) {
-        try { activeEpub.destroy(); } catch {}
-      }
-
-      if (activeObjectUrl) {
-        try { URL.revokeObjectURL(activeObjectUrl); } catch {}
-        activeObjectUrl = null;
-      }
+      els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Открываю книгу</strong>Подготавливаю текст.</div>';
 
       try {
-        activeObjectUrl = createEpubObjectUrl(book.epubBlob);
-        activeEpub = ePub(activeObjectUrl);
+        const arrayBuffer = await book.epubBlob.arrayBuffer();
+        activeReaderData = await withTimeout(parseEpubArrayBuffer(arrayBuffer, book.title), 12000, 'reader parse timeout');
+        activeChapterIndex = clamp(activeChapterIndex, 0, activeReaderData.spine.length - 1);
 
-        await withTimeout(activeEpub.ready, 8000, 'reader ready timeout');
-
-        activeRendition = activeEpub.renderTo('viewer', {
-          width: '100%',
-          height: '100%',
-          spread: 'none',
-          flow: 'paginated'
-        });
-
-        activeRendition.themes.default({
-          body: {
-            color: '#181512',
-            background: '#fffdf8',
-            'font-family': 'Georgia, serif',
-            'line-height': '1.65'
-          },
-          p: { 'font-size': '1rem' }
-        });
-
-        activeRendition.on('relocated', async location => {
-          const cfi = location?.start?.cfi || null;
-          let progress = activeBook.progress || 0;
-
-          try {
-            if (activeEpub.locations && cfi) {
-              progress = Math.round(activeEpub.locations.percentageFromCfi(cfi) * 100);
-            }
-          } catch {}
-
-          activeBook = {
-            ...activeBook,
-            lastCfi: cfi,
-            progress: clamp(progress, 0, 100),
-            updatedAt: new Date().toISOString()
-          };
-
-          await putBook(activeBook);
-          books = await getAllBooks();
-          updateReaderHeader(activeBook);
-          renderStats();
-          renderContinue();
-        });
-
-        try { await withTimeout(activeEpub.locations.generate(1000), 6000, 'locations timeout'); } catch {}
-
-        await activeRendition.display(book.lastCfi || undefined);
+        await renderActiveChapter();
       } catch (error) {
         console.error(error);
         showToast(getReadableError(error));
-        els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Попробуй другой EPUB-файл или обнови страницу.</div>';
+        els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Структура книги не распознана.</div>';
       }
+    }
+
+    async function renderActiveChapter() {
+      if (!activeReaderData || !activeBook) return;
+
+      const chapterHtml = await renderChapter(activeReaderData, activeChapterIndex);
+
+      els.viewer.innerHTML = `<article class="reader-content">${chapterHtml}</article>`;
+
+      const progress = Math.round(((activeChapterIndex + 1) / activeReaderData.spine.length) * 100);
+
+      activeBook = {
+        ...activeBook,
+        currentChapterIndex: activeChapterIndex,
+        totalChapters: activeReaderData.spine.length,
+        progress: clamp(progress, 0, 100),
+        updatedAt: new Date().toISOString()
+      };
+
+      await putBook(activeBook);
+      books = await getAllBooks();
+
+      updateReaderHeader(activeBook);
+      renderStats();
+      renderContinue();
+      renderLibrary();
+    }
+
+    async function goToChapter(delta) {
+      if (!activeReaderData) return;
+
+      const nextIndex = clamp(activeChapterIndex + delta, 0, activeReaderData.spine.length - 1);
+
+      if (nextIndex === activeChapterIndex) return;
+
+      activeChapterIndex = nextIndex;
+      await renderActiveChapter();
     }
 
     function updateReaderHeader(book) {
       els.readerTitle.textContent = book.title || 'Книга';
       els.readerAuthor.textContent = book.author || 'Автор не указан';
       els.readerProgressFill.style.width = `${book.progress || 0}%`;
-      els.readerProgressText.textContent = `${book.progress || 0}%`;
+      els.readerProgressText.textContent = `${book.progress || 0}%${book.totalChapters ? ' · глава ' + ((book.currentChapterIndex || 0) + 1) + ' из ' + book.totalChapters : ''}`;
     }
 
     async function markAsRead(bookId) {
