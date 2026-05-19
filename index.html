@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=4" />
+  <link rel="manifest" href="./manifest.json?v=5" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
   <title>Мои книги</title>
 
@@ -341,6 +341,7 @@
     let activeBook = null;
     let activeEpub = null;
     let activeRendition = null;
+    let activeObjectUrl = null;
 
     const els = {
       epubInput: document.getElementById('epubInput'),
@@ -395,6 +396,50 @@
         script.onerror = reject;
         document.head.appendChild(script);
       });
+    }
+
+
+    function withTimeout(promise, ms, label = 'timeout') {
+      return Promise.race([
+        promise,
+        new Promise((_, reject) => {
+          setTimeout(() => reject(new Error(label)), ms);
+        })
+      ]);
+    }
+
+    function createEpubObjectUrl(blob) {
+      return URL.createObjectURL(blob);
+    }
+
+    async function readEpubMetadataFromBlob(blob, fallbackTitle) {
+      const url = createEpubObjectUrl(blob);
+      let book = null;
+
+      try {
+        book = ePub(url);
+        await withTimeout(book.ready, 5000, 'metadata timeout');
+
+        const metadata = await withTimeout(book.loaded.metadata, 3000, 'metadata loaded timeout');
+        const title = cleanText(metadata?.title) || fallbackTitle;
+        const author = normalizeCreator(metadata?.creator) || 'Автор не указан';
+
+        let coverData = '';
+
+        try {
+          coverData = await withTimeout(extractCoverData(book), 4000, 'cover timeout');
+        } catch (error) {
+          console.warn('Cover skipped:', error);
+        }
+
+        return { title, author, coverData };
+      } finally {
+        if (book && book.destroy) {
+          try { book.destroy(); } catch {}
+        }
+
+        URL.revokeObjectURL(url);
+      }
     }
 
     async function init() {
@@ -581,24 +626,32 @@
       console.info('EPUB file selected:', { name: file.name, size: file.size, type: file.type });
       showToast('Читаю EPUB');
 
+      const fallbackTitle = file.name.replace(/\.epub$/i, '');
+      const epubBlob = new Blob([await file.arrayBuffer()], { type: 'application/epub+zip' });
+
+      let meta = {
+        title: fallbackTitle,
+        author: 'Автор не указан',
+        coverData: ''
+      };
+
       try {
-        const arrayBuffer = await file.arrayBuffer();
-        const epubForMeta = await openEpubFromArrayBuffer(arrayBuffer.slice(0));
+        meta = await withTimeout(readEpubMetadataFromBlob(epubBlob, fallbackTitle), 8000, 'metadata full timeout');
+      } catch (error) {
+        console.warn('Metadata skipped, adding by filename:', error);
+        showToast('Метаданные не прочитались, добавляю по файлу');
+      }
 
-        const metadata = await epubForMeta.loaded.metadata;
-        const title = cleanText(metadata?.title) || file.name.replace(/\.epub$/i, '');
-        const author = normalizeCreator(metadata?.creator) || 'Автор не указан';
-        const coverData = await extractCoverData(epubForMeta);
-
+      try {
         const book = {
           id: createId(),
-          title,
-          author,
+          title: meta.title,
+          author: meta.author,
           status: 'reading',
           fileName: file.name,
           fileSize: file.size,
-          epubBlob: new Blob([arrayBuffer], { type: 'application/epub+zip' }),
-          coverData,
+          epubBlob,
+          coverData: meta.coverData,
           progress: 0,
           lastCfi: null,
           createdAt: new Date().toISOString(),
@@ -608,14 +661,12 @@
         await putBook(book);
         books = await getAllBooks();
 
-        if (epubForMeta.destroy) epubForMeta.destroy();
-
         renderAll();
         showScreen('library');
         showToast('Книга добавлена');
       } catch (error) {
         console.error(error);
-        showToast(getReadableError(error));
+        showToast('Не удалось сохранить EPUB');
       }
     }
 
@@ -750,9 +801,17 @@
         try { activeEpub.destroy(); } catch {}
       }
 
+      if (activeObjectUrl) {
+        try { URL.revokeObjectURL(activeObjectUrl); } catch {}
+        activeObjectUrl = null;
+      }
+
       try {
-        const arrayBuffer = await book.epubBlob.arrayBuffer();
-        activeEpub = await openEpubFromArrayBuffer(arrayBuffer);
+        activeObjectUrl = createEpubObjectUrl(book.epubBlob);
+        activeEpub = ePub(activeObjectUrl);
+
+        await withTimeout(activeEpub.ready, 8000, 'reader ready timeout');
+
         activeRendition = activeEpub.renderTo('viewer', {
           width: '100%',
           height: '100%',
@@ -794,14 +853,13 @@
           renderContinue();
         });
 
-        await activeEpub.ready;
-
-        try { await activeEpub.locations.generate(1000); } catch {}
+        try { await withTimeout(activeEpub.locations.generate(1000), 6000, 'locations timeout'); } catch {}
 
         await activeRendition.display(book.lastCfi || undefined);
       } catch (error) {
         console.error(error);
         showToast(getReadableError(error));
+        els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Попробуй другой EPUB-файл или обнови страницу.</div>';
       }
     }
 
