@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=3" />
+  <link rel="manifest" href="./manifest.json?v=4" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
   <title>Мои книги</title>
 
@@ -473,32 +473,96 @@
 
 
     async function openEpubFromArrayBuffer(arrayBuffer) {
-      const book = ePub();
+      const attempts = [
+        {
+          name: 'ePub(ArrayBuffer)',
+          run: async () => {
+            const book = ePub(arrayBuffer.slice(0));
+            await book.ready;
+            return book;
+          }
+        },
+        {
+          name: 'ePub(Uint8Array)',
+          run: async () => {
+            const book = ePub(new Uint8Array(arrayBuffer.slice(0)));
+            await book.ready;
+            return book;
+          }
+        },
+        {
+          name: 'book.open(ArrayBuffer)',
+          run: async () => {
+            const book = ePub();
+            await book.open(arrayBuffer.slice(0));
+            await book.ready;
+            return book;
+          }
+        },
+        {
+          name: 'book.open(ArrayBuffer, epub)',
+          run: async () => {
+            const book = ePub();
+            await book.open(arrayBuffer.slice(0), 'epub');
+            await book.ready;
+            return book;
+          }
+        },
+        {
+          name: 'book.open(binaryString, binary)',
+          run: async () => {
+            const book = ePub();
+            await book.open(arrayBufferToBinaryString(arrayBuffer), 'binary');
+            await book.ready;
+            return book;
+          }
+        }
+      ];
 
-      if (typeof book.open === 'function') {
-        await book.open(arrayBuffer, 'binary');
-        await book.ready;
-        return book;
+      const errors = [];
+
+      for (const attempt of attempts) {
+        try {
+          return await attempt.run();
+        } catch (error) {
+          errors.push(`${attempt.name}: ${error?.message || error}`);
+        }
       }
 
-      const fallbackBook = ePub(arrayBuffer);
-      await fallbackBook.ready;
-      return fallbackBook;
+      console.error('EPUB open attempts failed:', errors);
+      throw new Error(errors.join(' | '));
+    }
+
+    function arrayBufferToBinaryString(arrayBuffer) {
+      const bytes = new Uint8Array(arrayBuffer);
+      const chunkSize = 0x8000;
+      let result = '';
+
+      for (let i = 0; i < bytes.length; i += chunkSize) {
+        const chunk = bytes.subarray(i, i + chunkSize);
+        result += String.fromCharCode.apply(null, chunk);
+      }
+
+      return result;
     }
 
     function getReadableError(error) {
       const message = String(error?.message || error || '').toLowerCase();
 
-      if (message.includes('zip') || message.includes('end of central directory')) {
-        return 'Файл не похож на корректный EPUB';
-      }
-
-      if (message.includes('encrypted') || message.includes('drm')) {
+      if (message.includes('drm') || message.includes('encrypted')) {
         return 'EPUB защищён DRM';
       }
 
       if (message.includes('network') || message.includes('failed to fetch')) {
-        return 'Не загрузился модуль чтения EPUB';
+        return 'Не загрузился модуль EPUB';
+      }
+
+      if (message.includes('not a function') || message.includes('undefined')) {
+        return 'Ошибка модуля EPUB';
+      }
+
+      if (message.includes('zip') || message.includes('central directory') || message.includes('end of data')) {
+        return 'Не удалось разобрать EPUB';
       }
 
       return 'Не удалось открыть EPUB';
@@ -514,6 +578,7 @@
         return;
       }
 
+      console.info('EPUB file selected:', { name: file.name, size: file.size, type: file.type });
       showToast('Читаю EPUB');
 
       try {
