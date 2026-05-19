@@ -1,7 +1,7 @@
 {
   "name": "Мои книги",
   "short_name": "Книги",
-  "description": "EPUB-читалка и личное хранилище мыслей из книг",
+  "description": "EPUB-читалка",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

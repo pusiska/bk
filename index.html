@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=1" />
+  <link rel="manifest" href="./manifest.json?v=2" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
   <title>Мои книги</title>
 
@@ -54,8 +54,7 @@
     }
 
     body { padding: 16px; padding-bottom: 98px; }
-
-    button, input, textarea, select { font: inherit; }
+    button, input { font: inherit; }
     button { border: 0; cursor: pointer; }
 
     .app { width: 100%; max-width: 560px; margin: 0 auto; }
@@ -69,24 +68,20 @@
     .brand { display: flex; align-items: center; gap: 10px; }
 
     .brand-mark {
-      width: 34px; height: 34px; border-radius: 6px;
-      background: var(--accent); color: var(--bg);
-      display: grid; place-items: center; font-weight: 900; letter-spacing: -.08em;
+      width: 34px; height: 34px; border-radius: 6px; background: var(--accent);
+      color: var(--bg); display: grid; place-items: center; font-weight: 900; letter-spacing: -.08em;
     }
 
     .brand-title {
-      margin: 0; font-family: var(--font-heading); font-size: 15px;
-      line-height: 1; letter-spacing: .08em; font-weight: 400; text-transform: uppercase;
+      margin: 0; font-family: var(--font-heading); font-size: 15px; line-height: 1;
+      letter-spacing: .08em; font-weight: 400; text-transform: uppercase;
     }
 
-    .brand-subtitle {
-      margin: 4px 0 0; font-size: 11px; color: var(--muted); font-weight: 700;
-    }
+    .brand-subtitle { margin: 4px 0 0; font-size: 11px; color: var(--muted); font-weight: 700; }
 
     .header-action {
-      min-width: 38px; height: 36px; padding: 0 12px;
-      border-radius: 7px; background: var(--surface); border: 1px solid var(--line);
-      color: var(--text); font-weight: 850;
+      min-width: 38px; height: 36px; padding: 0 12px; border-radius: 7px;
+      background: var(--surface); border: 1px solid var(--line); color: var(--text); font-weight: 850;
     }
 
     .screen { display: none; }
@@ -95,9 +90,8 @@
     .section-head { margin-bottom: 18px; }
 
     .eyebrow {
-      margin: 0 0 8px; font-family: var(--font-heading); font-size: 11px;
-      line-height: 1.1; text-transform: uppercase; letter-spacing: .14em;
-      color: var(--muted); font-weight: 400;
+      margin: 0 0 8px; font-family: var(--font-heading); font-size: 11px; line-height: 1.1;
+      text-transform: uppercase; letter-spacing: .14em; color: var(--muted); font-weight: 400;
     }
 
     h1, h2, h3, p { margin-top: 0; }
@@ -109,22 +103,16 @@
 
     h2, h3 { font-family: var(--font-heading); font-weight: 400; letter-spacing: .06em; }
 
-    .panel, .book-card, .entry-card, .reader-panel {
+    .panel, .book-card, .reader-panel {
       background: var(--surface); border: 1px solid var(--line-soft);
       border-radius: var(--radius-lg); box-shadow: var(--shadow);
     }
 
     .panel { padding: 14px; margin-bottom: 12px; }
 
-    .hero-panel {
-      padding: 16px; background: linear-gradient(180deg, #ffffff 0%, #f8f3ea 100%);
-    }
-
+    .hero-panel { padding: 16px; background: linear-gradient(180deg, #ffffff 0%, #f8f3ea 100%); }
     .hero-panel h2 { margin-bottom: 8px; font-size: 20px; line-height: 1.1; }
-
-    .hero-panel p {
-      margin-bottom: 14px; color: var(--muted); font-size: 13px; line-height: 1.4;
-    }
+    .hero-panel p { margin-bottom: 14px; color: var(--muted); font-size: 13px; line-height: 1.4; }
 
     .primary-btn, .ghost-btn, .danger-btn, .tiny-btn {
       min-height: 42px; border-radius: var(--radius-md); padding: 11px 13px; font-weight: 850;
@@ -137,7 +125,7 @@
 
     .hidden-input { display: none; }
 
-    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-top: 10px; }
+    .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; margin-top: 10px; }
 
     .stat-mini {
       background: var(--bg); border: 1px solid var(--line-soft);
@@ -153,15 +141,12 @@
 
     .library-toolbar { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 12px; }
 
-    .input, .textarea, .select {
-      width: 100%; border: 1px solid var(--line); background: var(--surface);
-      color: var(--text); border-radius: var(--radius-md); min-height: 42px;
-      padding: 11px 12px; outline: none;
+    .input {
+      width: 100%; border: 1px solid var(--line); background: var(--surface); color: var(--text);
+      border-radius: var(--radius-md); min-height: 42px; padding: 11px 12px; outline: none;
     }
 
-    .textarea { min-height: 88px; resize: vertical; line-height: 1.4; }
-
-    .books-list, .entries-list { display: grid; gap: 8px; }
+    .books-list { display: grid; gap: 8px; }
 
     .book-card {
       display: grid; grid-template-columns: 58px 1fr; gap: 11px;
@@ -205,36 +190,19 @@
 
     .progress-fill { height: 100%; width: 0; background: var(--accent); border-radius: 999px; }
 
-    .entry-card { padding: 11px; }
-    .entry-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
-    .entry-type { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; font-weight: 850; }
-    .entry-book { color: var(--muted); font-size: 11px; font-weight: 700; }
-    .entry-card p { margin: 0; font-size: 13px; line-height: 1.45; white-space: pre-wrap; }
-
     .reader-shell { display: grid; gap: 10px; }
     .reader-top { display: grid; gap: 8px; }
+
     .reader-title {
       margin: 0; font-family: var(--font-heading); font-size: 17px;
       letter-spacing: .06em; line-height: 1.15; font-weight: 400;
     }
+
     .reader-sub { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.25; }
     .reader-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .reader-panel { overflow: hidden; padding: 0; background: #fffdf8; }
 
-    #viewer { width: 100%; height: calc(100vh - 285px); min-height: 430px; background: #fffdf8; }
-
-    .reader-note-panel {
-      display: grid; gap: 8px; padding: 12px; background: var(--surface);
-      border: 1px solid var(--line-soft); border-radius: var(--radius-lg);
-    }
-
-    .selected-box {
-      display: none; background: var(--bg); border: 1px solid var(--line-soft);
-      border-radius: var(--radius-md); padding: 10px; color: var(--muted);
-      font-size: 12px; line-height: 1.35;
-    }
-
-    .selected-box.active { display: block; }
+    #viewer { width: 100%; height: calc(100vh - 245px); min-height: 430px; background: #fffdf8; }
 
     .empty {
       border: 1px dashed #cfc2ae; border-radius: var(--radius-md);
@@ -273,13 +241,10 @@
     @media (max-width: 420px) {
       body { padding: 12px; padding-bottom: 96px; }
       h1 { font-size: 27px; }
-      .stats-row { grid-template-columns: 1fr 1fr; }
       .library-toolbar { grid-template-columns: 1fr; }
-      #viewer { min-height: 390px; height: calc(100vh - 300px); }
+      #viewer { min-height: 420px; height: calc(100vh - 265px); }
     }
   </style>
-
-  <script src="https://unpkg.com/epubjs@0.3.93/dist/epub.min.js"></script>
 </head>
 
 <body>
@@ -289,7 +254,7 @@
         <div class="brand-mark">К</div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">читалка и мысли</p>
+          <p class="brand-subtitle">EPUB-читалка</p>
         </div>
       </div>
       <button class="header-action" id="uploadHeaderBtn">+ EPUB</button>
@@ -299,7 +264,7 @@
     <section id="screen-home" class="screen active">
       <div class="section-head">
         <p class="eyebrow">Главная</p>
-        <h1>Читать и сохранять</h1>
+        <h1>Читать книги</h1>
       </div>
 
       <section class="panel hero-panel">
@@ -310,7 +275,6 @@
         <div class="stats-row">
           <div class="stat-mini"><strong id="statBooks">0</strong><span>книг</span></div>
           <div class="stat-mini"><strong id="statReading">0</strong><span>читаю</span></div>
-          <div class="stat-mini"><strong id="statEntries">0</strong><span>записей</span></div>
         </div>
       </section>
 
@@ -318,17 +282,12 @@
         <div class="panel-title"><h3>Продолжить</h3><span id="continueLabel">—</span></div>
         <div id="continueBook"></div>
       </section>
-
-      <section class="panel">
-        <div class="panel-title"><h3>Последние записи</h3><span id="recentEntriesCount">0</span></div>
-        <div id="recentEntries" class="entries-list"></div>
-      </section>
     </section>
 
     <section id="screen-library" class="screen">
       <div class="section-head"><p class="eyebrow">Библиотека</p><h1>Книги</h1></div>
       <div class="library-toolbar">
-        <input id="searchInput" class="input" type="search" placeholder="Поиск по книгам и записям" />
+        <input id="searchInput" class="input" type="search" placeholder="Поиск по книгам" />
         <button class="ghost-btn" id="uploadLibraryBtn">Загрузить EPUB</button>
       </div>
       <div id="booksList" class="books-list"></div>
@@ -353,17 +312,9 @@
             <div class="empty" style="margin: 16px;"><strong>Книга не открыта</strong>Перейди в библиотеку и нажми «Читать».</div>
           </div>
         </div>
-
-        <div class="reader-note-panel">
-          <div class="selected-box" id="selectedBox"></div>
-          <button class="ghost-btn" id="saveQuoteBtn">Сохранить выделение как цитату</button>
-          <textarea id="thoughtInput" class="textarea" placeholder="Быстрая мысль по текущему месту книги"></textarea>
-          <button class="primary-btn" id="saveThoughtBtn">Сохранить мысль</button>
-        </div>
       </div>
     </section>
-
-</main>
+  </main>
 
   <nav class="bottom-nav">
     <button class="nav-btn active" data-screen="home">Главная</button>
@@ -374,11 +325,15 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const DB_NAME = 'my-books-epub-reader-db-v1';
+    const EPUB_SOURCES = [
+      './libs/epub.min.js',
+      'https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js',
+      'https://unpkg.com/epubjs@0.3.93/dist/epub.min.js'
+    ];
+
+    const DB_NAME = 'my-books-epub-reader-simple-db-v1';
     const DB_VERSION = 1;
     const BOOKS_STORE = 'books';
-
-    const entryTypeMap = { quote: 'Цитата', thought: 'Мысль' };
 
     let db = null;
     let books = [];
@@ -386,8 +341,6 @@
     let activeBook = null;
     let activeEpub = null;
     let activeRendition = null;
-    let selectedText = '';
-    let selectedCfi = '';
 
     const els = {
       epubInput: document.getElementById('epubInput'),
@@ -396,11 +349,8 @@
       uploadLibraryBtn: document.getElementById('uploadLibraryBtn'),
       statBooks: document.getElementById('statBooks'),
       statReading: document.getElementById('statReading'),
-      statEntries: document.getElementById('statEntries'),
       continueBook: document.getElementById('continueBook'),
       continueLabel: document.getElementById('continueLabel'),
-      recentEntries: document.getElementById('recentEntries'),
-      recentEntriesCount: document.getElementById('recentEntriesCount'),
       searchInput: document.getElementById('searchInput'),
       booksList: document.getElementById('booksList'),
       readerTitle: document.getElementById('readerTitle'),
@@ -410,28 +360,54 @@
       viewer: document.getElementById('viewer'),
       prevBtn: document.getElementById('prevBtn'),
       nextBtn: document.getElementById('nextBtn'),
-      selectedBox: document.getElementById('selectedBox'),
-      saveQuoteBtn: document.getElementById('saveQuoteBtn'),
-      thoughtInput: document.getElementById('thoughtInput'),
-      saveThoughtBtn: document.getElementById('saveThoughtBtn'),
-      entriesSearchInput: document.getElementById('entriesSearchInput'),
-      entryTypeFilter: document.getElementById('entryTypeFilter'),
-      entriesList: document.getElementById('entriesList'),
       toast: document.getElementById('toast')
     };
 
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        await loadEpubLibrary();
+        await init();
+      } catch (error) {
+        console.error(error);
+        showToast('EPUB-модуль не загрузился');
+      }
+    });
 
-    async function init() {
-      if (typeof ePub === 'undefined') {
-        showToast('EPUB-библиотека не загрузилась');
-        return;
+    async function loadEpubLibrary() {
+      if (typeof ePub !== 'undefined') return;
+
+      for (const src of EPUB_SOURCES) {
+        try {
+          await loadScript(src);
+          if (typeof ePub !== 'undefined') return;
+        } catch {}
       }
 
+      throw new Error('epub.js unavailable');
+    }
+
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    async function init() {
       db = await openDatabase();
       books = await getAllBooks();
       bindEvents();
       renderAll();
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+        });
+      }
     }
 
     function bindEvents() {
@@ -445,12 +421,8 @@
 
       els.epubInput.addEventListener('change', handleEpubUpload);
       els.searchInput.addEventListener('input', renderLibrary);
-      if (els.entriesSearchInput) els.entriesSearchInput.addEventListener('input', renderEntries);
-      if (els.entryTypeFilter) els.entryTypeFilter.addEventListener('change', renderEntries);
       els.prevBtn.addEventListener('click', () => activeRendition && activeRendition.prev());
       els.nextBtn.addEventListener('click', () => activeRendition && activeRendition.next());
-      els.saveQuoteBtn.addEventListener('click', saveSelectedQuote);
-      els.saveThoughtBtn.addEventListener('click', saveThought);
     }
 
     function openDatabase() {
@@ -532,7 +504,6 @@
           coverData,
           progress: 0,
           lastCfi: null,
-          entries: [],
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
         };
@@ -578,7 +549,6 @@
       document.getElementById(`screen-${name}`).classList.add('active');
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.screen === name));
 
-      if (name === 'entries') renderEntries();
       if (name === 'library') renderLibrary();
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -587,15 +557,12 @@
     function renderAll() {
       renderStats();
       renderContinue();
-      renderRecentEntries();
       renderLibrary();
     }
 
     function renderStats() {
-      const entries = books.flatMap(book => book.entries || []);
       els.statBooks.textContent = books.length;
       els.statReading.textContent = books.filter(book => book.status === 'reading').length;
-      els.statEntries.textContent = entries.length;
     }
 
     function renderContinue() {
@@ -612,23 +579,11 @@
       attachBookActions(els.continueBook);
     }
 
-    function renderRecentEntries() {
-      const entries = getAllEntries().slice(0, 3);
-      els.recentEntriesCount.textContent = entries.length;
-
-      if (!entries.length) {
-        els.recentEntries.innerHTML = '<div class="empty"><strong>Записей пока нет</strong>Во время чтения выдели текст или добавь мысль.</div>';
-        return;
-      }
-
-      els.recentEntries.innerHTML = entries.map(renderEntryCard).join('');
-    }
-
     function renderLibrary() {
       const query = els.searchInput.value.trim().toLowerCase();
 
       const filtered = books.filter(book => {
-        const text = [book.title, book.author, ...(book.entries || []).map(entry => entry.text)].join(' ').toLowerCase();
+        const text = [book.title, book.author].join(' ').toLowerCase();
         return !query || text.includes(query);
       });
 
@@ -652,7 +607,6 @@
             <div class="book-meta">
               <span class="pill">${book.progress || 0}%</span>
               <span class="pill">${formatFileSize(book.fileSize)}</span>
-              <span class="pill">${(book.entries || []).length} записей</span>
             </div>
             <div class="book-actions">
               <button class="primary-btn tiny-btn" data-open="${book.id}">${isContinue ? 'Продолжить' : 'Читать'}</button>
@@ -743,16 +697,6 @@
           renderContinue();
         });
 
-        activeRendition.on('selected', (cfiRange, contents) => {
-          selectedText = String(contents.window.getSelection().toString() || '').trim();
-          selectedCfi = cfiRange || '';
-
-          if (selectedText) {
-            els.selectedBox.textContent = selectedText.length > 420 ? selectedText.slice(0, 420) + '…' : selectedText;
-            els.selectedBox.classList.add('active');
-          }
-        });
-
         await activeEpub.ready;
 
         try { await activeEpub.locations.generate(1000); } catch {}
@@ -769,62 +713,6 @@
       els.readerAuthor.textContent = book.author || 'Автор не указан';
       els.readerProgressFill.style.width = `${book.progress || 0}%`;
       els.readerProgressText.textContent = `${book.progress || 0}%`;
-    }
-
-    async function saveSelectedQuote() {
-      if (!activeBookId || !activeBook) {
-        showToast('Сначала открой книгу');
-        return;
-      }
-
-      if (!selectedText) {
-        showToast('Выдели текст в книге');
-        return;
-      }
-
-      await addEntryToBook(activeBookId, { type: 'quote', text: selectedText, cfi: selectedCfi });
-      selectedText = '';
-      selectedCfi = '';
-      els.selectedBox.classList.remove('active');
-      els.selectedBox.textContent = '';
-      showToast('Цитата сохранена');
-    }
-
-    async function saveThought() {
-      if (!activeBookId || !activeBook) {
-        showToast('Сначала открой книгу');
-        return;
-      }
-
-      const text = els.thoughtInput.value.trim();
-      if (!text) {
-        showToast('Введите мысль');
-        return;
-      }
-
-      await addEntryToBook(activeBookId, { type: 'thought', text, cfi: activeBook.lastCfi || null });
-      els.thoughtInput.value = '';
-      showToast('Мысль сохранена');
-    }
-
-    async function addEntryToBook(bookId, entryData) {
-      const book = books.find(item => item.id === bookId);
-      if (!book) return;
-
-      const entry = {
-        id: createEntryId(),
-        type: entryData.type,
-        text: entryData.text,
-        cfi: entryData.cfi || null,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
-
-      const updated = { ...book, entries: [...(book.entries || []), entry], updatedAt: new Date().toISOString() };
-      await putBook(updated);
-      books = await getAllBooks();
-      activeBook = books.find(item => item.id === bookId) || updated;
-      renderAll();
     }
 
     async function markAsRead(bookId) {
@@ -858,54 +746,8 @@
       showToast('Книга удалена');
     }
 
-    function renderEntries() {
-      if (!els.entriesList || !els.entriesSearchInput || !els.entryTypeFilter) return;
-      const query = els.entriesSearchInput.value.trim().toLowerCase();
-      const type = els.entryTypeFilter.value;
-
-      const entries = getAllEntries().filter(item => {
-        const byType = type === 'all' || item.type === type;
-        const bySearch = !query || [item.text, item.bookTitle, item.bookAuthor].join(' ').toLowerCase().includes(query);
-        return byType && bySearch;
-      });
-
-      if (!entries.length) {
-        els.entriesList.innerHTML = '<div class="empty"><strong>Записей нет</strong>Сохрани цитату или мысль во время чтения.</div>';
-        return;
-      }
-
-      els.entriesList.innerHTML = entries.map(renderEntryCard).join('');
-    }
-
-    function getAllEntries() {
-      return books
-        .flatMap(book => (book.entries || []).map(entry => ({
-          ...entry,
-          bookId: book.id,
-          bookTitle: book.title,
-          bookAuthor: book.author
-        })))
-        .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
-    }
-
-    function renderEntryCard(entry) {
-      return `
-        <article class="entry-card">
-          <div class="entry-head">
-            <span class="entry-type">${entryTypeMap[entry.type] || 'Запись'}</span>
-            <span class="entry-book">${escapeHtml(entry.bookTitle)}</span>
-          </div>
-          <p>${escapeHtml(entry.text)}</p>
-        </article>
-      `;
-    }
-
     function createId() {
       return 'book-' + Date.now() + '-' + Math.random().toString(16).slice(2);
-    }
-
-    function createEntryId() {
-      return 'entry-' + Date.now() + '-' + Math.random().toString(16).slice(2);
     }
 
     function sortByUpdatedAt(a, b) {
@@ -948,12 +790,6 @@
         .replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;')
         .replaceAll("'", '&#039;');
-    }
-
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
-      });
     }
 
     let toastTimer;
