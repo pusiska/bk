@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=6" />
+  <link rel="manifest" href="./manifest.json?v=7" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
   <title>Мои книги</title>
 
@@ -226,6 +226,21 @@
       margin: 0 0 14px;
     }
 
+    .reader-content .reader-page-title {
+      margin: 0 0 18px;
+      color: #181512;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .reader-content .reader-empty-page {
+      color: #82786c;
+      text-align: center;
+      padding: 60px 0;
+    }
+
     .reader-content img {
       max-width: 100%;
       height: auto;
@@ -368,7 +383,7 @@
       'https://unpkg.com/jszip@3.10.1/dist/jszip.min.js'
     ];
 
-    const DB_NAME = 'my-books-epub-reader-simple-db-v2';
+    const DB_NAME = 'my-books-epub-reader-simple-db-v3';
     const DB_VERSION = 1;
     const BOOKS_STORE = 'books';
 
@@ -377,7 +392,7 @@
     let activeBookId = null;
     let activeBook = null;
     let activeReaderData = null;
-    let activeChapterIndex = 0;
+    let activePageIndex = 0;
 
     const els = {
       epubInput: document.getElementById('epubInput'),
@@ -535,42 +550,83 @@
         || null;
     }
 
-    async function renderChapter(readerData, chapterIndex) {
-      const item = readerData.spine[chapterIndex];
+    async function buildPagesFromReaderData(readerData) {
+      const pages = [];
+      const pageCharLimit = 1800;
 
-      if (!item || !readerData.zip.file(item.href)) {
-        throw new Error('chapter file not found');
+      for (let chapterIndex = 0; chapterIndex < readerData.spine.length; chapterIndex += 1) {
+        const item = readerData.spine[chapterIndex];
+
+        if (!item || !readerData.zip.file(item.href)) continue;
+
+        const chapterText = await readerData.zip.file(item.href).async('text');
+        const blocks = await extractReadableBlocks(readerData.zip, item.href, chapterText);
+
+        let currentBlocks = [];
+        let currentChars = 0;
+
+        for (const block of blocks) {
+          const blockChars = getPlainText(block).length || 1;
+
+          if (currentBlocks.length && currentChars + blockChars > pageCharLimit) {
+            pages.push({
+              html: currentBlocks.join(''),
+              chapterIndex
+            });
+
+            currentBlocks = [];
+            currentChars = 0;
+          }
+
+          currentBlocks.push(block);
+          currentChars += blockChars;
+        }
+
+        if (currentBlocks.length) {
+          pages.push({
+            html: currentBlocks.join(''),
+            chapterIndex
+          });
+        }
       }
 
-      const chapterText = await readerData.zip.file(item.href).async('text');
-      const doc = new DOMParser().parseFromString(chapterText, 'text/html');
-      const body = doc.body || doc.querySelector('body');
+      if (!pages.length) {
+        pages.push({
+          html: '<p class="reader-empty-page">Текст книги не найден.</p>',
+          chapterIndex: 0
+        });
+      }
+
+      return pages;
+    }
+
+    async function extractReadableBlocks(zip, chapterPath, chapterText) {
+      const doc = new DOMParser().parseFromString(chapterText, 'application/xhtml+xml');
+      const parseError = doc.querySelector('parsererror');
+      let body = null;
+
+      if (!parseError) {
+        body = doc.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'body')[0]
+          || doc.getElementsByTagName('body')[0]
+          || doc.querySelector('body');
+      }
 
       if (!body) {
-        return '<p>Глава пустая или не распознана.</p>';
+        return extractReadableBlocksFallback(chapterText);
       }
 
       body.querySelectorAll('script, style, link, object, iframe').forEach(node => node.remove());
 
-      body.querySelectorAll('*').forEach(node => {
-        [...node.attributes].forEach(attr => {
-          if (attr.name.toLowerCase().startsWith('on')) {
-            node.removeAttribute(attr.name);
-          }
-        });
-      });
+      const imageNodes = Array.from(body.querySelectorAll('img'));
 
-      const images = Array.from(body.querySelectorAll('img'));
-
-      for (const img of images) {
+      for (const img of imageNodes) {
         const src = img.getAttribute('src') || img.getAttribute('href') || img.getAttribute('xlink:href');
         if (!src) continue;
 
-        const cleanSrc = src.split('#')[0];
-        const imagePath = resolvePath(dirname(item.href), cleanSrc);
+        const imagePath = resolvePath(dirname(chapterPath), src.split('#')[0]);
 
         try {
-          const dataUrl = await fileToDataUrlFromZip(readerData.zip, imagePath, guessMime(imagePath));
+          const dataUrl = await fileToDataUrlFromZip(zip, imagePath, guessMime(imagePath));
           img.setAttribute('src', dataUrl);
         } catch (error) {
           console.warn('image skipped:', imagePath, error);
@@ -578,9 +634,77 @@
         }
       }
 
-      return body.innerHTML;
+      const nodes = Array.from(body.querySelectorAll('h1, h2, h3, h4, h5, h6, p, blockquote, li'));
+
+      const blocks = nodes
+        .map(node => serializeNodeAsHtml(node))
+        .filter(html => getPlainText(html).trim() || /<img/i.test(html));
+
+      if (blocks.length) return blocks;
+
+      const bodyHtml = serializeChildrenAsHtml(body);
+
+      if (bodyHtml.trim()) {
+        return [`<p>${bodyHtml}</p>`];
+      }
+
+      return extractReadableBlocksFallback(chapterText);
     }
 
+    function extractReadableBlocksFallback(chapterText) {
+      const bodyMatch = String(chapterText || '').match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+      let bodyHtml = bodyMatch ? bodyMatch[1] : String(chapterText || '');
+
+      bodyHtml = bodyHtml
+        .replace(/<script[\s\S]*?<\/script>/gi, '')
+        .replace(/<style[\s\S]*?<\/style>/gi, '')
+        .replace(/<link[^>]*>/gi, '');
+
+      const matches = bodyHtml.match(/<(h[1-6]|p|blockquote|li)[^>]*>[\s\S]*?<\/\1>/gi);
+
+      if (matches && matches.length) {
+        return matches.map(cleanSerializedHtml).filter(html => getPlainText(html).trim());
+      }
+
+      const text = getPlainText(bodyHtml).trim();
+
+      return text
+        ? text.split(/\n{2,}/).map(part => `<p>${escapeHtml(part.trim())}</p>`)
+        : [];
+    }
+
+    function serializeNodeAsHtml(node) {
+      const serializer = new XMLSerializer();
+      return cleanSerializedHtml(serializer.serializeToString(node));
+    }
+
+    function serializeChildrenAsHtml(node) {
+      const serializer = new XMLSerializer();
+
+      return Array.from(node.childNodes)
+        .map(child => child.nodeType === Node.TEXT_NODE ? escapeHtml(child.textContent) : serializer.serializeToString(child))
+        .map(cleanSerializedHtml)
+        .join('');
+    }
+
+    function cleanSerializedHtml(html) {
+      return String(html || '')
+        .replace(/\s+xmlns(:\w+)?="[^"]*"/g, '')
+        .replace(/<\/?\w+:/g, match => match.replace(/\w+:/, ''))
+        .replace(/\s+class="[^"]*"/g, '')
+        .replace(/\s+id="[^"]*"/g, '')
+        .replace(/\s+style="[^"]*"/g, '')
+        .replace(/\s+onclick="[^"]*"/g, '');
+    }
+
+    function getPlainText(html) {
+      return String(html || '')
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    
     async function fileToDataUrlFromZip(zip, filePath, mediaType = '') {
       const normalizedPath = normalizeZipPath(filePath);
       const file = zip.file(normalizedPath);
@@ -690,8 +814,8 @@
 
       els.epubInput.addEventListener('change', handleEpubUpload);
       els.searchInput.addEventListener('input', renderLibrary);
-      els.prevBtn.addEventListener('click', () => goToChapter(-1));
-      els.nextBtn.addEventListener('click', () => goToChapter(1));
+      els.prevBtn.addEventListener('click', () => goToPage(-1));
+      els.nextBtn.addEventListener('click', () => goToPage(1));
     }
 
     function openDatabase() {
@@ -875,6 +999,8 @@
           epubBlob,
           coverData: parsed.coverData || '',
           progress: 0,
+          currentPageIndex: 0,
+          totalPages: 0,
           currentChapterIndex: 0,
           totalChapters: parsed.spine.length,
           createdAt: new Date().toISOString(),
@@ -956,7 +1082,7 @@
             <div class="progress-bar"><div class="progress-fill" style="width: ${book.progress || 0}%"></div></div>
             <div class="book-meta">
               <span class="pill">${book.progress || 0}%</span>
-              <span class="pill">${formatFileSize(book.fileSize)}</span>\n              ${book.totalChapters ? `<span class="pill">${book.totalChapters} глав</span>` : ''}
+              <span class="pill">${formatFileSize(book.fileSize)}</span>\n              ${book.totalPages ? `<span class="pill">${book.totalPages} стр.</span>` : (book.totalChapters ? `<span class="pill">${book.totalChapters} глав</span>` : '')}
             </div>
             <div class="book-actions">
               <button class="primary-btn tiny-btn" data-open="${book.id}">${isContinue ? 'Продолжить' : 'Читать'}</button>
@@ -990,18 +1116,19 @@
 
       activeBookId = bookId;
       activeBook = book;
-      activeChapterIndex = book.currentChapterIndex || 0;
+      activePageIndex = book.currentPageIndex || 0;
 
       showScreen('reader');
       updateReaderHeader(book);
-      els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Открываю книгу</strong>Подготавливаю текст.</div>';
+      els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Открываю книгу</strong>Собираю страницы из EPUB.</div>';
 
       try {
         const arrayBuffer = await book.epubBlob.arrayBuffer();
         activeReaderData = await withTimeout(parseEpubArrayBuffer(arrayBuffer, book.title), 12000, 'reader parse timeout');
-        activeChapterIndex = clamp(activeChapterIndex, 0, activeReaderData.spine.length - 1);
+        activeReaderData.pages = await withTimeout(buildPagesFromReaderData(activeReaderData), 12000, 'pages build timeout');
+        activePageIndex = clamp(activePageIndex, 0, activeReaderData.pages.length - 1);
 
-        await renderActiveChapter();
+        await renderActivePage();
       } catch (error) {
         console.error(error);
         showToast(getReadableError(error));
@@ -1009,18 +1136,20 @@
       }
     }
 
-    async function renderActiveChapter() {
+    async function renderActivePage() {
       if (!activeReaderData || !activeBook) return;
 
-      const chapterHtml = await renderChapter(activeReaderData, activeChapterIndex);
+      const page = activeReaderData.pages[activePageIndex];
 
-      els.viewer.innerHTML = `<article class="reader-content">${chapterHtml}</article>`;
+      els.viewer.innerHTML = `<article class="reader-content">${page?.html || '<p class="reader-empty-page">Страница пустая.</p>'}</article>`;
 
-      const progress = Math.round(((activeChapterIndex + 1) / activeReaderData.spine.length) * 100);
+      const progress = Math.round(((activePageIndex + 1) / activeReaderData.pages.length) * 100);
 
       activeBook = {
         ...activeBook,
-        currentChapterIndex: activeChapterIndex,
+        currentPageIndex: activePageIndex,
+        totalPages: activeReaderData.pages.length,
+        currentChapterIndex: page?.chapterIndex || 0,
         totalChapters: activeReaderData.spine.length,
         progress: clamp(progress, 0, 100),
         updatedAt: new Date().toISOString()
@@ -1035,22 +1164,22 @@
       renderLibrary();
     }
 
-    async function goToChapter(delta) {
-      if (!activeReaderData) return;
+    async function goToPage(delta) {
+      if (!activeReaderData?.pages) return;
 
-      const nextIndex = clamp(activeChapterIndex + delta, 0, activeReaderData.spine.length - 1);
+      const nextIndex = clamp(activePageIndex + delta, 0, activeReaderData.pages.length - 1);
 
-      if (nextIndex === activeChapterIndex) return;
+      if (nextIndex === activePageIndex) return;
 
-      activeChapterIndex = nextIndex;
-      await renderActiveChapter();
+      activePageIndex = nextIndex;
+      await renderActivePage();
     }
 
     function updateReaderHeader(book) {
       els.readerTitle.textContent = book.title || 'Книга';
       els.readerAuthor.textContent = book.author || 'Автор не указан';
       els.readerProgressFill.style.width = `${book.progress || 0}%`;
-      els.readerProgressText.textContent = `${book.progress || 0}%${book.totalChapters ? ' · глава ' + ((book.currentChapterIndex || 0) + 1) + ' из ' + book.totalChapters : ''}`;
+      els.readerProgressText.textContent = `${book.progress || 0}%${book.totalPages ? ' · страница ' + ((book.currentPageIndex || 0) + 1) + ' из ' + book.totalPages : ''}`;
     }
 
     async function markAsRead(bookId) {
