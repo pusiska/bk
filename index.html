@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=40" />
+  <link rel="manifest" href="./manifest.json?v=42" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 4.0</title>
+  <title>Мои книги 4.2</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=40') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=42') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,28 +19,35 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=40') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=42') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
 
     :root {
-      --bg: #FAF8F2;
-      --surface: #FFFDF8;
-      --surface-2: #F4EFE7;
-      --surface-soft: #F4EFE7;
-      --text: #11110F;
-      --muted: #7A7067;
-      --line: #E3D5C4;
-      --line-soft: #EFE7DA;
-      --accent: #11110F;
-      --accent-soft: #EFE7DA;
+      /* Brandbook palette */
+      --graphite: #171717;
+      --warm-bg: #F6F1E8;
+      --milk: #FFFDF8;
+      --sand: #CDBA9A;
+      --grey-text: #7D7468;
+
+      --bg: var(--warm-bg);
+      --surface: var(--milk);
+      --surface-2: #F1E9DC;
+      --surface-soft: #EFE5D5;
+      --text: var(--graphite);
+      --muted: var(--grey-text);
+      --line: #DFD1BF;
+      --line-soft: #ECE1D2;
+      --accent: var(--graphite);
+      --accent-soft: #E8DDCB;
       --danger: #B94A3A;
       --danger-bg: #FFF3F1;
-      --shadow: 0 8px 22px rgba(44, 35, 24, .045);
-      --radius-lg: 12px;
-      --radius-md: 7px;
+      --shadow: 0 10px 28px rgba(23, 23, 23, .055);
+      --radius-lg: 14px;
+      --radius-md: 9px;
       --font-main: 'uvKits', Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-heading: 'KONSTRUKT', 'uvKits', Inter, system-ui, sans-serif;
     }
@@ -801,6 +808,19 @@
       height: 98px;
     }
 
+    .books-list.list .book-card {
+      grid-template-columns: 68px 1fr;
+      gap: 16px;
+    }
+
+    .books-list.list .book-title,
+    .books-list.list .book-author,
+    .books-list.list .progress-bar,
+    .books-list.list .book-meta,
+    .books-list.list .book-actions {
+      margin-left: 2px;
+    }
+
     .book-meta .pill {
       background: var(--surface-soft);
       border-color: transparent;
@@ -929,6 +949,381 @@
       font-family: "Courier New", monospace;
     }
 
+
+    /* v4.2 brandbook adaptation */
+    body {
+      background:
+        radial-gradient(circle at 50% 0, rgba(205, 186, 154, .12), transparent 340px),
+        var(--bg);
+    }
+
+    .app {
+      max-width: 600px;
+    }
+
+    .app-header {
+      padding: 8px 0 14px;
+      margin-bottom: 24px;
+      border-bottom-color: rgba(205, 186, 154, .62);
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 42px;
+      height: 50px;
+      border-radius: 12px 12px 10px 10px;
+      background: linear-gradient(145deg, #222 0%, var(--graphite) 68%, #0C0C0C 100%);
+      color: var(--milk);
+      box-shadow: 0 7px 18px rgba(23, 23, 23, .12);
+      overflow: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      width: 7px;
+      height: 23px;
+      background: var(--milk);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+      opacity: .96;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 17px;
+      height: 2px;
+      border-radius: 99px;
+      background: var(--milk);
+      box-shadow: 0 6px 0 rgba(255, 253, 248, .96);
+      opacity: .9;
+    }
+
+    .brand-mark span {
+      position: relative;
+      z-index: 2;
+      transform: translate(5px, 7px);
+      display: block;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      letter-spacing: .09em;
+      line-height: .95;
+    }
+
+    .brand-subtitle,
+    .version-pill,
+    .eyebrow,
+    .reader-sub,
+    .pill,
+    .nav-btn,
+    .settings-item span {
+      font-family: var(--font-main);
+      letter-spacing: .055em;
+    }
+
+    .version-pill {
+      background: transparent;
+      border-color: rgba(205, 186, 154, .6);
+      color: var(--muted);
+      height: 32px;
+      min-height: 32px;
+      border-radius: 999px;
+    }
+
+    h1 {
+      font-size: 34px;
+      letter-spacing: .105em;
+      color: var(--text);
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      letter-spacing: .18em;
+      font-size: 10px;
+    }
+
+    .panel,
+    .book-card,
+    .settings-card,
+    .metric-card {
+      background: rgba(255, 253, 248, .88);
+      border-color: rgba(205, 186, 154, .48);
+      box-shadow: 0 8px 24px rgba(23, 23, 23, .045);
+    }
+
+    .dashboard-grid {
+      gap: 10px;
+    }
+
+    .metric-card {
+      min-height: 82px;
+      padding: 14px;
+    }
+
+    .metric-card strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: .01em;
+    }
+
+    .metric-card span {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 10px;
+    }
+
+    .library-toolbar {
+      gap: 10px;
+    }
+
+    .input,
+    .select {
+      background: rgba(255, 253, 248, .92);
+      border-color: rgba(205, 186, 154, .72);
+      border-radius: 10px;
+      min-height: 44px;
+    }
+
+    .primary-btn,
+    .ghost-btn,
+    .danger-btn,
+    .tiny-btn,
+    .view-btn {
+      border-radius: 9px;
+    }
+
+    .primary-btn {
+      background: var(--graphite);
+      color: var(--milk);
+      box-shadow: 0 7px 16px rgba(23, 23, 23, .10);
+    }
+
+    .ghost-btn,
+    .view-btn {
+      background: rgba(255, 253, 248, .78);
+      border-color: rgba(205, 186, 154, .7);
+    }
+
+    .view-btn.active {
+      background: var(--graphite);
+      color: var(--milk);
+    }
+
+    .books-list {
+      gap: 12px;
+    }
+
+    .book-card {
+      padding: 14px;
+      border-radius: 14px;
+    }
+
+    .books-list.list .book-card {
+      grid-template-columns: 76px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .books-list.list .cover {
+      width: 76px;
+      height: 112px;
+      border-radius: 8px;
+      box-shadow: 0 10px 18px rgba(23, 23, 23, .12);
+    }
+
+    .books-list.grid {
+      gap: 10px;
+    }
+
+    .books-list.grid .book-card {
+      padding: 10px;
+    }
+
+    .books-list.grid .cover {
+      height: 184px;
+      border-radius: 8px;
+      box-shadow: 0 10px 18px rgba(23, 23, 23, .10);
+    }
+
+    .book-title {
+      font-size: 17px;
+      letter-spacing: .09em;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .book-author {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 12px;
+      letter-spacing: .035em;
+    }
+
+    .progress-bar {
+      height: 7px;
+      background: rgba(205, 186, 154, .23);
+      border: 0;
+    }
+
+    .progress-fill {
+      background: var(--graphite);
+    }
+
+    .book-meta {
+      margin-top: 9px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      background: var(--accent-soft);
+      border: 1px solid rgba(205, 186, 154, .18);
+      color: var(--muted);
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 10px;
+    }
+
+    .book-actions {
+      gap: 8px;
+    }
+
+    .book-actions .primary-btn {
+      min-width: 86px;
+    }
+
+    .book-actions .danger-btn {
+      color: var(--danger);
+      background: var(--danger-bg);
+      border-color: transparent;
+      opacity: .78;
+    }
+
+    .bottom-nav {
+      width: min(560px, calc(100% - 32px));
+      bottom: 12px;
+      padding: 5px;
+      border-color: rgba(205, 186, 154, .62);
+      background: rgba(255, 253, 248, .88);
+      box-shadow: 0 14px 34px rgba(23, 23, 23, .10);
+    }
+
+    .nav-btn {
+      min-height: 38px;
+      font-size: 10px;
+      border-radius: 8px;
+      color: var(--muted);
+    }
+
+    .nav-btn.active {
+      background: var(--graphite);
+      color: var(--milk);
+    }
+
+    .reader-shell {
+      background: var(--milk);
+    }
+
+    .reader-top {
+      background: rgba(255, 253, 248, .97);
+      border-bottom-color: rgba(205, 186, 154, .55);
+      padding: max(7px, env(safe-area-inset-top)) 10px 7px;
+    }
+
+    .reader-back,
+    .chapter-btn,
+    .reader-nav-btn {
+      background: rgba(255, 253, 248, .88);
+      border-color: rgba(205, 186, 154, .65);
+      color: var(--text);
+    }
+
+    .reader-nav-btn {
+      min-width: 32px;
+      min-height: 30px;
+      padding: 0;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .chapter-btn {
+      max-width: 118px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .reader-title {
+      font-size: 15px;
+      letter-spacing: .08em;
+    }
+
+    .reader-panel,
+    #viewer,
+    .reader-content {
+      background: var(--milk);
+    }
+
+    .reader-content {
+      padding: 22px 24px 34px;
+      color: var(--text);
+      font-size: var(--reader-font-size, 21px);
+      line-height: var(--reader-line-height, 1.68);
+    }
+
+    .reader-content p {
+      margin-bottom: 15px;
+    }
+
+    .reader-content h1,
+    .reader-content h2,
+    .reader-content h3 {
+      color: var(--text);
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+
+    .reader-tap-zone {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 3;
+      width: 28%;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      opacity: 0;
+    }
+
+    .reader-tap-zone.left {
+      left: 0;
+    }
+
+    .reader-tap-zone.right {
+      right: 0;
+    }
+
+    .settings-card {
+      gap: 12px;
+    }
+
+    .settings-item {
+      background: rgba(246, 241, 232, .68);
+      border-color: rgba(205, 186, 154, .38);
+      border-radius: 11px;
+    }
+
     @media (max-width: 420px) {
       body {
         padding: 12px;
@@ -948,7 +1343,7 @@
       }
 
       .books-list.grid .cover {
-        height: 138px;
+        height: 150px;
       }
 
       .book-title {
@@ -967,13 +1362,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark">К</div>
+        <div class="brand-mark"><span>К</span></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 4.0</p>
+          <p class="brand-subtitle">EPUB-читалка · 4.2</p>
         </div>
       </div>
-      <span class="version-pill">v4.0</span>
+      <span class="version-pill">v4.2</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
     </header>
 
@@ -1060,17 +1455,18 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">4.0</span>
+          <span id="settingsVersion">4.2</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-19 07:02 UTC</span>
+          <span id="settingsBuild">2026-05-19 07:54 UTC</span>
         </div>
 
         <div class="settings-item">
           <strong>Хранилище</strong>
           <span id="settingsStorage">IndexedDB · my-books-epub-reader-db-v40</span>
+          <span>EPUB-файлы хранятся только локально в браузере. GitHub не видит загруженные книги.</span>
         </div>
 
         <div class="settings-item">
@@ -1080,7 +1476,7 @@
 
         <div class="settings-item">
           <strong>Service Worker</strong>
-          <span>my-books-epub-reader-v40</span>
+          <span>my-books-epub-reader-v42</span>
         </div>
 
         <div class="settings-item">
@@ -1096,7 +1492,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=40.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=42.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -1114,13 +1510,13 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '4.0';
-    const BUILD_DATE = '2026-05-19 07:02 UTC';
+    const APP_VERSION = '4.2';
+    const BUILD_DATE = '2026-05-19 07:54 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v40';
     const DB_VERSION = 1;
     const BOOKS_STORE = 'books';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v40';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v42';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -1136,7 +1532,7 @@
     let activePageIndex = 0;
     const uiSettings = loadUiSettings();
     let libraryView = uiSettings.libraryView || 'list';
-    let readerFontSize = Number(uiSettings.readerFontSize || 20);
+    let readerFontSize = Number(uiSettings.readerFontSize || 21);
     let readerTheme = uiSettings.readerTheme || 'light';
     let readerFont = uiSettings.readerFont || 'serif';
     let touchStartX = 0;
@@ -1277,7 +1673,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=40').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=42').catch(() => {});
         });
       }
     }
