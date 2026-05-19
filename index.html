@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#fbfaf6" />
+  <link rel="manifest" href="./manifest.json?v=1" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <title>Мои книги</title>
+
+  <style>
+    @font-face {
+      font-family: 'uvKits';
+      src: url('./fonts/uvkits.ttf?v=1') format('truetype');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'KONSTRUKT';
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=1') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #fbfaf6;
+      --surface: #ffffff;
+      --surface-2: #f4efe6;
+      --text: #181512;
+      --muted: #82786c;
+      --line: #ded4c5;
+      --line-soft: #eee6dc;
+      --accent: #111111;
+      --danger: #9d3e32;
+      --shadow: 0 8px 22px rgba(44, 35, 24, .045);
+      --radius-lg: 12px;
+      --radius-md: 7px;
+      --font-main: 'uvKits', Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-heading: 'KONSTRUKT', 'uvKits', Inter, system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      color-scheme: light only;
+    }
+
+    body { padding: 16px; padding-bottom: 98px; }
+
+    button, input, textarea, select { font: inherit; }
+    button { border: 0; cursor: pointer; }
+
+    .app { width: 100%; max-width: 560px; margin: 0 auto; }
+
+    .app-header {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; margin-bottom: 22px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; }
+
+    .brand-mark {
+      width: 34px; height: 34px; border-radius: 6px;
+      background: var(--accent); color: var(--bg);
+      display: grid; place-items: center; font-weight: 900; letter-spacing: -.08em;
+    }
+
+    .brand-title {
+      margin: 0; font-family: var(--font-heading); font-size: 15px;
+      line-height: 1; letter-spacing: .08em; font-weight: 400; text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      margin: 4px 0 0; font-size: 11px; color: var(--muted); font-weight: 700;
+    }
+
+    .header-action {
+      min-width: 38px; height: 36px; padding: 0 12px;
+      border-radius: 7px; background: var(--surface); border: 1px solid var(--line);
+      color: var(--text); font-weight: 850;
+    }
+
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    .section-head { margin-bottom: 18px; }
+
+    .eyebrow {
+      margin: 0 0 8px; font-family: var(--font-heading); font-size: 11px;
+      line-height: 1.1; text-transform: uppercase; letter-spacing: .14em;
+      color: var(--muted); font-weight: 400;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 0; font-family: var(--font-heading); font-weight: 400;
+      font-size: 30px; line-height: 1.05; letter-spacing: .075em; text-transform: uppercase;
+    }
+
+    h2, h3 { font-family: var(--font-heading); font-weight: 400; letter-spacing: .06em; }
+
+    .panel, .book-card, .entry-card, .reader-panel {
+      background: var(--surface); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    }
+
+    .panel { padding: 14px; margin-bottom: 12px; }
+
+    .hero-panel {
+      padding: 16px; background: linear-gradient(180deg, #ffffff 0%, #f8f3ea 100%);
+    }
+
+    .hero-panel h2 { margin-bottom: 8px; font-size: 20px; line-height: 1.1; }
+
+    .hero-panel p {
+      margin-bottom: 14px; color: var(--muted); font-size: 13px; line-height: 1.4;
+    }
+
+    .primary-btn, .ghost-btn, .danger-btn, .tiny-btn {
+      min-height: 42px; border-radius: var(--radius-md); padding: 11px 13px; font-weight: 850;
+    }
+
+    .primary-btn { background: var(--accent); color: var(--surface); }
+    .ghost-btn { background: var(--surface); color: var(--text); border: 1px solid var(--line); }
+    .danger-btn { background: rgba(157, 62, 50, .06); color: var(--danger); border: 1px solid rgba(157, 62, 50, .18); }
+    .tiny-btn { min-height: 32px; padding: 7px 9px; font-size: 11px; }
+
+    .hidden-input { display: none; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-top: 10px; }
+
+    .stat-mini {
+      background: var(--bg); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md); padding: 10px; min-height: 62px;
+    }
+
+    .stat-mini strong { display: block; font-size: 20px; line-height: 1; margin-bottom: 5px; }
+    .stat-mini span { display: block; color: var(--muted); font-size: 10px; line-height: 1.2; font-weight: 700; }
+
+    .panel-title { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .panel-title h3 { margin: 0; font-size: 15px; line-height: 1; }
+    .panel-title span { color: var(--muted); font-size: 11px; font-weight: 750; }
+
+    .library-toolbar { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 12px; }
+
+    .input, .textarea, .select {
+      width: 100%; border: 1px solid var(--line); background: var(--surface);
+      color: var(--text); border-radius: var(--radius-md); min-height: 42px;
+      padding: 11px 12px; outline: none;
+    }
+
+    .textarea { min-height: 88px; resize: vertical; line-height: 1.4; }
+
+    .books-list, .entries-list { display: grid; gap: 8px; }
+
+    .book-card {
+      display: grid; grid-template-columns: 58px 1fr; gap: 11px;
+      padding: 10px; align-items: start;
+    }
+
+    .cover {
+      width: 58px; height: 82px; border-radius: 6px; overflow: hidden;
+      background: var(--surface-2); border: 1px solid var(--line-soft);
+      display: flex; align-items: flex-end; justify-content: flex-start; padding: 8px;
+      font-family: var(--font-heading); font-size: 18px; line-height: .9;
+      letter-spacing: .05em; color: var(--accent);
+    }
+
+    .cover img {
+      width: calc(100% + 16px); height: calc(100% + 16px);
+      margin: -8px; object-fit: cover; display: block;
+    }
+
+    .book-title {
+      margin: 0 0 5px; font-family: var(--font-heading); font-size: 15px;
+      line-height: 1.15; letter-spacing: .055em; font-weight: 400;
+    }
+
+    .book-author { margin: 0 0 9px; color: var(--muted); font-size: 12px; line-height: 1.3; }
+
+    .book-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 9px; }
+
+    .pill {
+      display: inline-flex; align-items: center; border-radius: 6px; background: var(--bg);
+      border: 1px solid var(--line-soft); color: var(--muted);
+      padding: 5px 7px; font-size: 10px; line-height: 1; font-weight: 850;
+    }
+
+    .book-actions { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .progress-bar {
+      width: 100%; height: 7px; background: var(--surface-2);
+      border: 1px solid var(--line-soft); border-radius: 999px; overflow: hidden; margin-bottom: 8px;
+    }
+
+    .progress-fill { height: 100%; width: 0; background: var(--accent); border-radius: 999px; }
+
+    .entry-card { padding: 11px; }
+    .entry-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
+    .entry-type { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; font-weight: 850; }
+    .entry-book { color: var(--muted); font-size: 11px; font-weight: 700; }
+    .entry-card p { margin: 0; font-size: 13px; line-height: 1.45; white-space: pre-wrap; }
+
+    .reader-shell { display: grid; gap: 10px; }
+    .reader-top { display: grid; gap: 8px; }
+    .reader-title {
+      margin: 0; font-family: var(--font-heading); font-size: 17px;
+      letter-spacing: .06em; line-height: 1.15; font-weight: 400;
+    }
+    .reader-sub { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.25; }
+    .reader-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .reader-panel { overflow: hidden; padding: 0; background: #fffdf8; }
+
+    #viewer { width: 100%; height: calc(100vh - 285px); min-height: 430px; background: #fffdf8; }
+
+    .reader-note-panel {
+      display: grid; gap: 8px; padding: 12px; background: var(--surface);
+      border: 1px solid var(--line-soft); border-radius: var(--radius-lg);
+    }
+
+    .selected-box {
+      display: none; background: var(--bg); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md); padding: 10px; color: var(--muted);
+      font-size: 12px; line-height: 1.35;
+    }
+
+    .selected-box.active { display: block; }
+
+    .empty {
+      border: 1px dashed #cfc2ae; border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, .45); color: var(--muted);
+      padding: 22px 16px; text-align: center; line-height: 1.35;
+    }
+
+    .empty strong { display: block; color: var(--text); margin-bottom: 6px; font-size: 15px; }
+
+    .bottom-nav {
+      position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+      z-index: 50; width: min(560px, calc(100% - 28px));
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
+      background: rgba(255, 255, 255, .92); border: 1px solid var(--line);
+      border-radius: 12px; padding: 6px; box-shadow: 0 12px 32px rgba(45, 36, 26, .12);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-btn {
+      min-height: 42px; border-radius: 8px; background: transparent;
+      color: var(--muted); font-size: 10px; font-weight: 850;
+    }
+
+    .nav-btn.active { background: var(--accent); color: var(--surface); }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 86px; z-index: 80;
+      transform: translateX(-50%) translateY(12px); background: var(--accent);
+      color: var(--surface); border-radius: 8px; padding: 11px 14px;
+      font-size: 13px; font-weight: 800; box-shadow: 0 12px 26px rgba(45, 36, 26, .18);
+      opacity: 0; pointer-events: none; transition: .2s ease;
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 420px) {
+      body { padding: 12px; padding-bottom: 96px; }
+      h1 { font-size: 27px; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .library-toolbar { grid-template-columns: 1fr; }
+      #viewer { min-height: 390px; height: calc(100vh - 300px); }
+    }
+  </style>
+
+  <script src="https://unpkg.com/epubjs@0.3.93/dist/epub.min.js"></script>
+</head>
+
+<body>
+  <main class="app">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-mark">К</div>
+        <div>
+          <p class="brand-title">Мои книги</p>
+          <p class="brand-subtitle">читалка и мысли</p>
+        </div>
+      </div>
+      <button class="header-action" id="uploadHeaderBtn">+ EPUB</button>
+      <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
+    </header>
+
+    <section id="screen-home" class="screen active">
+      <div class="section-head">
+        <p class="eyebrow">Главная</p>
+        <h1>Читать и сохранять</h1>
+      </div>
+
+      <section class="panel hero-panel">
+        <h2>Добавь EPUB — приложение само создаст книгу</h2>
+        <p>Название, автор и обложка подтягиваются из файла. Сложной формы добавления больше нет.</p>
+        <button class="primary-btn" id="uploadHeroBtn">Загрузить EPUB</button>
+
+        <div class="stats-row">
+          <div class="stat-mini"><strong id="statBooks">0</strong><span>книг</span></div>
+          <div class="stat-mini"><strong id="statReading">0</strong><span>читаю</span></div>
+          <div class="stat-mini"><strong id="statEntries">0</strong><span>записей</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h3>Продолжить</h3><span id="continueLabel">—</span></div>
+        <div id="continueBook"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h3>Последние записи</h3><span id="recentEntriesCount">0</span></div>
+        <div id="recentEntries" class="entries-list"></div>
+      </section>
+    </section>
+
+    <section id="screen-library" class="screen">
+      <div class="section-head"><p class="eyebrow">Библиотека</p><h1>Книги</h1></div>
+      <div class="library-toolbar">
+        <input id="searchInput" class="input" type="search" placeholder="Поиск по книгам и записям" />
+        <button class="ghost-btn" id="uploadLibraryBtn">Загрузить EPUB</button>
+      </div>
+      <div id="booksList" class="books-list"></div>
+    </section>
+
+    <section id="screen-reader" class="screen">
+      <div class="reader-shell">
+        <div class="reader-top">
+          <p class="eyebrow">Читалка</p>
+          <h2 class="reader-title" id="readerTitle">Книга не выбрана</h2>
+          <p class="reader-sub" id="readerAuthor">Выбери книгу в библиотеке</p>
+          <div class="progress-bar"><div class="progress-fill" id="readerProgressFill"></div></div>
+          <p class="reader-sub" id="readerProgressText">0%</p>
+          <div class="reader-actions">
+            <button class="ghost-btn" id="prevBtn">Назад</button>
+            <button class="ghost-btn" id="nextBtn">Вперёд</button>
+          </div>
+        </div>
+
+        <div class="reader-panel">
+          <div id="viewer">
+            <div class="empty" style="margin: 16px;"><strong>Книга не открыта</strong>Перейди в библиотеку и нажми «Читать».</div>
+          </div>
+        </div>
+
+        <div class="reader-note-panel">
+          <div class="selected-box" id="selectedBox"></div>
+          <button class="ghost-btn" id="saveQuoteBtn">Сохранить выделение как цитату</button>
+          <textarea id="thoughtInput" class="textarea" placeholder="Быстрая мысль по текущему месту книги"></textarea>
+          <button class="primary-btn" id="saveThoughtBtn">Сохранить мысль</button>
+        </div>
+      </div>
+    </section>
+
+</main>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-screen="home">Главная</button>
+    <button class="nav-btn" data-screen="library">Книги</button>
+    <button class="nav-btn" data-screen="reader">Читать</button>
+  </nav>
+
+  <div class="toast" id="toast">Сохранено</div>
+
+  <script>
+    const DB_NAME = 'my-books-epub-reader-db-v1';
+    const DB_VERSION = 1;
+    const BOOKS_STORE = 'books';
+
+    const entryTypeMap = { quote: 'Цитата', thought: 'Мысль' };
+
+    let db = null;
+    let books = [];
+    let activeBookId = null;
+    let activeBook = null;
+    let activeEpub = null;
+    let activeRendition = null;
+    let selectedText = '';
+    let selectedCfi = '';
+
+    const els = {
+      epubInput: document.getElementById('epubInput'),
+      uploadHeaderBtn: document.getElementById('uploadHeaderBtn'),
+      uploadHeroBtn: document.getElementById('uploadHeroBtn'),
+      uploadLibraryBtn: document.getElementById('uploadLibraryBtn'),
+      statBooks: document.getElementById('statBooks'),
+      statReading: document.getElementById('statReading'),
+      statEntries: document.getElementById('statEntries'),
+      continueBook: document.getElementById('continueBook'),
+      continueLabel: document.getElementById('continueLabel'),
+      recentEntries: document.getElementById('recentEntries'),
+      recentEntriesCount: document.getElementById('recentEntriesCount'),
+      searchInput: document.getElementById('searchInput'),
+      booksList: document.getElementById('booksList'),
+      readerTitle: document.getElementById('readerTitle'),
+      readerAuthor: document.getElementById('readerAuthor'),
+      readerProgressFill: document.getElementById('readerProgressFill'),
+      readerProgressText: document.getElementById('readerProgressText'),
+      viewer: document.getElementById('viewer'),
+      prevBtn: document.getElementById('prevBtn'),
+      nextBtn: document.getElementById('nextBtn'),
+      selectedBox: document.getElementById('selectedBox'),
+      saveQuoteBtn: document.getElementById('saveQuoteBtn'),
+      thoughtInput: document.getElementById('thoughtInput'),
+      saveThoughtBtn: document.getElementById('saveThoughtBtn'),
+      entriesSearchInput: document.getElementById('entriesSearchInput'),
+      entryTypeFilter: document.getElementById('entryTypeFilter'),
+      entriesList: document.getElementById('entriesList'),
+      toast: document.getElementById('toast')
+    };
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    async function init() {
+      if (typeof ePub === 'undefined') {
+        showToast('EPUB-библиотека не загрузилась');
+        return;
+      }
+
+      db = await openDatabase();
+      books = await getAllBooks();
+      bindEvents();
+      renderAll();
+    }
+
+    function bindEvents() {
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => showScreen(btn.dataset.screen));
+      });
+
+      [els.uploadHeaderBtn, els.uploadHeroBtn, els.uploadLibraryBtn].forEach(btn => {
+        btn.addEventListener('click', () => els.epubInput.click());
+      });
+
+      els.epubInput.addEventListener('change', handleEpubUpload);
+      els.searchInput.addEventListener('input', renderLibrary);
+      if (els.entriesSearchInput) els.entriesSearchInput.addEventListener('input', renderEntries);
+      if (els.entryTypeFilter) els.entryTypeFilter.addEventListener('change', renderEntries);
+      els.prevBtn.addEventListener('click', () => activeRendition && activeRendition.prev());
+      els.nextBtn.addEventListener('click', () => activeRendition && activeRendition.next());
+      els.saveQuoteBtn.addEventListener('click', saveSelectedQuote);
+      els.saveThoughtBtn.addEventListener('click', saveThought);
+    }
+
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+        request.onupgradeneeded = event => {
+          const database = event.target.result;
+          if (!database.objectStoreNames.contains(BOOKS_STORE)) {
+            const store = database.createObjectStore(BOOKS_STORE, { keyPath: 'id' });
+            store.createIndex('updatedAt', 'updatedAt', { unique: false });
+            store.createIndex('status', 'status', { unique: false });
+          }
+        };
+
+        request.onsuccess = event => resolve(event.target.result);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    function getStore(mode = 'readonly') {
+      return db.transaction(BOOKS_STORE, mode).objectStore(BOOKS_STORE);
+    }
+
+    function getAllBooks() {
+      return new Promise((resolve, reject) => {
+        const request = getStore().getAll();
+        request.onsuccess = () => resolve((request.result || []).sort(sortByUpdatedAt));
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    function putBook(book) {
+      return new Promise((resolve, reject) => {
+        const request = getStore('readwrite').put(book);
+        request.onsuccess = () => resolve(book);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    function deleteBookById(id) {
+      return new Promise((resolve, reject) => {
+        const request = getStore('readwrite').delete(id);
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function handleEpubUpload(event) {
+      const file = event.target.files?.[0];
+      event.target.value = '';
+      if (!file) return;
+
+      if (!file.name.toLowerCase().endsWith('.epub')) {
+        showToast('Нужен файл EPUB');
+        return;
+      }
+
+      showToast('Читаю EPUB');
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const epubForMeta = ePub(arrayBuffer.slice(0));
+        await epubForMeta.ready;
+
+        const metadata = await epubForMeta.loaded.metadata;
+        const title = cleanText(metadata?.title) || file.name.replace(/\.epub$/i, '');
+        const author = normalizeCreator(metadata?.creator) || 'Автор не указан';
+        const coverData = await extractCoverData(epubForMeta);
+
+        const book = {
+          id: createId(),
+          title,
+          author,
+          status: 'reading',
+          fileName: file.name,
+          fileSize: file.size,
+          epubBlob: new Blob([arrayBuffer], { type: 'application/epub+zip' }),
+          coverData,
+          progress: 0,
+          lastCfi: null,
+          entries: [],
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+
+        await putBook(book);
+        books = await getAllBooks();
+
+        if (epubForMeta.destroy) epubForMeta.destroy();
+
+        renderAll();
+        showScreen('library');
+        showToast('Книга добавлена');
+      } catch (error) {
+        console.error(error);
+        showToast('Не удалось открыть EPUB');
+      }
+    }
+
+    async function extractCoverData(epubBook) {
+      try {
+        const coverUrl = await epubBook.coverUrl();
+        if (!coverUrl) return '';
+        const response = await fetch(coverUrl);
+        const blob = await response.blob();
+        return await blobToDataUrl(blob);
+      } catch (error) {
+        console.warn('Cover extraction failed', error);
+        return '';
+      }
+    }
+
+    function blobToDataUrl(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    function showScreen(name) {
+      document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+      document.getElementById(`screen-${name}`).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.screen === name));
+
+      if (name === 'entries') renderEntries();
+      if (name === 'library') renderLibrary();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderAll() {
+      renderStats();
+      renderContinue();
+      renderRecentEntries();
+      renderLibrary();
+    }
+
+    function renderStats() {
+      const entries = books.flatMap(book => book.entries || []);
+      els.statBooks.textContent = books.length;
+      els.statReading.textContent = books.filter(book => book.status === 'reading').length;
+      els.statEntries.textContent = entries.length;
+    }
+
+    function renderContinue() {
+      const last = [...books].filter(book => book.lastCfi || book.progress > 0).sort(sortByUpdatedAt)[0] || books[0];
+
+      if (!last) {
+        els.continueLabel.textContent = '0 книг';
+        els.continueBook.innerHTML = '<div class="empty"><strong>Книг пока нет</strong>Загрузи первый EPUB, чтобы начать чтение.</div>';
+        return;
+      }
+
+      els.continueLabel.textContent = `${last.progress || 0}%`;
+      els.continueBook.innerHTML = renderBookCard(last, true);
+      attachBookActions(els.continueBook);
+    }
+
+    function renderRecentEntries() {
+      const entries = getAllEntries().slice(0, 3);
+      els.recentEntriesCount.textContent = entries.length;
+
+      if (!entries.length) {
+        els.recentEntries.innerHTML = '<div class="empty"><strong>Записей пока нет</strong>Во время чтения выдели текст или добавь мысль.</div>';
+        return;
+      }
+
+      els.recentEntries.innerHTML = entries.map(renderEntryCard).join('');
+    }
+
+    function renderLibrary() {
+      const query = els.searchInput.value.trim().toLowerCase();
+
+      const filtered = books.filter(book => {
+        const text = [book.title, book.author, ...(book.entries || []).map(entry => entry.text)].join(' ').toLowerCase();
+        return !query || text.includes(query);
+      });
+
+      if (!filtered.length) {
+        els.booksList.innerHTML = '<div class="empty"><strong>Ничего не найдено</strong>Загрузи EPUB или измени поиск.</div>';
+        return;
+      }
+
+      els.booksList.innerHTML = filtered.map(book => renderBookCard(book)).join('');
+      attachBookActions(els.booksList);
+    }
+
+    function renderBookCard(book, isContinue = false) {
+      return `
+        <article class="book-card" data-book-id="${book.id}">
+          ${renderCover(book)}
+          <div>
+            <h3 class="book-title">${escapeHtml(book.title)}</h3>
+            <p class="book-author">${escapeHtml(book.author)}</p>
+            <div class="progress-bar"><div class="progress-fill" style="width: ${book.progress || 0}%"></div></div>
+            <div class="book-meta">
+              <span class="pill">${book.progress || 0}%</span>
+              <span class="pill">${formatFileSize(book.fileSize)}</span>
+              <span class="pill">${(book.entries || []).length} записей</span>
+            </div>
+            <div class="book-actions">
+              <button class="primary-btn tiny-btn" data-open="${book.id}">${isContinue ? 'Продолжить' : 'Читать'}</button>
+              <button class="ghost-btn tiny-btn" data-read="${book.id}">Прочитано</button>
+              <button class="danger-btn tiny-btn" data-delete="${book.id}">Удалить</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderCover(book) {
+      if (book.coverData) {
+        return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
+      }
+      return `<div class="cover">${escapeHtml(getCoverLetters(book.title))}</div>`;
+    }
+
+    function attachBookActions(container) {
+      container.querySelectorAll('[data-open]').forEach(btn => btn.addEventListener('click', () => openReader(btn.dataset.open)));
+      container.querySelectorAll('[data-read]').forEach(btn => btn.addEventListener('click', () => markAsRead(btn.dataset.read)));
+      container.querySelectorAll('[data-delete]').forEach(btn => btn.addEventListener('click', () => deleteBook(btn.dataset.delete)));
+    }
+
+    async function openReader(bookId) {
+      const book = books.find(item => item.id === bookId);
+      if (!book) {
+        showToast('Книга не найдена');
+        return;
+      }
+
+      activeBookId = bookId;
+      activeBook = book;
+
+      showScreen('reader');
+      updateReaderHeader(book);
+      els.viewer.innerHTML = '';
+
+      if (activeRendition) {
+        try { activeRendition.destroy(); } catch {}
+      }
+
+      if (activeEpub && activeEpub.destroy) {
+        try { activeEpub.destroy(); } catch {}
+      }
+
+      try {
+        const arrayBuffer = await book.epubBlob.arrayBuffer();
+        activeEpub = ePub(arrayBuffer);
+        activeRendition = activeEpub.renderTo('viewer', {
+          width: '100%',
+          height: '100%',
+          spread: 'none',
+          flow: 'paginated'
+        });
+
+        activeRendition.themes.default({
+          body: {
+            color: '#181512',
+            background: '#fffdf8',
+            'font-family': 'Georgia, serif',
+            'line-height': '1.65'
+          },
+          p: { 'font-size': '1rem' }
+        });
+
+        activeRendition.on('relocated', async location => {
+          const cfi = location?.start?.cfi || null;
+          let progress = activeBook.progress || 0;
+
+          try {
+            if (activeEpub.locations && cfi) {
+              progress = Math.round(activeEpub.locations.percentageFromCfi(cfi) * 100);
+            }
+          } catch {}
+
+          activeBook = {
+            ...activeBook,
+            lastCfi: cfi,
+            progress: clamp(progress, 0, 100),
+            updatedAt: new Date().toISOString()
+          };
+
+          await putBook(activeBook);
+          books = await getAllBooks();
+          updateReaderHeader(activeBook);
+          renderStats();
+          renderContinue();
+        });
+
+        activeRendition.on('selected', (cfiRange, contents) => {
+          selectedText = String(contents.window.getSelection().toString() || '').trim();
+          selectedCfi = cfiRange || '';
+
+          if (selectedText) {
+            els.selectedBox.textContent = selectedText.length > 420 ? selectedText.slice(0, 420) + '…' : selectedText;
+            els.selectedBox.classList.add('active');
+          }
+        });
+
+        await activeEpub.ready;
+
+        try { await activeEpub.locations.generate(1000); } catch {}
+
+        await activeRendition.display(book.lastCfi || undefined);
+      } catch (error) {
+        console.error(error);
+        showToast('Не удалось открыть книгу');
+      }
+    }
+
+    function updateReaderHeader(book) {
+      els.readerTitle.textContent = book.title || 'Книга';
+      els.readerAuthor.textContent = book.author || 'Автор не указан';
+      els.readerProgressFill.style.width = `${book.progress || 0}%`;
+      els.readerProgressText.textContent = `${book.progress || 0}%`;
+    }
+
+    async function saveSelectedQuote() {
+      if (!activeBookId || !activeBook) {
+        showToast('Сначала открой книгу');
+        return;
+      }
+
+      if (!selectedText) {
+        showToast('Выдели текст в книге');
+        return;
+      }
+
+      await addEntryToBook(activeBookId, { type: 'quote', text: selectedText, cfi: selectedCfi });
+      selectedText = '';
+      selectedCfi = '';
+      els.selectedBox.classList.remove('active');
+      els.selectedBox.textContent = '';
+      showToast('Цитата сохранена');
+    }
+
+    async function saveThought() {
+      if (!activeBookId || !activeBook) {
+        showToast('Сначала открой книгу');
+        return;
+      }
+
+      const text = els.thoughtInput.value.trim();
+      if (!text) {
+        showToast('Введите мысль');
+        return;
+      }
+
+      await addEntryToBook(activeBookId, { type: 'thought', text, cfi: activeBook.lastCfi || null });
+      els.thoughtInput.value = '';
+      showToast('Мысль сохранена');
+    }
+
+    async function addEntryToBook(bookId, entryData) {
+      const book = books.find(item => item.id === bookId);
+      if (!book) return;
+
+      const entry = {
+        id: createEntryId(),
+        type: entryData.type,
+        text: entryData.text,
+        cfi: entryData.cfi || null,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      const updated = { ...book, entries: [...(book.entries || []), entry], updatedAt: new Date().toISOString() };
+      await putBook(updated);
+      books = await getAllBooks();
+      activeBook = books.find(item => item.id === bookId) || updated;
+      renderAll();
+    }
+
+    async function markAsRead(bookId) {
+      const book = books.find(item => item.id === bookId);
+      if (!book) return;
+
+      const updated = { ...book, status: 'read', progress: 100, updatedAt: new Date().toISOString() };
+      await putBook(updated);
+      books = await getAllBooks();
+      renderAll();
+      showToast('Отмечено как прочитано');
+    }
+
+    async function deleteBook(bookId) {
+      const book = books.find(item => item.id === bookId);
+      if (!book) return;
+
+      const ok = confirm(`Удалить «${book.title}»?`);
+      if (!ok) return;
+
+      await deleteBookById(bookId);
+
+      if (activeBookId === bookId) {
+        activeBookId = null;
+        activeBook = null;
+        els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Книга удалена</strong>Выбери другую книгу в библиотеке.</div>';
+      }
+
+      books = await getAllBooks();
+      renderAll();
+      showToast('Книга удалена');
+    }
+
+    function renderEntries() {
+      if (!els.entriesList || !els.entriesSearchInput || !els.entryTypeFilter) return;
+      const query = els.entriesSearchInput.value.trim().toLowerCase();
+      const type = els.entryTypeFilter.value;
+
+      const entries = getAllEntries().filter(item => {
+        const byType = type === 'all' || item.type === type;
+        const bySearch = !query || [item.text, item.bookTitle, item.bookAuthor].join(' ').toLowerCase().includes(query);
+        return byType && bySearch;
+      });
+
+      if (!entries.length) {
+        els.entriesList.innerHTML = '<div class="empty"><strong>Записей нет</strong>Сохрани цитату или мысль во время чтения.</div>';
+        return;
+      }
+
+      els.entriesList.innerHTML = entries.map(renderEntryCard).join('');
+    }
+
+    function getAllEntries() {
+      return books
+        .flatMap(book => (book.entries || []).map(entry => ({
+          ...entry,
+          bookId: book.id,
+          bookTitle: book.title,
+          bookAuthor: book.author
+        })))
+        .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+    }
+
+    function renderEntryCard(entry) {
+      return `
+        <article class="entry-card">
+          <div class="entry-head">
+            <span class="entry-type">${entryTypeMap[entry.type] || 'Запись'}</span>
+            <span class="entry-book">${escapeHtml(entry.bookTitle)}</span>
+          </div>
+          <p>${escapeHtml(entry.text)}</p>
+        </article>
+      `;
+    }
+
+    function createId() {
+      return 'book-' + Date.now() + '-' + Math.random().toString(16).slice(2);
+    }
+
+    function createEntryId() {
+      return 'entry-' + Date.now() + '-' + Math.random().toString(16).slice(2);
+    }
+
+    function sortByUpdatedAt(a, b) {
+      return new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0);
+    }
+
+    function normalizeCreator(value) {
+      if (Array.isArray(value)) return value.map(cleanText).filter(Boolean).join(', ');
+      if (value && typeof value === 'object') return cleanText(value.name || value.text || '');
+      return cleanText(value || '');
+    }
+
+    function cleanText(value) {
+      return String(value || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function getCoverLetters(title) {
+      return String(title || '')
+        .split(' ')
+        .filter(Boolean)
+        .slice(0, 2)
+        .map(word => word[0])
+        .join('')
+        .toUpperCase() || 'КН';
+    }
+
+    function formatFileSize(bytes) {
+      if (!bytes) return '0 МБ';
+      return `${(bytes / 1024 / 1024).toFixed(1)} МБ`;
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+      });
+    }
+
+    let toastTimer;
+
+    function showToast(message) {
+      clearTimeout(toastTimer);
+      els.toast.textContent = message;
+      els.toast.classList.add('show');
+      toastTimer = setTimeout(() => els.toast.classList.remove('show'), 1900);
+    }
+  </script>
+</body>
+</html>
