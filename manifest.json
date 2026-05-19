@@ -1,8 +1,8 @@
 {
-  "name": "Мои книги v8",
-  "short_name": "Книги v8",
+  "name": "Мои книги 3.8",
+  "short_name": "Книги",
   "description": "EPUB-читалка",
-  "start_url": "./index.html",
+  "start_url": "./index.html?v=38",
   "scope": "./",
   "display": "standalone",
   "background_color": "#fbfaf6",
