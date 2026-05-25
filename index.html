@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=46" />
+  <link rel="manifest" href="./manifest.json?v=47" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 4.6</title>
+  <title>Мои книги 4.7</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=46') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=47') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=46') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=47') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -1442,6 +1442,203 @@
 
 
 
+
+    /* v4.7 book screen, library controls, backup */
+    .library-controls {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .library-filter {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .filter-btn {
+      min-height: 36px;
+      border-radius: var(--radius-md);
+      padding: 8px 7px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: var(--surface);
+      border-color: var(--accent);
+    }
+
+    .library-meta-line {
+      margin: -2px 0 10px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .book-detail {
+      display: grid;
+      gap: 12px;
+    }
+
+    .book-detail-hero {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .detail-cover {
+      width: 112px;
+      height: 158px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--surface-2);
+      border: 1px solid var(--line-soft);
+      display: grid;
+      place-items: center;
+    }
+
+    .detail-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-cover.placeholder img {
+      width: 64%;
+      height: 64%;
+      object-fit: contain;
+    }
+
+    .book-detail-title {
+      margin: 0 0 6px;
+      font-size: 24px;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .book-detail-author {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .book-detail-actions,
+    .backup-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .book-detail-actions .danger-btn,
+    .book-detail-actions .primary-btn,
+    .book-detail-actions .ghost-btn {
+      width: 100%;
+    }
+
+    .book-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .book-detail-card {
+      padding: 12px;
+      background: var(--surface);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .book-detail-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .book-detail-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .book-detail-bookmarks {
+      padding: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .book-detail-bookmarks h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+    .bookmark-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(205, 186, 154, .34);
+    }
+
+    .bookmark-row:last-child {
+      border-bottom: 0;
+    }
+
+    .bookmark-row-title {
+      display: block;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .bookmark-row-meta {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 420px) {
+      .library-filter {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .book-detail-hero {
+        grid-template-columns: 92px 1fr;
+      }
+
+      .detail-cover {
+        width: 92px;
+        height: 132px;
+      }
+
+      .book-detail-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* v4.6 bookmarks */
     .reader-bookmark-wrap {
       position: relative;
@@ -1667,7 +1864,7 @@
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=46" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=47" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -1676,14 +1873,15 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=46" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=47" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 4.6</p>
+          <p class="brand-subtitle">EPUB-читалка · 4.7</p>
         </div>
       </div>
-      <span class="version-pill">v4.6</span>
+      <span class="version-pill">v4.7</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
+      <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
 
     <section id="screen-home" class="screen active">
@@ -1710,9 +1908,26 @@
       </div>
 
       <div class="library-toolbar">
-        <input id="searchInput" class="input" type="search" placeholder="Поиск по книгам" />
+        <input id="searchInput" class="input" type="search" placeholder="Поиск по названию и автору" />
         <button class="ghost-btn" id="uploadLibraryBtn">Загрузить EPUB</button>
       </div>
+
+      <div class="library-controls">
+        <div class="library-filter">
+          <button class="filter-btn active" type="button" data-library-filter="all">Все</button>
+          <button class="filter-btn" type="button" data-library-filter="reading">Читаю</button>
+          <button class="filter-btn" type="button" data-library-filter="read">Прочитано</button>
+          <button class="filter-btn" type="button" data-library-filter="bookmarked">С закладками</button>
+        </div>
+        <select id="librarySortSelect" class="select" aria-label="Сортировка библиотеки">
+          <option value="updated">Недавно открытые</option>
+          <option value="title">По названию</option>
+          <option value="author">По автору</option>
+          <option value="progress">По прогрессу</option>
+        </select>
+      </div>
+
+      <div class="library-meta-line" id="libraryMetaLine">0 книг</div>
 
       <div class="view-switch">
         <button class="view-btn active" id="listViewBtn">Список</button>
@@ -1720,6 +1935,20 @@
       </div>
 
       <div id="booksList" class="books-list list"></div>
+    </section>
+
+    <section id="screen-book" class="screen">
+      <div class="section-head">
+        <p class="eyebrow">Книга</p>
+        <h1>О книге</h1>
+      </div>
+
+      <div id="bookDetailsContent">
+        <div class="empty">
+          <strong>Книга не выбрана</strong>
+          Открой карточку книги из библиотеки.
+        </div>
+      </div>
     </section>
 
     <section id="screen-reader" class="screen">
@@ -1774,12 +2003,12 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">4.6</span>
+          <span id="settingsVersion">4.7</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-25 06:21 UTC</span>
+          <span id="settingsBuild">2026-05-25 06:34 UTC</span>
         </div>
 
         <div class="settings-item">
@@ -1810,8 +2039,17 @@
         </div>
 
         <div class="settings-item">
+          <strong>Резервная копия</strong>
+          <span>Можно сохранить библиотеку в JSON-файл и восстановить её на этом же или другом устройстве. EPUB-файлы входят в копию, поэтому файл может быть тяжёлым.</span>
+          <div class="backup-actions">
+            <button class="ghost-btn" id="exportBackupBtn" type="button">Скачать копию</button>
+            <button class="ghost-btn" id="importBackupBtn" type="button">Импортировать</button>
+          </div>
+        </div>
+
+        <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=46.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=47.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -1833,8 +2071,8 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '4.6';
-    const BUILD_DATE = '2026-05-25 06:21 UTC';
+    const APP_VERSION = '4.7';
+    const BUILD_DATE = '2026-05-25 06:34 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
@@ -1856,6 +2094,9 @@
     let activePageIndex = 0;
     const uiSettings = loadUiSettings();
     let libraryView = uiSettings.libraryView || 'list';
+    let libraryFilter = uiSettings.libraryFilter || 'all';
+    let librarySort = uiSettings.librarySort || 'updated';
+    let activeBookDetailsId = null;
     let readerFontSize = Number(uiSettings.readerFontSize || 21);
     let readerTheme = uiSettings.readerTheme || 'light';
     let readerFont = uiSettings.readerFont || 'serif';
@@ -1864,12 +2105,16 @@
 
     const els = {
       epubInput: document.getElementById('epubInput'),
+      backupInput: document.getElementById('backupInput'),
       uploadLibraryBtn: document.getElementById('uploadLibraryBtn'),
       dashboardGrid: document.getElementById('dashboardGrid'),
       readingBooks: document.getElementById('readingBooks'),
       readingCountLabel: document.getElementById('readingCountLabel'),
       searchInput: document.getElementById('searchInput'),
       booksList: document.getElementById('booksList'),
+      bookDetailsContent: document.getElementById('bookDetailsContent'),
+      libraryMetaLine: document.getElementById('libraryMetaLine'),
+      librarySortSelect: document.getElementById('librarySortSelect'),
       listViewBtn: document.getElementById('listViewBtn'),
       gridViewBtn: document.getElementById('gridViewBtn'),
       readerBackBtn: document.getElementById('readerBackBtn'),
@@ -1894,6 +2139,8 @@
       fontPlusBtn: document.getElementById('fontPlusBtn'),
       themeToggleBtn: document.getElementById('themeToggleBtn'),
       fontFamilyBtn: document.getElementById('fontFamilyBtn'),
+      exportBackupBtn: document.getElementById('exportBackupBtn'),
+      importBackupBtn: document.getElementById('importBackupBtn'),
       clearDataBtn: document.getElementById('clearDataBtn'),
       readerBusy: document.getElementById('readerBusy'),
       toast: document.getElementById('toast')
@@ -1949,6 +2196,7 @@
 
       bindEvents();
       applyLibraryView();
+      applyLibraryControls();
       applyReadingSettings();
       renderAll();
       registerServiceWorker();
@@ -1961,7 +2209,12 @@
 
       els.uploadLibraryBtn.addEventListener('click', () => els.epubInput.click());
       els.epubInput.addEventListener('change', handleEpubUpload);
+      els.backupInput.addEventListener('change', importLibraryBackup);
       els.searchInput.addEventListener('input', renderLibrary);
+      els.librarySortSelect.addEventListener('change', () => setLibrarySort(els.librarySortSelect.value));
+      document.querySelectorAll('[data-library-filter]').forEach(btn => {
+        btn.addEventListener('click', () => setLibraryFilter(btn.dataset.libraryFilter));
+      });
 
       els.listViewBtn.addEventListener('click', () => setLibraryView('list'));
       els.gridViewBtn.addEventListener('click', () => setLibraryView('grid'));
@@ -2012,6 +2265,8 @@
       els.fontPlusBtn.addEventListener('click', () => changeFontSize(1));
       els.themeToggleBtn.addEventListener('click', cycleReaderTheme);
       els.fontFamilyBtn.addEventListener('click', cycleReaderFont);
+      els.exportBackupBtn.addEventListener('click', exportLibraryBackup);
+      els.importBackupBtn.addEventListener('click', () => els.backupInput.click());
       els.clearDataBtn.addEventListener('click', clearLocalData);
       window.addEventListener('beforeunload', () => { flushBookSave(); });
     }
@@ -2019,7 +2274,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=46').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=47').catch(() => {});
         });
       }
     }
@@ -2590,13 +2845,16 @@
       document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
       document.getElementById(`screen-${name}`).classList.add('active');
 
+      const navName = name === 'book' ? 'library' : name;
+
       document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.screen === name);
+        btn.classList.toggle('active', btn.dataset.screen === navName);
       });
 
       document.body.classList.toggle('reader-mode', name === 'reader');
 
       if (name === 'library') renderLibrary();
+      if (name === 'book') renderBookDetails();
       if (name === 'settings') renderSettings();
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2606,6 +2864,7 @@
       renderDashboard();
       renderReadingBooks();
       renderLibrary();
+      renderBookDetails();
       renderSettings();
     }
 
@@ -2648,22 +2907,93 @@
 
     function renderLibrary() {
       const query = els.searchInput.value.trim().toLowerCase();
-
-      const filtered = books.filter(book => {
-        const text = [book.title, book.author].join(' ').toLowerCase();
-        return !query || text.includes(query);
-      });
+      const filtered = getLibraryBooks(query);
 
       els.booksList.className = `books-list ${libraryView}`;
+      els.libraryMetaLine.textContent = getLibraryMetaText(filtered.length, books.length);
 
       if (!filtered.length) {
-        els.booksList.innerHTML = '<div class="empty"><strong>Ничего не найдено</strong>Загрузи EPUB или измени поиск.</div>';
+        els.booksList.innerHTML = '<div class="empty"><strong>Ничего не найдено</strong>Измени поиск, фильтр или загрузи EPUB.</div>';
         return;
       }
 
       els.booksList.innerHTML = filtered.map(book => renderBookCard(book, libraryView)).join('');
       attachBookActions(els.booksList);
     }
+
+    function getLibraryBooks(query = '') {
+      const normalizedQuery = String(query || '').trim().toLowerCase();
+
+      let result = books.filter(book => {
+        const text = [book.title, book.author].join(' ').toLowerCase();
+        const queryMatch = !normalizedQuery || text.includes(normalizedQuery);
+
+        if (!queryMatch) return false;
+
+        if (libraryFilter === 'reading') return book.status !== 'read';
+        if (libraryFilter === 'read') return book.status === 'read';
+        if (libraryFilter === 'bookmarked') return getBookBookmarks(book).length > 0;
+
+        return true;
+      });
+
+      result = [...result];
+
+      if (librarySort === 'title') {
+        result.sort((a, b) => String(a.title || '').localeCompare(String(b.title || ''), 'ru'));
+      } else if (librarySort === 'author') {
+        result.sort((a, b) => String(a.author || '').localeCompare(String(b.author || ''), 'ru'));
+      } else if (librarySort === 'progress') {
+        result.sort((a, b) => Number(b.progress || 0) - Number(a.progress || 0));
+      } else {
+        result.sort(sortByUpdatedAt);
+      }
+
+      return result;
+    }
+
+    function getLibraryMetaText(filtered, total) {
+      const filterLabel = {
+        all: 'все',
+        reading: 'читаю',
+        read: 'прочитано',
+        bookmarked: 'с закладками'
+      }[libraryFilter] || 'все';
+
+      const sortLabel = {
+        updated: 'недавно открытые',
+        title: 'по названию',
+        author: 'по автору',
+        progress: 'по прогрессу'
+      }[librarySort] || 'недавно открытые';
+
+      return `${getBooksWord(filtered)} из ${getBooksWord(total)} · ${filterLabel} · ${sortLabel}`;
+    }
+
+    function applyLibraryControls() {
+      document.querySelectorAll('[data-library-filter]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.libraryFilter === libraryFilter);
+      });
+
+      if (els.librarySortSelect) {
+        els.librarySortSelect.value = librarySort;
+      }
+    }
+
+    function setLibraryFilter(filter) {
+      libraryFilter = filter || 'all';
+      saveUiSettings();
+      applyLibraryControls();
+      renderLibrary();
+    }
+
+    function setLibrarySort(sort) {
+      librarySort = sort || 'updated';
+      saveUiSettings();
+      applyLibraryControls();
+      renderLibrary();
+    }
+
 
     function renderSettings() {
       els.settingsVersion.textContent = APP_VERSION;
@@ -2693,7 +3023,8 @@
             </div>
             ${bookmarksBlock}
             <div class="book-actions">
-              <button class="primary-btn tiny-btn" data-open="${book.id}">${book.currentPageIndex ? 'Продолжить' : 'Читать'}</button>
+              <button class="primary-btn tiny-btn" data-details="${book.id}">О книге</button>
+              <button class="ghost-btn tiny-btn" data-open="${book.id}">${book.currentPageIndex ? 'Продолжить' : 'Читать'}</button>
               <button class="ghost-btn tiny-btn" data-read="${book.id}">Прочитано</button>
               <button class="danger-btn tiny-btn" data-delete="${book.id}">Удалить</button>
             </div>
@@ -2731,10 +3062,157 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=46" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=47" alt="Логотип Мои книги" /></div>`;
     }
 
+
+    function renderDetailCover(book) {
+      if (book?.coverData) {
+        return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
+      }
+
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=47" alt="Логотип Мои книги" /></div>`;
+    }
+
+    function openBookDetails(bookId) {
+      activeBookDetailsId = bookId;
+      renderBookDetails();
+      showScreen('book');
+    }
+
+    function renderBookDetails() {
+      if (!els.bookDetailsContent) return;
+
+      const book = books.find(item => item.id === activeBookDetailsId);
+
+      if (!book) {
+        els.bookDetailsContent.innerHTML = '<div class="empty"><strong>Книга не выбрана</strong>Открой карточку книги из библиотеки.</div>';
+        return;
+      }
+
+      const readPages = getReadPages(book);
+      const totalPages = Number(book.totalPages || 0);
+      const progress = Number(book.progress || 0);
+      const bookmarks = getBookBookmarks(book);
+      const statusLabel = book.status === 'read' ? 'Прочитано' : 'В процессе';
+      const primaryLabel = book.currentPageIndex ? 'Продолжить чтение' : 'Начать чтение';
+      const bookmarkRows = bookmarks.length
+        ? bookmarks.map(bookmark => `
+            <div class="bookmark-row">
+              <div>
+                <span class="bookmark-row-title">${escapeHtml(bookmark.chapterTitle || 'Закладка')}</span>
+                <span class="bookmark-row-meta">стр. ${Number(bookmark.pageIndex || 0) + 1}${bookmark.createdAt ? ' · ' + escapeHtml(new Date(bookmark.createdAt).toLocaleDateString('ru-RU')) : ''}</span>
+              </div>
+              <button class="ghost-btn tiny-btn" type="button" data-open-bookmark="${book.id}" data-bookmark-page="${bookmark.pageIndex}">Открыть</button>
+            </div>
+          `).join('')
+        : '<div class="empty"><strong>Закладок пока нет</strong>Добавь закладку на экране чтения.</div>';
+
+      els.bookDetailsContent.innerHTML = `
+        <div class="book-detail">
+          <section class="book-detail-hero">
+            ${renderDetailCover(book)}
+            <div>
+              <h2 class="book-detail-title">${escapeHtml(book.title)}</h2>
+              <p class="book-detail-author">${escapeHtml(book.author)}</p>
+              <div class="progress-bar"><div class="progress-fill" style="width: ${progress}%"></div></div>
+              <div class="book-meta">
+                <span class="pill">${progress}%</span>
+                <span class="pill">${readPages} / ${totalPages || 0} стр.</span>
+                <span class="pill">${statusLabel}</span>
+              </div>
+              <div class="book-detail-actions">
+                <button class="primary-btn" type="button" data-open="${book.id}">${primaryLabel}</button>
+                <button class="ghost-btn" type="button" data-restart-book="${book.id}">Сначала</button>
+                <button class="ghost-btn" type="button" data-toggle-status="${book.id}">${book.status === 'read' ? 'Вернуть в читаю' : 'Прочитано'}</button>
+                <button class="danger-btn" type="button" data-delete="${book.id}">Удалить</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="book-detail-grid">
+            <div class="book-detail-card">
+              <strong>${totalPages || 0}</strong>
+              <span>страниц в книге</span>
+            </div>
+            <div class="book-detail-card">
+              <strong>${Number(book.totalChapters || 0)}</strong>
+              <span>глав</span>
+            </div>
+            <div class="book-detail-card">
+              <strong>${bookmarks.length}</strong>
+              <span>закладок</span>
+            </div>
+            <div class="book-detail-card">
+              <strong>${escapeHtml(statusLabel)}</strong>
+              <span>статус чтения</span>
+            </div>
+          </section>
+
+          <section class="book-detail-bookmarks">
+            <h3>Закладки</h3>
+            ${bookmarkRows}
+          </section>
+        </div>
+      `;
+
+      attachBookActions(els.bookDetailsContent);
+      els.bookDetailsContent.querySelectorAll('[data-restart-book]').forEach(btn => {
+        btn.addEventListener('click', () => restartBook(btn.dataset.restartBook));
+      });
+      els.bookDetailsContent.querySelectorAll('[data-toggle-status]').forEach(btn => {
+        btn.addEventListener('click', () => toggleBookStatus(btn.dataset.toggleStatus));
+      });
+    }
+
+    async function restartBook(bookId) {
+      const book = books.find(item => item.id === bookId);
+      if (!book) return;
+
+      const updated = {
+        ...book,
+        status: 'reading',
+        progress: 0,
+        currentPageIndex: 0,
+        updatedAt: new Date().toISOString()
+      };
+
+      await putBookMeta(updated);
+      books = await getAllBooks();
+      activeBookDetailsId = bookId;
+      renderAll();
+      showToast('Книга начата заново');
+      await openReader(bookId, 0);
+    }
+
+    async function toggleBookStatus(bookId) {
+      const book = books.find(item => item.id === bookId);
+      if (!book) return;
+
+      const updated = book.status === 'read'
+        ? {
+            ...book,
+            status: 'reading',
+            updatedAt: new Date().toISOString()
+          }
+        : {
+            ...book,
+            status: 'read',
+            progress: 100,
+            currentPageIndex: Math.max(0, Number(book.totalPages || 1) - 1),
+            updatedAt: new Date().toISOString()
+          };
+
+      await putBookMeta(updated);
+      books = await getAllBooks();
+      activeBookDetailsId = bookId;
+      renderAll();
+      showToast(updated.status === 'read' ? 'Отмечено как прочитано' : 'Возвращено в читаю');
+    }
+
+
     function attachBookActions(container) {
+      container.querySelectorAll('[data-details]').forEach(btn => btn.addEventListener('click', () => openBookDetails(btn.dataset.details)));
       container.querySelectorAll('[data-open]').forEach(btn => btn.addEventListener('click', () => openReader(btn.dataset.open)));
       container.querySelectorAll('[data-open-bookmark]').forEach(btn => {
         btn.addEventListener('click', () => openReader(btn.dataset.openBookmark, Number(btn.dataset.bookmarkPage)));
@@ -3041,6 +3519,7 @@
       renderDashboard();
       renderReadingBooks();
       renderLibrary();
+      renderBookDetails();
       renderSettings();
     }
 
@@ -3173,6 +3652,11 @@
         renderBookmarksMenu();
       }
 
+      if (activeBookDetailsId === bookId) {
+        activeBookDetailsId = null;
+        showScreen('library');
+      }
+
       books = await getAllBooks();
       renderAll();
       showToast('Книга удалена');
@@ -3188,6 +3672,7 @@
     function applyLibraryView() {
       els.listViewBtn.classList.toggle('active', libraryView === 'list');
       els.gridViewBtn.classList.toggle('active', libraryView === 'grid');
+      applyLibraryControls();
     }
 
     function loadUiSettings() {
@@ -3199,7 +3684,7 @@
     }
 
     function saveUiSettings() {
-      localStorage.setItem(UI_STORAGE_KEY, JSON.stringify({ libraryView, readerFontSize, readerTheme, readerFont }));
+      localStorage.setItem(UI_STORAGE_KEY, JSON.stringify({ libraryView, libraryFilter, librarySort, readerFontSize, readerTheme, readerFont }));
     }
 
     function applyReadingSettings() {
@@ -3268,6 +3753,142 @@
         showReaderBusy(false);
       }
     }
+
+
+    function blobToBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const result = String(reader.result || '');
+          resolve(result.includes(',') ? result.split(',')[1] : result);
+        };
+
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    function base64ToBlob(base64, type = 'application/octet-stream') {
+      const binary = atob(String(base64 || ''));
+      const bytes = new Uint8Array(binary.length);
+
+      for (let i = 0; i < binary.length; i += 1) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+
+      return new Blob([bytes], { type });
+    }
+
+    async function exportLibraryBackup() {
+      if (!books.length) {
+        showToast('Библиотека пустая');
+        return;
+      }
+
+      try {
+        showToast('Готовлю резервную копию');
+
+        const backupBooks = [];
+
+        for (const book of books) {
+          const epubBlob = await getBookFile(book.id);
+
+          if (!epubBlob) {
+            throw new Error(`EPUB not found for ${book.title}`);
+          }
+
+          backupBooks.push({
+            ...stripBookFile(book),
+            epubBase64: await blobToBase64(epubBlob),
+            epubType: epubBlob.type || 'application/epub+zip'
+          });
+        }
+
+        const backup = {
+          app: 'my-books-epub-reader',
+          backupVersion: 1,
+          appVersion: APP_VERSION,
+          exportedAt: new Date().toISOString(),
+          books: backupBooks
+        };
+
+        const blob = new Blob([JSON.stringify(backup)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        const stamp = new Date().toISOString().slice(0, 10);
+
+        link.href = url;
+        link.download = `my-books-backup-${stamp}.json`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        URL.revokeObjectURL(url);
+        showToast('Резервная копия скачана');
+      } catch (error) {
+        console.error(error);
+        showToast('Не удалось сделать копию');
+      }
+    }
+
+    async function importLibraryBackup(event) {
+      const file = event.target.files?.[0];
+      event.target.value = '';
+
+      if (!file) return;
+
+      const ok = confirm('Импорт заменить текущую библиотеку? Текущие книги будут удалены.');
+      if (!ok) return;
+
+      try {
+        showToast('Импортирую библиотеку');
+
+        const text = await file.text();
+        const backup = JSON.parse(text);
+
+        if (!backup || !Array.isArray(backup.books)) {
+          throw new Error('Invalid backup format');
+        }
+
+        await clearBooksStore();
+
+        for (const item of backup.books) {
+          const {
+            epubBase64,
+            epubType,
+            ...meta
+          } = item;
+
+          if (!meta.id || !epubBase64) {
+            continue;
+          }
+
+          await putBookMeta({
+            ...meta,
+            updatedAt: meta.updatedAt || new Date().toISOString(),
+            createdAt: meta.createdAt || new Date().toISOString()
+          });
+
+          await putBookFile(meta.id, base64ToBlob(epubBase64, epubType || 'application/epub+zip'));
+        }
+
+        books = await getAllBooks();
+        activeBookDetailsId = null;
+        activeBookId = null;
+        activeBook = null;
+        activeReaderData = null;
+        activePageIndex = 0;
+
+        renderAll();
+        showScreen('library');
+        showToast('Библиотека импортирована');
+      } catch (error) {
+        console.error(error);
+        showToast('Не удалось импортировать копию');
+      }
+    }
+
 
     async function clearLocalData() {
       const ok = confirm('Очистить локальные книги, кэш и данные приложения?');
