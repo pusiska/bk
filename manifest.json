@@ -1,8 +1,8 @@
 {
-  "name": "Мои книги 5.0",
+  "name": "Мои книги",
   "short_name": "Книги",
-  "description": "EPUB-читалка в стиле брендбука «Мои книги»",
-  "start_url": "/my_books/index.html?v=50",
+  "description": "Личная EPUB-библиотека и читалка с локальным хранением книг, прогрессом, закладками и резервными копиями.",
+  "start_url": "/my_books/",
   "scope": "/my_books/",
   "display": "standalone",
   "background_color": "#F6F1E8",
@@ -20,5 +20,17 @@
       "type": "image/png",
       "purpose": "any maskable monochrome"
     }
-  ]
+  ],
+  "id": "/my_books/",
+  "display_override": [
+    "standalone",
+    "fullscreen"
+  ],
+  "categories": [
+    "books",
+    "productivity",
+    "utilities"
+  ],
+  "lang": "ru-RU",
+  "dir": "ltr"
 }

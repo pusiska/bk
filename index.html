@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=50" />
+  <link rel="manifest" href="./manifest.json?v=51" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.0</title>
+  <title>Мои книги 5.1</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=50') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=51') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=50') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=51') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -757,6 +757,41 @@
 
 
 
+
+    /* v5.1 Android preparation */
+    .android-prep-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .android-prep-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 8px;
+      align-items: start;
+      padding: 8px 10px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md);
+      background: rgba(255, 253, 248, .64);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .android-prep-row span:first-child {
+      color: var(--muted);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: 10px;
+    }
+
+    .android-prep-row code {
+      word-break: break-word;
+      font-family: var(--font-ui);
+      font-size: 11px;
+    }
+
     /* v5.0 stable diagnostics */
     .diagnostics-grid {
       display: grid;
@@ -1367,6 +1402,41 @@
     }
 
 
+
+
+    /* v5.1 Android preparation */
+    .android-prep-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .android-prep-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 8px;
+      align-items: start;
+      padding: 8px 10px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md);
+      background: rgba(255, 253, 248, .64);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .android-prep-row span:first-child {
+      color: var(--muted);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: 10px;
+    }
+
+    .android-prep-row code {
+      word-break: break-word;
+      font-family: var(--font-ui);
+      font-size: 11px;
+    }
 
     /* v5.0 stable diagnostics */
     .diagnostics-grid {
@@ -2136,7 +2206,7 @@
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=50" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=51" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -2145,13 +2215,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=50" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=51" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.0</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.1</p>
         </div>
       </div>
-      <span class="version-pill">v5.0</span>
+      <span class="version-pill">v5.1</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -2282,12 +2352,12 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.0</span>
+          <span id="settingsVersion">5.1</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-25 07:11 UTC</span>
+          <span id="settingsBuild">2026-05-25 07:21 UTC</span>
         </div>
 
         <div class="settings-item">
@@ -2318,8 +2388,14 @@
         </div>
 
         <div class="settings-item">
-          <strong>Стабильный релиз 5.0</strong>
-          <span>Эта версия зафиксирована как базовая рабочая PWA-сборка перед будущей Android/APK-обёрткой. Основная логика: библиотека → экран книги → чтение.</span>
+          <strong>Android / APK подготовка 5.1</strong>
+          <span>Эта версия подготовлена как PWA-база для будущей Android-обёртки. APK ещё не собран: для этого нужен ключ подписи и финальная настройка Digital Asset Links.</span>
+          <div class="android-prep-list">
+            <div class="android-prep-row"><span>URL</span><code>https://pusiska.github.io/my_books/</code></div>
+            <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/my_books/manifest.json</code></div>
+            <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
+            <div class="android-prep-row"><span>Scope</span><code>/my_books/</code></div>
+          </div>
         </div>
 
         <div class="settings-item">
@@ -2342,7 +2418,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=50.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=51.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -2363,14 +2439,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.0';
-    const BUILD_DATE = '2026-05-25 07:11 UTC';
+    const APP_VERSION = '5.1';
+    const BUILD_DATE = '2026-05-25 07:21 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v50';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v51';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -2589,7 +2665,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=50').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=51').catch(() => {});
         });
       }
     }
@@ -3467,7 +3543,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=50" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=51" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -3476,7 +3552,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=50" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=51" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {

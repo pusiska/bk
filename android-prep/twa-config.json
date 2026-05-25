@@ -1,0 +1,19 @@
+{
+  "appName": "Мои книги",
+  "shortName": "Книги",
+  "packageName": "app.moiknigi.reader",
+  "host": "pusiska.github.io",
+  "startUrl": "/my_books/",
+  "scope": "/my_books/",
+  "manifestUrl": "https://pusiska.github.io/my_books/manifest.json",
+  "themeColor": "#F6F1E8",
+  "backgroundColor": "#F6F1E8",
+  "displayMode": "standalone",
+  "orientation": "any",
+  "launcherName": "Мои книги",
+  "notes": [
+    "Draft config for future Bubblewrap/TWA build.",
+    "Final APK/AAB requires Android signing key.",
+    "Digital Asset Links requires SHA-256 fingerprint of release signing certificate."
+  ]
+}
