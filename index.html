@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=513" />
+  <link rel="manifest" href="./manifest.json?v=514" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.1.3</title>
+  <title>Мои книги 5.1.4</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=513') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=514') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=513') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=514') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -921,22 +921,36 @@
 
 
 
-    /* v5.1.3 reader controls layout fix */
+    /* v5.1.4 reader header fix */
     @media (max-width: 560px) {
       body.reader-mode .reader-top {
-        padding: 10px 8px 8px;
+        padding: 8px 8px 7px;
+        background: var(--bg);
+      }
+
+      body.reader-mode .reader-head {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      body.reader-mode .reader-book {
+        display: none !important;
       }
 
       body.reader-mode .reader-controls {
         display: grid;
-        grid-template-columns: minmax(72px, 1fr) 42px 42px minmax(88px, 1.1fr);
+        grid-template-columns: minmax(76px, 1fr) 42px 42px minmax(88px, 1.15fr);
         grid-template-areas:
           "back prev next chapter"
-          "bookmark bookmarks bookmarks bookmarks";
+          "star bookmarks bookmarks bookmarks";
         gap: 6px;
         width: 100%;
         max-width: 100%;
+        min-width: 0;
         overflow: visible;
+        background: var(--bg);
       }
 
       body.reader-mode #readerBackBtn {
@@ -954,17 +968,15 @@
       body.reader-mode .reader-chapter-wrap {
         grid-area: chapter;
         min-width: 0;
+        width: 100%;
       }
 
       body.reader-mode .reader-bookmark-wrap {
-        grid-area: bookmark / bookmark / bookmark / bookmarks;
-        display: grid;
-        grid-template-columns: 42px minmax(0, 1fr);
-        gap: 6px;
-        min-width: 0;
+        display: contents;
       }
 
       body.reader-mode #addBookmarkBtn {
+        grid-area: star;
         width: 42px;
         min-width: 42px;
         padding-left: 0;
@@ -972,6 +984,7 @@
       }
 
       body.reader-mode #bookmarksBtn {
+        grid-area: bookmarks;
         width: 100%;
         min-width: 0;
       }
@@ -979,50 +992,55 @@
       body.reader-mode .reader-back,
       body.reader-mode .reader-nav-btn,
       body.reader-mode .chapter-btn {
-        height: 46px;
-        min-height: 46px;
-        font-size: 14px;
+        height: 42px;
+        min-height: 42px;
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 13px;
         line-height: 1;
         box-sizing: border-box;
-      }
-
-      body.reader-mode #chapterBtn,
-      body.reader-mode #bookmarksBtn {
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
+      body.reader-mode #chapterBtn,
+      body.reader-mode #bookmarksBtn {
+        width: 100%;
+      }
+
       body.reader-mode .chapter-menu,
       body.reader-mode .bookmarks-menu {
+        left: auto;
+        right: 0;
         max-width: calc(100vw - 16px);
       }
 
       body.reader-mode .reader-progress {
-        margin-top: 6px;
+        margin-top: 7px;
+      }
+
+      body.reader-mode .reader-meta {
+        font-size: 11px;
       }
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 370px) {
       body.reader-mode .reader-controls {
-        grid-template-columns: minmax(66px, 1fr) 38px 38px minmax(78px, 1fr);
+        grid-template-columns: minmax(68px, 1fr) 38px 38px minmax(78px, 1fr);
         gap: 5px;
       }
 
       body.reader-mode .reader-back,
       body.reader-mode .reader-nav-btn,
       body.reader-mode .chapter-btn {
-        height: 42px;
-        min-height: 42px;
-        font-size: 13px;
+        height: 40px;
+        min-height: 40px;
+        font-size: 12px;
       }
 
       body.reader-mode #addBookmarkBtn {
         width: 38px;
         min-width: 38px;
-      }
-
-      body.reader-mode .reader-bookmark-wrap {
-        grid-template-columns: 38px minmax(0, 1fr);
       }
     }
 
@@ -2470,7 +2488,7 @@
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=513" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=514" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -2479,13 +2497,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=513" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=514" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.1.3</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.1.4</p>
         </div>
       </div>
-      <span class="version-pill">v5.1.3</span>
+      <span class="version-pill">v5.1.4</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -2616,12 +2634,12 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.1.3</span>
+          <span id="settingsVersion">5.1.4</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-25 07:48 UTC</span>
+          <span id="settingsBuild">2026-05-25 07:54 UTC</span>
         </div>
 
         <div class="settings-item">
@@ -2655,7 +2673,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=513</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=514</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -2683,7 +2701,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=513.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=514.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -2704,14 +2722,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.1.3';
-    const BUILD_DATE = '2026-05-25 07:48 UTC';
+    const APP_VERSION = '5.1.4';
+    const BUILD_DATE = '2026-05-25 07:54 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v513';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v514';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -2930,7 +2948,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=513').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=514').catch(() => {});
         });
       }
     }
@@ -3808,7 +3826,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=513" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=514" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -3817,7 +3835,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=513" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=514" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
