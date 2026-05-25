@@ -1,13 +1,13 @@
-const CACHE_NAME = 'my-books-epub-reader-v44';
+const CACHE_NAME = 'my-books-epub-reader-v45';
 
 const APP_SHELL = [
   './',
-  './index.html?v=44',
-  './manifest.json?v=44',
+  './index.html',
+  './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './icons/logo-main.svg?v=44',
-  './icons/logo-app.svg?v=44'
+  './icons/logo-main.svg',
+  './icons/logo-app.svg'
 ];
 
 const STATIC_EXTENSIONS = [
@@ -23,6 +23,22 @@ const STATIC_EXTENSIONS = [
   '.ttf',
   '.otf'
 ];
+
+function getCacheKey(request) {
+  const url = new URL(request.url);
+  url.search = '';
+  return new Request(url.toString(), {
+    method: request.method,
+    headers: request.headers,
+    mode: request.mode === 'navigate' ? 'same-origin' : request.mode,
+    credentials: request.credentials,
+    redirect: request.redirect
+  });
+}
+
+async function getOfflineShell() {
+  return await caches.match('./index.html') || await caches.match('./');
+}
 
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -56,28 +72,32 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
+  event.respondWith((async () => {
+    const cacheKey = getCacheKey(event.request);
+    const cached = await caches.match(cacheKey);
 
-      return fetch(event.request).then(response => {
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
-        }
+    if (cached) return cached;
 
-        if (isStatic || isNavigate) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
-        }
+    try {
+      const response = await fetch(event.request);
 
+      if (!response || response.status !== 200 || response.type !== 'basic') {
         return response;
-      }).catch(() => {
-        if (isNavigate) {
-          return caches.match('./index.html?v=44') || caches.match('./index.html');
-        }
+      }
 
-        throw new Error('Network request failed');
-      });
-    })
-  );
+      if (isNavigate || isStatic) {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(cacheKey, response.clone());
+      }
+
+      return response;
+    } catch (error) {
+      if (isNavigate) {
+        const offlineShell = await getOfflineShell();
+        if (offlineShell) return offlineShell;
+      }
+
+      throw error;
+    }
+  })());
 });

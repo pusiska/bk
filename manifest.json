@@ -1,25 +1,24 @@
 {
-  "name": "Мои книги 4.4",
+  "name": "Мои книги 4.5",
   "short_name": "Книги",
   "description": "EPUB-читалка в стиле брендбука «Мои книги»",
-  "start_url": "/my_books/index.html?v=44",
+  "start_url": "/my_books/index.html?v=45",
   "scope": "/my_books/",
   "display": "standalone",
   "background_color": "#F6F1E8",
   "theme_color": "#F6F1E8",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "./icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any maskable monochrome"
     },
     {
       "src": "./icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any maskable monochrome"
     }
   ]
 }
