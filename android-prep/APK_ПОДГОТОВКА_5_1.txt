@@ -1,64 +1,33 @@
-МОИ КНИГИ — ANDROID/APK ПОДГОТОВКА 5.1
+МОИ КНИГИ — ANDROID/APK ПОДГОТОВКА 5.1.1
 
 Статус:
-Эта версия НЕ является APK.
-Это PWA-сборка, подготовленная к будущей Android-обёртке.
+Это PWA-сборка, подготовленная под фактический адрес проекта:
+https://pusiska.github.io/bk/
 
-Базовые параметры:
+Исправлено:
+В предыдущей версии путь был /my_books/, из-за этого установленная PWA могла открываться с 404.
+
+Актуальные параметры:
 - Название приложения: Мои книги
 - Package name: app.moiknigi.reader
-- Production URL: https://pusiska.github.io/my_books/
-- Manifest URL: https://pusiska.github.io/my_books/manifest.json
-- Scope: /my_books/
+- PWA start_url: /bk/index.html?v=511
+- Clean URL: https://pusiska.github.io/bk/
+- Manifest URL: https://pusiska.github.io/bk/manifest.json
+- Scope: /bk/
 - Host: pusiska.github.io
 - Theme color: #F6F1E8
 - Background color: #F6F1E8
 
-Что подготовлено в версии 5.1:
-1. Manifest переведён на clean production URL:
-   start_url: /my_books/
-   scope: /my_books/
-   id: /my_books/
+Что сделать после загрузки:
+1. Открыть:
+   https://pusiska.github.io/bk/index.html?v=511
+2. Удалить старую установленную PWA со смартфона.
+3. Очистить данные сайта/приложения, если старая PWA продолжает открывать 404.
+4. Установить PWA заново.
+5. Проверить запуск с иконки.
 
-2. Версионный запуск через index.html?v=51 оставлен только для тестирования и обновления кэша.
-   Для будущей Android-обёртки основной вход:
-   https://pusiska.github.io/my_books/
-
-3. Добавлена папка android-prep:
-   - twa-config.json
-   - assetlinks.template.json
-   - APK_ПОДГОТОВКА_5_1.txt
-
-4. Package name зафиксирован предварительно:
-   app.moiknigi.reader
-
-Важно про Digital Asset Links:
-Для TWA нужен файл:
+Для будущей TWA/APK:
+Digital Asset Links всё равно должен лежать на origin:
 https://pusiska.github.io/.well-known/assetlinks.json
 
-В нём должен быть SHA-256 fingerprint release signing certificate.
-
-Пока ключ подписи не создан, assetlinks.json финально заполнить невозможно.
-В архиве лежит шаблон:
-android-prep/assetlinks.template.json
-
-Важный нюанс GitHub Pages:
-Приложение лежит в project pages по адресу:
-https://pusiska.github.io/my_books/
-
-Но Digital Asset Links проверяется на уровне origin:
-https://pusiska.github.io/.well-known/assetlinks.json
-
-Если у тебя нет отдельного root-репозитория/сайта для pusiska.github.io, возможно потребуется:
-1. создать/использовать репозиторий pusiska.github.io;
-2. положить туда .well-known/assetlinks.json;
-3. либо перейти на собственный домен.
-
-Следующий этап 5.2:
-1. Установить Node.js, Java/JDK, Android Studio.
-2. Установить Bubblewrap CLI.
-3. Создать signing key.
-4. Получить SHA-256 fingerprint.
-5. Заполнить assetlinks.json.
-6. Собрать первый debug/release APK.
-7. Проверить запуск на Android.
+Если нет root-репозитория для pusiska.github.io, его потребуется создать или использовать собственный домен.

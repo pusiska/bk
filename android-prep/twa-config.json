@@ -3,17 +3,18 @@
   "shortName": "Книги",
   "packageName": "app.moiknigi.reader",
   "host": "pusiska.github.io",
-  "startUrl": "/my_books/",
-  "scope": "/my_books/",
-  "manifestUrl": "https://pusiska.github.io/my_books/manifest.json",
+  "startUrl": "/bk/",
+  "scope": "/bk/",
+  "manifestUrl": "https://pusiska.github.io/bk/manifest.json",
   "themeColor": "#F6F1E8",
   "backgroundColor": "#F6F1E8",
   "displayMode": "standalone",
   "orientation": "any",
   "launcherName": "Мои книги",
   "notes": [
-    "Draft config for future Bubblewrap/TWA build.",
-    "Final APK/AAB requires Android signing key.",
-    "Digital Asset Links requires SHA-256 fingerprint of release signing certificate."
+    "5.1.1 fixes actual GitHub Pages path: app is served from /bk/.",
+    "Installed PWA start_url uses /bk/index.html?v=511 to avoid Android launch 404.",
+    "Future Bubblewrap/TWA can use clean URL /bk/ after Digital Asset Links is configured.",
+    "Final APK/AAB requires Android signing key."
   ]
 }

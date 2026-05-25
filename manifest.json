@@ -1,9 +1,9 @@
 {
-  "name": "Мои книги",
+  "name": "Мои книги 5.1.1",
   "short_name": "Книги",
   "description": "Личная EPUB-библиотека и читалка с локальным хранением книг, прогрессом, закладками и резервными копиями.",
-  "start_url": "/my_books/",
-  "scope": "/my_books/",
+  "start_url": "/bk/index.html?v=511",
+  "scope": "/bk/",
   "display": "standalone",
   "background_color": "#F6F1E8",
   "theme_color": "#F6F1E8",
@@ -21,7 +21,7 @@
       "purpose": "any maskable monochrome"
     }
   ],
-  "id": "/my_books/",
+  "id": "/bk/",
   "display_override": [
     "standalone",
     "fullscreen"
