@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=45" />
+  <link rel="manifest" href="./manifest.json?v=46" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 4.5</title>
+  <title>Мои книги 4.6</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=45') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=46') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=45') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=46') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -1441,6 +1441,138 @@
     }
 
 
+
+    /* v4.6 bookmarks */
+    .reader-bookmark-wrap {
+      position: relative;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .reader-nav-btn.bookmark-add-btn {
+      min-width: 38px;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .reader-nav-btn.bookmark-add-btn.active {
+      background: var(--text);
+      color: var(--paper);
+      border-color: var(--text);
+    }
+
+    .bookmarks-menu {
+      min-width: min(360px, calc(100vw - 32px));
+      right: 0;
+      left: auto;
+    }
+
+    .bookmark-option {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 12px;
+      border: 0;
+      border-bottom: 1px solid rgba(205, 186, 154, .34);
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .bookmark-option:hover,
+    .bookmark-option.active {
+      background: rgba(205, 186, 154, .22);
+    }
+
+    .bookmark-option-main {
+      min-width: 0;
+    }
+
+    .bookmark-option-title {
+      display: block;
+      font-weight: 850;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bookmark-option-meta {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .bookmark-delete {
+      align-self: center;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(143, 54, 43, .22);
+      border-radius: 999px;
+      background: rgba(143, 54, 43, .07);
+      color: #8F362B;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .bookmark-delete:hover {
+      background: rgba(143, 54, 43, .13);
+    }
+
+    .book-bookmarks {
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px dashed rgba(205, 186, 154, .75);
+      background: rgba(255, 253, 248, .52);
+      border-radius: 14px;
+    }
+
+    .book-bookmarks-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-weight: 850;
+      margin-bottom: 7px;
+    }
+
+    .book-bookmarks-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .bookmark-chip {
+      border: 1px solid rgba(23, 23, 23, .12);
+      border-radius: 999px;
+      background: rgba(246, 241, 232, .82);
+      color: var(--text);
+      padding: 6px 8px;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .bookmark-chip:hover {
+      border-color: rgba(23, 23, 23, .28);
+      background: var(--paper);
+    }
+
+    .bookmark-chip.more {
+      cursor: default;
+      color: var(--muted);
+    }
+
     /* v4.5 PWA hotfix */
     .bottom-nav {
       bottom: calc(12px + env(safe-area-inset-bottom));
@@ -1535,7 +1667,7 @@
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=45" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=46" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -1544,13 +1676,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=45" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=46" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 4.5</p>
+          <p class="brand-subtitle">EPUB-читалка · 4.6</p>
         </div>
       </div>
-      <span class="version-pill">v4.5</span>
+      <span class="version-pill">v4.6</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
     </header>
 
@@ -1606,6 +1738,11 @@
                 <button class="chapter-btn" id="chapterBtn" type="button">Главы</button>
                 <div class="chapter-menu" id="chapterMenu"></div>
               </div>
+              <div class="reader-bookmark-wrap">
+                <button class="reader-nav-btn bookmark-add-btn" id="addBookmarkBtn" type="button" aria-label="Добавить закладку">★</button>
+                <button class="chapter-btn" id="bookmarksBtn" type="button">Закладки</button>
+                <div class="chapter-menu bookmarks-menu" id="bookmarksMenu"></div>
+              </div>
             </div>
           </div>
 
@@ -1637,12 +1774,12 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">4.5</span>
+          <span id="settingsVersion">4.6</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-25 06:12 UTC</span>
+          <span id="settingsBuild">2026-05-25 06:21 UTC</span>
         </div>
 
         <div class="settings-item">
@@ -1674,7 +1811,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=45.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=46.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -1696,8 +1833,8 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '4.5';
-    const BUILD_DATE = '2026-05-25 06:12 UTC';
+    const APP_VERSION = '4.6';
+    const BUILD_DATE = '2026-05-25 06:21 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
@@ -1742,6 +1879,9 @@
       readerProgressText: document.getElementById('readerProgressText'),
       chapterBtn: document.getElementById('chapterBtn'),
       chapterMenu: document.getElementById('chapterMenu'),
+      addBookmarkBtn: document.getElementById('addBookmarkBtn'),
+      bookmarksBtn: document.getElementById('bookmarksBtn'),
+      bookmarksMenu: document.getElementById('bookmarksMenu'),
       viewer: document.getElementById('viewer'),
       prevBtn: document.getElementById('prevBtn'),
       nextBtn: document.getElementById('nextBtn'),
@@ -1829,6 +1969,11 @@
       els.readerBackBtn.addEventListener('click', async () => { await flushBookSave(); showScreen('library'); });
       els.prevBtn.addEventListener('click', () => goToPage(-1));
       els.nextBtn.addEventListener('click', () => goToPage(1));
+      els.addBookmarkBtn.addEventListener('click', addCurrentBookmark);
+      els.bookmarksBtn.addEventListener('click', () => {
+        renderBookmarksMenu();
+        els.bookmarksMenu.classList.toggle('open');
+      });
       els.tapPrevBtn.addEventListener('click', () => goToPage(-1));
       els.tapNextBtn.addEventListener('click', () => goToPage(1));
 
@@ -1839,6 +1984,10 @@
       document.addEventListener('click', event => {
         if (!event.target.closest('.reader-chapter-wrap')) {
           els.chapterMenu.classList.remove('open');
+        }
+
+        if (!event.target.closest('.reader-bookmark-wrap')) {
+          els.bookmarksMenu.classList.remove('open');
         }
       });
 
@@ -1870,7 +2019,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=45').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=46').catch(() => {});
         });
       }
     }
@@ -2067,6 +2216,7 @@
           totalPages: parsed.pages.length,
           currentChapterIndex: 0,
           totalChapters: parsed.chapters.length,
+          bookmarks: [],
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
         };
@@ -2526,6 +2676,8 @@
       const totalPages = Number(book.totalPages || 0);
       const pageLabel = totalPages ? `${readPages} / ${totalPages} стр.` : 'страницы не посчитаны';
       const statusLabel = book.status === 'read' ? 'прочитано' : 'читаю';
+      const bookmarks = getBookBookmarks(book);
+      const bookmarksBlock = renderBookBookmarksBlock(book, bookmarks);
 
       return `
         <article class="book-card" data-book-id="${book.id}">
@@ -2539,6 +2691,7 @@
               <span class="pill">${pageLabel}</span>
               <span class="pill">${statusLabel}</span>
             </div>
+            ${bookmarksBlock}
             <div class="book-actions">
               <button class="primary-btn tiny-btn" data-open="${book.id}">${book.currentPageIndex ? 'Продолжить' : 'Читать'}</button>
               <button class="ghost-btn tiny-btn" data-read="${book.id}">Прочитано</button>
@@ -2549,21 +2702,48 @@
       `;
     }
 
+    function renderBookBookmarksBlock(book, bookmarks = getBookBookmarks(book)) {
+      if (!bookmarks.length) return '';
+
+      const preview = bookmarks.slice(0, 3).map(bookmark => {
+        return `<button class="bookmark-chip" type="button" data-open-bookmark="${book.id}" data-bookmark-page="${bookmark.pageIndex}">
+          ${escapeHtml(getBookmarkShortLabel(bookmark))}
+        </button>`;
+      }).join('');
+
+      const more = bookmarks.length > 3
+        ? `<span class="bookmark-chip more">+${bookmarks.length - 3}</span>`
+        : '';
+
+      return `
+        <div class="book-bookmarks">
+          <div class="book-bookmarks-head">
+            <span>Закладки</span>
+            <span>${bookmarks.length}</span>
+          </div>
+          <div class="book-bookmarks-list">${preview}${more}</div>
+        </div>
+      `;
+    }
+
     function renderCover(book) {
       if (book.coverData) {
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=45" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=46" alt="Логотип Мои книги" /></div>`;
     }
 
     function attachBookActions(container) {
       container.querySelectorAll('[data-open]').forEach(btn => btn.addEventListener('click', () => openReader(btn.dataset.open)));
+      container.querySelectorAll('[data-open-bookmark]').forEach(btn => {
+        btn.addEventListener('click', () => openReader(btn.dataset.openBookmark, Number(btn.dataset.bookmarkPage)));
+      });
       container.querySelectorAll('[data-read]').forEach(btn => btn.addEventListener('click', () => markAsRead(btn.dataset.read)));
       container.querySelectorAll('[data-delete]').forEach(btn => btn.addEventListener('click', () => deleteBook(btn.dataset.delete)));
     }
 
-    async function openReader(bookId) {
+    async function openReader(bookId, startPageIndex = null) {
       const book = books.find(item => item.id === bookId);
 
       if (!book) {
@@ -2572,8 +2752,13 @@
       }
 
       activeBookId = bookId;
-      activeBook = book;
-      activePageIndex = book.currentPageIndex || 0;
+      activeBook = {
+        ...book,
+        bookmarks: getBookBookmarks(book)
+      };
+      activePageIndex = Number.isFinite(startPageIndex)
+        ? Math.max(0, Number(startPageIndex))
+        : book.currentPageIndex || 0;
 
       showScreen('reader');
       updateReaderHeader(book);
@@ -2590,6 +2775,7 @@
 
         activePageIndex = clamp(activePageIndex, 0, activeReaderData.pages.length - 1);
         renderChapterSelect();
+        renderBookmarksMenu();
 
         await renderActivePage();
       } catch (error) {
@@ -2658,6 +2844,165 @@
     }
 
 
+    function getBookBookmarks(book) {
+      return Array.isArray(book?.bookmarks)
+        ? [...book.bookmarks].sort((a, b) => Number(a.pageIndex || 0) - Number(b.pageIndex || 0))
+        : [];
+    }
+
+    function getCurrentChapterTitle() {
+      if (!activeReaderData?.chapters?.length) return 'Без главы';
+
+      const chapterIndex = activeReaderData.chapters.findLastIndex
+        ? activeReaderData.chapters.findLastIndex(chapter => activePageIndex >= chapter.firstPageIndex)
+        : findLastChapterIndex(activeReaderData.chapters, activePageIndex);
+
+      return activeReaderData.chapters[Math.max(0, chapterIndex)]?.title || 'Без главы';
+    }
+
+    function getBookmarkShortLabel(bookmark) {
+      const page = Number(bookmark?.pageIndex || 0) + 1;
+      const title = bookmark?.chapterTitle || 'Закладка';
+
+      if (title.length > 18) {
+        return `${title.slice(0, 18)}… · ${page}`;
+      }
+
+      return `${title} · ${page}`;
+    }
+
+    function isCurrentPageBookmarked() {
+      return getBookBookmarks(activeBook).some(bookmark => Number(bookmark.pageIndex) === Number(activePageIndex));
+    }
+
+    function updateBookmarkButtonState() {
+      if (!els.addBookmarkBtn) return;
+
+      const active = isCurrentPageBookmarked();
+      els.addBookmarkBtn.classList.toggle('active', active);
+      els.addBookmarkBtn.textContent = active ? '★' : '☆';
+      els.addBookmarkBtn.setAttribute('aria-label', active ? 'Закладка уже добавлена' : 'Добавить закладку');
+    }
+
+    async function addCurrentBookmark() {
+      if (!activeBook || !activeReaderData?.pages?.length) {
+        showToast('Книга не открыта');
+        return;
+      }
+
+      const bookmarks = getBookBookmarks(activeBook);
+
+      if (bookmarks.some(bookmark => Number(bookmark.pageIndex) === Number(activePageIndex))) {
+        showToast('Закладка уже есть');
+        return;
+      }
+
+      const page = activeReaderData.pages[activePageIndex];
+      const bookmark = {
+        id: createId(),
+        pageIndex: activePageIndex,
+        chapterIndex: page?.chapterIndex || 0,
+        chapterTitle: getCurrentChapterTitle(),
+        progress: activeBook.progress || 0,
+        createdAt: new Date().toISOString()
+      };
+
+      const updated = {
+        ...activeBook,
+        bookmarks: [...bookmarks, bookmark].sort((a, b) => Number(a.pageIndex || 0) - Number(b.pageIndex || 0)),
+        updatedAt: new Date().toISOString()
+      };
+
+      activeBook = updated;
+      books = books.map(book => book.id === updated.id ? stripBookFile(updated) : book).sort(sortByUpdatedAt);
+
+      await putBookMeta(stripBookFile(updated));
+
+      updateBookmarkButtonState();
+      renderBookmarksMenu();
+      renderDashboard();
+      renderReadingBooks();
+      renderLibrary();
+      showToast('Закладка добавлена');
+    }
+
+    async function removeBookmark(bookmarkId) {
+      if (!activeBook) return;
+
+      const updated = {
+        ...activeBook,
+        bookmarks: getBookBookmarks(activeBook).filter(bookmark => bookmark.id !== bookmarkId),
+        updatedAt: new Date().toISOString()
+      };
+
+      activeBook = updated;
+      books = books.map(book => book.id === updated.id ? stripBookFile(updated) : book).sort(sortByUpdatedAt);
+
+      await putBookMeta(stripBookFile(updated));
+
+      updateBookmarkButtonState();
+      renderBookmarksMenu();
+      renderDashboard();
+      renderReadingBooks();
+      renderLibrary();
+      showToast('Закладка удалена');
+    }
+
+    function renderBookmarksMenu() {
+      if (!els.bookmarksMenu) return;
+
+      const bookmarks = getBookBookmarks(activeBook);
+
+      if (!activeBook || !bookmarks.length) {
+        els.bookmarksBtn.textContent = 'Закладки';
+        els.bookmarksMenu.innerHTML = '<button class="chapter-option" type="button">Закладок пока нет</button>';
+        updateBookmarkButtonState();
+        return;
+      }
+
+      els.bookmarksBtn.textContent = `Закладки · ${bookmarks.length}`;
+
+      els.bookmarksMenu.innerHTML = bookmarks.map(bookmark => {
+        const active = Number(bookmark.pageIndex) === Number(activePageIndex);
+        const pageLabel = `стр. ${Number(bookmark.pageIndex || 0) + 1}`;
+        const dateLabel = bookmark.createdAt ? new Date(bookmark.createdAt).toLocaleDateString('ru-RU') : '';
+
+        return `
+          <div class="bookmark-option ${active ? 'active' : ''}" data-go-bookmark="${bookmark.pageIndex}">
+            <div class="bookmark-option-main">
+              <span class="bookmark-option-title">${escapeHtml(bookmark.chapterTitle || 'Закладка')}</span>
+              <span class="bookmark-option-meta">${escapeHtml(pageLabel)}${dateLabel ? ' · ' + escapeHtml(dateLabel) : ''}</span>
+            </div>
+            <button class="bookmark-delete" type="button" data-delete-bookmark="${bookmark.id}" aria-label="Удалить закладку">×</button>
+          </div>
+        `;
+      }).join('');
+
+      els.bookmarksMenu.querySelectorAll('[data-go-bookmark]').forEach(btn => {
+        btn.addEventListener('click', async event => {
+          if (event.target.closest('[data-delete-bookmark]')) return;
+
+          const pageIndex = Number(btn.dataset.goBookmark);
+
+          if (Number.isFinite(pageIndex)) {
+            activePageIndex = clamp(pageIndex, 0, activeReaderData.pages.length - 1);
+            els.bookmarksMenu.classList.remove('open');
+            await renderActivePage();
+          }
+        });
+      });
+
+      els.bookmarksMenu.querySelectorAll('[data-delete-bookmark]').forEach(btn => {
+        btn.addEventListener('click', async event => {
+          event.stopPropagation();
+          await removeBookmark(btn.dataset.deleteBookmark);
+        });
+      });
+
+      updateBookmarkButtonState();
+    }
+
+
     async function renderActivePage() {
       if (!activeReaderData || !activeBook) return;
 
@@ -2690,6 +3035,8 @@
       books = books.map(book => book.id === activeBook.id ? stripBookFile(activeBook) : book).sort(sortByUpdatedAt);
 
       syncChapterSelect();
+      renderBookmarksMenu();
+      updateBookmarkButtonState();
       updateReaderHeader(activeBook);
       renderDashboard();
       renderReadingBooks();
@@ -2823,6 +3170,7 @@
         activeBook = null;
         activeReaderData = null;
         els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Книга удалена</strong>Выбери другую книгу в библиотеке.</div>';
+        renderBookmarksMenu();
       }
 
       books = await getAllBooks();
