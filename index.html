@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=516" />
+  <link rel="manifest" href="./manifest.json?v=517" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.1.6</title>
+  <title>Мои книги 5.1.7</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=516') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=517') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=516') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=517') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -2276,8 +2276,9 @@
     }
 
     .reader-tap-zone {
-      display: none !important;
-      pointer-events: none !important;
+      display: block;
+      pointer-events: auto;
+      background: transparent;
     }
 
     .empty {
@@ -2540,13 +2541,51 @@
       }
     }
 
+  
+    /* v5.1.7 fuller pages + tap zones */
+    body.reader-mode .reader-tap-zone {
+      display: block !important;
+      position: absolute !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      z-index: 2 !important;
+      border: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    body.reader-mode .reader-tap-zone.left {
+      left: 0 !important;
+      width: 22vw !important;
+    }
+
+    body.reader-mode .reader-tap-zone.right {
+      right: 0 !important;
+      width: 30vw !important;
+    }
+
+    body.reader-mode .reader-content {
+      min-height: calc(100dvh - 170px);
+    }
+
+    @media (max-width: 760px) {
+      body.reader-mode .reader-content {
+        min-height: calc(100dvh - 180px);
+      }
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=516" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=517" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -2555,13 +2594,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=516" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=517" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.1.6</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.1.7</p>
         </div>
       </div>
-      <span class="version-pill">v5.1.6</span>
+      <span class="version-pill">v5.1.7</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -2695,7 +2734,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.1.6</span>
+          <span id="settingsVersion">5.1.7</span>
         </div>
 
         <div class="settings-item">
@@ -2734,7 +2773,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=516</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=517</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -2762,7 +2801,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=516.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=517.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -2783,14 +2822,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.1.6';
+    const APP_VERSION = '5.1.7';
     const BUILD_DATE = '2026-05-25 08:06 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v516';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v517';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -3009,7 +3048,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=516').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=517').catch(() => {});
         });
       }
     }
@@ -3295,12 +3334,9 @@
     }
 
     function getPageCharLimit() {
-      const viewportHeight = window.innerHeight || 720;
-      const compactScreen = viewportHeight < 720;
-      const base = compactScreen ? 430 : 520;
-      const sizePenalty = Math.max(0, readerFontSize - 20) * 42;
-
-      return clamp(base - sizePenalty, 300, 560);
+      const base = window.innerWidth < 520 ? 1450 : 1850;
+      const fontFactor = Math.max(0.72, Math.min(1.18, 21 / Math.max(14, readerFontSize || 21)));
+      return Math.round(base * fontFactor);
     }
 
     function splitBlockForPages(block, limit = getPageCharLimit() - 60) {
@@ -3887,7 +3923,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=516" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=517" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -3896,7 +3932,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=516" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=517" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
