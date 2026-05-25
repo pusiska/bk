@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=517" />
+  <link rel="manifest" href="./manifest.json?v=518" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.1.7</title>
+  <title>Мои книги 5.1.8</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=517') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=518') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=517') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=518') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -2579,13 +2579,28 @@
       }
     }
 
+  
+    /* v5.1.8 full page counter */
+    body.reader-mode .reader-progress-line .reader-sub {
+      max-width: none !important;
+      width: max-content !important;
+      min-width: max-content !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      white-space: nowrap !important;
+    }
+
+    body.reader-mode .reader-progress-line {
+      grid-template-columns: minmax(60px, 1fr) max-content !important;
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=517" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=518" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -2594,13 +2609,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=517" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=518" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.1.7</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.1.8</p>
         </div>
       </div>
-      <span class="version-pill">v5.1.7</span>
+      <span class="version-pill">v5.1.8</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -2734,12 +2749,12 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.1.7</span>
+          <span id="settingsVersion">5.1.8</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-25 08:06 UTC</span>
+          <span id="settingsBuild">2026-05-25 08:33 UTC</span>
         </div>
 
         <div class="settings-item">
@@ -2773,7 +2788,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=517</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=518</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -2801,7 +2816,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=517.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=518.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -2822,14 +2837,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.1.7';
-    const BUILD_DATE = '2026-05-25 08:06 UTC';
+    const APP_VERSION = '5.1.8';
+    const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v517';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v518';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -3048,7 +3063,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=517').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=518').catch(() => {});
         });
       }
     }
@@ -3334,7 +3349,7 @@
     }
 
     function getPageCharLimit() {
-      const base = window.innerWidth < 520 ? 1450 : 1850;
+      const base = window.innerWidth < 520 ? 980 : 1350;
       const fontFactor = Math.max(0.72, Math.min(1.18, 21 / Math.max(14, readerFontSize || 21)));
       return Math.round(base * fontFactor);
     }
@@ -3368,62 +3383,155 @@
       return result.length ? result : [block];
     }
 
+    function getBlockTagName(block) {
+      const match = String(block || '').trim().match(/^<([a-z0-9]+)/i);
+      return match ? match[1].toLowerCase() : '';
+    }
+
+    function isHeadingBlock(block) {
+      return /^h[1-6]$/i.test(getBlockTagName(block));
+    }
+
+    function normalizeReaderText(text) {
+      return cleanText(String(text || '').replace(/\s+/g, ' ').trim());
+    }
+
+    function detectChapterTitle(block, fallbackNumber = 1) {
+      const text = normalizeReaderText(getPlainText(block));
+
+      if (!text || text.length > 90) return '';
+
+      const isHeading = isHeadingBlock(block);
+      const isExplicitChapter = /^(глава|часть|книга|пролог|эпилог|chapter|part)\b[\s\S]{0,80}$/i.test(text);
+      const isNumericHeading = isHeading && /^[0-9IVXLCDM]{1,8}$/i.test(text);
+
+      if (!isExplicitChapter && !isNumericHeading) return '';
+
+      if (isNumericHeading) return `Глава ${text}`;
+
+      return text || `Глава ${fallbackNumber}`;
+    }
+
+    function isOnlyChapterHeading(blocks) {
+      return Array.isArray(blocks)
+        && blocks.length === 1
+        && Boolean(detectChapterTitle(blocks[0], 1));
+    }
+
+    function normalizeBlockForReading(block) {
+      const trimmed = String(block || '').trim();
+      const text = normalizeReaderText(getPlainText(trimmed));
+
+      if (!text || text.length < 2) return '';
+
+      return trimmed;
+    }
+
+
     async function buildPagesFromReaderData(readerData) {
       const pages = [];
       const chapters = [];
       const pageCharLimit = getPageCharLimit();
+      const streamBlocks = [];
+      const seenBlockTexts = new Set();
+      let detectedChapterCount = 0;
 
-      for (let chapterIndex = 0; chapterIndex < readerData.spine.length; chapterIndex += 1) {
-        const item = readerData.spine[chapterIndex];
+      for (let sourceIndex = 0; sourceIndex < readerData.spine.length; sourceIndex += 1) {
+        const item = readerData.spine[sourceIndex];
 
         if (!item || !readerData.zip.file(item.href)) continue;
-
         if (/cover/i.test(item.href)) continue;
 
         const chapterText = await readerData.zip.file(item.href).async('text');
         const blocks = await extractReadableBlocks(readerData.zip, item.href, chapterText);
-        const pageBlocks = blocks.flatMap(block => splitBlockForPages(block));
-        const textLength = pageBlocks.map(getPlainText).join(' ').trim().length;
 
-        if (textLength < 20) continue;
+        for (const rawBlock of blocks) {
+          for (const piece of splitBlockForPages(rawBlock, Math.max(360, pageCharLimit - 80))) {
+            const block = normalizeBlockForReading(piece);
+            if (!block) continue;
 
-        const firstPageIndex = pages.length;
-        const title = getChapterTitle(blocks, chapters.length + 1, item.href);
+            const text = normalizeReaderText(getPlainText(block));
+            const chapterTitle = detectChapterTitle(block, detectedChapterCount + 1);
+            const dedupeKey = text.toLowerCase();
 
-        let currentBlocks = [];
-        let currentChars = 0;
+            if (!chapterTitle && seenBlockTexts.has(dedupeKey)) continue;
+            if (!chapterTitle) seenBlockTexts.add(dedupeKey);
+            if (chapterTitle) detectedChapterCount += 1;
 
-        for (const block of pageBlocks) {
-          const blockChars = getPlainText(block).length || 1;
-
-          if (currentBlocks.length && currentChars + blockChars > pageCharLimit) {
-            pages.push({
-              html: currentBlocks.join(''),
-              chapterIndex: chapters.length
+            streamBlocks.push({
+              html: block,
+              text,
+              href: item.href,
+              sourceIndex,
+              chapterTitle
             });
+          }
+        }
+      }
 
-            currentBlocks = [];
-            currentChars = 0;
+      let currentBlocks = [];
+      let currentChars = 0;
+      let currentChapterIndex = -1;
+
+      const pushCurrentPage = chapterIndex => {
+        if (!currentBlocks.length) return;
+
+        const html = currentBlocks.map(block => block.html).join('');
+        const plain = normalizeReaderText(getPlainText(html));
+
+        if (plain.length < 2) {
+          currentBlocks = [];
+          currentChars = 0;
+          return;
+        }
+
+        pages.push({
+          html,
+          chapterIndex: Math.max(0, chapterIndex)
+        });
+
+        currentBlocks = [];
+        currentChars = 0;
+      };
+
+      for (const block of streamBlocks) {
+        if (block.chapterTitle) {
+          if (currentBlocks.length) {
+            pushCurrentPage(Math.max(0, currentChapterIndex));
           }
 
-          currentBlocks.push(block);
-          currentChars += blockChars;
-        }
+          currentChapterIndex = chapters.length;
 
-        if (currentBlocks.length) {
-          pages.push({
-            html: currentBlocks.join(''),
-            chapterIndex: chapters.length
-          });
-        }
-
-        if (pages.length > firstPageIndex) {
           chapters.push({
-            title,
-            firstPageIndex,
-            sourceIndex: chapterIndex
+            title: block.chapterTitle,
+            firstPageIndex: pages.length,
+            sourceIndex: block.sourceIndex
+          });
+        } else if (currentChapterIndex < 0 && pages.length === 0 && !currentBlocks.length) {
+          currentChapterIndex = 0;
+          chapters.push({
+            title: 'Начало',
+            firstPageIndex: 0,
+            sourceIndex: block.sourceIndex
           });
         }
+
+        const blockChars = block.text.length || 1;
+        const currentOnlyHeading = isOnlyChapterHeading(currentBlocks.map(item => item.html));
+        const shouldStartNewPage = currentBlocks.length
+          && !currentOnlyHeading
+          && currentChars + blockChars > pageCharLimit;
+
+        if (shouldStartNewPage) {
+          pushCurrentPage(Math.max(0, currentChapterIndex));
+        }
+
+        currentBlocks.push(block);
+        currentChars += blockChars;
+      }
+
+      if (currentBlocks.length) {
+        pushCurrentPage(Math.max(0, currentChapterIndex));
       }
 
       if (!pages.length) {
@@ -3439,10 +3547,30 @@
         });
       }
 
+      if (!chapters.length || chapters[0].firstPageIndex > 0) {
+        chapters.unshift({
+          title: 'Начало',
+          firstPageIndex: 0,
+          sourceIndex: 0
+        });
+
+        pages.forEach(page => {
+          page.chapterIndex = (page.chapterIndex || 0) + 1;
+        });
+      }
+
+      chapters.forEach((chapter, index) => {
+        chapter.firstPageIndex = clamp(chapter.firstPageIndex || 0, 0, Math.max(0, pages.length - 1));
+        chapter.index = index;
+      });
+
+      pages.forEach(page => {
+        page.chapterIndex = clamp(page.chapterIndex || 0, 0, chapters.length - 1);
+      });
+
       return { pages, chapters };
     }
 
-    
     function sanitizeElementTree(root) {
       root.querySelectorAll('script, style, link, object, iframe, embed, svg, image, img, video, audio, source, canvas, form, input, button, textarea, select').forEach(node => node.remove());
 
@@ -3525,17 +3653,38 @@
 
       sanitizeElementTree(body);
 
-      const nodes = Array.from(body.querySelectorAll('h1, h2, h3, h4, h5, h6, p, blockquote, li, div'));
+      const semanticSelector = 'h1, h2, h3, h4, h5, h6, p, blockquote, li';
+      let nodes = Array.from(body.querySelectorAll(semanticSelector))
+        .filter(node => !node.parentElement?.closest(semanticSelector));
 
-      const blocks = nodes
-        .map(node => serializeNodeAsHtml(node))
-        .filter(html => getPlainText(html).trim().length > 0)
-        .filter((html, index, arr) => {
-          const text = getPlainText(html);
-          if (text.length < 2) return false;
-          if (arr.findIndex(item => getPlainText(item) === text) !== index) return false;
-          return true;
+      if (!nodes.length) {
+        nodes = Array.from(body.querySelectorAll('div'))
+          .filter(node => !node.querySelector(semanticSelector))
+          .filter(node => normalizeReaderText(node.textContent).length > 0);
+      }
+
+      const blocks = [];
+      const seen = [];
+
+      for (const node of nodes) {
+        const html = serializeNodeAsHtml(node);
+        const text = normalizeReaderText(getPlainText(html));
+
+        if (text.length < 2) continue;
+
+        const isChapter = Boolean(detectChapterTitle(html, blocks.length + 1));
+        const duplicate = seen.some(prev => {
+          if (prev === text) return true;
+          if (text.length > 24 && prev.includes(text)) return true;
+          if (prev.length > 24 && text.includes(prev)) return true;
+          return false;
         });
+
+        if (duplicate && !isChapter) continue;
+
+        blocks.push(html);
+        seen.push(text);
+      }
 
       if (blocks.length) return blocks;
 
@@ -3923,7 +4072,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=517" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=518" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -3932,7 +4081,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=517" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=518" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -4391,6 +4540,7 @@
       if (content) content.scrollTop = 0;
 
       if (await ensurePageFits()) {
+        renderChapterSelect();
         await renderActivePage();
         return;
       }
@@ -4440,7 +4590,8 @@
       if (content.scrollHeight <= content.clientHeight + 4) return false;
 
       const currentPage = activeReaderData.pages[activePageIndex];
-      const split = splitHtmlPage(currentPage.html);
+      const ratio = clamp((content.clientHeight / content.scrollHeight) * 0.96, 0.38, 0.88);
+      const split = splitHtmlPage(currentPage.html, ratio);
 
       if (!split) return false;
 
@@ -4451,19 +4602,62 @@
         chapterIndex: currentPage.chapterIndex
       });
 
+      activeReaderData.chapters.forEach(chapter => {
+        if (chapter.firstPageIndex > activePageIndex) {
+          chapter.firstPageIndex += 1;
+        }
+      });
+
       return true;
     }
 
-    function splitHtmlPage(html) {
+    function splitHtmlPage(html, ratio = 0.55) {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = html;
 
       const children = Array.from(wrapper.children);
 
       if (children.length > 1) {
-        const splitAt = Math.max(1, Math.floor(children.length / 2));
-        const first = children.slice(0, splitAt).map(node => node.outerHTML).join('');
-        const second = children.slice(splitAt).map(node => node.outerHTML).join('');
+        const lengths = children.map(node => Math.max(1, getPlainText(node.outerHTML).length));
+        const total = lengths.reduce((sum, value) => sum + value, 0);
+        const target = Math.max(1, Math.round(total * ratio));
+
+        let acc = 0;
+        let splitAt = 1;
+
+        for (let index = 0; index < lengths.length; index += 1) {
+          acc += lengths[index];
+
+          if (acc >= target) {
+            splitAt = index + 1;
+            break;
+          }
+        }
+
+        splitAt = clamp(splitAt, 1, children.length - 1);
+
+        const firstNodes = children.slice(0, splitAt);
+        const secondNodes = children.slice(splitAt);
+
+        const first = firstNodes.map(node => node.outerHTML).join('');
+        const second = secondNodes.map(node => node.outerHTML).join('');
+
+        if (
+          firstNodes.length === 1
+          && detectChapterTitle(firstNodes[0].outerHTML, 1)
+          && secondNodes.length === 1
+          && getPlainText(second).length > 180
+        ) {
+          const secondText = getPlainText(second);
+          const parts = splitTextNearMiddle(secondText, 0.62);
+
+          if (parts) {
+            return {
+              first: `${first}<p>${escapeHtml(parts.first)}</p>`,
+              second: `<p>${escapeHtml(parts.second)}</p>`
+            };
+          }
+        }
 
         if (getPlainText(first).length && getPlainText(second).length) {
           return { first, second };
@@ -4474,7 +4668,7 @@
 
       if (text.length < 160) return null;
 
-      const parts = splitTextNearMiddle(text);
+      const parts = splitTextNearMiddle(text, ratio);
 
       if (!parts) return null;
 
@@ -4484,20 +4678,20 @@
       };
     }
 
-    function splitTextNearMiddle(text) {
+    function splitTextNearMiddle(text, ratio = 0.55) {
       const clean = String(text || '').trim();
 
       if (clean.length < 160) return null;
 
-      const middle = Math.floor(clean.length / 2);
-      let splitIndex = clean.indexOf('. ', middle);
+      const target = Math.floor(clean.length * clamp(ratio, 0.35, 0.85));
+      let splitIndex = clean.indexOf('. ', target);
 
-      if (splitIndex < 0 || splitIndex > middle + 220) {
-        splitIndex = clean.lastIndexOf('. ', middle);
+      if (splitIndex < 0 || splitIndex > target + 220) {
+        splitIndex = clean.lastIndexOf('. ', target);
       }
 
       if (splitIndex < 80) {
-        splitIndex = middle;
+        splitIndex = target;
       } else {
         splitIndex += 1;
       }
@@ -4512,7 +4706,7 @@
       els.readerTitle.textContent = book.title || 'Книга';
       els.readerAuthor.textContent = book.author || 'Автор не указан';
       els.readerProgressFill.style.width = `${book.progress || 0}%`;
-      els.readerProgressText.textContent = `${book.progress || 0}%${book.totalPages ? ' · стр. ' + ((book.currentPageIndex || 0) + 1) + '/' + book.totalPages : ''}`;
+      els.readerProgressText.textContent = `${book.progress || 0}%${book.totalPages ? ' · ' + ((book.currentPageIndex || 0) + 1) + '/' + book.totalPages : ''}`;
     }
 
     async function markAsRead(bookId) {
