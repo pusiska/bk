@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=518" />
+  <link rel="manifest" href="./manifest.json?v=519" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.1.8</title>
+  <title>Мои книги 5.1.9</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=518') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=519') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=518') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=519') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -2600,7 +2600,7 @@
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=518" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=519" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -2609,13 +2609,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=518" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=519" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.1.8</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.1.9</p>
         </div>
       </div>
-      <span class="version-pill">v5.1.8</span>
+      <span class="version-pill">v5.1.9</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -2749,7 +2749,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.1.8</span>
+          <span id="settingsVersion">5.1.9</span>
         </div>
 
         <div class="settings-item">
@@ -2788,7 +2788,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=518</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=519</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -2816,7 +2816,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=518.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=519.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -2837,14 +2837,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.1.8';
+    const APP_VERSION = '5.1.9';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v518';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v519';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -3063,7 +3063,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=518').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=519').catch(() => {});
         });
       }
     }
@@ -3279,6 +3279,127 @@
       }
     }
 
+
+    function getElementsByLocalName(doc, localName) {
+      return Array.from(doc.getElementsByTagNameNS('*', localName))
+        .concat(Array.from(doc.getElementsByTagName('*')).filter(node => node.localName === localName || node.nodeName.endsWith(':' + localName)))
+        .filter((node, index, arr) => arr.indexOf(node) === index);
+    }
+
+    function stripHrefFragment(href) {
+      return normalizeZipPath(String(href || '').split('#')[0].split('?')[0]);
+    }
+
+    function dedupeTocItems(items) {
+      const result = [];
+      const seen = new Set();
+
+      for (const item of items || []) {
+        const title = cleanText(item?.title || '');
+        const href = stripHrefFragment(item?.href || '');
+
+        if (!title || !href) continue;
+
+        const key = `${title.toLowerCase()}::${href.toLowerCase()}`;
+
+        if (seen.has(key)) continue;
+
+        seen.add(key);
+        result.push({
+          title,
+          href,
+          source: item.source || 'toc'
+        });
+      }
+
+      return result;
+    }
+
+    async function parseEpubToc(zip, opfDoc, manifest, spine) {
+      const values = Object.values(manifest || {});
+      const spineNode = getFirstByLocalName(opfDoc, 'spine');
+      const tocId = spineNode?.getAttribute('toc');
+
+      const navItem = values.find(item => /\bnav\b/i.test(item.properties || ''))
+        || values.find(item => /nav\.x?html?$/i.test(item.href || ''));
+
+      const ncxItem = (tocId && manifest[tocId])
+        || values.find(item => /ncx/i.test(item.mediaType || '') || /\.ncx$/i.test(item.href || ''));
+
+      let tocItems = [];
+
+      if (navItem && zip.file(navItem.href)) {
+        try {
+          tocItems = tocItems.concat(await parseHtmlToc(zip, navItem.href));
+        } catch (error) {
+          console.warn('nav toc parse failed:', error);
+        }
+      }
+
+      if ((!tocItems.length || tocItems.length < 2) && ncxItem && zip.file(ncxItem.href)) {
+        try {
+          tocItems = tocItems.concat(await parseNcxToc(zip, ncxItem.href));
+        } catch (error) {
+          console.warn('ncx toc parse failed:', error);
+        }
+      }
+
+      const spineHrefs = new Set((spine || []).map(item => stripHrefFragment(item.href)));
+
+      return dedupeTocItems(tocItems)
+        .filter(item => {
+          if (!spineHrefs.size) return true;
+          if (spineHrefs.has(item.href)) return true;
+
+          return Array.from(spineHrefs).some(href => href.endsWith('/' + item.href) || item.href.endsWith('/' + href));
+        });
+    }
+
+    async function parseHtmlToc(zip, navHref) {
+      const text = await zip.file(navHref).async('text');
+      const doc = new DOMParser().parseFromString(text, 'application/xhtml+xml');
+      const base = dirname(navHref);
+
+      let nav = Array.from(doc.getElementsByTagNameNS('*', 'nav'))
+        .concat(Array.from(doc.getElementsByTagName('nav')))
+        .find(node => {
+          const type = node.getAttribute('epub:type') || node.getAttribute('type') || '';
+          return /\btoc\b/i.test(type);
+        });
+
+      if (!nav) {
+        nav = doc.querySelector('nav') || doc.querySelector('ol') || doc.body || doc;
+      }
+
+      return Array.from(nav.querySelectorAll('a[href]'))
+        .map(anchor => ({
+          title: cleanText(anchor.textContent || ''),
+          href: resolvePath(base, anchor.getAttribute('href') || ''),
+          source: 'nav'
+        }))
+        .filter(item => item.title && item.href);
+    }
+
+    async function parseNcxToc(zip, ncxHref) {
+      const text = await zip.file(ncxHref).async('text');
+      const doc = new DOMParser().parseFromString(text, 'application/xml');
+      const base = dirname(ncxHref);
+
+      return getElementsByLocalName(doc, 'navPoint')
+        .map(point => {
+          const label = getElementsByLocalName(point, 'text')[0];
+          const content = getElementsByLocalName(point, 'content')[0];
+
+          return {
+            title: cleanText(label?.textContent || ''),
+            href: resolvePath(base, content?.getAttribute('src') || ''),
+            source: 'ncx'
+          };
+        })
+        .filter(item => item.title && item.href);
+    }
+
+
     async function parseEpubArrayBuffer(arrayBuffer, fallbackTitle) {
       const zip = await JSZip.loadAsync(arrayBuffer);
       const containerFile = zip.file('META-INF/container.xml');
@@ -3337,6 +3458,8 @@
         }
       }
 
+      const toc = await parseEpubToc(zip, opfDoc, manifest, spine);
+
       return {
         zip,
         title,
@@ -3344,7 +3467,8 @@
         coverData,
         opfPath,
         opfBase,
-        spine
+        spine,
+        toc
       };
     }
 
@@ -3418,6 +3542,83 @@
         && Boolean(detectChapterTitle(blocks[0], 1));
     }
 
+
+    function findPageIndexForHref(pages, href) {
+      const cleanHref = stripHrefFragment(href);
+
+      if (!cleanHref) return -1;
+
+      let index = pages.findIndex(page => stripHrefFragment(page.href) === cleanHref);
+
+      if (index >= 0) return index;
+
+      index = pages.findIndex(page => {
+        const pageHref = stripHrefFragment(page.href);
+        return pageHref.endsWith('/' + cleanHref) || cleanHref.endsWith('/' + pageHref);
+      });
+
+      return index;
+    }
+
+    function buildChaptersFromToc(tocItems, pages) {
+      const chapters = [];
+      const seenPages = new Set();
+
+      for (const item of tocItems || []) {
+        const firstPageIndex = findPageIndexForHref(pages, item.href);
+
+        if (firstPageIndex < 0) continue;
+
+        const title = cleanText(item.title || '');
+
+        if (!title) continue;
+
+        const key = `${firstPageIndex}::${title.toLowerCase()}`;
+
+        if (seenPages.has(key)) continue;
+
+        seenPages.add(key);
+
+        chapters.push({
+          title,
+          firstPageIndex,
+          sourceIndex: pages[firstPageIndex]?.sourceIndex || 0,
+          href: stripHrefFragment(item.href),
+          source: item.source || 'toc'
+        });
+      }
+
+      return chapters
+        .sort((a, b) => a.firstPageIndex - b.firstPageIndex)
+        .filter((chapter, index, arr) => {
+          if (index === 0) return true;
+
+          const prev = arr[index - 1];
+
+          if (chapter.firstPageIndex === prev.firstPageIndex && chapter.title === prev.title) return false;
+
+          return true;
+        });
+    }
+
+    function applyChapterIndexesToPages(pages, chapters) {
+      if (!pages.length || !chapters.length) return;
+
+      let currentChapter = 0;
+
+      for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
+        while (
+          currentChapter + 1 < chapters.length
+          && pageIndex >= chapters[currentChapter + 1].firstPageIndex
+        ) {
+          currentChapter += 1;
+        }
+
+        pages[pageIndex].chapterIndex = currentChapter;
+      }
+    }
+
+
     function normalizeBlockForReading(block) {
       const trimmed = String(block || '').trim();
       const text = normalizeReaderText(getPlainText(trimmed));
@@ -3430,7 +3631,7 @@
 
     async function buildPagesFromReaderData(readerData) {
       const pages = [];
-      const chapters = [];
+      const detectedChapters = [];
       const pageCharLimit = getPageCharLimit();
       const streamBlocks = [];
       const seenBlockTexts = new Set();
@@ -3487,7 +3688,9 @@
 
         pages.push({
           html,
-          chapterIndex: Math.max(0, chapterIndex)
+          chapterIndex: Math.max(0, chapterIndex),
+          href: currentBlocks[0]?.href || '',
+          sourceIndex: currentBlocks[0]?.sourceIndex || 0
         });
 
         currentBlocks = [];
@@ -3500,19 +3703,23 @@
             pushCurrentPage(Math.max(0, currentChapterIndex));
           }
 
-          currentChapterIndex = chapters.length;
+          currentChapterIndex = detectedChapters.length;
 
-          chapters.push({
+          detectedChapters.push({
             title: block.chapterTitle,
             firstPageIndex: pages.length,
-            sourceIndex: block.sourceIndex
+            sourceIndex: block.sourceIndex,
+            href: block.href,
+            source: 'heading'
           });
         } else if (currentChapterIndex < 0 && pages.length === 0 && !currentBlocks.length) {
           currentChapterIndex = 0;
-          chapters.push({
+          detectedChapters.push({
             title: 'Начало',
             firstPageIndex: 0,
-            sourceIndex: block.sourceIndex
+            sourceIndex: block.sourceIndex,
+            href: block.href,
+            source: 'fallback'
           });
         }
 
@@ -3537,36 +3744,41 @@
       if (!pages.length) {
         pages.push({
           html: '<p class="reader-empty-page">Текст книги не найден.</p>',
-          chapterIndex: 0
-        });
-
-        chapters.push({
-          title: 'Начало',
-          firstPageIndex: 0,
+          chapterIndex: 0,
+          href: '',
           sourceIndex: 0
         });
+      }
+
+      let chapters = buildChaptersFromToc(readerData.toc || [], pages);
+
+      if (chapters.length < 2) {
+        chapters = detectedChapters.filter(chapter => chapter.title && chapter.firstPageIndex >= 0);
       }
 
       if (!chapters.length || chapters[0].firstPageIndex > 0) {
         chapters.unshift({
           title: 'Начало',
           firstPageIndex: 0,
-          sourceIndex: 0
-        });
-
-        pages.forEach(page => {
-          page.chapterIndex = (page.chapterIndex || 0) + 1;
+          sourceIndex: 0,
+          href: pages[0]?.href || '',
+          source: 'fallback'
         });
       }
 
+      chapters = chapters
+        .map((chapter, index) => ({
+          ...chapter,
+          index,
+          firstPageIndex: clamp(chapter.firstPageIndex || 0, 0, Math.max(0, pages.length - 1))
+        }))
+        .sort((a, b) => a.firstPageIndex - b.firstPageIndex);
+
       chapters.forEach((chapter, index) => {
-        chapter.firstPageIndex = clamp(chapter.firstPageIndex || 0, 0, Math.max(0, pages.length - 1));
         chapter.index = index;
       });
 
-      pages.forEach(page => {
-        page.chapterIndex = clamp(page.chapterIndex || 0, 0, chapters.length - 1);
-      });
+      applyChapterIndexesToPages(pages, chapters);
 
       return { pages, chapters };
     }
@@ -4072,7 +4284,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=518" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=519" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -4081,7 +4293,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=518" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=519" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
