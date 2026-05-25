@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-books-epub-reader-v48';
+const CACHE_NAME = 'my-books-epub-reader-v50';
 
 const APP_SHELL = [
   './',

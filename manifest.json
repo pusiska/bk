@@ -1,8 +1,8 @@
 {
-  "name": "Мои книги 4.8",
+  "name": "Мои книги 5.0",
   "short_name": "Книги",
   "description": "EPUB-читалка в стиле брендбука «Мои книги»",
-  "start_url": "/my_books/index.html?v=48",
+  "start_url": "/my_books/index.html?v=50",
   "scope": "/my_books/",
   "display": "standalone",
   "background_color": "#F6F1E8",

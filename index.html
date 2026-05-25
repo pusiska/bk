@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=48" />
+  <link rel="manifest" href="./manifest.json?v=50" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 4.8</title>
+  <title>Мои книги 5.0</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=48') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=50') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=48') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=50') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -755,6 +755,141 @@
       font-weight: 850;
     }
 
+
+
+    /* v5.0 stable diagnostics */
+    .diagnostics-grid {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .diagnostic-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md);
+      background: rgba(255, 253, 248, .62);
+    }
+
+    .diagnostic-row strong {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    .diagnostic-row span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .diagnostic-status {
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      background: rgba(205, 186, 154, .25);
+    }
+
+    .diagnostic-status.ok {
+      background: rgba(61, 120, 85, .12);
+      color: #3D7855;
+    }
+
+    .diagnostic-status.warn {
+      background: rgba(143, 54, 43, .10);
+      color: #8F362B;
+    }
+
+    /* v4.9 library polish */
+    .library-bulk-bar {
+      display: none;
+      grid-template-columns: 1fr auto auto;
+      gap: 8px;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(23, 23, 23, .12);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 253, 248, .82);
+      box-shadow: var(--shadow);
+    }
+
+    .library-bulk-bar.show {
+      display: grid;
+    }
+
+    .bulk-count {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .book-select {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: none;
+      width: 22px;
+      height: 22px;
+      accent-color: var(--text);
+      z-index: 3;
+    }
+
+    body.bulk-mode .book-select {
+      display: block;
+    }
+
+    body.bulk-mode .book-card {
+      cursor: pointer;
+    }
+
+    body.bulk-mode .book-card.selected {
+      border-color: rgba(23, 23, 23, .42);
+      box-shadow: 0 18px 44px rgba(23, 23, 23, .18);
+    }
+
+    .empty.polished {
+      min-height: 180px;
+      align-content: center;
+      gap: 10px;
+      border-style: solid;
+      background: linear-gradient(180deg, rgba(255,253,248,.92), rgba(246,241,232,.72));
+    }
+
+    .empty-actions {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .books-list.grid .book-card {
+      align-content: start;
+      min-height: 100%;
+    }
+
+    .books-list.grid .book-title {
+      min-height: 2.3em;
+    }
+
+    .settings-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 420px) {
+      .library-bulk-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* v4.8 navigation cleanup */
     .nav-btn.active {
       background: var(--accent);
@@ -1229,6 +1364,141 @@
       font-size: 10px;
       border-radius: 8px;
       color: var(--muted);
+    }
+
+
+
+    /* v5.0 stable diagnostics */
+    .diagnostics-grid {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .diagnostic-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md);
+      background: rgba(255, 253, 248, .62);
+    }
+
+    .diagnostic-row strong {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    .diagnostic-row span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .diagnostic-status {
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      background: rgba(205, 186, 154, .25);
+    }
+
+    .diagnostic-status.ok {
+      background: rgba(61, 120, 85, .12);
+      color: #3D7855;
+    }
+
+    .diagnostic-status.warn {
+      background: rgba(143, 54, 43, .10);
+      color: #8F362B;
+    }
+
+    /* v4.9 library polish */
+    .library-bulk-bar {
+      display: none;
+      grid-template-columns: 1fr auto auto;
+      gap: 8px;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(23, 23, 23, .12);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 253, 248, .82);
+      box-shadow: var(--shadow);
+    }
+
+    .library-bulk-bar.show {
+      display: grid;
+    }
+
+    .bulk-count {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .book-select {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: none;
+      width: 22px;
+      height: 22px;
+      accent-color: var(--text);
+      z-index: 3;
+    }
+
+    body.bulk-mode .book-select {
+      display: block;
+    }
+
+    body.bulk-mode .book-card {
+      cursor: pointer;
+    }
+
+    body.bulk-mode .book-card.selected {
+      border-color: rgba(23, 23, 23, .42);
+      box-shadow: 0 18px 44px rgba(23, 23, 23, .18);
+    }
+
+    .empty.polished {
+      min-height: 180px;
+      align-content: center;
+      gap: 10px;
+      border-style: solid;
+      background: linear-gradient(180deg, rgba(255,253,248,.92), rgba(246,241,232,.72));
+    }
+
+    .empty-actions {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .books-list.grid .book-card {
+      align-content: start;
+      min-height: 100%;
+    }
+
+    .books-list.grid .book-title {
+      min-height: 2.3em;
+    }
+
+    .settings-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 420px) {
+      .library-bulk-bar {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* v4.8 navigation cleanup */
@@ -1866,7 +2136,7 @@
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=48" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=50" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -1875,13 +2145,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=48" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=50" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 4.8</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.0</p>
         </div>
       </div>
-      <span class="version-pill">v4.8</span>
+      <span class="version-pill">v5.0</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -1912,6 +2182,7 @@
       <div class="library-toolbar">
         <input id="searchInput" class="input" type="search" placeholder="Поиск по названию и автору" />
         <button class="ghost-btn" id="uploadLibraryBtn">Загрузить EPUB</button>
+        <button class="ghost-btn" id="selectModeBtn" type="button">Выбрать</button>
       </div>
 
       <div class="library-controls">
@@ -1930,6 +2201,12 @@
       </div>
 
       <div class="library-meta-line" id="libraryMetaLine">0 книг</div>
+
+      <div class="library-bulk-bar" id="libraryBulkBar">
+        <span class="bulk-count" id="bulkCount">0 выбрано</span>
+        <button class="ghost-btn tiny-btn" id="bulkCancelBtn" type="button">Отмена</button>
+        <button class="danger-btn tiny-btn" id="bulkDeleteBtn" type="button">Удалить выбранные</button>
+      </div>
 
       <div class="view-switch">
         <button class="view-btn active" id="listViewBtn">Список</button>
@@ -2005,12 +2282,12 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">4.8</span>
+          <span id="settingsVersion">5.0</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-25 06:52 UTC</span>
+          <span id="settingsBuild">2026-05-25 07:11 UTC</span>
         </div>
 
         <div class="settings-item">
@@ -2041,8 +2318,22 @@
         </div>
 
         <div class="settings-item">
+          <strong>Стабильный релиз 5.0</strong>
+          <span>Эта версия зафиксирована как базовая рабочая PWA-сборка перед будущей Android/APK-обёрткой. Основная логика: библиотека → экран книги → чтение.</span>
+        </div>
+
+        <div class="settings-item">
+          <strong>PWA-диагностика</strong>
+          <span>Проверяет базовую готовность приложения: Service Worker, IndexedDB, Cache API, localStorage, режим standalone.</span>
+          <div class="backup-actions">
+            <button class="ghost-btn" id="runDiagnosticsBtn" type="button">Проверить приложение</button>
+          </div>
+          <div class="diagnostics-grid" id="diagnosticsGrid"></div>
+        </div>
+
+        <div class="settings-item">
           <strong>Резервная копия</strong>
-          <span>Можно сохранить библиотеку в JSON-файл и восстановить её на этом же или другом устройстве. EPUB-файлы входят в копию, поэтому файл может быть тяжёлым.</span>
+          <span>Можно сохранить библиотеку в JSON-файл и восстановить её на этом же или другом устройстве. EPUB-файлы входят в копию, поэтому файл может быть тяжёлым. Перед импортом лучше скачать актуальную копию.</span>
           <div class="backup-actions">
             <button class="ghost-btn" id="exportBackupBtn" type="button">Скачать копию</button>
             <button class="ghost-btn" id="importBackupBtn" type="button">Импортировать</button>
@@ -2051,7 +2342,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=48.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=50.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -2072,14 +2363,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '4.8';
-    const BUILD_DATE = '2026-05-25 06:52 UTC';
+    const APP_VERSION = '5.0';
+    const BUILD_DATE = '2026-05-25 07:11 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v48';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v50';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -2099,6 +2390,8 @@
     let librarySort = uiSettings.librarySort || 'updated';
     let activeBookDetailsId = null;
     let readerReturnScreen = 'library';
+    let bulkMode = false;
+    let selectedBookIds = new Set();
     let readerFontSize = Number(uiSettings.readerFontSize || 21);
     let readerTheme = uiSettings.readerTheme || 'light';
     let readerFont = uiSettings.readerFont || 'serif';
@@ -2117,6 +2410,11 @@
       bookDetailsContent: document.getElementById('bookDetailsContent'),
       libraryMetaLine: document.getElementById('libraryMetaLine'),
       librarySortSelect: document.getElementById('librarySortSelect'),
+      selectModeBtn: document.getElementById('selectModeBtn'),
+      libraryBulkBar: document.getElementById('libraryBulkBar'),
+      bulkCount: document.getElementById('bulkCount'),
+      bulkCancelBtn: document.getElementById('bulkCancelBtn'),
+      bulkDeleteBtn: document.getElementById('bulkDeleteBtn'),
       listViewBtn: document.getElementById('listViewBtn'),
       gridViewBtn: document.getElementById('gridViewBtn'),
       readerBackBtn: document.getElementById('readerBackBtn'),
@@ -2143,6 +2441,8 @@
       fontFamilyBtn: document.getElementById('fontFamilyBtn'),
       exportBackupBtn: document.getElementById('exportBackupBtn'),
       importBackupBtn: document.getElementById('importBackupBtn'),
+      runDiagnosticsBtn: document.getElementById('runDiagnosticsBtn'),
+      diagnosticsGrid: document.getElementById('diagnosticsGrid'),
       clearDataBtn: document.getElementById('clearDataBtn'),
       readerBusy: document.getElementById('readerBusy'),
       toast: document.getElementById('toast')
@@ -2218,6 +2518,10 @@
         btn.addEventListener('click', () => setLibraryFilter(btn.dataset.libraryFilter));
       });
 
+      els.selectModeBtn.addEventListener('click', toggleBulkMode);
+      els.bulkCancelBtn.addEventListener('click', () => setBulkMode(false));
+      els.bulkDeleteBtn.addEventListener('click', deleteSelectedBooks);
+
       els.listViewBtn.addEventListener('click', () => setLibraryView('list'));
       els.gridViewBtn.addEventListener('click', () => setLibraryView('grid'));
 
@@ -2277,6 +2581,7 @@
       els.fontFamilyBtn.addEventListener('click', cycleReaderFont);
       els.exportBackupBtn.addEventListener('click', exportLibraryBackup);
       els.importBackupBtn.addEventListener('click', () => els.backupInput.click());
+      if (els.runDiagnosticsBtn) els.runDiagnosticsBtn.addEventListener('click', runDiagnostics);
       els.clearDataBtn.addEventListener('click', clearLocalData);
       window.addEventListener('beforeunload', () => { flushBookSave(); });
     }
@@ -2284,7 +2589,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=48').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=50').catch(() => {});
         });
       }
     }
@@ -2922,8 +3227,26 @@
       els.booksList.className = `books-list ${libraryView}`;
       els.libraryMetaLine.textContent = getLibraryMetaText(filtered.length, books.length);
 
+      renderBulkBar();
+
       if (!filtered.length) {
-        els.booksList.innerHTML = '<div class="empty"><strong>Ничего не найдено</strong>Измени поиск, фильтр или загрузи EPUB.</div>';
+        const hasAnyBooks = books.length > 0;
+        els.booksList.innerHTML = `
+          <div class="empty polished">
+            <strong>${hasAnyBooks ? 'Ничего не найдено' : 'Библиотека пустая'}</strong>
+            ${hasAnyBooks ? 'Измени поиск, фильтр или сортировку.' : 'Загрузи первый EPUB, чтобы начать чтение.'}
+            <div class="empty-actions">
+              ${hasAnyBooks ? '<button class="ghost-btn tiny-btn" id="resetLibraryFiltersBtn" type="button">Сбросить фильтры</button>' : '<button class="primary-btn tiny-btn" id="emptyUploadBtn" type="button">Загрузить EPUB</button>'}
+            </div>
+          </div>
+        `;
+
+        const resetBtn = document.getElementById('resetLibraryFiltersBtn');
+        const uploadBtn = document.getElementById('emptyUploadBtn');
+
+        if (resetBtn) resetBtn.addEventListener('click', resetLibraryFilters);
+        if (uploadBtn) uploadBtn.addEventListener('click', () => els.epubInput.click());
+
         return;
       }
 
@@ -3005,6 +3328,78 @@
     }
 
 
+    function setBulkMode(value) {
+      bulkMode = Boolean(value);
+      selectedBookIds = bulkMode ? selectedBookIds : new Set();
+      document.body.classList.toggle('bulk-mode', bulkMode);
+      renderBulkBar();
+      renderLibrary();
+    }
+
+    function toggleBulkMode() {
+      setBulkMode(!bulkMode);
+    }
+
+    function toggleBookSelection(bookId, selected) {
+      if (!bookId) return;
+
+      if (selected) {
+        selectedBookIds.add(bookId);
+      } else {
+        selectedBookIds.delete(bookId);
+      }
+
+      renderBulkBar();
+      renderLibrary();
+    }
+
+    function renderBulkBar() {
+      if (!els.libraryBulkBar || !els.bulkCount || !els.selectModeBtn) return;
+
+      els.libraryBulkBar.classList.toggle('show', bulkMode);
+      els.selectModeBtn.textContent = bulkMode ? 'Готово' : 'Выбрать';
+      els.bulkCount.textContent = `${selectedBookIds.size} выбрано`;
+      els.bulkDeleteBtn.disabled = selectedBookIds.size === 0;
+    }
+
+    async function deleteSelectedBooks() {
+      const ids = [...selectedBookIds];
+
+      if (!ids.length) {
+        showToast('Ничего не выбрано');
+        return;
+      }
+
+      const ok = confirm(`Удалить выбранные книги: ${ids.length}? Это действие нельзя отменить без резервной копии.`);
+      if (!ok) return;
+
+      for (const id of ids) {
+        await deleteBookById(id);
+      }
+
+      if (activeBookDetailsId && selectedBookIds.has(activeBookDetailsId)) {
+        activeBookDetailsId = null;
+      }
+
+      selectedBookIds = new Set();
+      bulkMode = false;
+      document.body.classList.remove('bulk-mode');
+      books = await getAllBooks();
+      renderAll();
+      showScreen('library');
+      showToast('Книги удалены');
+    }
+
+    function resetLibraryFilters() {
+      libraryFilter = 'all';
+      librarySort = 'updated';
+      els.searchInput.value = '';
+      saveUiSettings();
+      applyLibraryControls();
+      renderLibrary();
+    }
+
+
     function renderSettings() {
       els.settingsVersion.textContent = APP_VERSION;
       els.settingsBuild.textContent = BUILD_DATE;
@@ -3020,7 +3415,8 @@
       const bookmarksBlock = renderBookBookmarksBlock(book, bookmarks);
 
       return `
-        <article class="book-card" data-book-id="${book.id}">
+        <article class="book-card ${selectedBookIds.has(book.id) ? 'selected' : ''}" data-book-id="${book.id}">
+          <input class="book-select" type="checkbox" data-select-book="${book.id}" ${selectedBookIds.has(book.id) ? 'checked' : ''} aria-label="Выбрать книгу" />
           ${renderCover(book)}
           <div>
             <h3 class="book-title">${escapeHtml(book.title)}</h3>
@@ -3071,7 +3467,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=48" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=50" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -3080,7 +3476,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=48" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=50" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -3178,6 +3574,9 @@
       const book = books.find(item => item.id === bookId);
       if (!book) return;
 
+      const ok = confirm(`Начать книгу «${book.title}» сначала? Текущий прогресс будет сброшен.`);
+      if (!ok) return;
+
       const updated = {
         ...book,
         status: 'reading',
@@ -3221,6 +3620,26 @@
 
 
     function attachBookActions(container) {
+      container.querySelectorAll('[data-select-book]').forEach(input => {
+        input.addEventListener('click', event => {
+          event.stopPropagation();
+          toggleBookSelection(input.dataset.selectBook, input.checked);
+        });
+      });
+
+      container.querySelectorAll('.book-card').forEach(card => {
+        card.addEventListener('click', event => {
+          if (!bulkMode) return;
+          if (event.target.closest('button')) return;
+
+          const input = card.querySelector('[data-select-book]');
+          if (!input) return;
+
+          input.checked = !input.checked;
+          toggleBookSelection(input.dataset.selectBook, input.checked);
+        });
+      });
+
       container.querySelectorAll('[data-details]').forEach(btn => btn.addEventListener('click', () => openBookDetails(btn.dataset.details)));
       container.querySelectorAll('[data-open]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -3803,6 +4222,69 @@
       return new Blob([bytes], { type });
     }
 
+
+    async function runDiagnostics() {
+      const checks = [
+        {
+          title: 'Service Worker',
+          detail: 'Нужен для установки и офлайн-режима',
+          ok: 'serviceWorker' in navigator
+        },
+        {
+          title: 'IndexedDB',
+          detail: 'Нужна для EPUB, прогресса и закладок',
+          ok: 'indexedDB' in window
+        },
+        {
+          title: 'Cache API',
+          detail: 'Нужна для app shell и статических файлов',
+          ok: 'caches' in window
+        },
+        {
+          title: 'localStorage',
+          detail: 'Нужен для настроек интерфейса',
+          ok: (() => {
+            try {
+              localStorage.setItem('__my_books_test__', '1');
+              localStorage.removeItem('__my_books_test__');
+              return true;
+            } catch (error) {
+              return false;
+            }
+          })()
+        },
+        {
+          title: 'Standalone mode',
+          detail: 'Да — если приложение открыто как установленная PWA',
+          ok: window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true,
+          warnOnly: true
+        },
+        {
+          title: 'База книг',
+          detail: `${getBooksWord(books.length)} в локальной библиотеке`,
+          ok: true
+        }
+      ];
+
+      els.diagnosticsGrid.innerHTML = checks.map(item => {
+        const status = item.ok ? 'ok' : (item.warnOnly ? 'warn' : 'warn');
+        const label = item.ok ? 'OK' : (item.warnOnly ? 'WEB' : 'НЕТ');
+
+        return `
+          <div class="diagnostic-row">
+            <div>
+              <strong>${escapeHtml(item.title)}</strong>
+              <span>${escapeHtml(item.detail)}</span>
+            </div>
+            <div class="diagnostic-status ${status}">${label}</div>
+          </div>
+        `;
+      }).join('');
+
+      showToast('Диагностика выполнена');
+    }
+
+
     async function exportLibraryBackup() {
       if (!books.length) {
         showToast('Библиотека пустая');
@@ -3861,7 +4343,7 @@
 
       if (!file) return;
 
-      const ok = confirm('Импорт заменить текущую библиотеку? Текущие книги будут удалены.');
+      const ok = confirm('Импорт полностью заменит текущую библиотеку. Перед импортом лучше скачать резервную копию текущих данных. Продолжить?');
       if (!ok) return;
 
       try {
