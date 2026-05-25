@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=515" />
+  <link rel="manifest" href="./manifest.json?v=516" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.1.5</title>
+  <title>Мои книги 5.1.6</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=515') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=516') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=515') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=516') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -2359,11 +2359,25 @@
       }
     }
   
-    /* v5.1.5 reader header final mobile layout */
+    /* v5.1.6 rebuilt reader header */
+    .reader-book-hidden {
+      min-width: 0;
+    }
+
     @media (max-width: 760px) {
       body.reader-mode {
         padding: 0 !important;
         overflow-x: hidden !important;
+      }
+
+      body.reader-mode .reader-shell,
+      body.reader-mode .reader-top,
+      body.reader-mode .reader-main-line,
+      body.reader-mode .reader-page-controls {
+        width: 100% !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
       }
 
       body.reader-mode .reader-top {
@@ -2372,35 +2386,25 @@
         overflow: visible !important;
       }
 
-      body.reader-mode .reader-head {
+      body.reader-mode .reader-main-line {
         display: block !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
+        overflow: visible !important;
       }
 
-      body.reader-mode .reader-book,
-      body.reader-mode .reader-title,
-      body.reader-mode .reader-author {
+      body.reader-mode .reader-book-hidden {
         display: none !important;
-        width: 0 !important;
-        height: 0 !important;
-        max-width: 0 !important;
-        overflow: hidden !important;
       }
 
-      body.reader-mode .reader-controls {
+      body.reader-mode .reader-page-controls {
         display: grid !important;
-        grid-template-columns: minmax(86px, 1fr) 42px 42px minmax(92px, 1fr) !important;
+        grid-template-columns: minmax(82px, 1fr) 42px 42px minmax(88px, 1fr) !important;
         grid-template-areas:
           "back prev next chapter"
           "star bookmarks bookmarks bookmarks" !important;
         gap: 6px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
+        align-items: stretch !important;
+        justify-items: stretch !important;
         overflow: visible !important;
-        background: var(--bg) !important;
       }
 
       body.reader-mode #readerBackBtn {
@@ -2417,9 +2421,8 @@
 
       body.reader-mode .reader-chapter-wrap {
         grid-area: chapter !important;
-        width: 100% !important;
         min-width: 0 !important;
-        max-width: 100% !important;
+        width: 100% !important;
       }
 
       body.reader-mode .reader-bookmark-wrap {
@@ -2448,7 +2451,9 @@
         height: 42px !important;
         min-height: 42px !important;
         min-width: 0 !important;
+        max-width: 100% !important;
         padding: 0 8px !important;
+        border-radius: 10px !important;
         font-size: 13px !important;
         line-height: 1 !important;
         box-sizing: border-box !important;
@@ -2458,7 +2463,8 @@
       }
 
       body.reader-mode #prevBtn,
-      body.reader-mode #nextBtn {
+      body.reader-mode #nextBtn,
+      body.reader-mode #addBookmarkBtn {
         padding: 0 !important;
       }
 
@@ -2470,27 +2476,40 @@
       body.reader-mode .chapter-menu,
       body.reader-mode .bookmarks-menu {
         position: fixed !important;
+        top: 98px !important;
         left: 8px !important;
         right: 8px !important;
-        top: 104px !important;
         width: auto !important;
         max-width: none !important;
         z-index: 1500 !important;
       }
 
-      body.reader-mode .reader-progress,
-      body.reader-mode .reader-meta {
-        width: calc(100vw - 16px) !important;
-        max-width: calc(100vw - 16px) !important;
-        margin-left: 8px !important;
-        margin-right: 8px !important;
-      }
-
-      body.reader-mode .reader-progress {
+      body.reader-mode .reader-progress-line {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
         margin-top: 7px !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        gap: 8px !important;
+        box-sizing: border-box !important;
       }
 
-      body.reader-mode .reader-stage {
+      body.reader-mode .reader-progress-line .progress-bar {
+        min-width: 0 !important;
+      }
+
+      body.reader-mode .reader-progress-line .reader-sub {
+        display: block !important;
+        width: auto !important;
+        max-width: 120px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      body.reader-mode .reader-panel,
+      body.reader-mode #viewer,
+      body.reader-mode .reader-content {
         width: 100vw !important;
         max-width: 100vw !important;
         min-width: 0 !important;
@@ -2499,8 +2518,8 @@
     }
 
     @media (max-width: 370px) {
-      body.reader-mode .reader-controls {
-        grid-template-columns: minmax(74px, 1fr) 38px 38px minmax(78px, 1fr) !important;
+      body.reader-mode .reader-page-controls {
+        grid-template-columns: minmax(74px, 1fr) 38px 38px minmax(76px, 1fr) !important;
         gap: 5px !important;
       }
 
@@ -2527,7 +2546,7 @@
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=515" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=516" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -2536,13 +2555,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=515" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=516" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.1.5</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.1.6</p>
         </div>
       </div>
-      <span class="version-pill">v5.1.5</span>
+      <span class="version-pill">v5.1.6</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -2625,20 +2644,23 @@
       <div class="reader-shell">
         <div class="reader-top">
           <div class="reader-main-line">
-            <button class="reader-back" id="readerBackBtn">← Назад</button>
-            <div>
+            <div class="reader-book-hidden" aria-hidden="true">
               <h2 class="reader-title" id="readerTitle">Книга не выбрана</h2>
               <p class="reader-sub" id="readerAuthor">Выбери книгу в библиотеке</p>
             </div>
-            <div class="reader-page-controls">
+
+            <div class="reader-page-controls" id="readerPageControls">
+              <button class="reader-back" id="readerBackBtn">← Назад</button>
               <button class="reader-nav-btn" id="prevBtn" type="button" aria-label="Предыдущая страница">‹</button>
               <button class="reader-nav-btn" id="nextBtn" type="button" aria-label="Следующая страница">›</button>
+
               <div class="reader-chapter-wrap">
-                <button class="chapter-btn" id="chapterBtn" type="button">Главы</button>
+                <button class="chapter-btn" id="chapterBtn" type="button">Глава</button>
                 <div class="chapter-menu" id="chapterMenu"></div>
               </div>
+
               <div class="reader-bookmark-wrap">
-                <button class="reader-nav-btn bookmark-add-btn" id="addBookmarkBtn" type="button" aria-label="Добавить закладку">★</button>
+                <button class="reader-nav-btn bookmark-add-btn" id="addBookmarkBtn" type="button" aria-label="Добавить закладку">☆</button>
                 <button class="chapter-btn" id="bookmarksBtn" type="button">Закладки</button>
                 <div class="chapter-menu bookmarks-menu" id="bookmarksMenu"></div>
               </div>
@@ -2673,12 +2695,12 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.1.5</span>
+          <span id="settingsVersion">5.1.6</span>
         </div>
 
         <div class="settings-item">
           <strong>Сборка</strong>
-          <span id="settingsBuild">2026-05-25 07:58 UTC</span>
+          <span id="settingsBuild">2026-05-25 08:06 UTC</span>
         </div>
 
         <div class="settings-item">
@@ -2712,7 +2734,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=515</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=516</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -2740,7 +2762,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=515.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=516.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -2761,14 +2783,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.1.5';
-    const BUILD_DATE = '2026-05-25 07:58 UTC';
+    const APP_VERSION = '5.1.6';
+    const BUILD_DATE = '2026-05-25 08:06 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v515';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v516';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -2987,7 +3009,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=515').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=516').catch(() => {});
         });
       }
     }
@@ -3865,7 +3887,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=515" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=516" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -3874,7 +3896,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=515" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=516" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
