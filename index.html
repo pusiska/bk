@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=519" />
+  <link rel="manifest" href="./manifest.json?v=520" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.1.9</title>
+  <title>Мои книги 5.2.0</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=519') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=520') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=519') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=520') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -2600,7 +2600,7 @@
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=519" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=520" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -2609,13 +2609,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=519" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=520" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.1.9</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.2.0</p>
         </div>
       </div>
-      <span class="version-pill">v5.1.9</span>
+      <span class="version-pill">v5.2.0</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -2749,7 +2749,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.1.9</span>
+          <span id="settingsVersion">5.2.0</span>
         </div>
 
         <div class="settings-item">
@@ -2788,7 +2788,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=519</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=520</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -2816,7 +2816,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=519.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=520.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -2837,14 +2837,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.1.9';
+    const APP_VERSION = '5.2.0';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v519';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v520';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -3063,7 +3063,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=519').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=520').catch(() => {});
         });
       }
     }
@@ -3543,18 +3543,48 @@
     }
 
 
+
+    function getTocHrefSet(tocItems) {
+      return new Set(
+        (tocItems || [])
+          .map(item => stripHrefFragment(item.href))
+          .filter(Boolean)
+      );
+    }
+
+    function isTocHrefBoundary(block, tocHrefSet) {
+      if (!block || !tocHrefSet?.size) return false;
+
+      const href = stripHrefFragment(block.href);
+
+      if (!href) return false;
+
+      if (tocHrefSet.has(href)) return true;
+
+      return Array.from(tocHrefSet).some(tocHref => href.endsWith('/' + tocHref) || tocHref.endsWith('/' + href));
+    }
+
+    function mergeUnique(values) {
+      return Array.from(new Set((values || []).filter(Boolean)));
+    }
+
+
     function findPageIndexForHref(pages, href) {
       const cleanHref = stripHrefFragment(href);
 
       if (!cleanHref) return -1;
 
-      let index = pages.findIndex(page => stripHrefFragment(page.href) === cleanHref);
+      let index = pages.findIndex(page => {
+        const hrefs = mergeUnique([page.href, ...(page.hrefs || [])]).map(stripHrefFragment);
+        return hrefs.includes(cleanHref);
+      });
 
       if (index >= 0) return index;
 
       index = pages.findIndex(page => {
-        const pageHref = stripHrefFragment(page.href);
-        return pageHref.endsWith('/' + cleanHref) || cleanHref.endsWith('/' + pageHref);
+        const hrefs = mergeUnique([page.href, ...(page.hrefs || [])]).map(stripHrefFragment);
+
+        return hrefs.some(pageHref => pageHref.endsWith('/' + cleanHref) || cleanHref.endsWith('/' + pageHref));
       });
 
       return index;
@@ -3635,6 +3665,7 @@
       const pageCharLimit = getPageCharLimit();
       const streamBlocks = [];
       const seenBlockTexts = new Set();
+      const tocHrefSet = getTocHrefSet(readerData.toc || []);
       let detectedChapterCount = 0;
 
       for (let sourceIndex = 0; sourceIndex < readerData.spine.length; sourceIndex += 1) {
@@ -3679,6 +3710,7 @@
 
         const html = currentBlocks.map(block => block.html).join('');
         const plain = normalizeReaderText(getPlainText(html));
+        const hrefs = mergeUnique(currentBlocks.map(block => block.href));
 
         if (plain.length < 2) {
           currentBlocks = [];
@@ -3689,7 +3721,8 @@
         pages.push({
           html,
           chapterIndex: Math.max(0, chapterIndex),
-          href: currentBlocks[0]?.href || '',
+          href: hrefs[0] || '',
+          hrefs,
           sourceIndex: currentBlocks[0]?.sourceIndex || 0
         });
 
@@ -3698,6 +3731,18 @@
       };
 
       for (const block of streamBlocks) {
+        const blockHref = stripHrefFragment(block.href);
+        const currentHrefs = mergeUnique(currentBlocks.map(item => stripHrefFragment(item.href)));
+        const startsOfficialTocHref = isTocHrefBoundary(block, tocHrefSet);
+        const sameHrefAlreadyOnPage = currentHrefs.includes(blockHref);
+        const shouldBreakForToc = currentBlocks.length
+          && startsOfficialTocHref
+          && !sameHrefAlreadyOnPage;
+
+        if (shouldBreakForToc) {
+          pushCurrentPage(Math.max(0, currentChapterIndex));
+        }
+
         if (block.chapterTitle) {
           if (currentBlocks.length) {
             pushCurrentPage(Math.max(0, currentChapterIndex));
@@ -3746,6 +3791,7 @@
           html: '<p class="reader-empty-page">Текст книги не найден.</p>',
           chapterIndex: 0,
           href: '',
+          hrefs: [],
           sourceIndex: 0
         });
       }
@@ -4284,7 +4330,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=519" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=520" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -4293,7 +4339,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=519" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=520" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -4811,7 +4857,10 @@
 
       activeReaderData.pages.splice(activePageIndex + 1, 0, {
         html: split.second,
-        chapterIndex: currentPage.chapterIndex
+        chapterIndex: currentPage.chapterIndex,
+        href: currentPage.href || '',
+        hrefs: currentPage.hrefs || [],
+        sourceIndex: currentPage.sourceIndex || 0
       });
 
       activeReaderData.chapters.forEach(chapter => {
