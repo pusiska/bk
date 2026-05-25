@@ -1,11 +1,27 @@
-const CACHE_NAME = 'my-books-epub-reader-v43';
+const CACHE_NAME = 'my-books-epub-reader-v44';
 
 const APP_SHELL = [
   './',
-  './index.html?v=43',
-  './manifest.json?v=43',
+  './index.html?v=44',
+  './manifest.json?v=44',
   './icons/icon-192.png',
-  './icons/icon-512.png'
+  './icons/icon-512.png',
+  './icons/logo-main.svg?v=44',
+  './icons/logo-app.svg?v=44'
+];
+
+const STATIC_EXTENSIONS = [
+  '.html',
+  '.json',
+  '.js',
+  '.css',
+  '.png',
+  '.svg',
+  '.webp',
+  '.jpg',
+  '.jpeg',
+  '.ttf',
+  '.otf'
 ];
 
 self.addEventListener('install', event => {
@@ -33,19 +49,31 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  const isNavigate = event.request.mode === 'navigate';
+  const isStatic = STATIC_EXTENSIONS.some(ext => requestUrl.pathname.endsWith(ext));
+
+  if (!isNavigate && !isStatic) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
 
       return fetch(event.request).then(response => {
-        if (!response || response.status !== 200) return response;
+        if (!response || response.status !== 200 || response.type !== 'basic') {
+          return response;
+        }
 
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+        if (isStatic || isNavigate) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+        }
+
         return response;
       }).catch(() => {
-        if (event.request.mode === 'navigate') {
-          return caches.match('./index.html?v=43') || caches.match('./index.html');
+        if (isNavigate) {
+          return caches.match('./index.html?v=44') || caches.match('./index.html');
         }
 
         throw new Error('Network request failed');
