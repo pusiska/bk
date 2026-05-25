@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#fbfaf6" />
-  <link rel="manifest" href="./manifest.json?v=42" />
+  <meta name="theme-color" content="#F6F1E8" />
+  <link rel="manifest" href="./manifest.json?v=43" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 4.2</title>
+  <title>Мои книги 4.3</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=42') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=43') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=42') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=43') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -1324,6 +1324,120 @@
       border-radius: 11px;
     }
 
+
+    /* v4.3 brand assets refinement */
+    .brand-mark {
+      width: 34px;
+      height: 44px;
+      background: transparent !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow: visible;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+    .cover.placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #FCF8F0 0%, #F2E9DA 100%);
+      border: 1px solid rgba(205, 186, 154, .6);
+      color: transparent;
+      font-size: 0;
+    }
+
+    .cover.placeholder img {
+      width: 62%;
+      height: 62%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .app-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 20%, rgba(205,186,154,.18), transparent 35%), #F6F1E8;
+      transition: opacity .35s ease, visibility .35s ease;
+    }
+
+    .app-splash-inner {
+      width: min(320px, calc(100vw - 48px));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .app-splash-logo {
+      width: 118px;
+      height: 148px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 20px rgba(23,23,23,.10));
+    }
+
+    .app-splash-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1;
+      color: #171717;
+      letter-spacing: .01em;
+      margin-top: 4px;
+    }
+
+    .app-splash-sub {
+      font-family: var(--font-main);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #A99677;
+    }
+
+    .app-splash-line {
+      width: 148px;
+      height: 2px;
+      background: rgba(205,186,154,.55);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .app-splash-line span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      background: #171717;
+      border-radius: 999px;
+      animation: splashMove 1.25s ease-in-out infinite alternate;
+    }
+
+    @keyframes splashMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(205%); }
+    }
+
+    body.app-loaded .app-splash {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
     @media (max-width: 420px) {
       body {
         padding: 12px;
@@ -1358,17 +1472,25 @@
   </style>
 </head>
 
-<body>
+<body class="app-loading">
+  <div id="appSplash" class="app-splash" aria-hidden="true">
+    <div class="app-splash-inner">
+      <img src="./icons/logo-main.svg?v=43" alt="Мои книги" class="app-splash-logo" />
+      <div class="app-splash-title">Мои книги</div>
+      <div class="app-splash-sub">личная библиотека всегда с вами</div>
+      <div class="app-splash-line"><span></span></div>
+    </div>
+  </div>
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><span>К</span></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=43" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 4.2</p>
+          <p class="brand-subtitle">EPUB-читалка · 4.3</p>
         </div>
       </div>
-      <span class="version-pill">v4.2</span>
+      <span class="version-pill">v4.3</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
     </header>
 
@@ -1455,7 +1577,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">4.2</span>
+          <span id="settingsVersion">4.3</span>
         </div>
 
         <div class="settings-item">
@@ -1476,7 +1598,7 @@
 
         <div class="settings-item">
           <strong>Service Worker</strong>
-          <span>my-books-epub-reader-v42</span>
+          <span>my-books-epub-reader-v43</span>
         </div>
 
         <div class="settings-item">
@@ -1492,7 +1614,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=42.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=43.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -1510,13 +1632,13 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '4.2';
-    const BUILD_DATE = '2026-05-19 07:54 UTC';
+    const APP_VERSION = '4.3';
+    const BUILD_DATE = '2026-05-19 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v40';
     const DB_VERSION = 1;
     const BOOKS_STORE = 'books';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v42';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v43';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -1575,9 +1697,11 @@
       try {
         await loadZipLibrary();
         await init();
+        hideSplash();
       } catch (error) {
         console.error(error);
         showToast('EPUB-модуль не загрузился');
+        hideSplash();
       }
     });
 
@@ -1592,6 +1716,12 @@
       }
 
       throw new Error('JSZip unavailable');
+    }
+
+    function hideSplash() {
+      setTimeout(() => {
+        document.body.classList.add('app-loaded');
+      }, 280);
     }
 
     function loadScript(src) {
@@ -1673,7 +1803,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=42').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=43').catch(() => {});
         });
       }
     }
@@ -2191,7 +2321,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover">${escapeHtml(getCoverLetters(book.title))}</div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=43" alt="Логотип Мои книги" /></div>`;
     }
 
     function attachBookActions(container) {

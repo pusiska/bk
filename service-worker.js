@@ -1,9 +1,9 @@
-const CACHE_NAME = 'my-books-epub-reader-v42';
+const CACHE_NAME = 'my-books-epub-reader-v43';
 
 const APP_SHELL = [
   './',
-  './index.html?v=42',
-  './manifest.json?v=42',
+  './index.html?v=43',
+  './manifest.json?v=43',
   './icons/icon-192.png',
   './icons/icon-512.png'
 ];
@@ -45,7 +45,7 @@ self.addEventListener('fetch', event => {
         return response;
       }).catch(() => {
         if (event.request.mode === 'navigate') {
-          return caches.match('./index.html?v=42') || caches.match('./index.html');
+          return caches.match('./index.html?v=43') || caches.match('./index.html');
         }
 
         throw new Error('Network request failed');
