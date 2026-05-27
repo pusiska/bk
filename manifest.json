@@ -1,8 +1,8 @@
 {
-  "name": "Мои книги 5.2.4",
+  "name": "Мои книги 5.2.5",
   "short_name": "Книги",
-  "description": "Личная EPUB-библиотека и PWA-читалка. Стабильная версия после hotfix 5.2.4.",
-  "start_url": "/bk/index.html?v=524",
+  "description": "Личная EPUB-библиотека и PWA-читалка. Boot hotfix 5.2.5.",
+  "start_url": "/bk/index.html?v=525",
   "scope": "/bk/",
   "display": "standalone",
   "background_color": "#F6F1E8",

@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=524" />
+  <link rel="manifest" href="./manifest.json?v=525" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.2.4</title>
+  <title>Мои книги 5.2.5</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=524') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=525') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=524') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=525') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3023,13 +3023,39 @@
       color: var(--text);
     }
 
+  
+    /* v5.2.5 boot fail-safe */
+    .boot-error-card {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0;
+      padding: 16px;
+      border: 1px solid rgba(143, 54, 43, .22);
+      border-radius: 20px;
+      background: rgba(255, 244, 241, .84);
+      color: var(--text);
+      box-shadow: var(--shadow);
+    }
+
+    .boot-error-card code {
+      display: block;
+      white-space: pre-wrap;
+      word-break: break-word;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(255, 253, 248, .70);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=524" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=525" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -3038,13 +3064,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=524" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=525" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.2.4</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.2.5</p>
         </div>
       </div>
-      <span class="version-pill">v5.2.4</span>
+      <span class="version-pill">v5.2.5</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -3179,7 +3205,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.2.4</span>
+          <span id="settingsVersion">5.2.5</span>
         </div>
 
         <div class="settings-item">
@@ -3218,7 +3244,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=524</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=525</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -3261,7 +3287,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=524.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=525.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -3282,14 +3308,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.2.4';
+    const APP_VERSION = '5.2.5';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v524';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v525';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -3388,7 +3414,7 @@
     });
 
     async function loadZipLibrary() {
-      // v5.2.4 jszip loader hotfix
+      // v5.2.5 jszip loader hotfix
       if (window.JSZip) return window.JSZip;
 
       const sources = [
@@ -3411,15 +3437,7 @@
 
     async function init() {
       console.info('My Books EPUB build', APP_VERSION, BUILD_DATE);
-
-      try {
-        await loadZipLibrary();
-      } catch (error) {
-        console.warn(error);
-        showToast('EPUB-модуль загрузится при добавлении книги');
-      }
-
-      db = await openDatabase();
+db = await openDatabase();
       books = await getAllBooks();
 
       bindEvents();
@@ -3518,7 +3536,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=524').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=525').catch(() => {});
         });
       }
     }
@@ -4901,7 +4919,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=524" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=525" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -4910,7 +4928,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=524" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=525" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -6195,6 +6213,79 @@
       els.toast.classList.add('show');
       toastTimer = setTimeout(() => els.toast.classList.remove('show'), 1900);
     }
+  
+    /* v5.2.5 boot fail-safe runtime */
+    window.__myBooksForceHideSplash = function forceHideSplash525() {
+      try {
+        document.body.classList.add('app-loaded');
+        document.body.classList.remove('app-loading');
+
+        const splash = document.getElementById('appSplash');
+
+        if (splash) {
+          splash.style.opacity = '0';
+          splash.style.pointerEvents = 'none';
+          splash.style.display = 'none';
+        }
+      } catch (error) {
+        console.warn('forceHideSplash525 failed', error);
+      }
+    };
+
+    window.__myBooksShowBootError = function showBootError525(error) {
+      try {
+        console.error('Boot error:', error);
+
+        const message = error?.message || String(error || 'unknown error');
+        const home = document.getElementById('screen-home');
+        const dashboard = document.getElementById('dashboardGrid');
+        const reading = document.getElementById('readingBooks');
+
+        document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+
+        if (home) {
+          home.classList.add('active');
+        }
+
+        if (dashboard) {
+          dashboard.innerHTML = `
+            <div class="boot-error-card" style="grid-column: 1 / -1;">
+              <strong>Приложение запустилось, но часть данных не загрузилась</strong>
+              <span>Ошибка ниже нужна для диагностики. Можно попробовать очистить кэш PWA и перезагрузить страницу.</span>
+              <code>${String(message).replace(/[<>&]/g, char => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[char]))}</code>
+            </div>
+          `;
+        }
+
+        if (reading) {
+          reading.innerHTML = '<div class="empty"><strong>Книги не загрузились</strong>Попробуй перезагрузить страницу или очистить кэш PWA.</div>';
+        }
+      } catch (innerError) {
+        console.warn('showBootError525 failed', innerError);
+      }
+    };
+
+    window.addEventListener('error', event => {
+      if (document.body.classList.contains('app-loading')) {
+        window.__myBooksShowBootError(event.error || new Error(event.message));
+        window.__myBooksForceHideSplash();
+      }
+    });
+
+    window.addEventListener('unhandledrejection', event => {
+      if (document.body.classList.contains('app-loading')) {
+        window.__myBooksShowBootError(event.reason || new Error('Unhandled rejection'));
+        window.__myBooksForceHideSplash();
+      }
+    });
+
+    setTimeout(() => {
+      if (document.body.classList.contains('app-loading')) {
+        console.warn('v5.2.5 boot timeout fail-safe activated');
+        window.__myBooksForceHideSplash();
+      }
+    }, 4200);
+
   </script>
 </body>
 </html>
