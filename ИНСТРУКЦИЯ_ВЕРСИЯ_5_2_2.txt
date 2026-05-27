@@ -1,0 +1,33 @@
+МОИ КНИГИ — ВЕРСИЯ 5.2.2
+
+Тип версии:
+Modern Minimalist / Apple Style + устойчивость + подготовка синхронизации.
+
+Визуал:
+1. Уточнён стиль под Modern Minimalist / Apple Style.
+2. Нижняя навигация получила glassmorphism blur 20px.
+3. Карточки книг: radius 24px, мягкие тени, эффект корешка у обложек.
+4. Анимации: fade/slide между экранами, scale 0.95 при нажатии.
+
+Чтение:
+1. Боковые отступы минимум 24px и 10vw на мобильных.
+2. Основной шрифт чтения: Georgia / serif.
+3. Добавлен CSS hyphens: auto.
+4. Tap-зоны сохранены: левый край назад, правый край вперёд, центр показывает/скрывает меню.
+5. Добавлена поддержка изображений внутри EPUB: img конвертируются в data:image из ZIP и безопасно отображаются в тексте.
+
+Синхронизация:
+1. Добавлен объект CloudConfig { url, key, active }.
+2. Настройки Supabase сохраняются в localStorage.
+3. Добавлена функция pushUpdateToCloud(update).
+4. pushUpdateToCloud вызывается при изменении progress/currentPageIndex и при изменении закладок.
+5. Реальной отправки в Supabase пока нет, это безопасная архитектурная заглушка.
+
+Техническая устойчивость:
+1. Записи в IndexedDB bookMeta/bookFiles обёрнуты в try/catch.
+2. При QuotaExceededError показывается понятное сообщение пользователю.
+3. Service Worker v522 кэширует index, manifest, иконки, SVG, шрифты и локальный JSZip, если файл добавлен.
+4. Структура IndexedDB сохранена: bookMeta / bookFiles.
+
+Открывать:
+https://pusiska.github.io/bk/index.html?v=522

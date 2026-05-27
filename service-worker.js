@@ -1,14 +1,17 @@
-const CACHE_NAME = 'my-books-epub-reader-v520';
+const CACHE_NAME = 'my-books-epub-reader-v522';
 
 const APP_SHELL = [
   './',
   './index.html',
-  './index.html?v=520',
+  './index.html?v=522',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/logo-main.svg',
-  './icons/logo-app.svg'
+  './icons/logo-app.svg',
+  './fonts/uvkits.ttf',
+  './fonts/KONSTRUKT-Regular.otf',
+  './libs/jszip.min.js'
 ];
 
 const STATIC_EXTENSIONS = [
@@ -38,7 +41,7 @@ function getCacheKey(request) {
 }
 
 async function getOfflineShell() {
-  return await caches.match('./index.html?v=520') || await caches.match('./index.html') || await caches.match('./');
+  return await caches.match('./index.html?v=522') || await caches.match('./index.html') || await caches.match('./');
 }
 
 self.addEventListener('install', event => {
