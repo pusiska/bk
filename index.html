@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=523" />
+  <link rel="manifest" href="./manifest.json?v=524" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.2.3</title>
+  <title>Мои книги 5.2.4</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=523') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=524') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=523') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=524') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3011,102 +3011,7 @@
     }
 
   
-    /* v5.2.3 advanced functionality */
-    .selection-toolbar {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 50%;
-      bottom: max(74px, env(safe-area-inset-bottom, 0px) + 74px);
-      transform: translateX(-50%);
-      gap: 8px;
-      padding: 8px;
-      border: 1px solid rgba(205, 186, 154, .45);
-      border-radius: 18px;
-      background: rgba(255, 253, 248, .82);
-      box-shadow: 0 18px 44px rgba(23, 23, 23, .14);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-
-    .selection-toolbar.show {
-      display: flex;
-    }
-
-    .reader-content img,
-    .reader-content svg {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      margin: 18px auto;
-      border-radius: 14px;
-      box-shadow: 0 12px 32px rgba(23, 23, 23, .12);
-    }
-
-    .reader-content {
-      hyphens: auto;
-      -webkit-hyphens: auto;
-      overflow-wrap: break-word;
-    }
-
-    body.reader-scroll-mode #viewer {
-      height: 100%;
-      overflow: hidden;
-    }
-
-    body.reader-scroll-mode .reader-content.continuous {
-      height: 100%;
-      overflow-y: auto !important;
-      overflow-x: hidden !important;
-      scroll-behavior: smooth;
-      padding-bottom: 72px !important;
-    }
-
-    .continuous-page {
-      min-height: 92vh;
-      padding-bottom: 28px;
-      border-bottom: 1px solid rgba(205, 186, 154, .18);
-    }
-
-    .reader-nav-btn.tts-active {
-      background: var(--text) !important;
-      color: var(--surface) !important;
-    }
-
-    .note-row {
-      display: grid;
-      gap: 6px;
-      padding: 10px;
-      border: 1px solid var(--line-soft);
-      border-radius: 16px;
-      background: rgba(255, 253, 248, .62);
-      margin-top: 8px;
-    }
-
-    .note-row blockquote {
-      margin: 0;
-      color: var(--text);
-      line-height: 1.42;
-    }
-
-    .note-row small {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .collection-chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 5px 9px;
-      margin: 3px 3px 0 0;
-      border: 1px solid rgba(205, 186, 154, .48);
-      border-radius: 999px;
-      background: rgba(255, 253, 248, .74);
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 800;
-    }
-
+    /* v5.2.4 stability hotfix */
     .error-report-card {
       display: grid;
       gap: 10px;
@@ -3124,7 +3029,7 @@
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=523" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=524" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -3133,13 +3038,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=523" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=524" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.2.3</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.2.4</p>
         </div>
       </div>
-      <span class="version-pill">v5.2.3</span>
+      <span class="version-pill">v5.2.4</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -3170,7 +3075,6 @@
       <div class="library-toolbar">
         <input id="searchInput" class="input" type="search" placeholder="Поиск по названию и автору" />
         <button class="ghost-btn" id="uploadLibraryBtn">Загрузить EPUB</button>
-        <button class="ghost-btn" id="openDirectBtn" type="button">Открыть из папки</button>
         <button class="ghost-btn" id="selectModeBtn" type="button">Выбрать</button>
       </div>
 
@@ -3243,9 +3147,6 @@
                 <button class="chapter-btn" id="bookmarksBtn" type="button">Закладки</button>
                 <div class="chapter-menu bookmarks-menu" id="bookmarksMenu"></div>
               </div>
-
-              <button class="reader-nav-btn" id="ttsBtn" type="button" aria-label="Озвучить текущую страницу">▶</button>
-              <button class="reader-nav-btn" id="readerModeBtn" type="button" aria-label="Переключить режим чтения">↕</button>
             </div>
           </div>
 
@@ -3278,7 +3179,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.2.3</span>
+          <span id="settingsVersion">5.2.4</span>
         </div>
 
         <div class="settings-item">
@@ -3310,19 +3211,14 @@
             <button id="fontPlusBtn" type="button">A+</button>
             <button id="themeToggleBtn" type="button">Тема</button>
             <button id="fontFamilyBtn" type="button">Шрифт</button>
-            <button id="settingsReaderModeBtn" type="button">Режим</button>
           </div>
-          <div class="settings-subtitle">Голос озвучки</div>
-          <select id="ttsVoiceSelect" class="select"></select>
-          <div class="settings-subtitle">Темп озвучки</div>
-          <input id="ttsRateInput" class="input" type="range" min="0.7" max="1.6" step="0.1" value="1" />
         </div>
 
         <div class="settings-item">
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=523</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=524</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -3341,25 +3237,17 @@
 
         <div class="settings-item">
           <strong>Синхронизация</strong>
-          <span>Supabase Auth + синхронизация прогресса, библиотеки, цитат и заметок. Для работы нужны URL и Anon Key проекта Supabase.</span>
-          <label class="settings-subtitle" for="cloudSyncActive">Активировать CloudConfig.active</label>
+          <span>Подготовка к Supabase. Сейчас работает архитектурная заглушка: данные сохраняются локально, а pushUpdateToCloud() вызывается при изменении прогресса, currentPageIndex и закладок.</span>
+          <label class="settings-subtitle" for="cloudSyncActive">Активировать sync-заглушку</label>
           <label class="sync-status-pill"><input id="cloudSyncActive" type="checkbox" /> CloudConfig.active</label>
           <div class="settings-subtitle">Supabase URL</div>
           <input class="input" id="cloudSupabaseUrl" type="url" placeholder="https://project.supabase.co" autocomplete="off" />
           <div class="settings-subtitle">Anon Key</div>
           <input class="input" id="cloudAnonKey" type="password" placeholder="eyJ..." autocomplete="off" />
-          <div class="settings-subtitle">Email</div>
-          <input class="input" id="cloudEmail" type="email" placeholder="mail@example.com" autocomplete="username" />
-          <div class="settings-subtitle">Password</div>
-          <input class="input" id="cloudPassword" type="password" placeholder="Пароль" autocomplete="current-password" />
           <div class="backup-actions">
-            <button class="ghost-btn" id="saveCloudSettingsBtn" type="button">Сохранить настройки</button>
-            <button class="ghost-btn" id="cloudSignUpBtn" type="button">Регистрация</button>
-            <button class="ghost-btn" id="cloudSignInBtn" type="button">Вход</button>
-            <button class="ghost-btn" id="cloudSignOutBtn" type="button">Выход</button>
-            <button class="ghost-btn" id="syncNowBtn" type="button">Синхронизировать</button>
+            <button class="ghost-btn" id="saveCloudSettingsBtn" type="button">Сохранить sync</button>
+            <button class="ghost-btn" id="testCloudSyncBtn" type="button">Тест pushUpdate</button>
           </div>
-          <span id="cloudStatusText">Cloud: не подключено</span>
         </div>
 
         <div class="settings-item">
@@ -3373,7 +3261,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=523.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=524.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -3391,22 +3279,17 @@
     <div class="reader-busy-card">Пересобираю страницы…</div>
   </div>
 
-  <div class="selection-toolbar" id="selectionToolbar" aria-hidden="true">
-    <button class="ghost-btn tiny-btn" id="saveQuoteBtn" type="button">Цитата</button>
-    <button class="ghost-btn tiny-btn" id="saveNoteBtn" type="button">Заметка</button>
-  </div>
-
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.2.3';
+    const APP_VERSION = '5.2.4';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v523';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v524';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -3487,22 +3370,6 @@
       cloudSyncActive: document.getElementById('cloudSyncActive'),
       saveCloudSettingsBtn: document.getElementById('saveCloudSettingsBtn'),
       testCloudSyncBtn: document.getElementById('testCloudSyncBtn'),
-      cloudEmail: document.getElementById('cloudEmail'),
-      cloudPassword: document.getElementById('cloudPassword'),
-      cloudSignUpBtn: document.getElementById('cloudSignUpBtn'),
-      cloudSignInBtn: document.getElementById('cloudSignInBtn'),
-      cloudSignOutBtn: document.getElementById('cloudSignOutBtn'),
-      syncNowBtn: document.getElementById('syncNowBtn'),
-      cloudStatusText: document.getElementById('cloudStatusText'),
-      openDirectBtn: document.getElementById('openDirectBtn'),
-      ttsBtn: document.getElementById('ttsBtn'),
-      readerModeBtn: document.getElementById('readerModeBtn'),
-      settingsReaderModeBtn: document.getElementById('settingsReaderModeBtn'),
-      ttsVoiceSelect: document.getElementById('ttsVoiceSelect'),
-      ttsRateInput: document.getElementById('ttsRateInput'),
-      selectionToolbar: document.getElementById('selectionToolbar'),
-      saveQuoteBtn: document.getElementById('saveQuoteBtn'),
-      saveNoteBtn: document.getElementById('saveNoteBtn'),
       clearDataBtn: document.getElementById('clearDataBtn'),
       readerBusy: document.getElementById('readerBusy'),
       toast: document.getElementById('toast')
@@ -3521,49 +3388,44 @@
     });
 
     async function loadZipLibrary() {
-      if (typeof JSZip !== 'undefined') return;
+      // v5.2.4 jszip loader hotfix
+      if (window.JSZip) return window.JSZip;
 
-      for (const src of JSZIP_SOURCES) {
+      const sources = [
+        './libs/jszip.min.js',
+        'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js',
+        'https://unpkg.com/jszip@3.10.1/dist/jszip.min.js'
+      ];
+
+      for (const src of sources) {
         try {
           await loadScript(src);
-          if (typeof JSZip !== 'undefined') return;
-        } catch {}
+          if (window.JSZip) return window.JSZip;
+        } catch (error) {
+          console.warn('JSZip source failed:', src, error);
+        }
       }
 
-      throw new Error('JSZip unavailable');
-    }
-
-    function hideSplash() {
-      setTimeout(() => {
-        document.body.classList.add('app-loaded');
-      }, 280);
-    }
-
-    function loadScript(src) {
-      return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = src;
-        script.async = true;
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
-      });
+      throw new Error('EPUB-модуль не загрузился');
     }
 
     async function init() {
       console.info('My Books EPUB build', APP_VERSION, BUILD_DATE);
 
+      try {
+        await loadZipLibrary();
+      } catch (error) {
+        console.warn(error);
+        showToast('EPUB-модуль загрузится при добавлении книги');
+      }
+
       db = await openDatabase();
       books = await getAllBooks();
-      await importSharedFilesFromServiceWorker();
-      await restoreSupabaseSession();
 
       bindEvents();
       applyLibraryView();
       applyLibraryControls();
       applyReadingSettings();
-      applyReaderMode();
-      loadTtsVoices();
       renderAll();
       registerServiceWorker();
     }
@@ -3649,24 +3511,6 @@
       if (els.saveCloudSettingsBtn) els.saveCloudSettingsBtn.addEventListener('click', saveCloudSettingsFromForm);
       if (els.testCloudSyncBtn) els.testCloudSyncBtn.addEventListener('click', () => pushUpdateToCloud({ type: 'manual-test', at: new Date().toISOString() }));
       if (els.readerCenterToggle) els.readerCenterToggle.addEventListener('click', toggleReaderControls);
-      
-      if (els.openDirectBtn) els.openDirectBtn.addEventListener('click', openEpubViaFileSystem);
-      if (els.cloudSignUpBtn) els.cloudSignUpBtn.addEventListener('click', cloudSignUp);
-      if (els.cloudSignInBtn) els.cloudSignInBtn.addEventListener('click', cloudSignIn);
-      if (els.cloudSignOutBtn) els.cloudSignOutBtn.addEventListener('click', cloudSignOut);
-      if (els.syncNowBtn) els.syncNowBtn.addEventListener('click', syncLocalLibraryToCloud);
-      if (els.ttsBtn) els.ttsBtn.addEventListener('click', speakCurrentPage);
-      if (els.readerModeBtn) els.readerModeBtn.addEventListener('click', toggleReaderMode);
-      if (els.settingsReaderModeBtn) els.settingsReaderModeBtn.addEventListener('click', toggleReaderMode);
-      if (els.ttsVoiceSelect) els.ttsVoiceSelect.addEventListener('change', saveTtsSettings);
-      if (els.ttsRateInput) els.ttsRateInput.addEventListener('input', saveTtsSettings);
-      if (els.saveQuoteBtn) els.saveQuoteBtn.addEventListener('click', () => saveSelectionAsNote('quote'));
-      if (els.saveNoteBtn) els.saveNoteBtn.addEventListener('click', () => saveSelectionAsNote('note'));
-      if ('speechSynthesis' in window) {
-        speechSynthesis.addEventListener('voiceschanged', loadTtsVoices);
-      }
-      document.addEventListener('selectionchange', handleReaderSelection);
-
       els.clearDataBtn.addEventListener('click', clearLocalData);
       window.addEventListener('beforeunload', () => { flushBookSave(); });
     }
@@ -3674,7 +3518,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=523').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=524').catch(() => {});
         });
       }
     }
@@ -3757,8 +3601,7 @@
         try {
           const request = getFilesStore('readwrite').put({
             id: bookId,
-            epubBlob: epubBlob instanceof Blob ? epubBlob : null,
-            fileHandle: epubBlob && typeof epubBlob.getFile === 'function' ? epubBlob : null
+            epubBlob
           });
 
           request.onsuccess = () => resolve();
@@ -3850,149 +3693,6 @@
       await putBookMeta(bookToSave);
     }
 
-    
-    async function openEpubViaFileSystem() {
-      if (!window.showOpenFilePicker) {
-        showToast('Браузер не поддерживает File System Access API');
-        return;
-      }
-
-      try {
-        const [handle] = await window.showOpenFilePicker({
-          types: [{
-            description: 'EPUB',
-            accept: { 'application/epub+zip': ['.epub'] }
-          }],
-          multiple: false
-        });
-
-        const file = await handle.getFile();
-        await importEpubFileAdvanced(file, { fileHandle: handle });
-      } catch (error) {
-        if (error?.name !== 'AbortError') {
-          console.error(error);
-          showToast('Не удалось открыть файл');
-        }
-      }
-    }
-
-    async function importEpubFileAdvanced(file, options = {}) {
-      if (!file) return null;
-
-      if (!file.name.toLowerCase().endsWith('.epub')) {
-        showToast('Нужен файл EPUB');
-        return null;
-      }
-
-      console.info('EPUB file selected:', { name: file.name, size: file.size, type: file.type });
-      showToast('Читаю EPUB');
-
-      const fallbackTitle = file.name.replace(/\.epub$/i, '');
-      const arrayBuffer = await file.arrayBuffer();
-
-      await warmupEpubWorker(arrayBuffer.slice(0), fallbackTitle);
-
-      const syntheticEvent = {
-        target: {
-          files: [new File([arrayBuffer], file.name, { type: file.type || 'application/epub+zip' })],
-          value: ''
-        }
-      };
-
-      if (options.fileHandle) {
-        window.__pendingFileHandle = options.fileHandle;
-      }
-
-      return handleEpubUpload(syntheticEvent);
-    }
-
-    async function importSharedFilesFromServiceWorker() {
-      try {
-        const sharedDb = await new Promise((resolve, reject) => {
-          const request = indexedDB.open(SHARED_DB_NAME, 1);
-
-          request.onupgradeneeded = event => {
-            const database = event.target.result;
-            if (!database.objectStoreNames.contains(SHARED_STORE_NAME)) {
-              database.createObjectStore(SHARED_STORE_NAME, { keyPath: 'id' });
-            }
-          };
-
-          request.onsuccess = () => resolve(request.result);
-          request.onerror = () => reject(request.error);
-        });
-
-        const files = await new Promise((resolve, reject) => {
-          const transaction = sharedDb.transaction(SHARED_STORE_NAME, 'readwrite');
-          const store = transaction.objectStore(SHARED_STORE_NAME);
-          const getAllRequest = store.getAll();
-
-          getAllRequest.onsuccess = () => {
-            const result = getAllRequest.result || [];
-            store.clear();
-            resolve(result);
-          };
-
-          getAllRequest.onerror = () => reject(getAllRequest.error);
-        });
-
-        for (const item of files) {
-          if (item?.file) await importEpubFileAdvanced(item.file);
-        }
-
-        if (files.length) showToast('Файл из системы импортирован');
-      } catch (error) {
-        console.warn('Shared file import skipped:', error);
-      }
-    }
-
-    async function warmupEpubWorker(arrayBuffer, fallbackTitle) {
-      if (!window.Worker || !window.JSZip) return null;
-
-      return new Promise(resolve => {
-        try {
-          const workerCode = `
-            self.onmessage = async event => {
-              try {
-                importScripts('${location.origin + location.pathname.replace(/[^/]*$/, '')}libs/jszip.min.js');
-                const zip = await JSZip.loadAsync(event.data.arrayBuffer);
-                const names = Object.keys(zip.files || {});
-                self.postMessage({ ok: true, fallbackTitle: event.data.fallbackTitle, fileCount: names.length });
-              } catch (error) {
-                self.postMessage({ ok: false, message: error.message });
-              }
-            };
-          `;
-
-          const blob = new Blob([workerCode], { type: 'application/javascript' });
-          const worker = new Worker(URL.createObjectURL(blob));
-          const timer = setTimeout(() => {
-            worker.terminate();
-            resolve(null);
-          }, 2500);
-
-          worker.onmessage = event => {
-            clearTimeout(timer);
-            worker.terminate();
-            console.info('[epub-worker]', event.data);
-            resolve(event.data);
-          };
-
-          worker.onerror = () => {
-            clearTimeout(timer);
-            worker.terminate();
-            resolve(null);
-          };
-
-          worker.postMessage({ arrayBuffer, fallbackTitle }, [arrayBuffer]);
-        } catch (error) {
-          console.warn('Worker warmup failed:', error);
-          resolve(null);
-        }
-      });
-    }
-
-
     async function handleEpubUpload(event) {
       const file = event.target.files?.[0];
       event.target.value = '';
@@ -4006,6 +3706,14 @@
 
       console.info('EPUB file selected:', { name: file.name, size: file.size, type: file.type });
       showToast('Читаю EPUB');
+
+      try {
+        await loadZipLibrary();
+      } catch (error) {
+        console.error(error);
+        showToast('EPUB-модуль не загрузился');
+        return;
+      }
 
       const fallbackTitle = file.name.replace(/\.epub$/i, '');
       const arrayBuffer = await file.arrayBuffer();
@@ -4031,7 +3739,6 @@
           author: parsed.author || 'Автор не указан',
           status: 'reading',
           fileName: file.name,
-        externalFile: Boolean(pendingHandle),
           fileSize: file.size,
           coverData: parsed.coverData || '',
           progress: 0,
@@ -4984,7 +4691,7 @@
       const normalizedQuery = String(query || '').trim().toLowerCase();
 
       let result = books.filter(book => {
-        const text = [book.title, book.author, ...(Array.isArray(book.collections) ? book.collections : []), ...getBookNotes(book).flatMap(note => [note.text, note.note, note.chapterTitle])].join(' ').toLowerCase();
+        const text = [book.title, book.author].join(' ').toLowerCase();
         const queryMatch = !normalizedQuery || text.includes(normalizedQuery);
 
         if (!queryMatch) return false;
@@ -5139,8 +4846,6 @@
       const pageLabel = totalPages ? `${readPages} / ${totalPages} стр.` : 'страницы не посчитаны';
       const statusLabel = book.status === 'read' ? 'прочитано' : 'читаю';
       const bookmarks = getBookBookmarks(book);
-      const notes = getBookNotes(book);
-      const collections = Array.isArray(book.collections) ? book.collections : [];
       const bookmarksBlock = renderBookBookmarksBlock(book, bookmarks);
 
       return `
@@ -5196,7 +4901,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=523" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=524" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -5205,7 +4910,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=523" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=524" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -5230,20 +4935,6 @@
       const bookmarks = getBookBookmarks(book);
       const statusLabel = book.status === 'read' ? 'Прочитано' : 'В процессе';
       const primaryLabel = book.currentPageIndex ? 'Продолжить чтение' : 'Начать чтение';
-      const noteRows = notes.length
-        ? notes.map(note => `
-            <div class="note-row">
-              <small>${escapeHtml(note.type === 'note' ? 'Заметка' : 'Цитата')} · ${escapeHtml(note.chapterTitle || 'Позиция')} · стр. ${Number(note.pageIndex || 0) + 1}</small>
-              <blockquote>${escapeHtml(note.text || '')}</blockquote>
-              ${note.note ? `<small>${escapeHtml(note.note)}</small>` : ''}
-            </div>
-          `).join('')
-        : '<div class="empty"><strong>Цитат и заметок пока нет</strong>Выдели текст в читалке и сохрани цитату или заметку.</div>';
-
-      const collectionRows = collections.length
-        ? collections.map(item => `<span class="collection-chip">${escapeHtml(item)}</span>`).join('')
-        : '<span class="collection-chip">Без коллекции</span>';
-
       const bookmarkRows = bookmarks.length
         ? bookmarks.map(bookmark => `
             <div class="bookmark-row">
@@ -5273,7 +4964,6 @@
                 <button class="primary-btn" type="button" data-open="${book.id}" data-reader-return="book">${primaryLabel}</button>
                 <button class="ghost-btn" type="button" data-restart-book="${book.id}">Сначала</button>
                 <button class="ghost-btn" type="button" data-toggle-status="${book.id}">${book.status === 'read' ? 'Вернуть в читаю' : 'Прочитано'}</button>
-                <button class="ghost-btn" type="button" data-add-collection="${book.id}">Коллекция</button>
                 <button class="danger-btn" type="button" data-delete="${book.id}">Удалить</button>
               </div>
             </div>
@@ -5299,18 +4989,8 @@
           </section>
 
           <section class="book-detail-bookmarks">
-            <h3>Коллекции</h3>
-            <div>${collectionRows}</div>
-          </section>
-
-          <section class="book-detail-bookmarks">
             <h3>Закладки</h3>
             ${bookmarkRows}
-          </section>
-
-          <section class="book-detail-bookmarks">
-            <h3>Цитаты и заметки</h3>
-            ${noteRows}
           </section>
         </div>
       `;
@@ -5322,36 +5002,7 @@
       els.bookDetailsContent.querySelectorAll('[data-toggle-status]').forEach(btn => {
         btn.addEventListener('click', () => toggleBookStatus(btn.dataset.toggleStatus));
       });
-      els.bookDetailsContent.querySelectorAll('[data-add-collection]').forEach(btn => {
-        btn.addEventListener('click', () => addBookToCollection(btn.dataset.addCollection));
-      });
     }
-
-
-    async function addBookToCollection(bookId) {
-      const book = books.find(item => item.id === bookId);
-      if (!book) return;
-
-      const name = cleanText(prompt('Название коллекции', '') || '');
-
-      if (!name) return;
-
-      const collections = Array.isArray(book.collections) ? book.collections : [];
-      const updated = {
-        ...book,
-        collections: Array.from(new Set([...collections, name])),
-        updatedAt: new Date().toISOString()
-      };
-
-      await putBookMeta(updated);
-      await pushUpdateToCloud({ type: 'collection-update', book: stripBookFile(updated) });
-
-      books = books.map(item => item.id === updated.id ? stripBookFile(updated) : item).sort(sortByUpdatedAt);
-      activeBookDetailsId = updated.id;
-      renderAll();
-      showToast('Книга добавлена в коллекцию');
-    }
-
 
     async function restartBook(bookId) {
       const book = books.find(item => item.id === bookId);
@@ -5396,7 +5047,6 @@
           };
 
       await putBookMeta(updated);
-      await pushUpdateToCloud({ type: 'mark-read', book: stripBookFile(updated) });
       books = await getAllBooks();
       activeBookDetailsId = bookId;
       renderAll();
@@ -5462,19 +5112,17 @@
 
     function showReaderErrorReport(error, context = {}) {
       const report = logAppError(error, context);
-      const encoded = encodeURIComponent(JSON.stringify(report, null, 2));
+      const text = JSON.stringify(report, null, 2);
+      const encoded = encodeURIComponent(text);
 
       els.viewer.innerHTML = `
         <div class="error-report-card">
           <strong>Не удалось открыть книгу</strong>
           <span>${escapeHtml(error?.message || 'Структура EPUB не распознана.')}</span>
-          <button class="ghost-btn" type="button" onclick="navigator.clipboard?.writeText(decodeURIComponent('${encoded}')); alert('Отчёт скопирован');">Отправить отчёт об ошибке</button>
+          <button class="ghost-btn" type="button" onclick="navigator.clipboard?.writeText(decodeURIComponent('${encoded}')); alert('Отчёт скопирован');">Скопировать отчёт об ошибке</button>
         </div>
       `;
     }
-
-    window.addEventListener('error', event => logAppError(event.error || event.message, { type: 'window.error' }));
-    window.addEventListener('unhandledrejection', event => logAppError(event.reason, { type: 'unhandledrejection' }));
 
 
     async function openReader(bookId, startPageIndex = null, returnScreen = 'library') {
@@ -5506,10 +5154,7 @@
 
       try {
         const epubBlob = await getBookFile(book.id);
-        if (!epubBlob) {
-          if (book.cloudOnly) throw new Error('cloud-only: EPUB-файл нужно импортировать на этом устройстве');
-          throw new Error('epub file not found');
-        }
+        if (!epubBlob) throw new Error('epub file not found');
         const arrayBuffer = await epubBlob.arrayBuffer();
         activeReaderData = await withTimeout(parseEpubArrayBuffer(arrayBuffer, book.title), 12000, 'reader parse timeout');
         const pageData = await withTimeout(buildPagesFromReaderData(activeReaderData), 15000, 'pages build timeout');
@@ -5748,98 +5393,8 @@
     }
 
 
-
-    async function renderContinuousReader() {
-      if (!activeReaderData || !activeBook) return;
-
-      const pageBlocks = activeReaderData.pages.map((page, index) => `
-        <section class="continuous-page" data-page-index="${index}">
-          ${sanitizeReaderHtml(page?.html || '')}
-        </section>
-      `).join('');
-
-      els.viewer.innerHTML = `<article class="reader-content continuous">${pageBlocks}</article>`;
-
-      const content = els.viewer.querySelector('.reader-content.continuous');
-      const target = content?.querySelector(`[data-page-index="${activePageIndex}"]`);
-
-      if (target) target.scrollIntoView({ block: 'start' });
-
-      if (content) {
-        content.addEventListener('scroll', throttleContinuousScroll, { passive: true });
-      }
-
-      const page = activeReaderData.pages[activePageIndex];
-      const progress = Math.round(((activePageIndex + 1) / activeReaderData.pages.length) * 100);
-
-      activeBook = {
-        ...activeBook,
-        currentPageIndex: activePageIndex,
-        totalPages: activeReaderData.pages.length,
-        currentChapterIndex: page?.chapterIndex || 0,
-        totalChapters: activeReaderData.chapters.length,
-        progress: clamp(progress, 0, 100),
-        updatedAt: new Date().toISOString()
-      };
-
-      scheduleBookSave(activeBook);
-      syncChapterSelect();
-      renderBookmarksMenu();
-      updateBookmarkButtonState();
-      updateReaderHeader(activeBook);
-    }
-
-    let continuousScrollTimer = null;
-
-    function throttleContinuousScroll(event) {
-      clearTimeout(continuousScrollTimer);
-      continuousScrollTimer = setTimeout(() => handleContinuousScroll(event), 120);
-    }
-
-    function handleContinuousScroll(event) {
-      const content = event.target;
-      const pages = Array.from(content.querySelectorAll('[data-page-index]'));
-
-      let closest = activePageIndex;
-      let distance = Infinity;
-
-      for (const page of pages) {
-        const rect = page.getBoundingClientRect();
-        const d = Math.abs(rect.top - 130);
-
-        if (d < distance) {
-          distance = d;
-          closest = Number(page.dataset.pageIndex || 0);
-        }
-      }
-
-      if (closest !== activePageIndex) {
-        activePageIndex = clamp(closest, 0, activeReaderData.pages.length - 1);
-        const page = activeReaderData.pages[activePageIndex];
-        const progress = Math.round(((activePageIndex + 1) / activeReaderData.pages.length) * 100);
-
-        activeBook = {
-          ...activeBook,
-          currentPageIndex: activePageIndex,
-          currentChapterIndex: page?.chapterIndex || 0,
-          progress: clamp(progress, 0, 100),
-          updatedAt: new Date().toISOString()
-        };
-
-        scheduleBookSave(activeBook);
-        pushUpdateToCloud({ type: 'scroll-progress', bookId: activeBook.id, progress: activeBook.progress, currentPageIndex: activePageIndex });
-        updateReaderHeader(activeBook);
-      }
-    }
-
-
     async function renderActivePage() {
       if (!activeReaderData || !activeBook) return;
-
-      if (readerMode === 'scroll') {
-        await renderContinuousReader();
-        return;
-      }
 
       const page = activeReaderData.pages[activePageIndex];
 
@@ -5890,12 +5445,6 @@
       if (nextIndex === activePageIndex) return;
 
       activePageIndex = nextIndex;
-      if (readerMode === 'scroll' && els.viewer) {
-        const target = els.viewer.querySelector(`[data-page-index="${activePageIndex}"]`);
-        if (target) target.scrollIntoView({ block: 'start', behavior: 'smooth' });
-        await renderContinuousReader();
-        return;
-      }
       await renderActivePage();
     }
 
@@ -6270,27 +5819,23 @@
       }
     }
 
-    
-    function normalizeCloudConfig(settings = {}) {
-      return {
-        url: cleanText(settings.url || settings.supabaseUrl || ''),
-        key: String(settings.key || settings.anonKey || '').trim(),
-        active: Boolean(settings.active)
-      };
+    function loadCloudSettings() {
+      return loadCloudConfig();
     }
 
-    function loadCloudSettings() {
-      try {
-        return JSON.parse(localStorage.getItem(CLOUD_STORAGE_KEY) || '{}');
-      } catch {
-        return {};
-      }
+    function saveCloudConfig(config) {
+      CloudConfig = {
+        url: cleanText(config?.url || config?.supabaseUrl || ''),
+        key: String(config?.key || config?.anonKey || '').trim(),
+        active: Boolean(config?.active)
+      };
+
+      cloudSettings = CloudConfig;
+      localStorage.setItem(CLOUD_STORAGE_KEY, JSON.stringify(CloudConfig));
     }
 
     function saveCloudSettings(settings) {
-      CloudConfig = normalizeCloudConfig(settings);
-      cloudSettings = { ...CloudConfig };
-      localStorage.setItem(CLOUD_STORAGE_KEY, JSON.stringify(CloudConfig));
+      saveCloudConfig(settings);
     }
 
     function renderCloudSettingsForm() {
@@ -6299,338 +5844,43 @@
       els.cloudSupabaseUrl.value = CloudConfig.url || '';
       els.cloudAnonKey.value = CloudConfig.key || '';
       if (els.cloudSyncActive) els.cloudSyncActive.checked = Boolean(CloudConfig.active);
-      if (els.cloudStatusText) {
-        els.cloudStatusText.textContent = cloudUser
-          ? `Cloud: ${cloudUser.email || cloudUser.id}`
-          : (CloudConfig.active ? 'Cloud: настройки сохранены, вход не выполнен' : 'Cloud: выключено');
-      }
     }
 
     function saveCloudSettingsFromForm() {
-      saveCloudSettings({
+      saveCloudConfig({
         url: els.cloudSupabaseUrl?.value || '',
         key: els.cloudAnonKey?.value || '',
         active: Boolean(els.cloudSyncActive?.checked)
       });
 
-      supabaseClient = null;
-      renderCloudSettingsForm();
-      showToast('Настройки синхронизации сохранены');
+      showToast('Настройки синхронизации сохранены локально');
     }
 
-    async function loadSupabaseSdk() {
-      if (window.supabase?.createClient) return window.supabase;
+    async function pushUpdateToCloud(update) {
+      const payload = {
+        app: 'my-books',
+        version: APP_VERSION,
+        at: new Date().toISOString(),
+        update
+      };
 
-      await loadScript(SUPABASE_JS_URL);
-
-      if (!window.supabase?.createClient) {
-        throw new Error('Supabase SDK не загрузился');
+      if (!CloudConfig.active) {
+        console.info('[cloud-push:stub] disabled', payload);
+        return { ok: false, skipped: true, reason: 'inactive', payload };
       }
 
-      return window.supabase;
-    }
+      if (!CloudConfig.url || !CloudConfig.key) {
+        console.info('[cloud-push:stub] settings missing', payload);
+        return { ok: false, skipped: true, reason: 'empty-settings', payload };
+      }
 
-    async function getSupabaseClient() {
-      if (!CloudConfig.active) throw new Error('CloudConfig.active выключен');
-      if (!CloudConfig.url || !CloudConfig.key) throw new Error('Заполни Supabase URL и Anon Key');
-
-      if (supabaseClient) return supabaseClient;
-
-      const supabaseLib = await loadSupabaseSdk();
-
-      supabaseClient = supabaseLib.createClient(CloudConfig.url, CloudConfig.key, {
-        auth: {
-          persistSession: true,
-          autoRefreshToken: true,
-          detectSessionInUrl: true
-        }
+      console.info('[cloud-push:stub] ready', {
+        url: CloudConfig.url,
+        hasKey: Boolean(CloudConfig.key),
+        payload
       });
 
-      return supabaseClient;
-    }
-
-    async function restoreSupabaseSession() {
-      if (!CloudConfig.active || !CloudConfig.url || !CloudConfig.key) return;
-
-      try {
-        const client = await getSupabaseClient();
-        const { data, error } = await client.auth.getSession();
-
-        if (error) throw error;
-
-        cloudUser = data?.session?.user || null;
-        renderCloudSettingsForm();
-
-        if (cloudUser) {
-          await pullCloudLibrary();
-        }
-      } catch (error) {
-        console.warn('Cloud session restore failed:', error);
-      }
-    }
-
-    async function cloudSignUp() {
-      try {
-        saveCloudSettingsFromForm();
-        const email = cleanText(els.cloudEmail?.value || '');
-        const password = String(els.cloudPassword?.value || '');
-
-        if (!email || !password) {
-          showToast('Укажи email и пароль');
-          return;
-        }
-
-        const client = await getSupabaseClient();
-        const { data, error } = await client.auth.signUp({ email, password });
-
-        if (error) throw error;
-
-        cloudUser = data?.user || null;
-        renderCloudSettingsForm();
-        showToast('Регистрация выполнена. Проверь email, если включено подтверждение.');
-      } catch (error) {
-        console.error(error);
-        showToast(`Cloud: ${error.message || 'ошибка регистрации'}`);
-      }
-    }
-
-    async function cloudSignIn() {
-      try {
-        saveCloudSettingsFromForm();
-        const email = cleanText(els.cloudEmail?.value || '');
-        const password = String(els.cloudPassword?.value || '');
-
-        if (!email || !password) {
-          showToast('Укажи email и пароль');
-          return;
-        }
-
-        const client = await getSupabaseClient();
-        const { data, error } = await client.auth.signInWithPassword({ email, password });
-
-        if (error) throw error;
-
-        cloudUser = data?.user || data?.session?.user || null;
-        renderCloudSettingsForm();
-        showToast('Вход выполнен');
-        await pullCloudLibrary();
-        await syncLocalLibraryToCloud();
-      } catch (error) {
-        console.error(error);
-        showToast(`Cloud: ${error.message || 'ошибка входа'}`);
-      }
-    }
-
-    async function cloudSignOut() {
-      try {
-        const client = await getSupabaseClient();
-        await client.auth.signOut();
-      } catch (error) {
-        console.warn(error);
-      }
-
-      cloudUser = null;
-      renderCloudSettingsForm();
-      showToast('Выход из облака');
-    }
-
-    function getCloudBookPayload(book) {
-      const meta = stripBookFile(book || {});
-
-      return {
-        user_id: cloudUser?.id,
-        book_id: meta.id,
-        title: meta.title || '',
-        author: meta.author || '',
-        progress: Number(meta.progress || 0),
-        current_page_index: Number(meta.currentPageIndex || 0),
-        total_pages: Number(meta.totalPages || 0),
-        updated_at: meta.updatedAt || new Date().toISOString(),
-        data: meta
-      };
-    }
-
-    async function syncBookToCloud(book) {
-      if (!CloudConfig.active || !cloudUser || !book?.id) return { ok: false, skipped: true };
-
-      const client = await getSupabaseClient();
-      const row = getCloudBookPayload(book);
-
-      const { error } = await client
-        .from('user_library')
-        .upsert(row, { onConflict: 'user_id,book_id' });
-
-      if (error) throw error;
-
-      return { ok: true };
-    }
-
-    async function pushUpdateToCloud(update = {}) {
-      if (!CloudConfig.active) {
-        console.info('[cloud-push] disabled', update);
-        return { ok: false, skipped: true, reason: 'inactive' };
-      }
-
-      if (!cloudUser) {
-        console.info('[cloud-push] no user', update);
-        return { ok: false, skipped: true, reason: 'no-user' };
-      }
-
-      try {
-        const client = await getSupabaseClient();
-        const book = update.book || activeBook || books.find(item => item.id === update.bookId);
-        const bookId = update.bookId || book?.id;
-
-        if (!bookId) return { ok: false, skipped: true, reason: 'no-book' };
-
-        const progressRow = {
-          user_id: cloudUser.id,
-          book_id: bookId,
-          progress: Number(update.progress ?? book?.progress ?? 0),
-          current_page_index: Number(update.currentPageIndex ?? book?.currentPageIndex ?? 0),
-          total_pages: Number(book?.totalPages || 0),
-          updated_at: update.updatedAt || book?.updatedAt || new Date().toISOString(),
-          data: {
-            type: update.type || 'progress',
-            book: stripBookFile(book || {}),
-            update
-          }
-        };
-
-        const { error } = await client
-          .from('user_progress')
-          .upsert(progressRow, { onConflict: 'user_id,book_id' });
-
-        if (error) throw error;
-
-        if (book) await syncBookToCloud(book);
-
-        return { ok: true };
-      } catch (error) {
-        console.error('Cloud push failed:', error);
-        showToast(`Cloud sync: ${error.message || 'ошибка'}`);
-        return { ok: false, error };
-      }
-    }
-
-    async function syncLocalLibraryToCloud() {
-      if (!books.length) {
-        showToast('Библиотека пустая');
-        return;
-      }
-
-      try {
-        if (!cloudUser) {
-          await restoreSupabaseSession();
-        }
-
-        if (!cloudUser) {
-          showToast('Сначала войди в Supabase');
-          return;
-        }
-
-        for (const book of books) {
-          await syncBookToCloud(book);
-        }
-
-        showToast('Библиотека отправлена в облако');
-      } catch (error) {
-        console.error(error);
-        showToast(`Cloud sync: ${error.message || 'ошибка'}`);
-      }
-    }
-
-    async function pullCloudLibrary() {
-      if (!CloudConfig.active || !cloudUser) return;
-
-      try {
-        const client = await getSupabaseClient();
-        const { data, error } = await client
-          .from('user_library')
-          .select('*')
-          .order('updated_at', { ascending: false });
-
-        if (error) throw error;
-
-        const localById = new Map(books.map(book => [book.id, book]));
-        let changed = false;
-
-        for (const row of data || []) {
-          const meta = row.data || {
-            id: row.book_id,
-            title: row.title,
-            author: row.author,
-            progress: row.progress,
-            currentPageIndex: row.current_page_index,
-            totalPages: row.total_pages,
-            updatedAt: row.updated_at,
-            cloudOnly: true
-          };
-
-          if (!localById.has(meta.id)) {
-            books.push({
-              ...meta,
-              cloudOnly: true,
-              status: meta.status || 'reading'
-            });
-            changed = true;
-          }
-        }
-
-        if (changed) {
-          renderAll();
-          showToast('Полка подтянута из облака');
-        }
-      } catch (error) {
-        console.error('Cloud library pull failed:', error);
-      }
-    }
-
-    async function checkCloudConflictForBook(book) {
-      if (!CloudConfig.active || !cloudUser || !book?.id) return book;
-
-      try {
-        const client = await getSupabaseClient();
-        const { data, error } = await client
-          .from('user_progress')
-          .select('*')
-          .eq('book_id', book.id)
-          .order('updated_at', { ascending: false })
-          .limit(1);
-
-        if (error) throw error;
-
-        const remote = data?.[0];
-
-        if (!remote) return book;
-
-        const remoteUpdated = new Date(remote.updated_at || 0).getTime();
-        const localUpdated = new Date(book.updatedAt || 0).getTime();
-        const remotePage = Number(remote.current_page_index || 0);
-        const localPage = Number(book.currentPageIndex || 0);
-
-        if (remoteUpdated > localUpdated && remotePage !== localPage) {
-          const ok = confirm('Найдена более поздняя позиция чтения в облаке. Перейти к ней?');
-
-          if (ok) {
-            const updated = {
-              ...book,
-              currentPageIndex: remotePage,
-              progress: Number(remote.progress || book.progress || 0),
-              updatedAt: remote.updated_at || new Date().toISOString()
-            };
-
-            await putBookMeta(updated);
-            books = books.map(item => item.id === updated.id ? stripBookFile(updated) : item).sort(sortByUpdatedAt);
-
-            return updated;
-          }
-        }
-      } catch (error) {
-        console.warn('Cloud conflict check failed:', error);
-      }
-
-      return book;
+      return { ok: true, stub: true, payload };
     }
 
     async function syncWithCloud(bookData) {
@@ -6641,155 +5891,7 @@
       document.body.classList.toggle('reader-controls-hidden');
     }
 
-    function getTtsSettings() {
-      return {
-        voiceURI: uiSettings.ttsVoiceURI || '',
-        rate: Number(uiSettings.ttsRate || 1)
-      };
-    }
-
-    function saveTtsSettings() {
-      uiSettings.ttsVoiceURI = els.ttsVoiceSelect?.value || '';
-      uiSettings.ttsRate = Number(els.ttsRateInput?.value || 1);
-      saveUiSettings();
-    }
-
-    function loadTtsVoices() {
-      if (!('speechSynthesis' in window)) return;
-
-      ttsVoices = speechSynthesis.getVoices() || [];
-
-      if (!els.ttsVoiceSelect) return;
-
-      const current = getTtsSettings().voiceURI;
-
-      els.ttsVoiceSelect.innerHTML = [
-        '<option value="">Системный голос</option>',
-        ...ttsVoices.map(voice => `<option value="${escapeHtml(voice.voiceURI)}">${escapeHtml(voice.name)}${voice.lang ? ' · ' + escapeHtml(voice.lang) : ''}</option>`)
-      ].join('');
-
-      els.ttsVoiceSelect.value = current;
-      if (els.ttsRateInput) els.ttsRateInput.value = String(getTtsSettings().rate);
-    }
-
-    function stopTts() {
-      if (!('speechSynthesis' in window)) return;
-
-      speechSynthesis.cancel();
-      ttsActive = false;
-      els.ttsBtn?.classList.remove('tts-active');
-    }
-
-    function speakCurrentPage() {
-      if (!('speechSynthesis' in window)) {
-        showToast('Озвучка не поддерживается браузером');
-        return;
-      }
-
-      if (ttsActive) {
-        stopTts();
-        return;
-      }
-
-      const text = getPlainText(els.viewer?.innerHTML || '').trim();
-
-      if (!text) {
-        showToast('На странице нет текста');
-        return;
-      }
-
-      const settings = getTtsSettings();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = settings.rate || 1;
-
-      const voice = ttsVoices.find(item => item.voiceURI === settings.voiceURI);
-      if (voice) utterance.voice = voice;
-
-      utterance.onend = () => stopTts();
-      utterance.onerror = () => stopTts();
-
-      ttsActive = true;
-      els.ttsBtn?.classList.add('tts-active');
-      speechSynthesis.speak(utterance);
-    }
-
-    function applyReaderMode() {
-      document.body.classList.toggle('reader-scroll-mode', readerMode === 'scroll');
-      if (els.readerModeBtn) els.readerModeBtn.textContent = readerMode === 'scroll' ? '⇅' : '↕';
-      if (els.settingsReaderModeBtn) els.settingsReaderModeBtn.textContent = readerMode === 'scroll' ? 'Скролл' : 'Страницы';
-    }
-
-    async function toggleReaderMode() {
-      readerMode = readerMode === 'scroll' ? 'paged' : 'scroll';
-      uiSettings.readerMode = readerMode;
-      saveUiSettings();
-      applyReaderMode();
-
-      if (activeReaderData && activeBook) {
-        await renderActivePage();
-      }
-    }
-
-    function handleReaderSelection() {
-      if (!document.body.classList.contains('reader-mode')) return;
-
-      const selection = window.getSelection();
-      const text = cleanText(selection?.toString() || '');
-
-      currentSelectionText = text;
-
-      if (els.selectionToolbar) {
-        els.selectionToolbar.classList.toggle('show', text.length > 1);
-      }
-    }
-
-    function getBookNotes(book) {
-      return Array.isArray(book?.notes)
-        ? [...book.notes].sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
-        : [];
-    }
-
-    async function saveSelectionAsNote(type = 'quote') {
-      if (!activeBook || !currentSelectionText) {
-        showToast('Сначала выдели текст');
-        return;
-      }
-
-      const noteText = type === 'note'
-        ? prompt('Заметка к выделению', '') || ''
-        : '';
-
-      const note = {
-        id: createId(),
-        type,
-        text: currentSelectionText,
-        note: cleanText(noteText),
-        pageIndex: activePageIndex,
-        chapterIndex: activeReaderData?.pages?.[activePageIndex]?.chapterIndex || 0,
-        chapterTitle: getCurrentChapterTitle(),
-        createdAt: new Date().toISOString()
-      };
-
-      const updated = {
-        ...activeBook,
-        notes: [note, ...getBookNotes(activeBook)],
-        updatedAt: new Date().toISOString()
-      };
-
-      activeBook = updated;
-      books = books.map(book => book.id === updated.id ? stripBookFile(updated) : book).sort(sortByUpdatedAt);
-      await putBookMeta(stripBookFile(updated));
-      await pushUpdateToCloud({ type: 'note-added', book: stripBookFile(updated), note });
-
-      if (els.selectionToolbar) els.selectionToolbar.classList.remove('show');
-      window.getSelection()?.removeAllRanges();
-      currentSelectionText = '';
-      renderBookDetails();
-      renderLibrary();
-      showToast(type === 'quote' ? 'Цитата сохранена' : 'Заметка сохранена');
-    }
-
-async function exportLibraryBackup() {
+    async function exportLibraryBackup() {
       if (!books.length) {
         showToast('Библиотека пустая');
         return;
