@@ -1,8 +1,8 @@
 {
-  "name": "Мои книги 5.2.2",
+  "name": "Мои книги 5.2.3",
   "short_name": "Книги",
-  "description": "Личная EPUB-библиотека и минималистичная PWA-читалка с локальным хранением, изображениями EPUB и подготовкой к Supabase Sync.",
-  "start_url": "/bk/index.html?v=522",
+  "description": "Личная EPUB-библиотека и PWA-читалка с Supabase Auth, синхронизацией, TTS, заметками и Share Target.",
+  "start_url": "/bk/index.html?v=523",
   "scope": "/bk/",
   "display": "standalone",
   "background_color": "#F6F1E8",
@@ -32,5 +32,31 @@
     "utilities"
   ],
   "lang": "ru-RU",
-  "dir": "ltr"
+  "dir": "ltr",
+  "share_target": {
+    "action": "/bk/index.html?share-target=1",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "files": [
+        {
+          "name": "epubFiles",
+          "accept": [
+            ".epub",
+            "application/epub+zip"
+          ]
+        }
+      ]
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "/bk/index.html?file-handler=1",
+      "accept": {
+        "application/epub+zip": [
+          ".epub"
+        ]
+      }
+    }
+  ]
 }

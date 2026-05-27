@@ -1,9 +1,9 @@
-const CACHE_NAME = 'my-books-epub-reader-v522';
+const CACHE_NAME = 'my-books-epub-reader-v523';
 
 const APP_SHELL = [
   './',
   './index.html',
-  './index.html?v=522',
+  './index.html?v=523',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -41,7 +41,7 @@ function getCacheKey(request) {
 }
 
 async function getOfflineShell() {
-  return await caches.match('./index.html?v=522') || await caches.match('./index.html') || await caches.match('./');
+  return await caches.match('./index.html?v=523') || await caches.match('./index.html') || await caches.match('./');
 }
 
 self.addEventListener('install', event => {
@@ -60,10 +60,64 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
 
+const SHARED_DB_NAME = 'my-books-shared-files';
+const SHARED_STORE_NAME = 'files';
+
+function openSharedDb() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(SHARED_DB_NAME, 1);
+
+    request.onupgradeneeded = event => {
+      const database = event.target.result;
+      if (!database.objectStoreNames.contains(SHARED_STORE_NAME)) {
+        database.createObjectStore(SHARED_STORE_NAME, { keyPath: 'id' });
+      }
+    };
+
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+async function saveSharedFiles(files) {
+  const database = await openSharedDb();
+  const transaction = database.transaction(SHARED_STORE_NAME, 'readwrite');
+  const store = transaction.objectStore(SHARED_STORE_NAME);
+
+  for (const file of files) {
+    if (file && /\.epub$/i.test(file.name || '')) {
+      store.put({
+        id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        file,
+        createdAt: new Date().toISOString()
+      });
+    }
+  }
+
+  await new Promise((resolve, reject) => {
+    transaction.oncomplete = resolve;
+    transaction.onerror = () => reject(transaction.error);
+  });
+}
+
+async function handleShareTarget(request) {
+  const formData = await request.formData();
+  const files = formData.getAll('epubFiles');
+  await saveSharedFiles(files);
+  return Response.redirect('./index.html?shared=1', 303);
+}
+
+
+self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
+
+  if (event.request.method === 'POST' && requestUrl.pathname.endsWith('/index.html') && requestUrl.searchParams.has('share-target')) {
+    event.respondWith(handleShareTarget(event.request));
+    return;
+  }
+
+  if (event.request.method !== 'GET') return;
 
   if (requestUrl.origin !== self.location.origin) {
     return;
