@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=5210" />
+  <link rel="manifest" href="./manifest.json?v=5211" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.2.10</title>
+  <title>Мои книги 5.2.11</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=5210') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=5211') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=5210') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=5211') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3125,13 +3125,28 @@
       margin-top: 12px;
     }
 
+  
+    /* v5.2.11 blank page guard */
+    .reader-empty-page-fallback {
+      display: grid;
+      gap: 10px;
+      align-content: center;
+      min-height: 60vh;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .reader-empty-page-fallback strong {
+      color: var(--text);
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=5210" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=5211" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -3140,13 +3155,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=5210" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=5211" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.2.10</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.2.11</p>
         </div>
       </div>
-      <span class="version-pill">v5.2.10</span>
+      <span class="version-pill">v5.2.11</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -3247,6 +3262,7 @@
               <div class="reader-bookmark-wrap">
                 <button class="reader-nav-btn bookmark-add-btn" id="addBookmarkBtn" type="button" aria-label="Добавить закладку">☆</button>
                 <button class="chapter-btn" id="bookmarksBtn" type="button">Закладки</button>
+                <button class="chapter-btn" id="forceCompatBtn" type="button">Совм.</button>
                 <div class="chapter-menu bookmarks-menu" id="bookmarksMenu"></div>
               </div>
             </div>
@@ -3281,7 +3297,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.2.10</span>
+          <span id="settingsVersion">5.2.11</span>
         </div>
 
         <div class="settings-item">
@@ -3320,7 +3336,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=5210</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=5211</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -3363,7 +3379,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=5210.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=5211.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -3384,14 +3400,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.2.10';
+    const APP_VERSION = '5.2.11';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v5210';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v5211';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -3456,6 +3472,7 @@
       chapterMenu: document.getElementById('chapterMenu'),
       addBookmarkBtn: document.getElementById('addBookmarkBtn'),
       bookmarksBtn: document.getElementById('bookmarksBtn'),
+      forceCompatBtn: document.getElementById('forceCompatBtn'),
       bookmarksMenu: document.getElementById('bookmarksMenu'),
       viewer: document.getElementById('viewer'),
       prevBtn: document.getElementById('prevBtn'),
@@ -3609,6 +3626,7 @@
       els.prevBtn.addEventListener('click', () => goToPage(-1));
       els.nextBtn.addEventListener('click', () => goToPage(1));
       els.addBookmarkBtn.addEventListener('click', addCurrentBookmark);
+      if (els.forceCompatBtn) els.forceCompatBtn.addEventListener('click', forceOpenCompatibleReader);
       els.bookmarksBtn.addEventListener('click', () => {
         renderBookmarksMenu();
         els.bookmarksMenu.classList.toggle('open');
@@ -3664,7 +3682,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=5210').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=5211').catch(() => {});
         });
       }
     }
@@ -3921,6 +3939,40 @@
 
       return book;
     }
+
+    
+    async function forceOpenCompatibleReader() {
+      if (!activeBook) {
+        showToast('Книга не открыта');
+        return;
+      }
+
+      try {
+        const epubBlob = await getBookFile(activeBook.id);
+
+        if (!epubBlob) {
+          showToast('EPUB-файл не найден');
+          return;
+        }
+
+        const compatBook = {
+          ...activeBook,
+          readerEngine: 'epubjs',
+          compatMode: true,
+          parseError: activeBook.parseError || 'ручное открытие в совместимом режиме',
+          updatedAt: new Date().toISOString()
+        };
+
+        activeBook = compatBook;
+        books = books.map(item => item.id === compatBook.id ? stripBookFile(compatBook) : item).sort(sortByUpdatedAt);
+        await putBookMeta(stripBookFile(compatBook));
+        await openEpubJsReader(compatBook, epubBlob);
+      } catch (error) {
+        console.error(error);
+        showToast('Не удалось открыть совместимый режим');
+      }
+    }
+
 
     async function openEpubJsReader(book, epubBlob) {
       closeEpubJsSession();
@@ -5393,7 +5445,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=5210" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=5211" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -5402,7 +5454,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=5210" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=5211" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -5828,6 +5880,12 @@
       }
 
       closeEpubJsSession();
+      const readableIndex = findNearestReadablePageIndex(activePageIndex);
+
+      if (readableIndex !== activePageIndex) {
+        activePageIndex = readableIndex;
+      }
+
       const page = activeReaderData.pages[activePageIndex];
       const bookmark = {
         id: createId(),
@@ -5944,6 +6002,59 @@
     }
 
 
+    
+    function stripHtmlForText(htmlString = '') {
+      const withoutTags = String(htmlString || '')
+        .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+        .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/&nbsp;/gi, ' ')
+        .replace(/&amp;/gi, '&')
+        .replace(/&lt;/gi, '<')
+        .replace(/&gt;/gi, '>')
+        .replace(/&#160;/gi, ' ');
+
+      return cleanText(withoutTags);
+    }
+
+    function pageHasVisibleContent(page) {
+      if (!page) return false;
+
+      const htmlString = page.html || '';
+      const text = stripHtmlForText(htmlString);
+
+      if (text.length > 3) return true;
+      if (/<img\b|<svg\b|<image\b|data:image\//i.test(htmlString)) return true;
+
+      return false;
+    }
+
+    function findNearestReadablePageIndex(startIndex = 0) {
+      if (!activeReaderData?.pages?.length) return startIndex;
+
+      const pages = activeReaderData.pages;
+      const start = clamp(Number(startIndex || 0), 0, pages.length - 1);
+
+      if (pageHasVisibleContent(pages[start])) return start;
+
+      for (let i = start + 1; i < pages.length; i += 1) {
+        if (pageHasVisibleContent(pages[i])) {
+          console.warn(`Blank page guard: skipped ${i - start} empty page(s), moved ${start + 1} → ${i + 1}`);
+          return i;
+        }
+      }
+
+      for (let i = start - 1; i >= 0; i -= 1) {
+        if (pageHasVisibleContent(pages[i])) {
+          console.warn(`Blank page guard: moved back from empty page ${start + 1} → ${i + 1}`);
+          return i;
+        }
+      }
+
+      return start;
+    }
+
+
     async function renderActivePage() {
       if (!activeReaderData || !activeBook) return;
 
@@ -5954,7 +6065,14 @@
 
       const page = activeReaderData.pages[activePageIndex];
 
-      const safePageHtml = sanitizeReaderHtml(page?.html || '<p class="reader-empty-page">Страница пустая.</p>');
+      const rawPageHtml = page?.html || '';
+      const hasVisibleContent = pageHasVisibleContent(page);
+      const safePageHtml = sanitizeReaderHtml(
+        hasVisibleContent
+          ? rawPageHtml
+          : '<div class="reader-empty-page-fallback"><strong>Страница пустая</strong><span>В этой части EPUB нет видимого текста. Попробуй перейти вперёд или открыть книгу в совместимом режиме.</span></div>'
+      );
+
       els.viewer.innerHTML = `<article class="reader-content">${safePageHtml}</article>`;
 
       const content = els.viewer.querySelector('.reader-content');
@@ -5993,6 +6111,23 @@
       renderSettings();
     }
 
+    
+    function findNextReadablePageIndex(fromIndex, delta) {
+      if (!activeReaderData?.pages?.length) return fromIndex;
+
+      const pages = activeReaderData.pages;
+      const step = delta < 0 ? -1 : 1;
+      let index = clamp(Number(fromIndex || 0) + step, 0, pages.length - 1);
+
+      while (index >= 0 && index < pages.length) {
+        if (pageHasVisibleContent(pages[index])) return index;
+        index += step;
+      }
+
+      return clamp(Number(fromIndex || 0) + step, 0, pages.length - 1);
+    }
+
+
     async function goToPage(delta) {
       if (activeReaderData?.engine === 'epubjs' && epubJsSession?.rendition) {
         try {
@@ -6007,7 +6142,7 @@
 
       if (!activeReaderData?.pages) return;
 
-      const nextIndex = clamp(activePageIndex + delta, 0, activeReaderData.pages.length - 1);
+      const nextIndex = findNextReadablePageIndex(activePageIndex, delta);
 
       if (nextIndex === activePageIndex) return;
 

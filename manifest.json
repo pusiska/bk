@@ -1,8 +1,8 @@
 {
-  "name": "Мои книги 5.2.10",
+  "name": "Мои книги 5.2.11",
   "short_name": "Книги",
-  "description": "Личная EPUB-библиотека и PWA-читалка с исправлением рендера EPUB.js fallback.",
-  "start_url": "/bk/index.html?v=5210",
+  "description": "Личная EPUB-библиотека и PWA-читалка с защитой от пустых страниц.",
+  "start_url": "/bk/index.html?v=5211",
   "scope": "/bk/",
   "display": "standalone",
   "background_color": "#F6F1E8",
