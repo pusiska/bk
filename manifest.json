@@ -1,8 +1,8 @@
 {
-  "name": "Мои книги 5.3.1",
+  "name": "Мои книги 5.3.2",
   "short_name": "Книги",
-  "description": "Личная EPUB-библиотека и читалка, версия 5.3.1.",
-  "start_url": "/bk/index.html?v=531",
+  "description": "Личная EPUB-библиотека и читалка, версия 5.3.2.",
+  "start_url": "/bk/index.html?v=532",
   "scope": "/bk/",
   "display": "standalone",
   "background_color": "#F6F1E8",
