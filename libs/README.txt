@@ -1,6 +1,11 @@
-JSZip загружается так:
-1. ./libs/jszip.min.js
-2. https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js
-3. https://unpkg.com/jszip@3.10.1/dist/jszip.min.js
+Папка для локальных библиотек.
 
-Для полной автономности можно положить jszip.min.js в эту папку.
+Опционально можно положить сюда:
+- jszip.min.js
+- epub.min.js
+
+Если файлов нет, приложение попробует загрузить библиотеки через CDN:
+- JSZip: jsDelivr / unpkg
+- EPUB.js: jsDelivr / unpkg
+
+Для полностью офлайн-режима лучше добавить оба файла вручную.

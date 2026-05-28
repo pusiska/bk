@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=527" />
+  <link rel="manifest" href="./manifest.json?v=528" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.2.7</title>
+  <title>Мои книги 5.2.8</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=527') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=528') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=527') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=528') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3044,13 +3044,60 @@
       display: none !important;
     }
 
+  
+    /* v5.2.8 EPUB.js compatible mode */
+    body.reader-mode.compat-reader .reader-panel {
+      background: var(--surface);
+    }
+
+    body.reader-mode.compat-reader #viewer {
+      width: 100%;
+      height: 100%;
+      min-height: calc(100dvh - 130px);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    body.reader-mode.compat-reader #viewer iframe {
+      border: 0 !important;
+      background: var(--surface) !important;
+    }
+
+    .compat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: max-content;
+      padding: 4px 8px;
+      border: 1px solid rgba(205, 186, 154, .52);
+      border-radius: 999px;
+      background: rgba(255, 253, 248, .72);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .compat-diagnostic {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid rgba(205, 186, 154, .42);
+      border-radius: 16px;
+      background: rgba(255, 253, 248, .62);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=527" alt="Мои книги" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=528" alt="Мои книги" class="app-splash-logo" />
       <div class="app-splash-title">Мои книги</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -3059,13 +3106,13 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=527" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=528" alt="Мои книги" /></div>
         <div>
           <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.2.7</p>
+          <p class="brand-subtitle">EPUB-читалка · 5.2.8</p>
         </div>
       </div>
-      <span class="version-pill">v5.2.7</span>
+      <span class="version-pill">v5.2.8</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -3200,7 +3247,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.2.7</span>
+          <span id="settingsVersion">5.2.8</span>
         </div>
 
         <div class="settings-item">
@@ -3239,7 +3286,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=527</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=528</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -3282,7 +3329,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=527.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=528.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -3303,14 +3350,14 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.2.7';
+    const APP_VERSION = '5.2.8';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v527';
+    const SW_CACHE_NAME = 'my-books-epub-reader-v528';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -3318,11 +3365,18 @@
       'https://unpkg.com/jszip@3.10.1/dist/jszip.min.js'
     ];
 
+    const EPUBJS_SOURCES = [
+      './libs/epub.min.js',
+      'https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js',
+      'https://unpkg.com/epubjs@0.3.93/dist/epub.min.js'
+    ];
+
     let db = null;
     let books = [];
     let activeBookId = null;
     let activeBook = null;
     let activeReaderData = null;
+    let epubJsSession = null;
     let activePageIndex = 0;
     const uiSettings = loadUiSettings();
     let CloudConfig = loadCloudConfig();
@@ -3510,6 +3564,7 @@
 
       els.readerBackBtn.addEventListener('click', async () => {
         await flushBookSave();
+        closeEpubJsSession();
 
         if (readerReturnScreen === 'book' && activeBookDetailsId) {
           showScreen('book');
@@ -3575,7 +3630,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=527').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=528').catch(() => {});
         });
       }
     }
@@ -3750,6 +3805,257 @@
       await putBookMeta(bookToSave);
     }
 
+    
+    function isCompatBook(book) {
+      return book?.readerEngine === 'epubjs' || book?.compatMode === true;
+    }
+
+    async function loadEpubJsLibrary() {
+      if (typeof ePub !== 'undefined') return window.ePub || ePub;
+
+      for (const src of EPUBJS_SOURCES) {
+        try {
+          await loadScript(src);
+
+          if (typeof ePub !== 'undefined') {
+            return window.ePub || ePub;
+          }
+        } catch (error) {
+          console.warn('EPUB.js source failed:', src, error);
+        }
+      }
+
+      throw new Error('EPUB.js unavailable');
+    }
+
+    function closeEpubJsSession() {
+      if (!epubJsSession) return;
+
+      try {
+        epubJsSession.rendition?.destroy?.();
+      } catch (error) {
+        console.warn('EPUB.js rendition destroy failed:', error);
+      }
+
+      try {
+        epubJsSession.book?.destroy?.();
+      } catch (error) {
+        console.warn('EPUB.js book destroy failed:', error);
+      }
+
+      if (epubJsSession.objectUrl) {
+        URL.revokeObjectURL(epubJsSession.objectUrl);
+      }
+
+      epubJsSession = null;
+      document.body.classList.remove('compat-reader');
+    }
+
+    async function createCompatibleBook(file, epubBlob, fallbackTitle, parseError) {
+      const now = new Date().toISOString();
+
+      const book = {
+        id: createId(),
+        title: fallbackTitle || file.name.replace(/\.epub$/i, ''),
+        author: 'Автор не указан',
+        status: 'reading',
+        fileName: file.name,
+        fileSize: file.size,
+        coverData: '',
+        progress: 0,
+        currentPageIndex: 0,
+        currentCfi: '',
+        totalPages: 0,
+        currentChapterIndex: 0,
+        totalChapters: 0,
+        bookmarks: [],
+        readerEngine: 'epubjs',
+        compatMode: true,
+        parseError: parseError?.message || String(parseError || ''),
+        createdAt: now,
+        updatedAt: now
+      };
+
+      await putBookMeta(book);
+      await putBookFile(book.id, epubBlob);
+
+      books = await getAllBooks();
+
+      renderAll();
+      showScreen('library');
+      showToast('Книга добавлена в совместимом режиме');
+
+      return book;
+    }
+
+    async function openEpubJsReader(book, epubBlob) {
+      closeEpubJsSession();
+
+      document.body.classList.add('compat-reader');
+
+      const epubFactory = await loadEpubJsLibrary();
+      const objectUrl = URL.createObjectURL(epubBlob);
+      const epubBook = epubFactory(objectUrl);
+
+      activeReaderData = {
+        engine: 'epubjs',
+        pages: [],
+        chapters: [],
+        book: epubBook,
+        rendition: null
+      };
+
+      els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Совместимый режим</strong>Открываю EPUB через EPUB.js.</div>';
+
+      const rendition = epubBook.renderTo(els.viewer, {
+        width: '100%',
+        height: '100%',
+        spread: 'none',
+        flow: 'paginated'
+      });
+
+      epubJsSession = {
+        book: epubBook,
+        rendition,
+        objectUrl
+      };
+
+      activeReaderData.rendition = rendition;
+
+      try {
+        rendition.themes.default({
+          body: {
+            'font-family': 'Georgia, "Times New Roman", serif',
+            'line-height': '1.62',
+            'color': '#171717',
+            'background': '#FFFDF8',
+            'padding-left': '10vw',
+            'padding-right': '10vw'
+          },
+          img: {
+            'max-width': '100%',
+            'height': 'auto'
+          }
+        });
+      } catch (error) {
+        console.warn('EPUB.js theme failed:', error);
+      }
+
+      rendition.on('relocated', location => {
+        const cfi = location?.start?.cfi || '';
+        const percentage = Number(location?.start?.percentage);
+        const progress = Number.isFinite(percentage)
+          ? clamp(Math.round(percentage * 100), 0, 100)
+          : Number(activeBook?.progress || 0);
+
+        activeBook = {
+          ...activeBook,
+          readerEngine: 'epubjs',
+          compatMode: true,
+          currentCfi: cfi,
+          progress,
+          updatedAt: new Date().toISOString()
+        };
+
+        books = books.map(item => item.id === activeBook.id ? stripBookFile(activeBook) : item).sort(sortByUpdatedAt);
+        scheduleBookSave(activeBook);
+        updateReaderHeader({
+          ...activeBook,
+          totalPages: 0,
+          currentPageIndex: 0
+        });
+
+        els.readerProgressText.textContent = `${progress}% · совместимый`;
+        renderDashboard();
+        renderReadingBooks();
+        renderLibrary();
+        renderBookDetails();
+      });
+
+      const startTarget = book.currentCfi || undefined;
+
+      try {
+        await rendition.display(startTarget);
+      } catch (error) {
+        console.warn('EPUB.js display target failed, opening first page:', error);
+        await rendition.display();
+      }
+
+      try {
+        await epubBook.ready;
+      } catch (error) {
+        console.warn('EPUB.js ready failed:', error);
+      }
+
+      renderEpubJsChapterSelect(epubBook.navigation?.toc || []);
+      renderBookmarksMenu();
+      updateBookmarkButtonState();
+
+      activeBook = {
+        ...activeBook,
+        readerEngine: 'epubjs',
+        compatMode: true,
+        updatedAt: new Date().toISOString()
+      };
+
+      await putBookMeta(stripBookFile(activeBook));
+
+      showToast('Открыто в совместимом режиме');
+    }
+
+    function flattenEpubJsToc(items = [], level = 0) {
+      const result = [];
+
+      for (const item of items || []) {
+        result.push({
+          label: item.label || item.title || 'Глава',
+          href: item.href,
+          level
+        });
+
+        if (item.subitems?.length) {
+          result.push(...flattenEpubJsToc(item.subitems, level + 1));
+        }
+      }
+
+      return result;
+    }
+
+    function renderEpubJsChapterSelect(tocItems) {
+      const flatToc = flattenEpubJsToc(tocItems);
+
+      if (!flatToc.length) {
+        els.chapterBtn.textContent = 'Главы';
+        els.chapterMenu.innerHTML = '<button class="chapter-option" type="button">Главы не найдены</button>';
+        return;
+      }
+
+      els.chapterBtn.textContent = 'Главы';
+
+      els.chapterMenu.innerHTML = flatToc.map(item => {
+        const indent = '&nbsp;'.repeat(Math.min(4, item.level || 0) * 2);
+        return `<button class="chapter-option" type="button" data-compat-href="${escapeHtml(item.href || '')}">${indent}${escapeHtml(item.label || 'Глава')}</button>`;
+      }).join('');
+
+      els.chapterMenu.querySelectorAll('[data-compat-href]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const href = btn.dataset.compatHref;
+
+          if (!href || !epubJsSession?.rendition) return;
+
+          els.chapterMenu.classList.remove('open');
+
+          try {
+            await epubJsSession.rendition.display(href);
+          } catch (error) {
+            console.warn('EPUB.js chapter jump failed:', error);
+            showToast('Не удалось перейти к главе');
+          }
+        });
+      });
+    }
+
+
     async function handleEpubUpload(event) {
       const file = event.target.files?.[0];
       event.target.value = '';
@@ -3785,7 +4091,14 @@
         parsed.chapters = pageData.chapters;
       } catch (error) {
         console.error(error);
-        showToast(getReadableError(error));
+
+        try {
+          await createCompatibleBook(file, epubBlob, fallbackTitle, error);
+        } catch (compatError) {
+          console.error(compatError);
+          showToast(getReadableError(error));
+        }
+
         return;
       }
 
@@ -4903,6 +5216,9 @@
       const pageLabel = totalPages ? `${readPages} / ${totalPages} стр.` : 'страницы не посчитаны';
       const statusLabel = book.status === 'read' ? 'прочитано' : 'читаю';
       const bookmarks = getBookBookmarks(book);
+      const compatInfo = isCompatBook(book)
+        ? `<div class="compat-diagnostic"><strong>Совместимый режим</strong><span>Эта книга открывается через EPUB.js fallback. Причина: ${escapeHtml(book.parseError || 'нестандартная структура EPUB')}</span></div>`
+        : '';
       const bookmarksBlock = renderBookBookmarksBlock(book, bookmarks);
 
       return `
@@ -4958,7 +5274,7 @@
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=527" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=528" alt="Логотип Мои книги" /></div>`;
     }
 
 
@@ -4967,7 +5283,7 @@
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=527" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=528" alt="Логотип Мои книги" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -5017,6 +5333,7 @@
                 <span class="pill">${readPages} / ${totalPages || 0} стр.</span>
                 <span class="pill">${statusLabel}</span>
               </div>
+              ${compatInfo}
               <div class="book-detail-actions">
                 <button class="primary-btn" type="button" data-open="${book.id}" data-reader-return="book">${primaryLabel}</button>
                 <button class="ghost-btn" type="button" data-restart-book="${book.id}">Сначала</button>
@@ -5174,6 +5491,23 @@
 
       showScreen('reader');
       updateReaderHeader(book);
+
+      if (isCompatBook(book)) {
+        els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Совместимый режим</strong>Открываю EPUB через EPUB.js.</div>';
+
+        try {
+          const epubBlob = await getBookFile(book.id);
+          if (!epubBlob) throw new Error('epub file not found');
+          await openEpubJsReader(activeBook, epubBlob);
+        } catch (error) {
+          console.error(error);
+          showToast('Совместимый режим не открыл книгу');
+          els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Попробуй удалить книгу и добавить файл заново.</div>';
+        }
+
+        return;
+      }
+
       els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Открываю книгу</strong>Собираю страницы из EPUB.</div>';
 
       try {
@@ -5193,7 +5527,27 @@
       } catch (error) {
         console.error(error);
         showToast(getReadableError(error));
-        els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Структура книги не распознана.</div>';
+
+        try {
+          const epubBlob = await getBookFile(book.id);
+          if (!epubBlob) throw error;
+
+          const compatBook = {
+            ...activeBook,
+            readerEngine: 'epubjs',
+            compatMode: true,
+            parseError: error?.message || String(error || ''),
+            updatedAt: new Date().toISOString()
+          };
+
+          activeBook = compatBook;
+          books = books.map(item => item.id === compatBook.id ? stripBookFile(compatBook) : item).sort(sortByUpdatedAt);
+          await putBookMeta(stripBookFile(compatBook));
+          await openEpubJsReader(compatBook, epubBlob);
+        } catch (compatError) {
+          console.error(compatError);
+          els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Структура книги не распознана. Совместимый режим тоже не смог открыть файл.</div>';
+        }
       }
     }
 
@@ -5297,6 +5651,49 @@
     }
 
     async function addCurrentBookmark() {
+      if (activeReaderData?.engine === 'epubjs' && activeBook) {
+        const bookmarks = getBookBookmarks(activeBook);
+        const cfi = activeBook.currentCfi || '';
+
+        if (!cfi) {
+          showToast('Позиция ещё не определена');
+          return;
+        }
+
+        if (bookmarks.some(bookmark => bookmark.cfi === cfi)) {
+          showToast('Закладка уже есть');
+          return;
+        }
+
+        const bookmark = {
+          id: createId(),
+          pageIndex: Number(activeBook.currentPageIndex || 0),
+          cfi,
+          chapterIndex: 0,
+          chapterTitle: 'Совместимый режим',
+          progress: activeBook.progress || 0,
+          type: 'bookmark-cfi',
+          createdAt: new Date().toISOString()
+        };
+
+        const updated = {
+          ...activeBook,
+          bookmarks: [...bookmarks, bookmark],
+          updatedAt: new Date().toISOString()
+        };
+
+        activeBook = updated;
+        books = books.map(book => book.id === updated.id ? stripBookFile(updated) : book).sort(sortByUpdatedAt);
+
+        await putBookMeta(stripBookFile(updated));
+        pushUpdateToCloud({ type: 'bookmark-added', book: stripBookFile(updated), cfi });
+
+        renderBookmarksMenu();
+        updateBookmarkButtonState();
+        showToast('Закладка добавлена');
+        return;
+      }
+
       if (!activeBook || !activeReaderData?.pages?.length) {
         showToast('Книга не открыта');
         return;
@@ -5309,6 +5706,7 @@
         return;
       }
 
+      closeEpubJsSession();
       const page = activeReaderData.pages[activePageIndex];
       const bookmark = {
         id: createId(),
@@ -5382,7 +5780,7 @@
         const dateLabel = bookmark.createdAt ? new Date(bookmark.createdAt).toLocaleDateString('ru-RU') : '';
 
         return `
-          <div class="bookmark-option ${active ? 'active' : ''}" data-go-bookmark="${bookmark.pageIndex}">
+          <div class="bookmark-option ${active ? 'active' : ''}" data-go-bookmark="${bookmark.pageIndex}" data-go-bookmark-cfi="${escapeHtml(bookmark.cfi || '')}">
             <div class="bookmark-option-main">
               <span class="bookmark-option-title">${escapeHtml(bookmark.chapterTitle || 'Закладка')}</span>
               <span class="bookmark-option-meta">${escapeHtml(pageLabel)}${dateLabel ? ' · ' + escapeHtml(dateLabel) : ''}</span>
@@ -5396,9 +5794,17 @@
         btn.addEventListener('click', async event => {
           if (event.target.closest('[data-delete-bookmark]')) return;
 
+          const cfi = btn.dataset.goBookmarkCfi || '';
+
+          if (activeReaderData?.engine === 'epubjs' && cfi && epubJsSession?.rendition) {
+            els.bookmarksMenu.classList.remove('open');
+            await epubJsSession.rendition.display(cfi);
+            return;
+          }
+
           const pageIndex = Number(btn.dataset.goBookmark);
 
-          if (Number.isFinite(pageIndex)) {
+          if (Number.isFinite(pageIndex) && activeReaderData?.pages?.length) {
             activePageIndex = clamp(pageIndex, 0, activeReaderData.pages.length - 1);
             els.bookmarksMenu.classList.remove('open');
             await renderActivePage();
@@ -5419,6 +5825,11 @@
 
     async function renderActivePage() {
       if (!activeReaderData || !activeBook) return;
+
+      if (activeReaderData?.engine === 'epubjs') {
+        updateReaderHeader(activeBook);
+        return;
+      }
 
       const page = activeReaderData.pages[activePageIndex];
 
@@ -5462,6 +5873,17 @@
     }
 
     async function goToPage(delta) {
+      if (activeReaderData?.engine === 'epubjs' && epubJsSession?.rendition) {
+        try {
+          if (delta < 0) await epubJsSession.rendition.prev();
+          else await epubJsSession.rendition.next();
+        } catch (error) {
+          console.warn('EPUB.js page turn failed:', error);
+        }
+
+        return;
+      }
+
       if (!activeReaderData?.pages) return;
 
       const nextIndex = clamp(activePageIndex + delta, 0, activeReaderData.pages.length - 1);
