@@ -1,4 +1,4 @@
-МОИ КНИГИ — ANDROID/APK ПОДГОТОВКА 5.2.12
+МОИ КНИГИ — ANDROID/APK ПОДГОТОВКА 5.2.13
 
 Статус:
 Это PWA-сборка, подготовленная под фактический адрес проекта:
@@ -10,7 +10,7 @@ https://pusiska.github.io/bk/
 Актуальные параметры:
 - Название приложения: Мои книги
 - Package name: app.moiknigi.reader
-- PWA start_url: /bk/index.html?v=5212
+- PWA start_url: /bk/index.html?v=5213
 - Clean URL: https://pusiska.github.io/bk/
 - Manifest URL: https://pusiska.github.io/bk/manifest.json
 - Scope: /bk/
@@ -20,7 +20,7 @@ https://pusiska.github.io/bk/
 
 Что сделать после загрузки:
 1. Открыть:
-   https://pusiska.github.io/bk/index.html?v=5212
+   https://pusiska.github.io/bk/index.html?v=5213
 2. Удалить старую установленную PWA со смартфона.
 3. Очистить данные сайта/приложения, если старая PWA продолжает открывать 404.
 4. Установить PWA заново.
