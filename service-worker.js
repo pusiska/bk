@@ -1,9 +1,9 @@
-const CACHE_NAME = 'my-books-epub-reader-v529';
+const CACHE_NAME = 'my-books-epub-reader-v5210';
 
 const APP_SHELL = [
   './',
   './index.html',
-  './index.html?v=529',
+  './index.html?v=5210',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -42,12 +42,12 @@ function getCacheKey(request) {
 }
 
 async function getOfflineShell() {
-  return await caches.match('./index.html?v=529') || await caches.match('./index.html') || await caches.match('./');
+  return await caches.match('./index.html?v=5210') || await caches.match('./index.html') || await caches.match('./');
 }
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL).catch(error => { console.warn('App shell cache failed:', error); return cache.addAll(['./', './index.html', './index.html?v=529', './manifest.json']); }))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL).catch(error => { console.warn('App shell cache failed:', error); return cache.addAll(['./', './index.html', './index.html?v=5210', './manifest.json']); }))
   );
   self.skipWaiting();
 });

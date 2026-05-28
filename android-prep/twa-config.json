@@ -12,8 +12,8 @@
   "orientation": "any",
   "launcherName": "Мои книги",
   "notes": [
-    "5.2.9 fixes actual GitHub Pages path: app is served from /bk/.",
-    "Installed PWA start_url uses /bk/index.html?v=529 to avoid Android launch 404.",
+    "5.2.10 fixes actual GitHub Pages path: app is served from /bk/.",
+    "Installed PWA start_url uses /bk/index.html?v=5210 to avoid Android launch 404.",
     "Future Bubblewrap/TWA can use clean URL /bk/ after Digital Asset Links is configured.",
     "Final APK/AAB requires Android signing key."
   ]
