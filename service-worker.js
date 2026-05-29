@@ -1,14 +1,15 @@
+// VERSION_MARKER_5_3_9
 // VERSION_MARKER_5_3_8
 // VERSION_MARKER_5_3_7
 // VERSION_MARKER_5_3_6
 // VERSION_MARKER_5_3_5
 // VERSION_MARKER_5_3_4
-const CACHE_NAME = 'knizhnik-epub-reader-v538';
+const CACHE_NAME = 'knizhnik-epub-reader-v539';
 
 const APP_SHELL = [
   './',
   './index.html',
-  './index.html?v=538',
+  './index.html?v=539',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -47,12 +48,12 @@ function getCacheKey(request) {
 }
 
 async function getOfflineShell() {
-  return await caches.match('./index.html?v=538') || await caches.match('./index.html') || await caches.match('./');
+  return await caches.match('./index.html?v=539') || await caches.match('./index.html') || await caches.match('./');
 }
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL).catch(error => { console.warn('App shell cache failed:', error); return cache.addAll(['./', './index.html', './index.html?v=538', './manifest.json']); }))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL).catch(error => { console.warn('App shell cache failed:', error); return cache.addAll(['./', './index.html', './index.html?v=539', './manifest.json']); }))
   );
   self.skipWaiting();
 });

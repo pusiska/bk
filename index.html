@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=538" />
+  <link rel="manifest" href="./manifest.json?v=539" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Книжник 5.3.8</title>
+  <title>Книжник 5.3.9</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=538') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=539') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=538') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=539') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3542,7 +3542,7 @@
 
   
 
-    /* v5.3.8 compact reader + stable pagination, no inner page scroll */
+    /* v5.3.9 compact reader + stable pagination, no inner page scroll */
     .reader-book-hidden { display: none !important; }
 
     .reader-top {
@@ -3757,7 +3757,7 @@
 
   
 
-    /* v5.3.8 dashboard + pagination polish */
+    /* v5.3.9 dashboard + pagination polish */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3887,7 +3887,7 @@
     }
 
   
-    /* v5.3.8 reader inline appearance panel */
+    /* v5.3.9 reader inline appearance panel */
     .reader-appearance-wrap {
       position: relative;
       display: inline-flex;
@@ -3993,7 +3993,7 @@
 
   
 
-    /* v5.3.8 Книжник — header, dashboard, library list and Aa panel cleanup */
+    /* v5.3.9 Книжник — header, dashboard, library list and Aa panel cleanup */
     .brand-subtitle { display: none !important; }
 
     .brand-title {
@@ -4300,7 +4300,7 @@
 
   
 
-    /* v5.3.8 library modes, readable filters, Aa bottom sheet and reader clipping fix */
+    /* v5.3.9 library modes, readable filters, Aa bottom sheet and reader clipping fix */
     .filter-btn.active {
       color: #FFFDF8 !important;
       background: #171717 !important;
@@ -4575,7 +4575,7 @@
 
   
 
-    /* v5.3.8 minimal book details + reader open stability styles */
+    /* v5.3.9 minimal book details + reader open stability styles */
     .book-detail-minimal {
       display: grid;
       grid-template-columns: 132px minmax(0, 1fr);
@@ -4697,7 +4697,7 @@
 
   
 
-    /* v5.3.8 stable pagination: no runtime page growth, safer page box */
+    /* v5.3.9 stable pagination: no runtime page growth, safer page box */
     .reader-content {
       overflow: hidden !important;
       padding-bottom: 42px !important;
@@ -4715,13 +4715,42 @@
       }
     }
 
+  
+
+    /* v5.3.9 measured pagination */
+    .reader-measure-box {
+      font-size: var(--reader-font-size, 20px) !important;
+      line-height: 1.58 !important;
+      padding: 12px 18px 42px !important;
+    }
+
+    .reader-content {
+      line-height: 1.58 !important;
+      padding-bottom: 42px !important;
+      overflow: hidden !important;
+    }
+
+    .reader-content p {
+      margin-top: 0 !important;
+      margin-bottom: .72em !important;
+    }
+
+    @media (max-width: 430px) {
+      .reader-measure-box,
+      .reader-content {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-bottom: 46px !important;
+      }
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=538" alt="Книжник" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=539" alt="Книжник" class="app-splash-logo" />
       <div class="app-splash-title">Книжник</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -4730,12 +4759,12 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=538" alt="Книжник" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=539" alt="Книжник" /></div>
         <div>
           <p class="brand-title">Книжник</p>
         </div>
       </div>
-      <span class="version-pill">v5.3.8</span>
+      <span class="version-pill">v5.3.9</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -4883,7 +4912,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.3.8</span>
+          <span id="settingsVersion">5.3.9</span>
         </div>
 
         <div class="settings-item">
@@ -4922,7 +4951,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=538ui</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=539ui</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -4965,7 +4994,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=538.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=539.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -4986,16 +5015,16 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.3.8';
+    const APP_VERSION = '5.3.9';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
-    const ENABLE_RUNTIME_PAGE_SPLIT = false; // v5.3.8: stable pages, pre-pagination only
+    const ENABLE_RUNTIME_PAGE_SPLIT = false; // v5.3.9: stable measured pre-pagination only
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
     const READING_STATS_KEY = 'knizhnik-reading-daily-v1';
-    const SW_CACHE_NAME = 'knizhnik-epub-reader-v538';
+    const SW_CACHE_NAME = 'knizhnik-epub-reader-v539';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -5306,7 +5335,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=538').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=539').catch(() => {});
         });
       }
     }
@@ -5851,8 +5880,8 @@ function renderEpubJsChapterSelect(tocItems) {
       let parsed;
 
       try {
-        parsed = await withTimeout(parseEpubArrayBuffer(arrayBuffer.slice(0), fallbackTitle), 12000, 'parse timeout');
-        const pageData = await withTimeout(buildPagesFromReaderData(parsed), 15000, 'pages build timeout');
+        parsed = await withTimeout(parseEpubArrayBuffer(arrayBuffer.slice(0), fallbackTitle), 30000, 'parse timeout');
+        const pageData = await withTimeout(buildPagesFromReaderData(parsed), 60000, 'pages build timeout');
         parsed.pages = pageData.pages;
         parsed.chapters = pageData.chapters;
         parsed.pageCountStable = true;
@@ -6096,7 +6125,7 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function getPageCharLimit() {
-      // v5.3.8: stable pre-pagination tuned for phone viewport.
+      // v5.3.9: stable pre-pagination tuned for phone viewport.
       const width = window.innerWidth || 390;
       const height = window.innerHeight || 760;
       const font = Math.max(16, Number(readerFontSize || 20));
@@ -6315,140 +6344,218 @@ function renderEpubJsChapterSelect(tocItems) {
 
 
     async function buildPagesFromReaderData(readerData) {
+      // v5.3.9: measured pagination.
+      // Pages are built before reading by measuring actual rendered height in a hidden reader box.
+      // This keeps totalPages stable and prevents text from being clipped at the bottom.
       const pages = [];
       const detectedChapters = [];
       const pageCharLimit = getPageCharLimit();
-      const streamBlocks = []; // v5.3.8 word-level pre-pagination marker
+      const streamBlocks = []; // v5.3.9 measured pre-pagination marker
       const seenBlockTexts = new Set();
       const tocHrefSet = getTocHrefSet(readerData.toc || []);
       let detectedChapterCount = 0;
 
-      for (let sourceIndex = 0; sourceIndex < readerData.spine.length; sourceIndex += 1) {
-        const item = readerData.spine[sourceIndex];
+      const measureBox = createReaderPaginationMeasureBox();
 
-        if (!item || !readerData.zip.file(item.href)) continue;
-        if (/cover/i.test(item.href)) continue;
+      try {
+        await new Promise(resolve => requestAnimationFrame(resolve));
 
-        const chapterText = await readerData.zip.file(item.href).async('text');
-        const blocks = await extractReadableBlocks(readerData.zip, item.href, chapterText);
+        for (let sourceIndex = 0; sourceIndex < readerData.spine.length; sourceIndex += 1) {
+          const item = readerData.spine[sourceIndex];
 
-        for (const rawBlock of blocks) {
-          for (const piece of splitBlockForPages(rawBlock, Math.max(260, Math.floor(pageCharLimit * 0.88)))) {
-            const block = normalizeBlockForReading(piece);
-            if (!block) continue;
+          if (!item || !readerData.zip.file(item.href)) continue;
+          if (/cover/i.test(item.href)) continue;
 
-            const text = normalizeReaderText(getPlainText(block));
-            const chapterTitle = detectChapterTitle(block, detectedChapterCount + 1);
-            const dedupeKey = text.toLowerCase();
+          const chapterText = await readerData.zip.file(item.href).async('text');
+          const blocks = await extractReadableBlocks(readerData.zip, item.href, chapterText);
 
-            if (!chapterTitle && seenBlockTexts.has(dedupeKey)) continue;
-            if (!chapterTitle) seenBlockTexts.add(dedupeKey);
-            if (chapterTitle) detectedChapterCount += 1;
+          for (const rawBlock of blocks) {
+            for (const piece of splitBlockForPages(rawBlock, Math.max(260, Math.floor(pageCharLimit * 1.05)))) {
+              const block = normalizeBlockForReading(piece);
+              if (!block) continue;
 
-            const finalPieces = text.length > pageCharLimit
-              ? splitBlockForPages(block, Math.max(260, Math.floor(pageCharLimit * 0.88)))
-              : [block];
+              const text = normalizeReaderText(getPlainText(block));
+              const hasImage = /<img\b/i.test(block);
+              if (!text && !hasImage) continue;
 
-            finalPieces.forEach((finalPiece, finalIndex) => {
-              const finalText = normalizeReaderText(getPlainText(finalPiece));
-              if (!finalText && !/<img\b/i.test(finalPiece)) return;
+              const chapterTitle = detectChapterTitle(block, detectedChapterCount + 1);
+              const dedupeKey = text.toLowerCase();
+
+              if (!chapterTitle && text && seenBlockTexts.has(dedupeKey)) continue;
+              if (!chapterTitle && text) seenBlockTexts.add(dedupeKey);
+              if (chapterTitle) detectedChapterCount += 1;
 
               streamBlocks.push({
-                html: finalPiece,
-                text: finalText,
+                html: block,
+                text,
                 href: item.href,
                 sourceIndex,
-                chapterTitle: finalIndex === 0 ? chapterTitle : ''
+                chapterTitle
               });
-            });
+            }
           }
         }
-      }
 
-      let currentBlocks = [];
-      let currentChars = 0;
-      let currentChapterIndex = -1;
+        let currentBlocks = [];
+        let currentChapterIndex = -1;
 
-      const pushCurrentPage = chapterIndex => {
-        if (!currentBlocks.length) return;
+        const getCurrentHtml = () => currentBlocks.map(block => block.html).join('');
 
-        const html = currentBlocks.map(block => block.html).join('');
-        const plain = normalizeReaderText(getPlainText(html));
-        const hrefs = mergeUnique(currentBlocks.map(block => block.href));
+        const htmlFits = htmlString => {
+          measureBox.innerHTML = htmlString || '';
+          return measureBox.scrollHeight <= measureBox.clientHeight + 2;
+        };
 
-        const hasImageOnlyContent = /<img\b/i.test(html);
-        if (plain.length < 2 && !hasImageOnlyContent) {
+        const pushCurrentPage = chapterIndex => {
+          if (!currentBlocks.length) return;
+
+          const html = getCurrentHtml();
+          const plain = normalizeReaderText(getPlainText(html));
+          const hrefs = mergeUnique(currentBlocks.map(block => block.href));
+          const hasImageOnlyContent = /<img\b/i.test(html);
+
+          if (plain.length < 2 && !hasImageOnlyContent) {
+            currentBlocks = [];
+            return;
+          }
+
+          pages.push({
+            html,
+            chapterIndex: Math.max(0, chapterIndex),
+            href: hrefs[0] || '',
+            hrefs,
+            sourceIndex: currentBlocks[0]?.sourceIndex || 0
+          });
+
           currentBlocks = [];
-          currentChars = 0;
-          return;
-        }
+        };
 
-        pages.push({
-          html,
-          chapterIndex: Math.max(0, chapterIndex),
-          href: hrefs[0] || '',
-          hrefs,
-          sourceIndex: currentBlocks[0]?.sourceIndex || 0
+        const makeTextBlock = (text, block, chapterTitle = '') => ({
+          html: `<p>${escapeHtml(text)}</p>`,
+          text,
+          href: block.href,
+          sourceIndex: block.sourceIndex,
+          chapterTitle
         });
 
-        currentBlocks = [];
-        currentChars = 0;
-      };
+        const addTextByWords = block => {
+          const words = normalizeReaderText(block.text || getPlainText(block.html)).split(/\s+/).filter(Boolean);
+          let position = 0;
 
-      for (const block of streamBlocks) {
-        const blockHref = stripHrefFragment(block.href);
-        const currentHrefs = mergeUnique(currentBlocks.map(item => stripHrefFragment(item.href)));
-        const startsOfficialTocHref = isTocHrefBoundary(block, tocHrefSet);
-        const sameHrefAlreadyOnPage = currentHrefs.includes(blockHref);
-        const shouldBreakForToc = currentBlocks.length
-          && startsOfficialTocHref
-          && !sameHrefAlreadyOnPage;
+          while (position < words.length) {
+            const currentHtml = getCurrentHtml();
+            const remainingText = words.slice(position).join(' ');
+            const fullCandidate = makeTextBlock(remainingText, block, position === 0 ? block.chapterTitle : '');
 
-        if (shouldBreakForToc) {
-          pushCurrentPage(Math.max(0, currentChapterIndex));
-        }
+            if (htmlFits(currentHtml + fullCandidate.html)) {
+              currentBlocks.push(fullCandidate);
+              position = words.length;
+              break;
+            }
 
-        if (block.chapterTitle) {
+            let low = 1;
+            let high = words.length - position;
+            let best = 0;
+
+            while (low <= high) {
+              const mid = Math.floor((low + high) / 2);
+              const chunk = words.slice(position, position + mid).join(' ');
+              const candidate = makeTextBlock(chunk, block, position === 0 ? block.chapterTitle : '');
+
+              if (htmlFits(currentHtml + candidate.html)) {
+                best = mid;
+                low = mid + 1;
+              } else {
+                high = mid - 1;
+              }
+            }
+
+            if (best > 0) {
+              const chunk = words.slice(position, position + best).join(' ');
+              currentBlocks.push(makeTextBlock(chunk, block, position === 0 ? block.chapterTitle : ''));
+              position += best;
+
+              if (position < words.length) {
+                pushCurrentPage(Math.max(0, currentChapterIndex));
+              }
+
+              continue;
+            }
+
+            if (currentBlocks.length) {
+              pushCurrentPage(Math.max(0, currentChapterIndex));
+              continue;
+            }
+
+            currentBlocks.push(makeTextBlock(words[position], block, position === 0 ? block.chapterTitle : ''));
+            position += 1;
+            pushCurrentPage(Math.max(0, currentChapterIndex));
+          }
+        };
+
+        for (const block of streamBlocks) {
+          const blockHref = stripHrefFragment(block.href);
+          const currentHrefs = mergeUnique(currentBlocks.map(item => stripHrefFragment(item.href)));
+          const startsOfficialTocHref = isTocHrefBoundary(block, tocHrefSet);
+          const sameHrefAlreadyOnPage = currentHrefs.includes(blockHref);
+          const shouldBreakForToc = currentBlocks.length
+            && startsOfficialTocHref
+            && !sameHrefAlreadyOnPage;
+
+          if (shouldBreakForToc) {
+            pushCurrentPage(Math.max(0, currentChapterIndex));
+          }
+
+          if (block.chapterTitle) {
+            if (currentBlocks.length) {
+              pushCurrentPage(Math.max(0, currentChapterIndex));
+            }
+
+            currentChapterIndex = detectedChapters.length;
+
+            detectedChapters.push({
+              title: block.chapterTitle,
+              firstPageIndex: pages.length,
+              sourceIndex: block.sourceIndex,
+              href: block.href,
+              source: 'heading'
+            });
+          } else if (currentChapterIndex < 0 && pages.length === 0 && !currentBlocks.length) {
+            currentChapterIndex = 0;
+            detectedChapters.push({
+              title: 'Начало',
+              firstPageIndex: 0,
+              sourceIndex: block.sourceIndex,
+              href: block.href,
+              source: 'fallback'
+            });
+          }
+
+          const candidateHtml = getCurrentHtml() + block.html;
+
+          if (htmlFits(candidateHtml)) {
+            currentBlocks.push(block);
+            continue;
+          }
+
+          if (block.text && block.text.length > 0) {
+            addTextByWords(block);
+            continue;
+          }
+
           if (currentBlocks.length) {
             pushCurrentPage(Math.max(0, currentChapterIndex));
           }
 
-          currentChapterIndex = detectedChapters.length;
-
-          detectedChapters.push({
-            title: block.chapterTitle,
-            firstPageIndex: pages.length,
-            sourceIndex: block.sourceIndex,
-            href: block.href,
-            source: 'heading'
-          });
-        } else if (currentChapterIndex < 0 && pages.length === 0 && !currentBlocks.length) {
-          currentChapterIndex = 0;
-          detectedChapters.push({
-            title: 'Начало',
-            firstPageIndex: 0,
-            sourceIndex: block.sourceIndex,
-            href: block.href,
-            source: 'fallback'
-          });
-        }
-
-        const blockChars = block.text.length || 1;
-        const currentOnlyHeading = isOnlyChapterHeading(currentBlocks.map(item => item.html));
-        const shouldStartNewPage = currentBlocks.length
-          && !currentOnlyHeading
-          && currentChars + blockChars > pageCharLimit;
-
-        if (shouldStartNewPage) {
+          currentBlocks.push(block);
           pushCurrentPage(Math.max(0, currentChapterIndex));
         }
 
-        currentBlocks.push(block);
-        currentChars += blockChars;
-      }
-
-      if (currentBlocks.length) {
-        pushCurrentPage(Math.max(0, currentChapterIndex));
+        if (currentBlocks.length) {
+          pushCurrentPage(Math.max(0, currentChapterIndex));
+        }
+      } finally {
+        measureBox.remove();
       }
 
       if (!pages.length) {
@@ -6471,27 +6578,56 @@ function renderEpubJsChapterSelect(tocItems) {
         chapters.unshift({
           title: 'Начало',
           firstPageIndex: 0,
-          sourceIndex: 0,
-          href: pages[0]?.href || '',
           source: 'fallback'
         });
       }
 
       chapters = chapters
-        .map((chapter, index) => ({
+        .sort((a, b) => Number(a.firstPageIndex || 0) - Number(b.firstPageIndex || 0))
+        .map((chapter, index, arr) => ({
           ...chapter,
           index,
-          firstPageIndex: clamp(chapter.firstPageIndex || 0, 0, Math.max(0, pages.length - 1))
-        }))
-        .sort((a, b) => a.firstPageIndex - b.firstPageIndex);
+          lastPageIndex: Math.max(
+            Number(chapter.firstPageIndex || 0),
+            index < arr.length - 1
+              ? Number(arr[index + 1].firstPageIndex || 0) - 1
+              : pages.length - 1
+          )
+        }));
 
-      chapters.forEach((chapter, index) => {
-        chapter.index = index;
-      });
+      return {
+        pages,
+        chapters
+      };
+    }
 
-      applyChapterIndexesToPages(pages, chapters);
+    function createReaderPaginationMeasureBox() {
+      const viewer = document.getElementById('viewer');
+      const panel = document.querySelector('.reader-panel');
+      const viewerRect = viewer?.getBoundingClientRect?.();
+      const panelRect = panel?.getBoundingClientRect?.();
+      const width = Math.max(260, Math.floor(viewerRect?.width || window.innerWidth || 390));
+      const heightBase = Math.floor(viewerRect?.height || panelRect?.height || ((window.innerHeight || 760) - 76));
+      const safeHeight = Math.max(260, heightBase - 12);
 
-      return { pages, chapters };
+      const box = document.createElement('article');
+      box.className = 'reader-content reader-measure-box';
+      box.setAttribute('aria-hidden', 'true');
+      box.style.position = 'fixed';
+      box.style.left = '-10000px';
+      box.style.top = '0';
+      box.style.width = `${width}px`;
+      box.style.height = `${safeHeight}px`;
+      box.style.maxHeight = `${safeHeight}px`;
+      box.style.overflow = 'hidden';
+      box.style.visibility = 'hidden';
+      box.style.pointerEvents = 'none';
+      box.style.contain = 'layout style size';
+      box.style.boxSizing = 'border-box';
+
+      document.body.appendChild(box);
+
+      return box;
     }
 
     function sanitizeElementTree(root) {
@@ -6801,7 +6937,7 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function getLastDateKeys(count = 7) {
-      // v5.3.8: dashboard week is calendar week, Monday -> Sunday.
+      // v5.3.9: dashboard week is calendar week, Monday -> Sunday.
       const today = new Date();
       const day = today.getDay(); // 0 = Sunday, 1 = Monday
       const diffToMonday = day === 0 ? -6 : 1 - day;
@@ -7226,7 +7362,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=538" alt="Логотип Книжник" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=539" alt="Логотип Книжник" /></div>`;
     }
 
 
@@ -7235,7 +7371,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=538" alt="Логотип Книжник" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=539" alt="Логотип Книжник" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -7394,7 +7530,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
 
     async function openReader(bookId, startPageIndex = null, returnScreen = 'library') {
-      // v5.3.8: hard reset reader session before every open. This prevents stale reader state
+      // v5.3.9: hard reset reader session before every open. This prevents stale reader state
       // after the app has been backgrounded or reopened from installed PWA cache.
       await flushBookSave();
       closeEpubJsSession();
@@ -7477,8 +7613,8 @@ function renderEpubJsChapterSelect(tocItems) {
       try {
         if (!epubBlob || typeof epubBlob.arrayBuffer !== 'function') throw new Error('EPUB blob unavailable');
         const arrayBuffer = await epubBlob.arrayBuffer();
-        activeReaderData = await withTimeout(parseEpubArrayBuffer(arrayBuffer, book.title), 30000, 'reader parse timeout');
-        const pageData = await withTimeout(buildPagesFromReaderData(activeReaderData), 30000, 'pages build timeout');
+        activeReaderData = await withTimeout(parseEpubArrayBuffer(arrayBuffer, book.title), 45000, 'reader parse timeout');
+        const pageData = await withTimeout(buildPagesFromReaderData(activeReaderData), 60000, 'pages build timeout');
         activeReaderData.pages = pageData.pages;
         activeReaderData.chapters = pageData.chapters;
         activeReaderData.pageCountStable = true;
@@ -7516,7 +7652,7 @@ function renderEpubJsChapterSelect(tocItems) {
           await openEpubJsReader(compatBook, epubBlob);
         } catch (compatError) {
           console.error(compatError);
-          els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Обычный и совместимый режим не смогли открыть файл. Открой приложение по ссылке v=538. Если не поможет — удали книгу и добавь EPUB заново.</div>';
+          els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Обычный и совместимый режим не смогли открыть файл. Открой приложение по ссылке v=539. Если не поможет — удали книгу и добавь EPUB заново.</div>';
         }
       }
     }
@@ -7556,7 +7692,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
       const currentChapter = activeReaderData.chapters[Math.max(0, currentChapterIndex)];
 
-      // v5.3.8: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
+      // v5.3.9: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
       renderChapterButtonIcon();
 
       els.chapterMenu.querySelectorAll('[data-page]').forEach(btn => {
@@ -8323,7 +8459,7 @@ async function renderActivePage() {
         if (!epubBlob) throw new Error('epub file not found');
         const arrayBuffer = await epubBlob.arrayBuffer();
         activeReaderData = await withTimeout(parseEpubArrayBuffer(arrayBuffer, activeBook.title), 12000, 'reader parse timeout');
-        const pageData = await withTimeout(buildPagesFromReaderData(activeReaderData), 15000, 'pages build timeout');
+        const pageData = await withTimeout(buildPagesFromReaderData(activeReaderData), 60000, 'pages build timeout');
         activeReaderData.pages = pageData.pages;
         activeReaderData.chapters = pageData.chapters;
         activePageIndex = clamp(activePageIndex, 0, activeReaderData.pages.length - 1);
