@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=537" />
+  <link rel="manifest" href="./manifest.json?v=538" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Книжник 5.3.7</title>
+  <title>Книжник 5.3.8</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=537') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=538') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=537') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=538') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3542,7 +3542,7 @@
 
   
 
-    /* v5.3.7 compact reader + stable pagination, no inner page scroll */
+    /* v5.3.8 compact reader + stable pagination, no inner page scroll */
     .reader-book-hidden { display: none !important; }
 
     .reader-top {
@@ -3757,7 +3757,7 @@
 
   
 
-    /* v5.3.7 dashboard + pagination polish */
+    /* v5.3.8 dashboard + pagination polish */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3887,7 +3887,7 @@
     }
 
   
-    /* v5.3.7 reader inline appearance panel */
+    /* v5.3.8 reader inline appearance panel */
     .reader-appearance-wrap {
       position: relative;
       display: inline-flex;
@@ -3993,7 +3993,7 @@
 
   
 
-    /* v5.3.7 Книжник — header, dashboard, library list and Aa panel cleanup */
+    /* v5.3.8 Книжник — header, dashboard, library list and Aa panel cleanup */
     .brand-subtitle { display: none !important; }
 
     .brand-title {
@@ -4300,7 +4300,7 @@
 
   
 
-    /* v5.3.7 library modes, readable filters, Aa bottom sheet and reader clipping fix */
+    /* v5.3.8 library modes, readable filters, Aa bottom sheet and reader clipping fix */
     .filter-btn.active {
       color: #FFFDF8 !important;
       background: #171717 !important;
@@ -4575,7 +4575,7 @@
 
   
 
-    /* v5.3.7 minimal book details + reader open stability styles */
+    /* v5.3.8 minimal book details + reader open stability styles */
     .book-detail-minimal {
       display: grid;
       grid-template-columns: 132px minmax(0, 1fr);
@@ -4695,13 +4695,33 @@
       }
     }
 
+  
+
+    /* v5.3.8 stable pagination: no runtime page growth, safer page box */
+    .reader-content {
+      overflow: hidden !important;
+      padding-bottom: 42px !important;
+      box-sizing: border-box !important;
+    }
+
+    .reader-content p {
+      margin-top: 0 !important;
+      margin-bottom: .72em !important;
+    }
+
+    @media (max-width: 430px) {
+      .reader-content {
+        padding-bottom: 46px !important;
+      }
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=537" alt="Книжник" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=538" alt="Книжник" class="app-splash-logo" />
       <div class="app-splash-title">Книжник</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -4710,12 +4730,12 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=537" alt="Книжник" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=538" alt="Книжник" /></div>
         <div>
           <p class="brand-title">Книжник</p>
         </div>
       </div>
-      <span class="version-pill">v5.3.7</span>
+      <span class="version-pill">v5.3.8</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -4863,7 +4883,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.3.7</span>
+          <span id="settingsVersion">5.3.8</span>
         </div>
 
         <div class="settings-item">
@@ -4902,7 +4922,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=537ui</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=538ui</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -4945,7 +4965,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=537.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=538.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -4966,16 +4986,16 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.3.7';
+    const APP_VERSION = '5.3.8';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
-    const ENABLE_RUNTIME_PAGE_SPLIT = true; // v5.3.7: split overflowing reader pages instead of clipping text
+    const ENABLE_RUNTIME_PAGE_SPLIT = false; // v5.3.8: stable pages, pre-pagination only
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
     const READING_STATS_KEY = 'knizhnik-reading-daily-v1';
-    const SW_CACHE_NAME = 'knizhnik-epub-reader-v537';
+    const SW_CACHE_NAME = 'knizhnik-epub-reader-v538';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -5286,7 +5306,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=537').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=538').catch(() => {});
         });
       }
     }
@@ -6076,79 +6096,70 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function getPageCharLimit() {
-      // v5.3.7: safer primary pagination based on visible reader area.
+      // v5.3.8: stable pre-pagination tuned for phone viewport.
       const width = window.innerWidth || 390;
       const height = window.innerHeight || 760;
       const font = Math.max(16, Number(readerFontSize || 20));
-      const headerReserve = width <= 520 ? 74 : 92;
-      const verticalPadding = width <= 520 ? 72 : 96;
-      const horizontalPadding = width <= 520 ? 42 : 90;
-      const readableWidth = Math.max(250, Math.min(680, width - horizontalPadding));
-      const readableHeight = Math.max(300, height - headerReserve - verticalPadding);
-      const charsPerLine = Math.max(18, Math.floor(readableWidth / (font * 0.54)));
-      const lineHeight = font * 1.68;
-      const linesPerPage = Math.max(10, Math.floor(readableHeight / lineHeight));
-      const estimated = Math.round(charsPerLine * linesPerPage * 0.86);
+      const headerReserve = width <= 520 ? 62 : 84;
+      const verticalPadding = width <= 520 ? 64 : 88;
+      const horizontalPadding = width <= 520 ? 38 : 84;
+      const readableWidth = Math.max(250, Math.min(700, width - horizontalPadding));
+      const readableHeight = Math.max(320, height - headerReserve - verticalPadding);
+      const charsPerLine = Math.max(20, Math.floor(readableWidth / (font * 0.51)));
+      const lineHeight = font * 1.58;
+      const linesPerPage = Math.max(11, Math.floor(readableHeight / lineHeight));
+      const estimated = Math.round(charsPerLine * linesPerPage * 0.94);
 
-      if (width <= 370) return clamp(estimated, 500, 720);
-      if (width <= 430) return clamp(estimated, 580, 860);
-      if (width <= 520) return clamp(estimated, 650, 980);
-      if (width <= 760) return clamp(estimated, 820, 1240);
-      return clamp(estimated, 1000, 1680);
+      if (width <= 370) return clamp(estimated, 620, 860);
+      if (width <= 430) return clamp(estimated, 700, 1040);
+      if (width <= 520) return clamp(estimated, 780, 1180);
+      if (width <= 760) return clamp(estimated, 960, 1440);
+      return clamp(estimated, 1180, 1900);
     }
 
-    function splitBlockForPages(block, limit = getPageCharLimit() - 60) {
-      const text = getPlainText(block);
+    function splitTextByWords(text = '', limit = getPageCharLimit()) {
+      const source = normalizeReaderText(text);
 
-      if (text.length <= limit || !/^<p/i.test(block.trim())) {
-        return [block];
-      }
+      if (!source) return [];
+      if (source.length <= limit) return [source];
 
-      const sentences = text.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) || [text];
-      const result = [];
+      const words = source.split(/\s+/).filter(Boolean);
+      const chunks = [];
       let current = '';
 
-      sentences.forEach(sentence => {
-        const next = (current + ' ' + sentence).trim();
+      for (const word of words) {
+        const next = current ? `${current} ${word}` : word;
 
         if (current && next.length > limit) {
-          result.push(`<p>${escapeHtml(current)}</p>`);
-          current = sentence.trim();
+          chunks.push(current);
+          current = word;
         } else {
           current = next;
         }
-      });
 
-      if (current.trim()) {
-        result.push(`<p>${escapeHtml(current.trim())}</p>`);
-      }
-
-      const compactPieces = [];
-
-      for (const piece of (result.length ? result : [block])) {
-        const pieceText = getPlainText(piece);
-        if (pieceText.length <= limit) {
-          compactPieces.push(piece);
-          continue;
+        while (current.length > limit * 1.2) {
+          chunks.push(current.slice(0, limit));
+          current = current.slice(limit);
         }
-
-        const words = pieceText.split(/\s+/).filter(Boolean);
-        let currentWords = '';
-
-        words.forEach(word => {
-          const next = (currentWords + ' ' + word).trim();
-          if (currentWords && next.length > limit) {
-            compactPieces.push(`<p>${escapeHtml(currentWords)}</p>`);
-            currentWords = word;
-          } else {
-            currentWords = next;
-          }
-        });
-
-        if (currentWords.trim()) compactPieces.push(`<p>${escapeHtml(currentWords.trim())}</p>`);
       }
 
-      return compactPieces.length ? compactPieces : [block];
+      if (current.trim()) chunks.push(current.trim());
+
+      return chunks;
+    }
+
+    function splitBlockForPages(block, limit = getPageCharLimit()) {
+      const source = String(block || '');
+      const text = normalizeReaderText(getPlainText(source));
+
+      if (!text) return [source];
+      if (text.length <= limit) return [source];
+
+      const tag = getBlockTagName(source) || 'p';
+      const safeTag = /^h[1-6]$/i.test(tag) ? 'p' : tag;
+      const chunks = splitTextByWords(text, limit);
+
+      return chunks.map(chunk => `<${safeTag}>${escapeHtml(chunk)}</${safeTag}>`);
     }
 
     function getBlockTagName(block) {
@@ -6307,7 +6318,7 @@ function renderEpubJsChapterSelect(tocItems) {
       const pages = [];
       const detectedChapters = [];
       const pageCharLimit = getPageCharLimit();
-      const streamBlocks = []; // v5.2.1 buildPages optimization marker
+      const streamBlocks = []; // v5.3.8 word-level pre-pagination marker
       const seenBlockTexts = new Set();
       const tocHrefSet = getTocHrefSet(readerData.toc || []);
       let detectedChapterCount = 0;
@@ -6322,7 +6333,7 @@ function renderEpubJsChapterSelect(tocItems) {
         const blocks = await extractReadableBlocks(readerData.zip, item.href, chapterText);
 
         for (const rawBlock of blocks) {
-          for (const piece of splitBlockForPages(rawBlock, Math.max(220, Math.floor(pageCharLimit * 0.62)))) {
+          for (const piece of splitBlockForPages(rawBlock, Math.max(260, Math.floor(pageCharLimit * 0.88)))) {
             const block = normalizeBlockForReading(piece);
             if (!block) continue;
 
@@ -6334,12 +6345,21 @@ function renderEpubJsChapterSelect(tocItems) {
             if (!chapterTitle) seenBlockTexts.add(dedupeKey);
             if (chapterTitle) detectedChapterCount += 1;
 
-            streamBlocks.push({
-              html: block,
-              text,
-              href: item.href,
-              sourceIndex,
-              chapterTitle
+            const finalPieces = text.length > pageCharLimit
+              ? splitBlockForPages(block, Math.max(260, Math.floor(pageCharLimit * 0.88)))
+              : [block];
+
+            finalPieces.forEach((finalPiece, finalIndex) => {
+              const finalText = normalizeReaderText(getPlainText(finalPiece));
+              if (!finalText && !/<img\b/i.test(finalPiece)) return;
+
+              streamBlocks.push({
+                html: finalPiece,
+                text: finalText,
+                href: item.href,
+                sourceIndex,
+                chapterTitle: finalIndex === 0 ? chapterTitle : ''
+              });
             });
           }
         }
@@ -6781,7 +6801,7 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function getLastDateKeys(count = 7) {
-      // v5.3.7: dashboard week is calendar week, Monday -> Sunday.
+      // v5.3.8: dashboard week is calendar week, Monday -> Sunday.
       const today = new Date();
       const day = today.getDay(); // 0 = Sunday, 1 = Monday
       const diffToMonday = day === 0 ? -6 : 1 - day;
@@ -7206,7 +7226,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=537" alt="Логотип Книжник" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=538" alt="Логотип Книжник" /></div>`;
     }
 
 
@@ -7215,7 +7235,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=537" alt="Логотип Книжник" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=538" alt="Логотип Книжник" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -7374,7 +7394,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
 
     async function openReader(bookId, startPageIndex = null, returnScreen = 'library') {
-      // v5.3.7: hard reset reader session before every open. This prevents stale reader state
+      // v5.3.8: hard reset reader session before every open. This prevents stale reader state
       // after the app has been backgrounded or reopened from installed PWA cache.
       await flushBookSave();
       closeEpubJsSession();
@@ -7436,6 +7456,7 @@ function renderEpubJsChapterSelect(tocItems) {
         : Number(book.currentPageIndex || 0);
 
       showScreen('reader');
+      if (els.readerBusy) els.readerBusy.classList.remove('show');
       renderChapterButtonIcon();
       renderBookmarksButtonIcon(getBookBookmarks(book).length);
       updateReaderHeader(book);
@@ -7454,9 +7475,10 @@ function renderEpubJsChapterSelect(tocItems) {
       }
 
       try {
+        if (!epubBlob || typeof epubBlob.arrayBuffer !== 'function') throw new Error('EPUB blob unavailable');
         const arrayBuffer = await epubBlob.arrayBuffer();
-        activeReaderData = await withTimeout(parseEpubArrayBuffer(arrayBuffer, book.title), 16000, 'reader parse timeout');
-        const pageData = await withTimeout(buildPagesFromReaderData(activeReaderData), 20000, 'pages build timeout');
+        activeReaderData = await withTimeout(parseEpubArrayBuffer(arrayBuffer, book.title), 30000, 'reader parse timeout');
+        const pageData = await withTimeout(buildPagesFromReaderData(activeReaderData), 30000, 'pages build timeout');
         activeReaderData.pages = pageData.pages;
         activeReaderData.chapters = pageData.chapters;
         activeReaderData.pageCountStable = true;
@@ -7494,7 +7516,7 @@ function renderEpubJsChapterSelect(tocItems) {
           await openEpubJsReader(compatBook, epubBlob);
         } catch (compatError) {
           console.error(compatError);
-          els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Обычный и совместимый режим не смогли открыть файл. Удали книгу и добавь EPUB заново.</div>';
+          els.viewer.innerHTML = '<div class="empty" style="margin: 16px;"><strong>Не удалось открыть EPUB</strong>Обычный и совместимый режим не смогли открыть файл. Открой приложение по ссылке v=538. Если не поможет — удали книгу и добавь EPUB заново.</div>';
         }
       }
     }
@@ -7534,7 +7556,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
       const currentChapter = activeReaderData.chapters[Math.max(0, currentChapterIndex)];
 
-      // v5.3.7: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
+      // v5.3.8: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
       renderChapterButtonIcon();
 
       els.chapterMenu.querySelectorAll('[data-page]').forEach(btn => {
@@ -7924,7 +7946,7 @@ async function renderActivePage() {
         }
       }
 
-      if (ENABLE_RUNTIME_PAGE_SPLIT && await ensurePageFits()) {
+      if (false && ENABLE_RUNTIME_PAGE_SPLIT && await ensurePageFits()) {
         renderChapterSelect();
         await renderActivePage();
         return;

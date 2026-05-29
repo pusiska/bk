@@ -1,8 +1,8 @@
 {
-  "name": "Книжник 5.3.7",
+  "name": "Книжник 5.3.8",
   "short_name": "Книжник",
   "description": "Личная EPUB-библиотека и читалка.",
-  "start_url": "/bk/index.html?v=537",
+  "start_url": "/bk/index.html?v=538",
   "scope": "/bk/",
   "display": "standalone",
   "background_color": "#F6F1E8",
