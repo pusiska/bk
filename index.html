@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=543" />
+  <link rel="manifest" href="./manifest.json?v=544" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Книжник 5.4.3</title>
+  <title>Книжник 5.4.4</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=543') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=544') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=543') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=544') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3542,7 +3542,7 @@
 
   
 
-    /* v5.4.3 compact reader + stable pagination, no inner page scroll */
+    /* v5.4.4 compact reader + stable pagination, no inner page scroll */
     .reader-book-hidden { display: none !important; }
 
     .reader-top {
@@ -3757,7 +3757,7 @@
 
   
 
-    /* v5.4.3 dashboard + pagination polish */
+    /* v5.4.4 dashboard + pagination polish */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3887,7 +3887,7 @@
     }
 
   
-    /* v5.4.3 reader inline appearance panel */
+    /* v5.4.4 reader inline appearance panel */
     .reader-appearance-wrap {
       position: relative;
       display: inline-flex;
@@ -3993,7 +3993,7 @@
 
   
 
-    /* v5.4.3 Книжник — header, dashboard, library list and Aa panel cleanup */
+    /* v5.4.4 Книжник — header, dashboard, library list and Aa panel cleanup */
     .brand-subtitle { display: none !important; }
 
     .brand-title {
@@ -4300,7 +4300,7 @@
 
   
 
-    /* v5.4.3 library modes, readable filters, Aa bottom sheet and reader clipping fix */
+    /* v5.4.4 library modes, readable filters, Aa bottom sheet and reader clipping fix */
     .filter-btn.active {
       color: #FFFDF8 !important;
       background: #171717 !important;
@@ -4575,7 +4575,7 @@
 
   
 
-    /* v5.4.3 minimal book details + reader open stability styles */
+    /* v5.4.4 minimal book details + reader open stability styles */
     .book-detail-minimal {
       display: grid;
       grid-template-columns: 132px minmax(0, 1fr);
@@ -4697,7 +4697,7 @@
 
   
 
-    /* v5.4.3 stable pagination: no runtime page growth, safer page box */
+    /* v5.4.4 stable pagination: no runtime page growth, safer page box */
     .reader-content {
       overflow: hidden !important;
       padding-bottom: 42px !important;
@@ -4717,7 +4717,7 @@
 
   
 
-    /* v5.4.3 measured pagination */
+    /* v5.4.4 measured pagination */
     .reader-measure-box {
       font-size: var(--reader-font-size, 20px) !important;
       line-height: 1.58 !important;
@@ -4746,7 +4746,7 @@
 
   
 
-    /* v5.4.3 EPUB.js primary reader core */
+    /* v5.4.4 EPUB.js primary reader core */
     body.reader-mode.epubjs-primary-reader .reader-panel,
     body.reader-mode.epubjs-primary-reader #viewer {
       height: calc(100dvh - 64px) !important;
@@ -4788,7 +4788,7 @@
 
   
 
-    /* v5.4.3 Aa panel hard fix: never attach it to top header */
+    /* v5.4.4 Aa panel hard fix: never attach it to top header */
     .reader-appearance-panel {
       position: fixed !important;
       left: 12px !important;
@@ -4832,7 +4832,7 @@
 
   
 
-    /* v5.4.3 Aa panel final hard fix */
+    /* v5.4.4 Aa panel final hard fix */
     .reader-toolbar .reader-appearance-panel,
     #readerAppearancePanel.reader-appearance-panel,
     #readerAppearancePanel.reader-appearance-bottom-sheet,
@@ -4870,7 +4870,7 @@
 
   
 
-    /* v5.4.3 Aa panel body-level hard fix */
+    /* v5.4.4 Aa panel body-level hard fix */
     body > #readerAppearancePanel.reader-appearance-panel {
       position: fixed !important;
       top: auto !important;
@@ -4912,13 +4912,222 @@
       }
     }
 
+  
+
+    /* v5.4.4 dashboard upgrade */
+    .dashboard-home {
+      gap: 10px !important;
+    }
+
+    .dash-streak-card,
+    .dash-goal-card,
+    .dash-status-card,
+    .dash-heatmap-card {
+      overflow: hidden;
+    }
+
+    .dash-streak-card strong {
+      display: block;
+      font-size: 34px;
+      line-height: .95;
+      letter-spacing: -.04em;
+      margin-bottom: 6px;
+    }
+
+    .streak-freeze {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 9px 10px;
+      border-radius: 15px;
+      background: rgba(205, 186, 154, .16);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .streak-freeze b {
+      color: var(--text);
+      font-size: 12px;
+    }
+
+    .goal-row {
+      display: grid;
+      gap: 7px;
+      margin-top: 11px;
+    }
+
+    .goal-row-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .goal-row-head strong {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .goal-bar {
+      height: 9px;
+    }
+
+    .dash-card-head.compact {
+      margin-bottom: 10px;
+    }
+
+    .dash-card-head.compact strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 20px;
+      line-height: 1;
+      font-family: var(--font-heading);
+      font-weight: 400;
+      letter-spacing: .055em;
+    }
+
+    .activity-heatmap {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(7, 10px);
+      grid-auto-columns: 10px;
+      gap: 4px;
+      align-items: center;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 2px 0 3px;
+      scrollbar-width: none;
+    }
+
+    .activity-heatmap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .heat-cell {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      background: rgba(205, 186, 154, .18);
+      border: 1px solid rgba(23, 23, 23, .035);
+    }
+
+    .heat-cell[data-level="1"],
+    .heatmap-legend i[data-level="1"] {
+      background: rgba(205, 186, 154, .38);
+    }
+
+    .heat-cell[data-level="2"],
+    .heatmap-legend i[data-level="2"] {
+      background: rgba(152, 131, 96, .50);
+    }
+
+    .heat-cell[data-level="3"],
+    .heatmap-legend i[data-level="3"] {
+      background: rgba(85, 111, 116, .58);
+    }
+
+    .heat-cell[data-level="4"],
+    .heatmap-legend i[data-level="4"] {
+      background: rgba(23, 23, 23, .78);
+    }
+
+    .heatmap-legend {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1;
+    }
+
+    .heatmap-legend i {
+      width: 9px;
+      height: 9px;
+      border-radius: 3px;
+      background: rgba(205, 186, 154, .18);
+    }
+
+    .status-counter-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .status-counter-row div {
+      min-height: 64px;
+      border-radius: 17px;
+      background: rgba(246, 241, 232, .58);
+      display: grid;
+      align-content: center;
+      gap: 6px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .status-counter-row strong {
+      font-size: 15px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .status-counter-row span {
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.1;
+      text-transform: lowercase;
+    }
+
+    @media (max-width: 430px) {
+      .dash-streak-card strong {
+        font-size: 30px;
+      }
+
+      .activity-heatmap {
+        grid-template-rows: repeat(7, 9px);
+        grid-auto-columns: 9px;
+        gap: 3px;
+      }
+
+      .heat-cell {
+        width: 9px;
+        height: 9px;
+        border-radius: 3px;
+      }
+
+      .status-counter-row {
+        gap: 6px;
+      }
+
+      .status-counter-row div {
+        min-height: 58px;
+        padding: 8px 5px;
+      }
+
+      .status-counter-row strong {
+        font-size: 13px;
+      }
+
+      .status-counter-row span {
+        font-size: 8px;
+      }
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=543" alt="Книжник" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=544" alt="Книжник" class="app-splash-logo" />
       <div class="app-splash-title">Книжник</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -4927,12 +5136,12 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=543" alt="Книжник" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=544" alt="Книжник" /></div>
         <div>
           <p class="brand-title">Книжник</p>
         </div>
       </div>
-      <span class="version-pill">v5.4.3</span>
+      <span class="version-pill">v5.4.4</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -5080,7 +5289,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.4.3</span>
+          <span id="settingsVersion">5.4.4</span>
         </div>
 
         <div class="settings-item">
@@ -5119,7 +5328,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=543ui</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=544ui</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -5162,7 +5371,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=543.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=544.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -5183,10 +5392,10 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.4.3';
+    const APP_VERSION = '5.4.4';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
-    const ENABLE_RUNTIME_PAGE_SPLIT = false; // v5.4.3: stable measured pre-pagination only
+    const ENABLE_RUNTIME_PAGE_SPLIT = false; // v5.4.4: stable measured pre-pagination only
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
@@ -5229,7 +5438,10 @@
     }
 
     const READING_STATS_KEY = 'knizhnik-reading-daily-v1';
-    const SW_CACHE_NAME = 'knizhnik-epub-reader-v543';
+    const DAILY_READING_GOAL = 20;
+    const WEEKLY_READING_GOAL = DAILY_READING_GOAL * 7;
+    const STREAK_FREEZE_DAYS = 1;
+    const SW_CACHE_NAME = 'knizhnik-epub-reader-v544';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -5569,7 +5781,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=543').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=544').catch(() => {});
         });
       }
     }
@@ -5745,7 +5957,7 @@
     }
 
     
-    // v5.4.3: EPUB.js is the primary reader core for every book.
+    // v5.4.4: EPUB.js is the primary reader core for every book.
     function isCompatBook(book) {
       return true;
     }
@@ -6054,7 +6266,7 @@
         await withTimeout(rendition.display(), 12000, 'epubjs first display timeout');
       }
 
-      // v5.4.3: force initial counter sync immediately after the restored CFI is displayed.
+      // v5.4.4: force initial counter sync immediately after the restored CFI is displayed.
       syncEpubJsLocationState(rendition.currentLocation?.() || null, 'after-display');
       setTimeout(() => syncEpubJsLocationState(rendition.currentLocation?.() || null, 'after-display-delay'), 180);
 
@@ -6445,7 +6657,7 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function getPageCharLimit() {
-      // v5.4.3: stable pre-pagination tuned for phone viewport.
+      // v5.4.4: stable pre-pagination tuned for phone viewport.
       const width = window.innerWidth || 390;
       const height = window.innerHeight || 760;
       const font = Math.max(16, Number(readerFontSize || 20));
@@ -6664,13 +6876,13 @@ function renderEpubJsChapterSelect(tocItems) {
 
 
     async function buildPagesFromReaderData(readerData) {
-      // v5.4.3: measured pagination.
+      // v5.4.4: measured pagination.
       // Pages are built before reading by measuring actual rendered height in a hidden reader box.
       // This keeps totalPages stable and prevents text from being clipped at the bottom.
       const pages = [];
       const detectedChapters = [];
       const pageCharLimit = getPageCharLimit();
-      const streamBlocks = []; // v5.4.3 measured pre-pagination marker
+      const streamBlocks = []; // v5.4.4 measured pre-pagination marker
       const seenBlockTexts = new Set();
       const tocHrefSet = getTocHrefSet(readerData.toc || []);
       let detectedChapterCount = 0;
@@ -7256,8 +7468,8 @@ function renderEpubJsChapterSelect(tocItems) {
       return `${year}-${month}-${day}`;
     }
 
-    function getLastDateKeys(count = 7) {
-      // v5.4.3: dashboard week is calendar week, Monday -> Sunday.
+    function getCurrentWeekDateKeys(count = 7) {
+      // Current calendar week: Monday -> Sunday.
       const today = new Date();
       const day = today.getDay(); // 0 = Sunday, 1 = Monday
       const diffToMonday = day === 0 ? -6 : 1 - day;
@@ -7270,6 +7482,22 @@ function renderEpubJsChapterSelect(tocItems) {
         date.setDate(monday.getDate() + index);
         return getDateKey(date);
       });
+    }
+
+    function getRecentDateKeys(count = 56, endDate = new Date()) {
+      const end = new Date(endDate);
+      end.setHours(0, 0, 0, 0);
+
+      return Array.from({ length: count }).map((_, index) => {
+        const date = new Date(end);
+        date.setDate(end.getDate() - (count - 1 - index));
+        return getDateKey(date);
+      });
+    }
+
+    function getLastDateKeys(count = 7) {
+      // Backward compatibility: weekly chart uses calendar week; longer ranges use recent history.
+      return count === 7 ? getCurrentWeekDateKeys(7) : getRecentDateKeys(count);
     }
 
     function getDayShortLabel(dateKey) {
@@ -7303,7 +7531,7 @@ function renderEpubJsChapterSelect(tocItems) {
       const today = getDateKey();
       stats[today] = Math.max(0, Number(stats[today] || 0)) + delta;
 
-      const allowed = new Set(getLastDateKeys(45));
+      const allowed = new Set(getRecentDateKeys(180));
       Object.keys(stats).forEach(key => {
         if (!allowed.has(key)) delete stats[key];
       });
@@ -7313,7 +7541,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
     function getReadingSeries(days = 7) {
       const stats = loadDailyReadingStats();
-      const keys = getLastDateKeys(days);
+      const keys = days === 7 ? getCurrentWeekDateKeys(7) : getRecentDateKeys(days);
 
       return keys.map(key => ({
         key,
@@ -7322,22 +7550,47 @@ function renderEpubJsChapterSelect(tocItems) {
       }));
     }
 
-    function getReadingStreak() {
+    function getReadingStreakInfo() {
       const stats = loadDailyReadingStats();
+      const todayPages = Number(stats[getDateKey()] || 0);
+      const startOffset = todayPages > 0 ? 0 : 1; // do not reset streak in the morning before today's reading
       let streak = 0;
+      let freezesLeft = STREAK_FREEZE_DAYS;
+      let frozenDays = 0;
 
-      for (let i = 0; i < 365; i += 1) {
+      for (let i = startOffset; i < 365; i += 1) {
         const date = new Date();
         date.setDate(date.getDate() - i);
         const key = getDateKey(date);
+        const pages = Number(stats[key] || 0);
 
-        if (Number(stats[key] || 0) > 0) streak += 1;
-        else break;
+        if (pages > 0) {
+          streak += 1;
+          continue;
+        }
+
+        if (streak > 0 && freezesLeft > 0) {
+          freezesLeft -= 1;
+          frozenDays += 1;
+          continue;
+        }
+
+        break;
       }
 
-      return streak;
+      return {
+        streak,
+        frozenDays,
+        freezesLeft,
+        todayPages
+      };
     }
 
+    function getReadingStreak() {
+      return getReadingStreakInfo().streak;
+    }
+
+    
     function renderDailyLineChart(series) {
       const max = Math.max(1, ...series.map(day => day.pages));
       const points = series.map((day, index) => {
@@ -7359,10 +7612,100 @@ function renderEpubJsChapterSelect(tocItems) {
       `;
     }
 
-    function renderDashboard() {
-      const total = books.length;
-      const reading = books.filter(book => book.status === 'reading').length;
+    function getStatusCounts() {
       const read = books.filter(book => book.status === 'read').length;
+      const planned = books.filter(book => ['planned', 'plan', 'wishlist', 'to-read'].includes(book.status)).length;
+      const reading = Math.max(0, books.length - read - planned);
+
+      return {
+        reading,
+        read,
+        planned,
+        total: books.length
+      };
+    }
+
+    function getActivityLevel(pages = 0) {
+      const value = Number(pages || 0);
+
+      if (value <= 0) return 0;
+      if (value < 5) return 1;
+      if (value < 15) return 2;
+      if (value < 30) return 3;
+      return 4;
+    }
+
+    function getDateShortLabel(dateKey) {
+      const date = new Date(`${dateKey}T00:00:00`);
+
+      return date.toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: 'short'
+      }).replace('.', '');
+    }
+
+    function renderActivityHeatmap(days = 56) {
+      const stats = loadDailyReadingStats();
+      const keys = getRecentDateKeys(days);
+
+      return `
+        <div class="activity-heatmap" aria-label="Тепловая карта активности чтения">
+          ${keys.map(key => {
+            const pages = Math.max(0, Math.round(Number(stats[key] || 0)));
+            const level = getActivityLevel(pages);
+            const label = `${getDateShortLabel(key)} · ${pages} стр.`;
+
+            return `<span class="heat-cell" data-level="${level}" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}"></span>`;
+          }).join('')}
+        </div>
+        <div class="heatmap-legend">
+          <span>меньше</span>
+          <i data-level="0"></i>
+          <i data-level="1"></i>
+          <i data-level="2"></i>
+          <i data-level="3"></i>
+          <i data-level="4"></i>
+          <span>больше</span>
+        </div>
+      `;
+    }
+
+    function renderGoalProgress(label, current, goal) {
+      const value = Math.max(0, Math.round(Number(current || 0)));
+      const target = Math.max(1, Math.round(Number(goal || 1)));
+      const percent = clamp(Math.round((value / target) * 100), 0, 100);
+
+      return `
+        <div class="goal-row">
+          <div class="goal-row-head">
+            <span>${escapeHtml(label)}</span>
+            <strong>${value}/${target}</strong>
+          </div>
+          <div class="dash-soft-bar goal-bar"><span style="width:${percent}%"></span></div>
+        </div>
+      `;
+    }
+
+    function getStreakText(days) {
+      const value = Math.abs(Number(days || 0));
+      const lastTwo = value % 100;
+      const last = value % 10;
+
+      if (lastTwo >= 11 && lastTwo <= 14) return 'дней подряд';
+      if (last === 1) return 'день подряд';
+      if (last >= 2 && last <= 4) return 'дня подряд';
+
+      return 'дней подряд';
+    }
+
+
+
+    function renderDashboard() {
+      const counts = getStatusCounts();
+      const total = counts.total;
+      const reading = counts.reading;
+      const read = counts.read;
+      const planned = counts.planned;
       const totalReadPages = books.reduce((sum, book) => sum + getReadPages(book), 0);
       const series = getReadingSeries(7);
       const weeklyPages = series.reduce((sum, day) => sum + day.pages, 0);
@@ -7370,18 +7713,20 @@ function renderEpubJsChapterSelect(tocItems) {
       const bestDay = Math.max(0, ...series.map(day => day.pages));
       const stats = loadDailyReadingStats();
       const todayPages = Math.max(0, Math.round(Number(stats[getDateKey()] || 0)));
-      const streak = getReadingStreak();
+      const streakInfo = getReadingStreakInfo();
+      const streak = streakInfo.streak;
       const lastBook = [...books].sort(sortByUpdatedAt)[0];
       const lastReadPages = lastBook ? getReadPages(lastBook) : 0;
       const lastTotalPages = Number(lastBook?.totalPages || 0);
       const lastProgress = Number(lastBook?.progress || 0);
+      const readPercent = total ? Math.round((read / total) * 100) : 0;
 
       els.dashboardGrid.innerHTML = `
         <section class="dash-card dash-main-stat">
           <span class="dash-label">Прочитано книг</span>
           <strong>${read}</strong>
-          <div class="dash-soft-bar"><span style="width:${total ? Math.round((read / total) * 100) : 0}%"></span></div>
-          <small>${reading} в процессе · ${total} всего</small>
+          <div class="dash-soft-bar"><span style="width:${readPercent}%"></span></div>
+          <small>${reading} в процессе · ${planned} в планах · ${total} всего</small>
         </section>
 
         <button class="dash-card dash-current-book" type="button" ${lastBook ? `data-dashboard-open="${lastBook.id}"` : ''}>
@@ -7403,11 +7748,47 @@ function renderEpubJsChapterSelect(tocItems) {
           <div class="daily-chart">${renderDailyLineChart(series)}</div>
         </section>
 
+        <section class="dash-card dash-streak-card">
+          <span class="dash-label">Серия</span>
+          <strong>${streak}</strong>
+          <small>${streak ? getStreakText(streak) : 'начни серию сегодня'}</small>
+          <div class="streak-freeze">
+            <span>${streakInfo.frozenDays ? 'заморозка использована' : 'заморозка доступна'}</span>
+            <b>${streakInfo.freezesLeft}/${STREAK_FREEZE_DAYS}</b>
+          </div>
+        </section>
+
+        <section class="dash-card dash-goal-card">
+          <span class="dash-label">Цели чтения</span>
+          ${renderGoalProgress('Сегодня', todayPages, DAILY_READING_GOAL)}
+          ${renderGoalProgress('Неделя', weeklyPages, WEEKLY_READING_GOAL)}
+        </section>
+
+        <section class="dash-card dash-heatmap-card">
+          <div class="dash-card-head compact">
+            <div>
+              <span class="dash-label">Тепловая карта</span>
+              <strong>Активность</strong>
+            </div>
+            <small>56 дней</small>
+          </div>
+          ${renderActivityHeatmap(56)}
+        </section>
+
+        <section class="dash-card dash-status-card">
+          <span class="dash-label">Прогресс по статусам</span>
+          <div class="status-counter-row">
+            <div><strong>📖 ${reading}</strong><span>в процессе</span></div>
+            <div><strong>✅ ${read}</strong><span>прочитано</span></div>
+            <div><strong>📌 ${planned}</strong><span>в планах</span></div>
+          </div>
+        </section>
+
         <section class="dash-mini-grid">
           <div class="dash-mini-card"><strong>${totalReadPages}</strong><span>страниц</span></div>
           <div class="dash-mini-card"><strong>${avgPages}</strong><span>стр./день</span></div>
-          <div class="dash-mini-card"><strong>${streak}</strong><span>дней серия</span></div>
-          <div class="dash-mini-card"><strong>${reading}</strong><span>читаю</span></div>
+          <div class="dash-mini-card"><strong>${weeklyPages}</strong><span>стр. неделя</span></div>
+          <div class="dash-mini-card"><strong>${bestDay}</strong><span>лучший день</span></div>
         </section>
       `;
 
@@ -7682,7 +8063,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=543" alt="Логотип Книжник" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=544" alt="Логотип Книжник" /></div>`;
     }
 
 
@@ -7691,7 +8072,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=543" alt="Логотип Книжник" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=544" alt="Логотип Книжник" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -7853,7 +8234,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
 
     async function openReader(bookId, startPageIndex = null, returnScreen = 'library') {
-      // v5.4.3: EPUB.js is now the primary reading core.
+      // v5.4.4: EPUB.js is now the primary reading core.
       // The old manual parser is left only as an emergency fallback.
       await flushBookSave();
       closeEpubJsSession();
@@ -8002,7 +8383,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
       const currentChapter = activeReaderData.chapters[Math.max(0, currentChapterIndex)];
 
-      // v5.4.3: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
+      // v5.4.4: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
       renderChapterButtonIcon();
 
       els.chapterMenu.querySelectorAll('[data-page]').forEach(btn => {
@@ -8726,7 +9107,7 @@ async function renderActivePage() {
       panel.classList.toggle('reader-appearance-bottom-sheet', willOpen);
 
       if (willOpen) {
-        // v5.4.3: move panel out of the top toolbar. Fixed positioning inside toolbar was unstable.
+        // v5.4.4: move panel out of the top toolbar. Fixed positioning inside toolbar was unstable.
         if (panel.parentElement !== document.body) {
           document.body.appendChild(panel);
         }
