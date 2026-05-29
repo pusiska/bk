@@ -13,7 +13,7 @@
   "launcherName": "Книжник",
   "notes": [
     "5.2.14 fixes actual GitHub Pages path: app is served from /bk/.",
-    "Installed PWA start_url uses /bk/index.html?v=536 to avoid Android launch 404.",
+    "Installed PWA start_url uses /bk/index.html?v=537 to avoid Android launch 404.",
     "Future Bubblewrap/TWA can use clean URL /bk/ after Digital Asset Links is configured.",
     "Final APK/AAB requires Android signing key."
   ]
