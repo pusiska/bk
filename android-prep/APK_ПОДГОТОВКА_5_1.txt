@@ -10,7 +10,7 @@ https://pusiska.github.io/bk/
 Актуальные параметры:
 - Название приложения: Книжник
 - Package name: app.moiknigi.reader
-- PWA start_url: /bk/index.html?v=539
+- PWA start_url: /bk/index.html?v=540
 - Clean URL: https://pusiska.github.io/bk/
 - Manifest URL: https://pusiska.github.io/bk/manifest.json
 - Scope: /bk/
@@ -20,7 +20,7 @@ https://pusiska.github.io/bk/
 
 Что сделать после загрузки:
 1. Открыть:
-   https://pusiska.github.io/bk/index.html?v=539
+   https://pusiska.github.io/bk/index.html?v=540
 2. Удалить старую установленную PWA со смартфона.
 3. Очистить данные сайта/приложения, если старая PWA продолжает открывать 404.
 4. Установить PWA заново.
