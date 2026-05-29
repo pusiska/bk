@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=535" />
+  <link rel="manifest" href="./manifest.json?v=536" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Книжник 5.3.5</title>
+  <title>Книжник 5.3.6</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=535') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=536') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=535') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=536') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3542,7 +3542,7 @@
 
   
 
-    /* v5.3.5 compact reader + stable pagination, no inner page scroll */
+    /* v5.3.6 compact reader + stable pagination, no inner page scroll */
     .reader-book-hidden { display: none !important; }
 
     .reader-top {
@@ -3757,7 +3757,7 @@
 
   
 
-    /* v5.3.5 dashboard + pagination polish */
+    /* v5.3.6 dashboard + pagination polish */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3887,7 +3887,7 @@
     }
 
   
-    /* v5.3.5 reader inline appearance panel */
+    /* v5.3.6 reader inline appearance panel */
     .reader-appearance-wrap {
       position: relative;
       display: inline-flex;
@@ -3993,7 +3993,7 @@
 
   
 
-    /* v5.3.5 Книжник — header, dashboard, library list and Aa panel cleanup */
+    /* v5.3.6 Книжник — header, dashboard, library list and Aa panel cleanup */
     .brand-subtitle { display: none !important; }
 
     .brand-title {
@@ -4298,13 +4298,288 @@
       }
     }
 
+  
+
+    /* v5.3.6 library modes, readable filters, Aa bottom sheet and reader clipping fix */
+    .filter-btn.active {
+      color: #FFFDF8 !important;
+      background: #171717 !important;
+      border-color: #171717 !important;
+    }
+
+    .compact-view-switch {
+      display: inline-grid !important;
+      grid-template-columns: repeat(3, 38px) !important;
+      gap: 8px !important;
+      margin-bottom: 12px !important;
+      align-items: center !important;
+      justify-content: start !important;
+      background: transparent !important;
+      padding: 0 !important;
+    }
+
+    .view-btn.icon-only {
+      width: 38px !important;
+      min-width: 38px !important;
+      min-height: 38px !important;
+      border-radius: 13px !important;
+      border: 0 !important;
+      background: #FFFDF8 !important;
+      color: var(--muted) !important;
+      box-shadow: 0 8px 18px rgba(34, 26, 17, .055) !important;
+    }
+
+    .view-btn.icon-only.active {
+      color: #FFFDF8 !important;
+      background: #171717 !important;
+      box-shadow: 0 10px 22px rgba(34, 26, 17, .10) !important;
+    }
+
+    .view-btn.icon-only.active svg,
+    .view-btn.icon-only.active path,
+    .view-btn.icon-only.active rect {
+      stroke: #FFFDF8 !important;
+    }
+
+    .books-list.list {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 8px !important;
+    }
+
+    .books-list.grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+    }
+
+    .books-list.blocks {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 12px !important;
+    }
+
+    .book-card {
+      border: 0 !important;
+      background: rgba(255, 253, 248, .76) !important;
+      box-shadow: 0 10px 24px rgba(34, 26, 17, .045) !important;
+      overflow: hidden !important;
+    }
+
+    .books-list.list .book-card {
+      grid-template-columns: 44px minmax(0, 1fr) !important;
+      gap: 10px !important;
+      padding: 9px !important;
+      border-radius: 17px !important;
+      align-items: center !important;
+    }
+
+    .books-list.grid .book-card {
+      grid-template-columns: 1fr !important;
+      gap: 8px !important;
+      padding: 10px !important;
+      border-radius: 18px !important;
+    }
+
+    .books-list.blocks .book-card {
+      grid-template-columns: 72px minmax(0, 1fr) !important;
+      gap: 12px !important;
+      padding: 12px !important;
+      border-radius: 22px !important;
+      align-items: center !important;
+    }
+
+    .books-list.list .cover {
+      width: 44px !important;
+      height: 62px !important;
+      border-radius: 11px !important;
+      padding: 5px !important;
+      font-size: 15px !important;
+    }
+
+    .books-list.grid .cover {
+      width: 100% !important;
+      height: 136px !important;
+      border-radius: 14px !important;
+    }
+
+    .books-list.blocks .cover {
+      width: 72px !important;
+      height: 104px !important;
+      border-radius: 15px !important;
+    }
+
+    .book-card-body {
+      min-width: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .books-list.list .book-title {
+      font-size: 13px !important;
+      line-height: 1.12 !important;
+      margin: 0 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .books-list.grid .book-title {
+      font-size: 13px !important;
+      line-height: 1.12 !important;
+      margin: 0 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      min-height: 30px !important;
+    }
+
+    .books-list.blocks .book-title {
+      font-size: 16px !important;
+      line-height: 1.12 !important;
+      margin: 0 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+
+    .book-author {
+      margin: 0 !important;
+      color: var(--muted) !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .books-list.list .book-author,
+    .books-list.grid .book-author {
+      font-size: 10px !important;
+    }
+
+    .books-list.blocks .book-author {
+      font-size: 12px !important;
+    }
+
+    .book-progress-line {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .book-progress-line .progress-bar {
+      height: 5px !important;
+      margin: 0 !important;
+    }
+
+    .book-progress-line span {
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .book-actions {
+      margin: 0 !important;
+    }
+
+    .book-actions .tiny-btn {
+      min-height: 28px !important;
+      padding: 0 10px !important;
+      border-radius: 10px !important;
+      font-size: 10px !important;
+    }
+
+    .books-list.list .book-actions .tiny-btn {
+      min-height: 26px !important;
+      padding: 0 9px !important;
+      font-size: 9px !important;
+    }
+
+    .reader-shell {
+      height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+    }
+
+    .reader-panel {
+      height: calc(100dvh - 52px) !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    #viewer {
+      height: 100% !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .reader-content {
+      height: 100% !important;
+      max-height: 100% !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+      padding: 12px 18px 34px !important;
+    }
+
+    .reader-appearance-panel {
+      position: fixed !important;
+      left: 12px !important;
+      right: 12px !important;
+      top: auto !important;
+      bottom: max(18px, env(safe-area-inset-bottom, 0px)) !important;
+      transform: none !important;
+      width: auto !important;
+      max-height: calc(100dvh - 104px) !important;
+      overflow-y: auto !important;
+      z-index: 2200 !important;
+      border-radius: 22px !important;
+    }
+
+    @media (min-width: 721px) {
+      .reader-appearance-panel {
+        left: 50% !important;
+        right: auto !important;
+        bottom: 28px !important;
+        transform: translateX(-50%) !important;
+        width: min(310px, calc(100vw - 40px)) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .books-list.grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .books-list.grid .cover {
+        height: 122px !important;
+      }
+
+      .books-list.grid .book-card {
+        padding: 8px !important;
+      }
+
+      .books-list.grid .book-title {
+        font-size: 12px !important;
+      }
+
+      .reader-content {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-bottom: 38px !important;
+      }
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=535" alt="Книжник" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=536" alt="Книжник" class="app-splash-logo" />
       <div class="app-splash-title">Книжник</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -4313,12 +4588,12 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=535" alt="Книжник" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=536" alt="Книжник" /></div>
         <div>
           <p class="brand-title">Книжник</p>
         </div>
       </div>
-      <span class="version-pill">v5.3.5</span>
+      <span class="version-pill">v5.3.6</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -4350,7 +4625,6 @@
           <button class="filter-btn active" type="button" data-library-filter="all">Все</button>
           <button class="filter-btn" type="button" data-library-filter="reading">Читаю</button>
           <button class="filter-btn" type="button" data-library-filter="read">Прочитано</button>
-          <button class="filter-btn" type="button" data-library-filter="bookmarked">С закладками</button>
         </div>
         <select id="librarySortSelect" class="select" aria-label="Сортировка библиотеки">
           <option value="updated">Недавно открытые</option>
@@ -4371,6 +4645,7 @@
       <div class="view-switch compact-view-switch">
         <button class="view-btn active icon-only" id="listViewBtn" type="button" aria-label="Список"><span class="icon-svg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6h12"></path><path d="M8 12h12"></path><path d="M8 18h12"></path><path d="M4 6h.01"></path><path d="M4 12h.01"></path><path d="M4 18h.01"></path></svg></span><span class="sr-only">Список</span></button>
         <button class="view-btn icon-only" id="gridViewBtn" type="button" aria-label="Плитка"><span class="icon-svg" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="4" y="14" width="6" height="6" rx="1"></rect><rect x="14" y="14" width="6" height="6" rx="1"></rect></svg></span><span class="sr-only">Плитка</span></button>
+        <button class="view-btn icon-only" id="blockViewBtn" type="button" aria-label="Блоки"><span class="icon-svg" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="5" rx="1"></rect><rect x="4" y="14" width="16" height="5" rx="1"></rect></svg></span><span class="sr-only">Блоки</span></button>
       </div>
 
       <div id="booksList" class="books-list list"></div>
@@ -4466,7 +4741,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.3.5</span>
+          <span id="settingsVersion">5.3.6</span>
         </div>
 
         <div class="settings-item">
@@ -4505,7 +4780,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=535ui</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=536ui</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -4548,7 +4823,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=535.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=536.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -4569,16 +4844,16 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.3.5';
+    const APP_VERSION = '5.3.6';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
-    const ENABLE_RUNTIME_PAGE_SPLIT = false; // v5.2.13: stable totalPages during reading
+    const ENABLE_RUNTIME_PAGE_SPLIT = true; // v5.3.6: split overflowing reader pages instead of clipping text
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
     const READING_STATS_KEY = 'knizhnik-reading-daily-v1';
-    const SW_CACHE_NAME = 'knizhnik-epub-reader-v535';
+    const SW_CACHE_NAME = 'knizhnik-epub-reader-v536';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -4602,8 +4877,8 @@
     const uiSettings = loadUiSettings();
     let CloudConfig = loadCloudConfig();
     let cloudSettings = CloudConfig;
-    let libraryView = 'list';
-    let libraryFilter = uiSettings.libraryFilter || 'all';
+    let libraryView = ['list', 'grid', 'blocks'].includes(uiSettings.libraryView) ? uiSettings.libraryView : 'list';
+    let libraryFilter = ['all', 'reading', 'read'].includes(uiSettings.libraryFilter) ? uiSettings.libraryFilter : 'all';
     let librarySort = uiSettings.librarySort || 'updated';
     let activeBookDetailsId = null;
     let readerReturnScreen = 'library';
@@ -4633,6 +4908,7 @@
       bulkDeleteBtn: document.getElementById('bulkDeleteBtn'),
       listViewBtn: document.getElementById('listViewBtn'),
       gridViewBtn: document.getElementById('gridViewBtn'),
+      blockViewBtn: document.getElementById('blockViewBtn'),
       readerBackBtn: document.getElementById('readerBackBtn'),
       readerTitle: document.getElementById('readerTitle'),
       readerAuthor: document.getElementById('readerAuthor'),
@@ -4783,6 +5059,7 @@
 
       els.listViewBtn.addEventListener('click', () => setLibraryView('list'));
       els.gridViewBtn.addEventListener('click', () => setLibraryView('grid'));
+      if (els.blockViewBtn) els.blockViewBtn.addEventListener('click', () => setLibraryView('blocks'));
 
       els.readerBackBtn.addEventListener('click', async () => {
         await flushBookSave();
@@ -4887,7 +5164,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=535').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=536').catch(() => {});
         });
       }
     }
@@ -5677,25 +5954,25 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function getPageCharLimit() {
-      // v5.3.5: adaptive primary pagination. Denser than 5.3.5, but still below screen capacity.
+      // v5.3.6: safer primary pagination based on visible reader area.
       const width = window.innerWidth || 390;
       const height = window.innerHeight || 760;
       const font = Math.max(16, Number(readerFontSize || 20));
-      const headerReserve = width <= 520 ? 78 : 96;
-      const verticalPadding = width <= 520 ? 44 : 68;
-      const horizontalPadding = width <= 520 ? 38 : 82;
-      const readableWidth = Math.max(260, Math.min(680, width - horizontalPadding));
-      const readableHeight = Math.max(360, height - headerReserve - verticalPadding);
-      const charsPerLine = Math.max(20, Math.floor(readableWidth / (font * 0.52)));
+      const headerReserve = width <= 520 ? 74 : 92;
+      const verticalPadding = width <= 520 ? 72 : 96;
+      const horizontalPadding = width <= 520 ? 42 : 90;
+      const readableWidth = Math.max(250, Math.min(680, width - horizontalPadding));
+      const readableHeight = Math.max(300, height - headerReserve - verticalPadding);
+      const charsPerLine = Math.max(18, Math.floor(readableWidth / (font * 0.54)));
       const lineHeight = font * 1.68;
-      const linesPerPage = Math.max(12, Math.floor(readableHeight / lineHeight));
-      const estimated = Math.round(charsPerLine * linesPerPage * 0.94);
+      const linesPerPage = Math.max(10, Math.floor(readableHeight / lineHeight));
+      const estimated = Math.round(charsPerLine * linesPerPage * 0.86);
 
-      if (width <= 370) return clamp(estimated, 560, 780);
-      if (width <= 430) return clamp(estimated, 690, 950);
-      if (width <= 520) return clamp(estimated, 760, 1080);
-      if (width <= 760) return clamp(estimated, 900, 1320);
-      return clamp(estimated, 1100, 1780);
+      if (width <= 370) return clamp(estimated, 500, 720);
+      if (width <= 430) return clamp(estimated, 580, 860);
+      if (width <= 520) return clamp(estimated, 650, 980);
+      if (width <= 760) return clamp(estimated, 820, 1240);
+      return clamp(estimated, 1000, 1680);
     }
 
     function splitBlockForPages(block, limit = getPageCharLimit() - 60) {
@@ -6485,6 +6762,7 @@ function renderEpubJsChapterSelect(tocItems) {
       const weeklyPages = series.reduce((sum, day) => sum + day.pages, 0);
       const avgPages = Math.round(weeklyPages / Math.max(1, series.length));
       const bestDay = Math.max(0, ...series.map(day => day.pages));
+      const todayPages = series[series.length - 1]?.pages || 0;
       const streak = getReadingStreak();
       const lastBook = [...books].sort(sortByUpdatedAt)[0];
       const lastReadPages = lastBook ? getReadPages(lastBook) : 0;
@@ -6510,8 +6788,8 @@ function renderEpubJsChapterSelect(tocItems) {
         <section class="dash-card dash-chart-card">
           <div class="dash-card-head">
             <div>
-              <span class="dash-label">Страниц в день</span>
-              <strong>${avgPages}</strong>
+              <span class="dash-label">Страниц сегодня</span>
+              <strong>${todayPages}</strong>
             </div>
             <small>лучший день · ${bestDay}</small>
           </div>
@@ -6563,7 +6841,7 @@ function renderEpubJsChapterSelect(tocItems) {
       const query = els.searchInput.value.trim().toLowerCase();
       const filtered = getLibraryBooks(query);
 
-      els.booksList.className = 'books-list list';
+      els.booksList.className = `books-list ${libraryView}`;
       els.libraryMetaLine.textContent = getLibraryMetaText(filtered.length, books.length);
 
       renderBulkBar();
@@ -6628,8 +6906,7 @@ function renderEpubJsChapterSelect(tocItems) {
       const filterLabel = {
         all: 'все',
         reading: 'читаю',
-        read: 'прочитано',
-        bookmarked: 'с закладками'
+        read: 'прочитано'
       }[libraryFilter] || 'все';
 
       const sortLabel = {
@@ -6653,7 +6930,7 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function setLibraryFilter(filter) {
-      libraryFilter = filter || 'all';
+      libraryFilter = ['all', 'reading', 'read'].includes(filter) ? filter : 'all';
       saveUiSettings();
       applyLibraryControls();
       renderLibrary();
@@ -6748,32 +7025,21 @@ function renderEpubJsChapterSelect(tocItems) {
     function renderBookCard(book, viewMode = libraryView) {
       const readPages = getReadPages(book);
       const totalPages = Number(book.totalPages || 0);
-      const pageLabel = totalPages ? `${readPages} / ${totalPages} стр.` : 'страницы не посчитаны';
-      const statusLabel = book.status === 'read' ? 'прочитано' : 'читаю';
-      const bookmarks = getBookBookmarks(book);
-      const compatInfo = isCompatBook(book)
-        ? `<div class="compat-diagnostic"><strong>Совместимый режим</strong><span>Эта книга открывается через EPUB.js fallback. Причина: ${escapeHtml(book.parseError || 'нестандартная структура EPUB')}</span></div>`
-        : '';
-      const bookmarksBlock = renderBookBookmarksBlock(book, bookmarks);
+      const progress = Number(book.progress || 0);
+      const pageLabel = totalPages ? `${readPages} / ${totalPages}` : `${progress}%`;
 
       return `
-        <article class="book-card ${selectedBookIds.has(book.id) ? 'selected' : ''}" data-book-id="${book.id}">
-          <input class="book-select" type="checkbox" data-select-book="${book.id}" ${selectedBookIds.has(book.id) ? 'checked' : ''} aria-label="Выбрать книгу" />
+        <article class="book-card book-card-${escapeHtml(viewMode)}" data-book-id="${book.id}">
           ${renderCover(book)}
-          <div>
+          <div class="book-card-body">
             <h3 class="book-title">${escapeHtml(book.title)}</h3>
             <p class="book-author">${escapeHtml(book.author)}</p>
-            <div class="progress-bar"><div class="progress-fill" style="width: ${book.progress || 0}%"></div></div>
-            <div class="book-meta">
-              <span class="pill">${book.progress || 0}%</span>
-              <span class="pill">${pageLabel}</span>
-              <span class="pill">${statusLabel}</span>
+            <div class="book-progress-line">
+              <div class="progress-bar"><div class="progress-fill" style="width: ${progress}%"></div></div>
+              <span>${escapeHtml(pageLabel)}</span>
             </div>
-            ${bookmarksBlock}
             <div class="book-actions">
               <button class="primary-btn tiny-btn" data-details="${book.id}">О книге</button>
-              <button class="ghost-btn tiny-btn" data-read="${book.id}">Прочитано</button>
-              <button class="danger-btn tiny-btn" data-delete="${book.id}">Удалить</button>
             </div>
           </div>
         </article>
@@ -6809,7 +7075,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=535" alt="Логотип Книжник" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=536" alt="Логотип Книжник" /></div>`;
     }
 
 
@@ -6818,7 +7084,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=535" alt="Логотип Книжник" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=536" alt="Логотип Книжник" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -7146,7 +7412,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
       const currentChapter = activeReaderData.chapters[Math.max(0, currentChapterIndex)];
 
-      // v5.3.5: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
+      // v5.3.6: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
       renderChapterButtonIcon();
 
       els.chapterMenu.querySelectorAll('[data-page]').forEach(btn => {
@@ -7799,8 +8065,10 @@ async function renderActivePage() {
     }
 
     function applyLibraryView() {
+      if (!['list', 'grid', 'blocks'].includes(libraryView)) libraryView = 'list';
       els.listViewBtn.classList.toggle('active', libraryView === 'list');
       els.gridViewBtn.classList.toggle('active', libraryView === 'grid');
+      if (els.blockViewBtn) els.blockViewBtn.classList.toggle('active', libraryView === 'blocks');
       applyLibraryControls();
     }
 
