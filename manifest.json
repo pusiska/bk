@@ -1,8 +1,8 @@
 {
-  "name": "Мои книги 5.3.3",
-  "short_name": "Книги",
-  "description": "Личная EPUB-библиотека и читалка, версия 5.3.3.",
-  "start_url": "/bk/index.html?v=533",
+  "name": "Мои книги 5.3.4",
+  "short_name": "Книги 5.3.4",
+  "description": "Личная EPUB-библиотека и читалка, версия 5.3.4.",
+  "start_url": "/bk/index.html?v=534",
   "scope": "/bk/",
   "display": "standalone",
   "background_color": "#F6F1E8",
@@ -21,7 +21,7 @@
       "purpose": "any maskable monochrome"
     }
   ],
-  "id": "/bk/",
+  "id": "/bk/?app=moiknigi-reader",
   "display_override": [
     "standalone",
     "fullscreen"
