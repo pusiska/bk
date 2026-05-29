@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=542" />
+  <link rel="manifest" href="./manifest.json?v=543" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Книжник 5.4.2</title>
+  <title>Книжник 5.4.3</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=542') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=543') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=542') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=543') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3542,7 +3542,7 @@
 
   
 
-    /* v5.4.2 compact reader + stable pagination, no inner page scroll */
+    /* v5.4.3 compact reader + stable pagination, no inner page scroll */
     .reader-book-hidden { display: none !important; }
 
     .reader-top {
@@ -3757,7 +3757,7 @@
 
   
 
-    /* v5.4.2 dashboard + pagination polish */
+    /* v5.4.3 dashboard + pagination polish */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3887,7 +3887,7 @@
     }
 
   
-    /* v5.4.2 reader inline appearance panel */
+    /* v5.4.3 reader inline appearance panel */
     .reader-appearance-wrap {
       position: relative;
       display: inline-flex;
@@ -3993,7 +3993,7 @@
 
   
 
-    /* v5.4.2 Книжник — header, dashboard, library list and Aa panel cleanup */
+    /* v5.4.3 Книжник — header, dashboard, library list and Aa panel cleanup */
     .brand-subtitle { display: none !important; }
 
     .brand-title {
@@ -4300,7 +4300,7 @@
 
   
 
-    /* v5.4.2 library modes, readable filters, Aa bottom sheet and reader clipping fix */
+    /* v5.4.3 library modes, readable filters, Aa bottom sheet and reader clipping fix */
     .filter-btn.active {
       color: #FFFDF8 !important;
       background: #171717 !important;
@@ -4575,7 +4575,7 @@
 
   
 
-    /* v5.4.2 minimal book details + reader open stability styles */
+    /* v5.4.3 minimal book details + reader open stability styles */
     .book-detail-minimal {
       display: grid;
       grid-template-columns: 132px minmax(0, 1fr);
@@ -4697,7 +4697,7 @@
 
   
 
-    /* v5.4.2 stable pagination: no runtime page growth, safer page box */
+    /* v5.4.3 stable pagination: no runtime page growth, safer page box */
     .reader-content {
       overflow: hidden !important;
       padding-bottom: 42px !important;
@@ -4717,7 +4717,7 @@
 
   
 
-    /* v5.4.2 measured pagination */
+    /* v5.4.3 measured pagination */
     .reader-measure-box {
       font-size: var(--reader-font-size, 20px) !important;
       line-height: 1.58 !important;
@@ -4746,7 +4746,7 @@
 
   
 
-    /* v5.4.2 EPUB.js primary reader core */
+    /* v5.4.3 EPUB.js primary reader core */
     body.reader-mode.epubjs-primary-reader .reader-panel,
     body.reader-mode.epubjs-primary-reader #viewer {
       height: calc(100dvh - 64px) !important;
@@ -4788,7 +4788,7 @@
 
   
 
-    /* v5.4.2 Aa panel hard fix: never attach it to top header */
+    /* v5.4.3 Aa panel hard fix: never attach it to top header */
     .reader-appearance-panel {
       position: fixed !important;
       left: 12px !important;
@@ -4832,7 +4832,7 @@
 
   
 
-    /* v5.4.2 Aa panel final hard fix */
+    /* v5.4.3 Aa panel final hard fix */
     .reader-toolbar .reader-appearance-panel,
     #readerAppearancePanel.reader-appearance-panel,
     #readerAppearancePanel.reader-appearance-bottom-sheet,
@@ -4868,13 +4868,57 @@
       }
     }
 
+  
+
+    /* v5.4.3 Aa panel body-level hard fix */
+    body > #readerAppearancePanel.reader-appearance-panel {
+      position: fixed !important;
+      top: auto !important;
+      right: 12px !important;
+      bottom: max(20px, env(safe-area-inset-bottom, 0px)) !important;
+      left: 12px !important;
+      transform: none !important;
+      width: auto !important;
+      max-width: none !important;
+      max-height: min(330px, calc(100dvh - 116px)) !important;
+      overflow-y: auto !important;
+      z-index: 99999 !important;
+      border-radius: 22px !important;
+    }
+
+    body > #readerAppearancePanel.reader-appearance-panel.open {
+      display: grid !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      visibility: visible !important;
+    }
+
+    body > #readerAppearancePanel.reader-appearance-panel:not(.open) {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+    }
+
+    @media (min-width: 721px) {
+      body > #readerAppearancePanel.reader-appearance-panel {
+        top: auto !important;
+        right: auto !important;
+        bottom: 28px !important;
+        left: 50% !important;
+        width: min(320px, calc(100vw - 40px)) !important;
+        max-width: min(320px, calc(100vw - 40px)) !important;
+        transform: translateX(-50%) !important;
+      }
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=542" alt="Книжник" class="app-splash-logo" />
+      <img src="./icons/logo-main.svg?v=543" alt="Книжник" class="app-splash-logo" />
       <div class="app-splash-title">Книжник</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
@@ -4883,12 +4927,12 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=542" alt="Книжник" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=543" alt="Книжник" /></div>
         <div>
           <p class="brand-title">Книжник</p>
         </div>
       </div>
-      <span class="version-pill">v5.4.2</span>
+      <span class="version-pill">v5.4.3</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
@@ -5036,7 +5080,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.4.2</span>
+          <span id="settingsVersion">5.4.3</span>
         </div>
 
         <div class="settings-item">
@@ -5075,7 +5119,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=542ui</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=543ui</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -5118,7 +5162,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=542.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=543.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -5139,10 +5183,10 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.4.2';
+    const APP_VERSION = '5.4.3';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
-    const ENABLE_RUNTIME_PAGE_SPLIT = false; // v5.4.2: stable measured pre-pagination only
+    const ENABLE_RUNTIME_PAGE_SPLIT = false; // v5.4.3: stable measured pre-pagination only
     const DB_VERSION = 1;
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
@@ -5185,7 +5229,7 @@
     }
 
     const READING_STATS_KEY = 'knizhnik-reading-daily-v1';
-    const SW_CACHE_NAME = 'knizhnik-epub-reader-v542';
+    const SW_CACHE_NAME = 'knizhnik-epub-reader-v543';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -5525,7 +5569,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=542').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=543').catch(() => {});
         });
       }
     }
@@ -5701,7 +5745,7 @@
     }
 
     
-    // v5.4.2: EPUB.js is the primary reader core for every book.
+    // v5.4.3: EPUB.js is the primary reader core for every book.
     function isCompatBook(book) {
       return true;
     }
@@ -5880,8 +5924,6 @@
         throw new Error('epubjs mount not found');
       }
 
-      // v5.4.2: open EPUB.js from ArrayBuffer directly.
-      // Blob object URLs were unstable on repeat opening in PWA/browser cache.
       const epubBook = epubFactory();
 
       await withTimeout(epubBook.open(arrayBuffer, 'binary'), 20000, 'epubjs binary open timeout');
@@ -5907,35 +5949,48 @@
 
       applyEpubJsReadingSettings();
 
-      rendition.on('displayError', error => {
-        console.error('EPUB.js display error:', error);
-        showEpubJsError(error, book.id);
-      });
+      const syncEpubJsLocationState = (location = null, source = 'sync') => {
+        if (!activeBook || activeBook.id !== book.id) return;
 
-      rendition.on('relocated', location => {
-        const cfi = location?.start?.cfi || '';
-        const percentageRaw = Number(location?.start?.percentage);
-        let progress = Number.isFinite(percentageRaw)
-          ? clamp(Math.round(percentageRaw * 100), 0, 100)
-          : Number(activeBook?.progress || 0);
+        let currentLocation = location;
+
+        try {
+          currentLocation = currentLocation || rendition.currentLocation?.() || null;
+        } catch (error) {
+          console.warn('EPUB.js currentLocation failed:', error);
+        }
+
+        const locationStart = currentLocation?.start || currentLocation?.end || {};
+        const savedCfi = loadBookCfiLocal(book.id) || book.currentCfi || activeBook.currentCfi || '';
+        const cfi = locationStart?.cfi || savedCfi || '';
+        const percentageRaw = Number(locationStart?.percentage);
 
         let totalLocations = 0;
-        let locationIndex = 0;
+        let locationIndex = Number(activeBook.currentPageIndex || book.currentPageIndex || 0);
 
         try {
           totalLocations = Number(epubBook.locations?.length?.() || 0);
-          locationIndex = cfi && epubBook.locations?.locationFromCfi
-            ? Number(epubBook.locations.locationFromCfi(cfi))
-            : 0;
+
+          if (cfi && epubBook.locations?.locationFromCfi) {
+            const locationFromCfi = Number(epubBook.locations.locationFromCfi(cfi));
+
+            if (Number.isFinite(locationFromCfi) && locationFromCfi >= 0) {
+              locationIndex = locationFromCfi;
+            }
+          }
         } catch (error) {
           console.warn('EPUB.js location index failed:', error);
         }
 
-        if (!Number.isFinite(locationIndex)) {
-          locationIndex = Math.round((progress / 100) * Math.max(0, totalLocations - 1));
+        if (!Number.isFinite(locationIndex) || locationIndex < 0) {
+          locationIndex = 0;
         }
 
-        if (!progress && totalLocations > 1 && Number.isFinite(locationIndex)) {
+        let progress = Number.isFinite(percentageRaw)
+          ? clamp(Math.round(percentageRaw * 100), 0, 100)
+          : Number(activeBook.progress || book.progress || 0);
+
+        if (totalLocations > 1) {
           progress = clamp(Math.round((locationIndex / Math.max(1, totalLocations - 1)) * 100), 0, 100);
         }
 
@@ -5947,25 +6002,25 @@
           compatMode: isFallbackMode,
           currentCfi: cfi,
           currentPageIndex: Math.max(0, Math.round(locationIndex || 0)),
-          totalPages: totalLocations || Number(activeBook?.totalPages || book.totalPages || 0),
+          totalPages: totalLocations || Number(activeBook.totalPages || book.totalPages || 0),
           progress,
           updatedAt: new Date().toISOString()
         };
-
-        trackDailyReadingPages(previousReadPages, getReadPages(activeBook));
 
         if (cfi) {
           saveBookCfiLocal(activeBook.id, cfi);
         }
 
+        trackDailyReadingPages(previousReadPages, getReadPages(activeBook));
+
         books = books.map(item => item.id === activeBook.id ? stripBookFile(activeBook) : item).sort(sortByUpdatedAt);
         scheduleBookSave(activeBook);
-        putBookMeta(stripBookFile(activeBook)).catch(error => console.warn('immediate CFI save failed:', error));
+        putBookMeta(stripBookFile(activeBook)).catch(error => console.warn(`immediate CFI save failed (${source}):`, error));
 
         updateReaderHeader(activeBook);
         els.readerProgressText.textContent = activeBook.totalPages
-          ? `${progress}% · ${activeBook.currentPageIndex + 1}/${activeBook.totalPages}`
-          : `${progress}% · EPUB`;
+          ? `${activeBook.progress || 0}% · ${activeBook.currentPageIndex + 1}/${activeBook.totalPages}`
+          : `${activeBook.progress || 0}% · EPUB`;
 
         renderDashboard();
         renderReadingBooks();
@@ -5973,6 +6028,15 @@
         renderBookDetails();
         renderBookmarksMenu();
         updateBookmarkButtonState();
+      };
+
+      rendition.on('displayError', error => {
+        console.error('EPUB.js display error:', error);
+        showEpubJsError(error, book.id);
+      });
+
+      rendition.on('relocated', location => {
+        syncEpubJsLocationState(location, 'relocated');
       });
 
       try {
@@ -5990,23 +6054,15 @@
         await withTimeout(rendition.display(), 12000, 'epubjs first display timeout');
       }
 
-      // Generate locations after the first render. This prevents a blank "opening" screen
-      // if locations generation is slow on a large EPUB.
+      // v5.4.3: force initial counter sync immediately after the restored CFI is displayed.
+      syncEpubJsLocationState(rendition.currentLocation?.() || null, 'after-display');
+      setTimeout(() => syncEpubJsLocationState(rendition.currentLocation?.() || null, 'after-display-delay'), 180);
+
+      // Generate locations after first render, then sync counter again.
       epubBook.locations.generate(1200)
         .then(() => {
           if (!activeBook || activeBook.id !== book.id) return;
-
-          activeBook = {
-            ...activeBook,
-            totalPages: Number(epubBook.locations?.length?.() || activeBook.totalPages || 0),
-            updatedAt: new Date().toISOString()
-          };
-
-          books = books.map(item => item.id === activeBook.id ? stripBookFile(activeBook) : item).sort(sortByUpdatedAt);
-          scheduleBookSave(activeBook);
-          updateReaderHeader(activeBook);
-          renderBookDetails();
-          renderLibrary();
+          syncEpubJsLocationState(rendition.currentLocation?.() || null, 'locations-ready');
         })
         .catch(error => console.warn('EPUB.js locations warning:', error));
 
@@ -6014,6 +6070,7 @@
         try {
           rendition.resize('100%', '100%');
           applyEpubJsReadingSettings();
+          syncEpubJsLocationState(rendition.currentLocation?.() || null, 'resize-sync');
         } catch (error) {
           console.warn('EPUB.js resize failed:', error);
         }
@@ -6022,14 +6079,6 @@
       renderEpubJsChapterSelect(epubBook.navigation?.toc || []);
       renderBookmarksMenu();
       updateBookmarkButtonState();
-
-      activeBook = {
-        ...activeBook,
-        readerEngine: 'epubjs',
-        compatMode: isFallbackMode,
-        totalPages: Number(epubBook.locations?.length?.() || activeBook?.totalPages || 0),
-        updatedAt: new Date().toISOString()
-      };
 
       await putBookMeta(stripBookFile(activeBook));
 
@@ -6396,7 +6445,7 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function getPageCharLimit() {
-      // v5.4.2: stable pre-pagination tuned for phone viewport.
+      // v5.4.3: stable pre-pagination tuned for phone viewport.
       const width = window.innerWidth || 390;
       const height = window.innerHeight || 760;
       const font = Math.max(16, Number(readerFontSize || 20));
@@ -6615,13 +6664,13 @@ function renderEpubJsChapterSelect(tocItems) {
 
 
     async function buildPagesFromReaderData(readerData) {
-      // v5.4.2: measured pagination.
+      // v5.4.3: measured pagination.
       // Pages are built before reading by measuring actual rendered height in a hidden reader box.
       // This keeps totalPages stable and prevents text from being clipped at the bottom.
       const pages = [];
       const detectedChapters = [];
       const pageCharLimit = getPageCharLimit();
-      const streamBlocks = []; // v5.4.2 measured pre-pagination marker
+      const streamBlocks = []; // v5.4.3 measured pre-pagination marker
       const seenBlockTexts = new Set();
       const tocHrefSet = getTocHrefSet(readerData.toc || []);
       let detectedChapterCount = 0;
@@ -7208,7 +7257,7 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function getLastDateKeys(count = 7) {
-      // v5.4.2: dashboard week is calendar week, Monday -> Sunday.
+      // v5.4.3: dashboard week is calendar week, Monday -> Sunday.
       const today = new Date();
       const day = today.getDay(); // 0 = Sunday, 1 = Monday
       const diffToMonday = day === 0 ? -6 : 1 - day;
@@ -7633,7 +7682,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=542" alt="Логотип Книжник" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=543" alt="Логотип Книжник" /></div>`;
     }
 
 
@@ -7642,7 +7691,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=542" alt="Логотип Книжник" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=543" alt="Логотип Книжник" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -7804,7 +7853,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
 
     async function openReader(bookId, startPageIndex = null, returnScreen = 'library') {
-      // v5.4.2: EPUB.js is now the primary reading core.
+      // v5.4.3: EPUB.js is now the primary reading core.
       // The old manual parser is left only as an emergency fallback.
       await flushBookSave();
       closeEpubJsSession();
@@ -7953,7 +8002,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
       const currentChapter = activeReaderData.chapters[Math.max(0, currentChapterIndex)];
 
-      // v5.4.2: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
+      // v5.4.3: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
       renderChapterButtonIcon();
 
       els.chapterMenu.querySelectorAll('[data-page]').forEach(btn => {
@@ -8670,15 +8719,22 @@ async function renderActivePage() {
     function toggleReaderAppearancePanel() {
       if (!els.readerAppearancePanel) return;
 
-      const willOpen = !els.readerAppearancePanel.classList.contains('open');
+      const panel = els.readerAppearancePanel;
+      const willOpen = !panel.classList.contains('open');
 
-      els.readerAppearancePanel.classList.toggle('open', willOpen);
-      els.readerAppearancePanel.classList.toggle('reader-appearance-bottom-sheet', willOpen);
+      panel.classList.toggle('open', willOpen);
+      panel.classList.toggle('reader-appearance-bottom-sheet', willOpen);
 
       if (willOpen) {
-        // v5.4.2: wipe old inline top/transform positioning and pin panel to bottom.
-        els.readerAppearancePanel.removeAttribute('style');
+        // v5.4.3: move panel out of the top toolbar. Fixed positioning inside toolbar was unstable.
+        if (panel.parentElement !== document.body) {
+          document.body.appendChild(panel);
+        }
+
+        panel.removeAttribute('style');
+        forceReaderAppearancePanelBottom();
         requestAnimationFrame(forceReaderAppearancePanelBottom);
+        setTimeout(forceReaderAppearancePanelBottom, 80);
       }
 
       updateReaderAppearancePanel();
@@ -8689,6 +8745,33 @@ async function renderActivePage() {
       els.readerAppearancePanel.classList.remove('open');
       els.readerAppearancePanel.classList.remove('reader-appearance-bottom-sheet');
       els.readerAppearancePanel.removeAttribute('style');
+    }
+
+    function forceReaderAppearancePanelBottom() {
+      if (!els.readerAppearancePanel || !els.readerAppearancePanel.classList.contains('open')) return;
+
+      const panel = els.readerAppearancePanel;
+      const desktop = window.matchMedia('(min-width: 721px)').matches;
+
+      if (panel.parentElement !== document.body) {
+        document.body.appendChild(panel);
+      }
+
+      panel.style.position = 'fixed';
+      panel.style.display = 'grid';
+      panel.style.opacity = '1';
+      panel.style.pointerEvents = 'auto';
+      panel.style.top = 'auto';
+      panel.style.bottom = desktop ? '28px' : 'max(20px, env(safe-area-inset-bottom, 0px))';
+      panel.style.left = desktop ? '50%' : '12px';
+      panel.style.right = desktop ? 'auto' : '12px';
+      panel.style.width = desktop ? 'min(320px, calc(100vw - 40px))' : 'auto';
+      panel.style.maxWidth = desktop ? 'min(320px, calc(100vw - 40px))' : 'none';
+      panel.style.transform = desktop ? 'translateX(-50%)' : 'none';
+      panel.style.maxHeight = 'min(330px, calc(100dvh - 116px))';
+      panel.style.overflowY = 'auto';
+      panel.style.zIndex = '99999';
+      panel.style.borderRadius = '22px';
     }
 
     function forceReaderAppearancePanelBottom() {
