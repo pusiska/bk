@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F6F1E8" />
-  <link rel="manifest" href="./manifest.json?v=534" />
+  <link rel="manifest" href="./manifest.json?v=535" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <title>Мои книги 5.3.4</title>
+  <title>Книжник 5.3.5</title>
 
   <style>
     @font-face {
       font-family: 'uvKits';
-      src: url('./fonts/uvkits.ttf?v=534') format('truetype');
+      src: url('./fonts/uvkits.ttf?v=535') format('truetype');
       font-weight: 300 900;
       font-style: normal;
       font-display: swap;
@@ -19,7 +19,7 @@
 
     @font-face {
       font-family: 'KONSTRUKT';
-      src: url('./fonts/KONSTRUKT-Regular.otf?v=534') format('opentype');
+      src: url('./fonts/KONSTRUKT-Regular.otf?v=535') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -3542,7 +3542,7 @@
 
   
 
-    /* v5.3.4 compact reader + stable pagination, no inner page scroll */
+    /* v5.3.5 compact reader + stable pagination, no inner page scroll */
     .reader-book-hidden { display: none !important; }
 
     .reader-top {
@@ -3757,7 +3757,7 @@
 
   
 
-    /* v5.3.4 dashboard + pagination polish */
+    /* v5.3.5 dashboard + pagination polish */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3887,7 +3887,7 @@
     }
 
   
-    /* v5.3.4 reader inline appearance panel */
+    /* v5.3.5 reader inline appearance panel */
     .reader-appearance-wrap {
       position: relative;
       display: inline-flex;
@@ -3991,14 +3991,321 @@
       box-shadow: 0 0 0 2px #1D1B17, 0 0 0 4px #EFE9DD;
     }
 
+  
+
+    /* v5.3.5 Книжник — header, dashboard, library list and Aa panel cleanup */
+    .brand-subtitle { display: none !important; }
+
+    .brand-title {
+      font-size: 16px !important;
+      letter-spacing: .075em !important;
+    }
+
+    .version-pill {
+      min-height: 22px !important;
+      padding: 0 7px !important;
+      border-radius: 999px !important;
+      font-size: 9px !important;
+      font-weight: 700 !important;
+      opacity: .72 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .dashboard-head { margin-bottom: 14px !important; }
+
+    .dashboard-home {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .dash-card {
+      border: 0;
+      border-radius: 24px;
+      background: rgba(255, 253, 248, .72);
+      color: var(--text);
+      box-shadow: 0 14px 34px rgba(34, 26, 17, .055);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 16px;
+      text-align: left;
+    }
+
+    .dash-label,
+    .dash-current-meta {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .dash-main-stat strong {
+      display: block;
+      font-size: 30px;
+      line-height: .95;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      margin-bottom: 12px;
+    }
+
+    .dash-card small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      margin-top: 8px;
+    }
+
+    .dash-soft-bar {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(205, 186, 154, .22);
+      overflow: hidden;
+    }
+
+    .dash-soft-bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: rgba(23, 23, 23, .78);
+    }
+
+    .dash-current-book {
+      cursor: pointer;
+      position: relative;
+      min-height: 104px;
+    }
+
+    .dash-current-book strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 20px;
+      line-height: 1.12;
+      letter-spacing: .055em;
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 10px;
+      padding-right: 34px;
+    }
+
+    .dash-icon {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(246, 241, 232, .74);
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .dash-chart-card { padding: 16px 16px 12px; }
+
+    .dash-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .dash-card-head strong {
+      font-size: 26px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -.03em;
+    }
+
+    .dash-card-head small {
+      margin: 0;
+      white-space: nowrap;
+      font-size: 11px;
+    }
+
+    .daily-chart {
+      min-height: 118px;
+      position: relative;
+      padding-top: 4px;
+    }
+
+    .daily-chart-svg {
+      width: 100%;
+      height: 92px;
+      display: block;
+      overflow: visible;
+    }
+
+    .daily-chart-line {
+      fill: none;
+      stroke: rgba(85, 111, 116, .72);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .daily-chart-area { fill: rgba(85, 111, 116, .075); }
+
+    .daily-chart-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      color: var(--muted);
+      font-size: 9px;
+      text-align: center;
+      opacity: .78;
+      margin-top: 2px;
+      text-transform: lowercase;
+    }
+
+    .dash-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .dash-mini-card {
+      min-height: 64px;
+      border-radius: 18px;
+      background: rgba(255, 253, 248, .66);
+      box-shadow: 0 10px 24px rgba(34, 26, 17, .045);
+      padding: 11px 8px;
+      text-align: center;
+    }
+
+    .dash-mini-card strong {
+      display: block;
+      font-size: 17px;
+      line-height: 1;
+      margin-bottom: 7px;
+      font-weight: 750;
+    }
+
+    .dash-mini-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.15;
+      text-transform: lowercase;
+    }
+
+    .compact-view-switch { display: none !important; }
+
+    .books-list.grid {
+      display: grid;
+      grid-template-columns: 1fr !important;
+    }
+
+    .books-list.list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .books-list.list .book-card {
+      grid-template-columns: 54px minmax(0, 1fr) !important;
+      gap: 12px !important;
+      padding: 11px !important;
+      border-radius: 20px !important;
+    }
+
+    .books-list.list .cover {
+      width: 54px !important;
+      height: 78px !important;
+      border-radius: 13px !important;
+    }
+
+    .books-list.list .book-title {
+      font-size: 14px !important;
+      line-height: 1.12 !important;
+      margin-bottom: 4px !important;
+    }
+
+    .books-list.list .book-author {
+      font-size: 11px !important;
+      margin-bottom: 7px !important;
+    }
+
+    .books-list.list .progress-bar {
+      height: 5px !important;
+      margin-bottom: 7px !important;
+    }
+
+    .books-list.list .book-meta {
+      gap: 5px !important;
+      margin-bottom: 8px !important;
+    }
+
+    .books-list.list .pill {
+      padding: 4px 6px !important;
+      font-size: 9px !important;
+      border-radius: 8px !important;
+    }
+
+    .books-list.list .book-actions {
+      gap: 6px !important;
+    }
+
+    .books-list.list .book-actions .tiny-btn {
+      min-height: 30px !important;
+      padding: 0 9px !important;
+      font-size: 10px !important;
+      border-radius: 10px !important;
+    }
+
+    .reader-appearance-panel {
+      position: fixed !important;
+      left: 50% !important;
+      right: auto !important;
+      top: 72px !important;
+      bottom: auto !important;
+      transform: translateX(-50%) !important;
+      width: min(292px, calc(100vw - 28px)) !important;
+      z-index: 2000 !important;
+    }
+
+    @media (max-width: 720px) {
+      .dashboard-home { gap: 10px; }
+      .dash-card { border-radius: 22px; padding: 14px; }
+      .dash-main-stat strong { font-size: 27px; }
+      .dash-current-book { min-height: 96px; }
+      .dash-current-book strong { font-size: 17px; }
+      .daily-chart { min-height: 104px; }
+      .daily-chart-svg { height: 78px; }
+      .dash-mini-grid { gap: 7px; }
+      .dash-mini-card { min-height: 58px; border-radius: 16px; padding: 10px 6px; }
+      .dash-mini-card strong { font-size: 15px; }
+      .dash-mini-card span { font-size: 8.5px; }
+
+      .reader-appearance-panel {
+        top: auto !important;
+        left: 12px !important;
+        right: 12px !important;
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+        transform: none !important;
+        width: auto !important;
+        border-radius: 22px !important;
+      }
+    }
+
   </style>
 </head>
 
 <body class="app-loading">
   <div id="appSplash" class="app-splash" aria-hidden="true">
     <div class="app-splash-inner">
-      <img src="./icons/logo-main.svg?v=534" alt="Мои книги" class="app-splash-logo" />
-      <div class="app-splash-title">Мои книги</div>
+      <img src="./icons/logo-main.svg?v=535" alt="Книжник" class="app-splash-logo" />
+      <div class="app-splash-title">Книжник</div>
       <div class="app-splash-sub">личная библиотека всегда с вами</div>
       <div class="app-splash-line"><span></span></div>
     </div>
@@ -4006,32 +4313,25 @@
   <main class="app">
     <header class="app-header">
       <div class="brand">
-        <div class="brand-mark"><img src="./icons/logo-app.svg?v=534" alt="Мои книги" /></div>
+        <div class="brand-mark"><img src="./icons/logo-app.svg?v=535" alt="Книжник" /></div>
         <div>
-          <p class="brand-title">Мои книги</p>
-          <p class="brand-subtitle">EPUB-читалка · 5.3.4</p>
+          <p class="brand-title">Книжник</p>
         </div>
       </div>
-      <span class="version-pill">v5.3.4</span>
+      <span class="version-pill">v5.3.5</span>
       <input class="hidden-input" id="epubInput" type="file" accept=".epub,application/epub+zip" />
       <input class="hidden-input" id="backupInput" type="file" accept=".json,application/json" />
     </header>
 
     <section id="screen-home" class="screen active">
-      <div class="section-head">
+      <div class="section-head dashboard-head">
         <p class="eyebrow">Главная</p>
         <h1>Дашборд</h1>
       </div>
 
-      <section class="dashboard-grid" id="dashboardGrid"></section>
-
-      <section class="panel">
-        <div class="panel-title">
-          <h3>В процессе чтения</h3>
-          <span id="readingCountLabel">0 книг</span>
-        </div>
-        <div id="readingBooks" class="books-list list"></div>
-      </section>
+      <section class="dashboard-home" id="dashboardGrid"></section>
+      <span id="readingCountLabel" hidden>0 книг</span>
+      <div id="readingBooks" class="books-list list" hidden></div>
     </section>
 
     <section id="screen-library" class="screen">
@@ -4166,7 +4466,7 @@
       <section class="settings-card">
         <div class="settings-item">
           <strong>Версия приложения</strong>
-          <span id="settingsVersion">5.3.4</span>
+          <span id="settingsVersion">5.3.5</span>
         </div>
 
         <div class="settings-item">
@@ -4205,7 +4505,7 @@
           <strong>Android / APK подготовка 5.1</strong>
           <span>Эта версия исправляет путь GitHub Pages для установленной PWA: приложение работает по адресу /bk/, поэтому manifest, scope и start_url переведены на /bk/.</span>
           <div class="android-prep-list">
-            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=534ui</code></div>
+            <div class="android-prep-row"><span>PWA start</span><code>https://pusiska.github.io/bk/index.html?v=535ui</code></div>
             <div class="android-prep-row"><span>Clean URL</span><code>https://pusiska.github.io/bk/</code></div>
             <div class="android-prep-row"><span>Manifest</span><code>https://pusiska.github.io/bk/manifest.json</code></div>
             <div class="android-prep-row"><span>Package</span><code>app.moiknigi.reader</code></div>
@@ -4248,7 +4548,7 @@
 
         <div class="settings-item">
           <strong>Подсказка для теста</strong>
-          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=534.</span>
+          <span>Если после обновления видишь старую версию: удалить PWA, очистить данные сайта и открыть index.html?v=535.</span>
         </div>
 
         <button class="danger-btn" id="clearDataBtn">Очистить локальные данные</button>
@@ -4269,7 +4569,7 @@
   <div class="toast" id="toast">Сохранено</div>
 
   <script>
-    const APP_VERSION = '5.3.4';
+    const APP_VERSION = '5.3.5';
     const BUILD_DATE = '2026-05-25 08:33 UTC';
     const DB_NAME = 'my-books-epub-reader-db-v44';
     const ENABLE_RUNTIME_PAGE_SPLIT = false; // v5.2.13: stable totalPages during reading
@@ -4277,7 +4577,8 @@
     const META_STORE = 'bookMeta';
     const FILES_STORE = 'bookFiles';
     const UI_STORAGE_KEY = 'my-books-epub-ui-v40';
-    const SW_CACHE_NAME = 'my-books-epub-reader-v534';
+    const READING_STATS_KEY = 'knizhnik-reading-daily-v1';
+    const SW_CACHE_NAME = 'knizhnik-epub-reader-v535';
 
     const JSZIP_SOURCES = [
       './libs/jszip.min.js',
@@ -4301,7 +4602,7 @@
     const uiSettings = loadUiSettings();
     let CloudConfig = loadCloudConfig();
     let cloudSettings = CloudConfig;
-    let libraryView = uiSettings.libraryView || 'list';
+    let libraryView = 'list';
     let libraryFilter = uiSettings.libraryFilter || 'all';
     let librarySort = uiSettings.librarySort || 'updated';
     let activeBookDetailsId = null;
@@ -4586,7 +4887,7 @@
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js?v=534').catch(() => {});
+          navigator.serviceWorker.register('./service-worker.js?v=535').catch(() => {});
         });
       }
     }
@@ -5376,7 +5677,7 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function getPageCharLimit() {
-      // v5.3.4: adaptive primary pagination. Denser than 5.3.4, but still below screen capacity.
+      // v5.3.5: adaptive primary pagination. Denser than 5.3.5, but still below screen capacity.
       const width = window.innerWidth || 390;
       const height = window.innerHeight || 760;
       const font = Math.max(16, Number(readerFontSize || 20));
@@ -6072,22 +6373,157 @@ function renderEpubJsChapterSelect(tocItems) {
       renderSettings();
     }
 
+    function getDateKey(date = new Date()) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+
+      return `${year}-${month}-${day}`;
+    }
+
+    function getLastDateKeys(count = 7) {
+      return Array.from({ length: count }).map((_, index) => {
+        const date = new Date();
+        date.setDate(date.getDate() - (count - 1 - index));
+        return getDateKey(date);
+      });
+    }
+
+    function getDayShortLabel(dateKey) {
+      const date = new Date(`${dateKey}T00:00:00`);
+      return date.toLocaleDateString('ru-RU', { weekday: 'short' }).replace('.', '');
+    }
+
+    function loadDailyReadingStats() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(READING_STATS_KEY) || '{}');
+        return raw && typeof raw === 'object' ? raw : {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveDailyReadingStats(stats) {
+      try {
+        localStorage.setItem(READING_STATS_KEY, JSON.stringify(stats || {}));
+      } catch (error) {
+        console.warn('daily stats save failed', error);
+      }
+    }
+
+    function trackDailyReadingPages(prevPages = 0, nextPages = 0) {
+      const delta = Math.max(0, Number(nextPages || 0) - Number(prevPages || 0));
+
+      if (!delta) return;
+
+      const stats = loadDailyReadingStats();
+      const today = getDateKey();
+      stats[today] = Math.max(0, Number(stats[today] || 0)) + delta;
+
+      const allowed = new Set(getLastDateKeys(45));
+      Object.keys(stats).forEach(key => {
+        if (!allowed.has(key)) delete stats[key];
+      });
+
+      saveDailyReadingStats(stats);
+    }
+
+    function getReadingSeries(days = 7) {
+      const stats = loadDailyReadingStats();
+      const keys = getLastDateKeys(days);
+
+      return keys.map(key => ({
+        key,
+        label: getDayShortLabel(key),
+        pages: Math.max(0, Math.round(Number(stats[key] || 0)))
+      }));
+    }
+
+    function getReadingStreak() {
+      const stats = loadDailyReadingStats();
+      let streak = 0;
+
+      for (let i = 0; i < 365; i += 1) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const key = getDateKey(date);
+
+        if (Number(stats[key] || 0) > 0) streak += 1;
+        else break;
+      }
+
+      return streak;
+    }
+
+    function renderDailyLineChart(series) {
+      const max = Math.max(1, ...series.map(day => day.pages));
+      const points = series.map((day, index) => {
+        const x = series.length === 1 ? 50 : (index / (series.length - 1)) * 100;
+        const y = 64 - (day.pages / max) * 48;
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(' ');
+
+      const areaPoints = `0,68 ${points} 100,68`;
+
+      return `
+        <svg class="daily-chart-svg" viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true">
+          <polygon points="${areaPoints}" class="daily-chart-area"></polygon>
+          <polyline points="${points}" class="daily-chart-line"></polyline>
+        </svg>
+        <div class="daily-chart-days">
+          ${series.map(day => `<span>${escapeHtml(day.label)}</span>`).join('')}
+        </div>
+      `;
+    }
+
     function renderDashboard() {
       const total = books.length;
       const reading = books.filter(book => book.status === 'reading').length;
       const read = books.filter(book => book.status === 'read').length;
-      const avgProgress = total ? Math.round(books.reduce((sum, book) => sum + Number(book.progress || 0), 0) / total) : 0;
+      const totalReadPages = books.reduce((sum, book) => sum + getReadPages(book), 0);
+      const series = getReadingSeries(7);
+      const weeklyPages = series.reduce((sum, day) => sum + day.pages, 0);
+      const avgPages = Math.round(weeklyPages / Math.max(1, series.length));
+      const bestDay = Math.max(0, ...series.map(day => day.pages));
+      const streak = getReadingStreak();
       const lastBook = [...books].sort(sortByUpdatedAt)[0];
+      const lastReadPages = lastBook ? getReadPages(lastBook) : 0;
+      const lastTotalPages = Number(lastBook?.totalPages || 0);
+      const lastProgress = Number(lastBook?.progress || 0);
 
       els.dashboardGrid.innerHTML = `
-        <div class="metric-card mini-metric"><strong>${total}</strong><span>книг</span></div>
-        <div class="metric-card mini-metric"><strong>${reading}</strong><span>читаю</span></div>
-        <div class="metric-card mini-metric"><strong>${read}</strong><span>готово</span></div>
-        <div class="metric-card mini-metric"><strong>${avgProgress}%</strong><span>средний</span></div>
-        <button class="metric-card dashboard-continue-card wide" type="button" ${lastBook ? `data-dashboard-open="${lastBook.id}"` : ''}>
+        <section class="dash-card dash-main-stat">
+          <span class="dash-label">Прочитано книг</span>
+          <strong>${read}</strong>
+          <div class="dash-soft-bar"><span style="width:${total ? Math.round((read / total) * 100) : 0}%"></span></div>
+          <small>${reading} в процессе · ${total} всего</small>
+        </section>
+
+        <button class="dash-card dash-current-book" type="button" ${lastBook ? `data-dashboard-open="${lastBook.id}"` : ''}>
+          <span class="dash-icon" aria-hidden="true">⌁</span>
+          <span class="dash-current-meta">Сейчас читаю</span>
           <strong>${lastBook ? escapeHtml(lastBook.title) : 'Добавь первую книгу'}</strong>
-          <span>${lastBook ? 'продолжить чтение' : 'библиотека пока пустая'}</span>
+          <small>${lastBook ? `${lastProgress}% · ${lastReadPages}${lastTotalPages ? ' / ' + lastTotalPages : ''} стр.` : 'Библиотека пока пустая'}</small>
+          <div class="dash-soft-bar"><span style="width:${lastProgress}%"></span></div>
         </button>
+
+        <section class="dash-card dash-chart-card">
+          <div class="dash-card-head">
+            <div>
+              <span class="dash-label">Страниц в день</span>
+              <strong>${avgPages}</strong>
+            </div>
+            <small>лучший день · ${bestDay}</small>
+          </div>
+          <div class="daily-chart">${renderDailyLineChart(series)}</div>
+        </section>
+
+        <section class="dash-mini-grid">
+          <div class="dash-mini-card"><strong>${totalReadPages}</strong><span>страниц</span></div>
+          <div class="dash-mini-card"><strong>${avgPages}</strong><span>стр./день</span></div>
+          <div class="dash-mini-card"><strong>${streak}</strong><span>дней серия</span></div>
+          <div class="dash-mini-card"><strong>${reading}</strong><span>читаю</span></div>
+        </section>
       `;
 
       els.dashboardGrid.querySelectorAll('[data-dashboard-open]').forEach(btn => {
@@ -6096,6 +6532,7 @@ function renderEpubJsChapterSelect(tocItems) {
     }
 
     function renderReadingBooks() {
+      if (!els.readingBooks || !els.readingCountLabel) return;
       const readingBooks = books.filter(book => book.status === 'reading');
       els.readingCountLabel.textContent = getBooksWord(readingBooks.length);
 
@@ -6126,7 +6563,7 @@ function renderEpubJsChapterSelect(tocItems) {
       const query = els.searchInput.value.trim().toLowerCase();
       const filtered = getLibraryBooks(query);
 
-      els.booksList.className = `books-list ${libraryView}`;
+      els.booksList.className = 'books-list list';
       els.libraryMetaLine.textContent = getLibraryMetaText(filtered.length, books.length);
 
       renderBulkBar();
@@ -6372,7 +6809,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=534" alt="Логотип Мои книги" /></div>`;
+      return `<div class="cover placeholder"><img src="./icons/logo-app.svg?v=535" alt="Логотип Книжник" /></div>`;
     }
 
 
@@ -6381,7 +6818,7 @@ function renderEpubJsChapterSelect(tocItems) {
         return `<div class="detail-cover"><img src="${book.coverData}" alt="Обложка ${escapeHtml(book.title)}" /></div>`;
       }
 
-      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=534" alt="Логотип Мои книги" /></div>`;
+      return `<div class="detail-cover placeholder"><img src="./icons/logo-app.svg?v=535" alt="Логотип Книжник" /></div>`;
     }
 
     function openBookDetails(bookId) {
@@ -6709,7 +7146,7 @@ function renderEpubJsChapterSelect(tocItems) {
 
       const currentChapter = activeReaderData.chapters[Math.max(0, currentChapterIndex)];
 
-      // v5.3.4: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
+      // v5.3.5: keep chapter button icon-only; chapter title is visible only inside the opened chapter menu.
       renderChapterButtonIcon();
 
       els.chapterMenu.querySelectorAll('[data-page]').forEach(btn => {
@@ -7107,6 +7544,7 @@ async function renderActivePage() {
 
       const stableTotalPages = getStableTotalPages(activeReaderData, activeBook);
       const progress = stableTotalPages ? Math.round(((activePageIndex + 1) / stableTotalPages) * 100) : 0;
+      const previousReadPages = getReadPages(activeBook);
 
       activeBook = {
         ...activeBook,
@@ -7117,6 +7555,8 @@ async function renderActivePage() {
         progress: clamp(progress, 0, 100),
         updatedAt: new Date().toISOString()
       };
+
+      trackDailyReadingPages(previousReadPages, getReadPages(activeBook));
 
       scheduleBookSave(activeBook);
       pushUpdateToCloud({ type: 'page-view', bookId: activeBook.id, progress: activeBook.progress, currentPageIndex: activeBook.currentPageIndex });
